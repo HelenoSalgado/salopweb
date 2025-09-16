@@ -48,7 +48,7 @@
   --color-background-active: #3a3a3a;
   --color-text-primary: #dfdfdf;
   --color-text-secondary: #ccc;
-  --color-text-heading: #4e4e4e;
+  --color-text-heading: #e6e6e6;
   --color-border: #333;
   --color-primary: #66b3ff;
   --color-primary-hover: #3399ff;
@@ -160,7 +160,7 @@ main {
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     border-radius: 3px;
-    color: var(--color-text-secondary);
+    color: var(--color-primary);
   }
   & pre code {
     padding: 0;
