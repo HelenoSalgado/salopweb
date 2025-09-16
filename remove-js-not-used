@@ -1,0 +1,15 @@
+#! /bin/bash
+
+DIR=$1;
+
+#Exclui arquivos de payload que não são mais necessários
+find "${DIR}" -type f -name "_payload.js" -delete
+
+echo "" > remove-js-not-used.log;
+
+echo "------------------------------------------------";
+echo "";
+echo "$(tput setaf 2)Payloads removidos em:$(tput sgr0)";
+# No files listed here, as find -delete doesn't output
+echo "";
+echo "------------------------------------------------";

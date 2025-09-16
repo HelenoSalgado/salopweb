@@ -1,8 +1,9 @@
 ---
 title: "Corrigindo dependência não encontrada pelo makepkg"
 description: "Aprenda a resolver problemas de dependência não encontrada ao usar o makepkg no Arch Linux, com dicas e soluções práticas."
-image: "/images/default-post.png"
 ---
+
+# Corrigindo dependência não encontrada pelo makepkg
 
 Recentemente tive que instalar o **Insominia** no Arch Linux, no entanto o build falhava por não encontrar o pacote nvm, que é uma dependência necessária para o tempo de execução.
 
@@ -10,20 +11,17 @@ Em suma, o método convencional não ajudou, então editei o aquivo **PKGBUILD**
 
 ```bash
 $ git clone https://aur.archlinux.org/insomnia.git
-```
-```bash
+
 $ cd insominia
-```
-```bash
+
 $ makepkg
-```
-```bash
+
 $ makepkg --install
 ```
 
-{{< callout >}}
+::callout{type="star"}
 O nome do pacote final a ser instalado, depois do build, poderia também ser instalado com: `pacman -U nome-do-pacote.tar.zst`.
-{{< /callout >}}
+::
 
 Tanto faz ser o Insomia como outro software, por vezes, no momento da construção, uma dependência pode não ser encontrada, apesar de estar devidamente instalada. Sendo assim, poderíamos abrir o arquivo **PKGBUILD** e observar a lista de dependências necessárias, certificar que estão instaladas e proseguir a construção ignorando as dependências com a flag `--nodeps`.
 
@@ -49,8 +47,7 @@ E executando o comando novamente, o insomnia, ou outro pacote com problema do me
 
 ```bash
 $ makepkg
-```
-```bash
+
 $ makepkg --install
 ```
 

@@ -1,0 +1,8 @@
+---
+type: page
+title: Sobre
+---
+
+# Sobre
+
+Este é um blog dedicado a registrar meus pensamentos e descobertas na vida e no estudo diário; minha pretenção é organizar somente o meu próprio aprendizado e tê-lo disponível publicamente para consultá-lo de qualquer lugar.

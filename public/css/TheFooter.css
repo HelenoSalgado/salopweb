@@ -1,0 +1,152 @@
+/* ================== Footer ================== */
+.hextra-footer {
+  position: relative;
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  & .hextra-footer-container {
+    max-width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+  }
+
+  & .copyright {
+    & p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Theme Switcher */
+  & .theme-switcher-container {
+    position: relative; /* Added for absolute positioning of options */
+
+    & .hextra-theme-toggle {
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      &:hover {
+        background-color: var(--color-background-hover);
+      }
+    }
+
+    & .hextra-theme-toggle-options {
+      position: absolute; /* Changed from fixed */
+      bottom: 100%; /* Position above the button */
+      left: 0; /* Align to the left of the button to prevent leaking */
+      z-index: 50;
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 0.5rem;
+      box-shadow: 0 10px 15px -3px var(--color-shadow-light), 0 4px 6px -2px var(--color-shadow-light);
+      min-width: 120px; /* Ensure it has a minimum width */
+
+      & p {
+        margin: 0;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        &:hover {
+          background-color: var(--color-background-hover);
+        }
+      }
+    }
+  }
+}
+
+/* .dark .hextra-footer .hextra-theme-toggle-options {
+  box-shadow: 0 10px 15px -3px var(--color-shadow-dark), 0 4px 6px -2px var(--color-shadow-dark);
+} */
+
+
+/* ================== Footer ================== */
+/* .hextra-footer {
+  position: relative;
+  background-color: var(--color-bg-light);
+  border-top: 1px solid var(--color-border-light);
+  padding: 2rem 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  & .hextra-footer-container {
+    max-width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+  }
+
+  & .copyright {
+    & p {
+      margin: 0;
+      color: var(--color-text-dark);
+      font-size: 0.9rem;
+    }
+  }
+  & .theme-switcher-container {
+    position: relative;
+
+    & .hextra-theme-toggle {
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      &:hover {
+        background-color: var(--color-bg-hover-light);
+      }
+    }
+
+    & .hextra-theme-toggle-options {
+      position: absolute; 
+      bottom: 100%; 
+      left: 0;
+      z-index: 50;
+      background-color: var(--color-bg-light);
+      border: 1px solid var(--color-border-light);
+      border-radius: 8px;
+      padding: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      min-width: 120px;
+
+      & p {
+        margin: 0;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        &:hover {
+          background-color: var(--color-bg-hover-light);
+        }
+      }
+    }
+  }
+}
+
+.dark .hextra-footer {
+  background-color: var(--color-bg-dark);
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.dark .hextra-footer .copyright p {
+  color: var(--color-text-dark-dark);
+}
+
+.dark .hextra-footer .hextra-theme-toggle:hover {
+  background-color: var(--color-bg-hover-dark);
+}
+
+.dark .hextra-footer .hextra-theme-toggle-options {
+  background-color: var(--color-bg-dark);
+  border: 1px solid var(--color-border-dark);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+
+.dark .hextra-footer .hextra-theme-toggle-options p:hover {
+  background-color: var(--color-bg-hover-dark);
+} */

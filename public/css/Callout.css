@@ -1,0 +1,58 @@
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-left-width: 4px;
+  border-radius: 6px;
+}
+
+.callout-icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem; /* Align icon nicely with text */
+}
+
+.callout-content > :first-child {
+  margin-top: 0;
+}
+
+.callout-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Info / Default */
+.callout-info {
+  border-color: var(--callout-info-border);
+  background-color: var(--callout-info-bg);
+}
+.callout-info .callout-icon {
+  color: var(--callout-info-icon);
+}
+
+/* Idea */
+.callout-idea {
+  border-color: var(--callout-idea-border);
+  background-color: var(--callout-idea-bg);
+}
+.callout-idea .callout-icon {
+  color: var(--callout-idea-icon);
+}
+
+/* Attention */
+.callout-attention {
+  border-color: var(--callout-attention-border);
+  background-color: var(--callout-attention-bg);
+}
+.callout-attention .callout-icon {
+  color: var(--callout-attention-icon);
+}
+
+/* Star */
+.callout-star {
+  border-color: var(--callout-star-border);
+  background-color: var(--callout-star-bg);
+}
+.callout-star .callout-icon {
+  color: var(--callout-star-icon);
+}

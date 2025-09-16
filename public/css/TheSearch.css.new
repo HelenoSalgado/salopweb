@@ -1,0 +1,122 @@
+.hextra-search-container {
+  margin-left: auto; /* Push to the right */
+  margin-right: 1rem; /* Space from other elements */
+}
+
+.hextra-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hextra-search-input {
+  width: 200px;
+  padding: 0.5rem 0.75rem;
+  padding-left: 2.25rem; /* Make space for icon */
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+
+.hextra-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  pointer-events: none;
+  color: var(--color-text-secondary); /* Use semantic color */
+}
+
+.hextra-search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+  outline: none;
+}
+
+/* Estilos comuns para o box de resultados e o box de "nenhum resultado" */
+.hextra-search-results,
+.hextra-search-no-results {
+  position: absolute;
+  top: 100%;
+  right: 0; /* Alinha o box de resultados à direita do campo de pesquisa */
+  left: auto; /* Permite que a largura seja controlada por max-width e right */
+  max-width: 500px; /* Largura máxima para comportar os posts */
+  background-color: var(--color-background);
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 4px 12px var(--color-shadow-light);
+  z-index: 100; /* Ensure it's above other content */
+}
+
+.dark .hextra-search-results,
+.dark .hextra-search-no-results {
+  box-shadow: 0 4px 12px var(--color-shadow-dark);
+}
+
+.hextra-search-results {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.hextra-search-result-item {
+  display: block;
+  padding: 0.6rem 1rem; /* Ajusta o padding para um visual mais elegante */
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem; /* Levemente menor para resultados */
+  line-height: 1.4;
+  border-bottom: 1px solid var(--color-border); /* Separador entre os itens */
+}
+
+.hextra-search-result-item:last-child {
+  border-bottom: none; /* Remove o separador do último item */
+}
+
+.hextra-search-result-item:hover,
+.hextra-search-result-item:focus, /* Adiciona estado de foco para acessibilidade */
+.hextra-search-result-item.selected { /* Classe para item selecionado (pode ser controlada por JS) */
+  background-color: var(--color-background-hover);
+  color: var(--color-primary);
+  outline: none; /* Remove o outline padrão do foco */
+}
+
+.hextra-search-result-item .hextra-search-result-title {
+  font-size: 1rem; /* Tamanho do título */
+  font-weight: 600; /* Semibold */
+  margin-bottom: 0.25rem; /* Espaçamento abaixo do título */
+  color: var(--color-text-primary);
+}
+
+.hextra-search-result-item .hextra-search-result-description {
+  font-size: 0.85rem; /* Tamanho da descrição */
+  color: var(--color-text-secondary);
+  line-height: 1.3;
+}
+
+.hextra-search-no-results {
+  padding: 0.75rem 1rem;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px; /* Garante uma altura mínima para centralização vertical */
+}
+
+@media (max-width: 768px) {
+  .hextra-search-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: calc(100% - 2rem); /* Take full width minus margins */
+  }
+
+  .hextra-search-input {
+    width: 100%;
+  }
+
+  .hextra-search-results {
+    left: 0; /* Em mobile, ocupa a largura total e alinha à esquerda */
+    right: auto;
+    max-width: 100%; /* Ocupa a largura total disponível */
+    border-radius: 0 0 6px 6px;
+  }
+}

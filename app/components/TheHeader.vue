@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import IconGithub from './icons/IconGithub.vue';
+import IconInstagram from './icons/IconInstagram.vue';
+import IconTwitter from './icons/IconTwitter.vue';
+</script>
+
 <template>
   <header class="hextra-header">
     <div class="hextra-header-container">
@@ -5,52 +11,29 @@
         <a href="/">Heleno Salgado</a>
       </div>
 
+      <TheSearch /> <!-- Integrated Search Component -->
+
       <!-- Navegação para Desktop -->
-      <nav class="hextra-sidebar-container" ref="sidebar">
+      <nav class="hextra-sidebar-container">
         <ul>
           <li><a href="/blog">Artigos</a></li>
           <li><a href="/sobre">Sobre</a></li>
         </ul>
+        <div class="social-media">
+          <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer">
+            <IconInstagram />
+          </a>
+          <a href="http://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer">
+            <IconTwitter />
+          </a>
+          <a href="http://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer">
+            <IconGithub />
+          </a>
+        </div>
       </nav>
-
-      <!-- Botão Hamburger para Mobile -->
-      <button class="hextra-hamburger-menu" @click="toggleMenu">
-        <svg class="hamburger-icon" :class="{ open: isMenuOpen }" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+      <div class="hextra-hamburger-menu">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </header>
 </template>
-
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-
-const sidebar = ref(null);
-const isMenuOpen = ref(false);
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-  if (sidebar.value) {
-    sidebar.value.classList.toggle('open');
-  }
-  document.body.classList.toggle('hx:overflow-hidden', isMenuOpen.value);
-};
-
-const handleResize = () => {
-  // Fecha o menu se a tela for redimensionada para desktop
-  if (window.innerWidth > 768 && isMenuOpen.value) {
-    toggleMenu();
-  }
-};
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize);
-});
-</script>

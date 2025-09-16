@@ -1,0 +1,56 @@
+.share-post {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  text-align: left; /* Alinhar o título à esquerda também */
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: flex-start; /* Alinhar à esquerda */
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--color-border); /* Borda para estilo "lite" */
+
+  /* Cores padrão do blog para os botões */
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.share-button:hover {
+  background-color: var(--color-background-hover);
+  border-color: var(--color-primary); /* Destacar a borda no hover */
+  color: var(--color-primary);
+}
+
+/* Botão de Copiar Link pode ter um destaque sutil */
+.share-button.copy {
+  background-color: var(--color-primary-button-bg);
+  color: var(--color-primary-button-text); /* Texto branco no fundo primário */
+  border-color: var(--color-primary-button-border);
+}
+
+.share-button.copy:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-primary-button-text);
+}
+
+.copied-message {
+  margin-top: 1rem;
+  color: var(--color-primary);
+  text-align: left;
+}
