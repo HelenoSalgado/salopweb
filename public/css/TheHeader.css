@@ -1,5 +1,6 @@
 /* ================== Header ================== */
 .hextra-header {
+  width: 100%;
   max-width: var(--hextra-max-navbar-width);
   background-color: var(--color-header-background);
   backdrop-filter: blur(8px);
