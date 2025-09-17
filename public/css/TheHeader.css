@@ -67,7 +67,7 @@
     background-color: var(--color-header-background);
     width: 100%;
     max-width: 400px;
-    position: absolute;
+    position: fixed;
     height: 100%;
     min-height: 100vh;
     top: calc(var(--hextra-header-height) + 4px);
@@ -112,7 +112,7 @@
   padding: 0 1rem;
 
   & a {
-    font-size: 1rem;
+    font-size: 1.3rem;
     width: 2rem;
     color: var(--color-text-secondary);
     transition: color 0.2s ease;
