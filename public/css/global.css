@@ -75,6 +75,7 @@ html, body {
   color: var(--color-text-primary);
   width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* Área de Conteúdo Principal */
@@ -82,6 +83,7 @@ main {
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
+  position: relative;
 
   /* Estilos para conteúdo Markdown */
   & .markdown-content {
