@@ -68,8 +68,7 @@
     width: 100%;
     max-width: 400px;
     position: fixed;
-    height: 100%;
-    min-height: 100vh;
+  height: calc(100vh - var(--hextra-header-height));
     top: calc(var(--hextra-header-height) + 4px);
     right: -400px;
     transition: ease 200ms;
