@@ -1,3 +1,10 @@
+@media (max-width: 768px) {
+  .hextra-search-container {
+    display: none;
+  }
+}
+
+
 .hextra-search-container {
   margin-left: auto; /* Push to the right */
   margin-right: 1rem; /* Space from other elements */
