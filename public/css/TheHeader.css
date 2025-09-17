@@ -103,7 +103,7 @@
   margin-top: 2rem;
   display: inline-flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: 1rem;
   width: calc(100% - 2rem);
   margin-left: 1rem;
