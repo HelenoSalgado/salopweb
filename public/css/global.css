@@ -70,9 +70,10 @@
 /* ===== ESTILOS GLOBAIS E DE CONTEÚDO ===== */
 
 /* Estilos do Body */
-body {
+html, body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
+  width: 100%;
   overflow-x: hidden;
 }
 
