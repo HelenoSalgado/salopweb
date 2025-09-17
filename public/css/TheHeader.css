@@ -1,5 +1,6 @@
 /* ================== Header ================== */
 .hextra-header {
+  max-width: var(--hextra-max-navbar-width);
   background-color: var(--color-header-background);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
@@ -10,7 +11,7 @@
   transition: background-color 0.3s ease, border-color 0.3s ease;
 
   & .hextra-header-container {
-    max-width: var(--hextra-max-navbar-width);
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
