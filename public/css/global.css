@@ -80,7 +80,7 @@ html, body {
 
 /* Área de Conteúdo Principal */
 main {
-  margin: calc(var(--hextra-header-height) + 1rem)) auto .5rem auto;
+  margin: calc(var(--hextra-header-height) + 1rem) auto .5rem auto;
   max-width: 900px;
   padding: 1rem;
   position: relative;
