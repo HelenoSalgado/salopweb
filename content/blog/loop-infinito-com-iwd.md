@@ -5,6 +5,8 @@ image: "/images/default-post.png"
 published: true
 ---
 
+# Loop infinito do IWD - Conflito
+
 O [iwd](https://iwd.wiki.kernel.org/) (iNet wireless daemon), daemon sem fio para Linux escrito pela Intel, apesar de ser autônomo e compatível com outros gerenciadores de rede mais abrangentes, como o `systemd-networkd`, pode justamente entrar em conflito com ele, ou eles.
 
 O iwd entra em loop infinito ao perder o sinal de rede wireless, sem nunca conseguir se reconectar, e usa processamento acima da média. A solução é desabilitar outros gerenciadores de rede e esperar, até chegar ao pacote conflitante.
