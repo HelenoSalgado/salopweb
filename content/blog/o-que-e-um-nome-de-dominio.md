@@ -4,6 +4,8 @@ description: "Entenda o que é um nome de domínio, como funciona o DNS e por qu
 image: "/images/default-post.png"
 ---
 
+# O que é um nome de domínio?
+
 Cada computador da Rede Mundial de Computadores, **World Wide Web**, é identificado por uma sequência numérica ou alfanumérica separada por pontos; esse conjunto de caracteres é o que chamamos de endereço IP da máquina, **Internet Protocol**. Cada dispositivo que se conecta à internet tem um endereço IP único, é com esse endereço digital que o dispositivo/computador envia e recebe dados.
 
 Naturalmente, quando você aloca seu site num servidor de hospedagem, que é também um computador, seu site recebe o IP do computador para ser acessado. O site do **registo.br**, por exemplo, pode ser acessado no IP: *200.160.2.3*. Basta digitá-lo na barra de pesquisa do seu navegador e o esperado irá acontecer. 
