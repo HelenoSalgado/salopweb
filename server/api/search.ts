@@ -1,5 +1,6 @@
-import { queryCollection } from '@nuxt/content/server';
 import { getQuery } from 'h3';
+// Import the JSON file directly
+import searchIndex from '../../public/search-index.json';
 
 // Função auxiliar para remover acentos
 const removeAccents = (str: string) => {
@@ -14,7 +15,8 @@ export default defineEventHandler(async (event) => {
     return [];
   }
 
-  const posts = await queryCollection(event, 'blog').all();
+  // Use the directly imported search index
+  const posts = searchIndex;
 
   const filteredPosts = posts.filter(post => {
     const normalizedTitle = post.title ? removeAccents(post.title.toLowerCase()) : '';
@@ -28,6 +30,6 @@ export default defineEventHandler(async (event) => {
   return filteredPosts.map(post => ({
     path: post.path,
     title: post.title,
-    description: post.description, // Adiciona a descrição aqui
+    description: post.description,
   }));
 });

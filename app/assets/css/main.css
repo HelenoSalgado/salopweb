@@ -8,3 +8,12 @@
 @import url("../../../public/css/TheSearch.css");
 @import url("../../../public/css/SharePost.css");
 @import url("../../../public/css/Callout.css");
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}

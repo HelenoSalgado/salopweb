@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/blog/loop-infinito-com-iwd",
+    "title": "Loop infinito do IWD - Conflito",
+    "description": "Entenda o conflito do IWD com outros gerenciadores de rede e como resolver o loop infinito de conexão."
+  },
+  {
+    "path": "/blog/makepkg-dependencia-nao-encontrada",
+    "title": "Corrigindo dependência não encontrada pelo makepkg",
+    "description": "Aprenda a resolver problemas de dependência não encontrada ao usar o makepkg no Arch Linux, com dicas e soluções práticas."
+  },
+  {
+    "path": "/blog/o-proposito-filosofico-do-trabalho",
+    "title": "O Propósito Filosófico do Trabalho: Além da Sobrevivência",
+    "description": "Uma exploração filosófica sobre os múltiplos propósitos do trabalho, desde a distração existencial até a busca por virtude e autorrealização."
+  },
+  {
+    "path": "/blog/o-que-e-um-nome-de-dominio",
+    "title": "O que é um nome de domínio?",
+    "description": "Entenda o que é um nome de domínio, como funciona o DNS e por que ele é essencial para seu site na internet."
+  }
+]

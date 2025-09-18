@@ -5,43 +5,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   app: {
     buildAssetsDir: "nuxt",
-    head: {
-      base: {
-        href: process.env.BASE_URL,
-      },
-      htmlAttrs: {
-        lang: "pt-BR",
-      },
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
-      title: "Heleno Salgado - Tecnologia, Teologia e Literatura", // Global title
-      meta: [
-        { name: "theme-color", content: "#14171a" },
-        { name: "description", content: "Os olhos veem apenas o que traz consigo o poder de ver - Cícero" }, // Global description
-        // Open Graph Tags
-        { property: "og:title", content: "Heleno Salgado - Tecnologia, Teologia e Literatura" },
-        { property: "og:description", content: "Os olhos veem apenas o que traz consigo o poder de ver - Cícero" },
-        { property: "og:image", content: "https://heleno.dev/images/default-post.png" }, // Replace with a suitable default image
-        { property: "og:url", content: "https://heleno.dev" },
-        { property: "og:type", content: "website" },
-        // Twitter Card Tags
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:site", content: "@helenosalgado" }, // Replace with your Twitter handle
-        { name: "twitter:creator", content: "@helenosalgado" }, // Replace with your Twitter handle
-        { name: "twitter:title", content: "Heleno Salgado - Tecnologia, Teologia e Literatura" },
-        { name: "twitter:description", content: "Os olhos veem apenas o que traz consigo o poder de ver - Cícero" },
-        { name: "twitter:image", content: "https://heleno.dev/images/default-post.png" }, // Replace with a suitable default image
-      ],
-      link: [
-        { rel: "icon", href: "/hsl-logo.ico", type: "image/x-icon" },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap' }
-      ],
-      script: [{ src: '/js/main.js', defer: true }, { src: '/js/theme.js'}], // NEW: Import main.js
-    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   nitro: {
+    preset: 'cloudflare-pages',
     output: {
       publicDir: 'dist',
     },
@@ -66,8 +33,8 @@ export default defineNuxtConfig({
     ]
   },
   experimental: {
-    renderJsonPayloads: false,
-    payloadExtraction: true
+    //renderJsonPayloads: false,
+    //payloadExtraction: false
   },
   runtimeConfig: {
     public: {
@@ -104,12 +71,23 @@ export default defineNuxtConfig({
     }
   },
   css: ['~/assets/css/main.css'],
-  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/eslint"],
+  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/eslint", "@nuxtjs/google-fonts"],
+  googleFonts: {
+    families: {
+      Inter: [400, 700],
+      Lora: {
+        wght: [400, 700],
+        ital: [400]
+      }
+    },
+    display: 'swap',
+    preconnect: true,
+    useStylesheet: true
+  },
   content: {
     renderer: {
       anchorLinks: false
     },
-    ignore: ['**/*.txt'],
     build: {
       markdown: {
         toc: {

@@ -1,8 +1,4 @@
-@media (max-width: 768px) {
-  .hextra-search-container {
-    display: none;
-  }
-}
+
 
 
 .hextra-search-container {
@@ -107,6 +103,7 @@
 
 @media (max-width: 768px) {
   .hextra-search-container {
+    display: none; /* Hide the search container on mobile */
     margin-left: 1rem;
     margin-right: 1rem;
     width: calc(100% - 2rem); /* Take full width minus margins */

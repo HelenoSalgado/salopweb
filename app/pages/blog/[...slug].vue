@@ -1,68 +1,54 @@
 <script lang="ts" setup>
-import { useHead } from '#app';
+import ReadingProgressBar from '~/components/ReadingProgressBar.vue';
+const route = useRoute();
+const { data: page } = await useAsyncData(`blog-post-${route.path}`, () => 
+  queryCollection('blog').path(route.path).first()
+);
 
-const route = useRoute()
-const { data: page } = await useAsyncData(`blog-post-detail-${route.path}`, () => { // More unique key
-  return queryCollection('blog').path(route.path).first()
-}, {
-  lazy: false, // Ensure it's not lazy-loaded during prerender
-  server: true, // Ensure it runs on server
+// Define o título para o template no app.vue
+definePageMeta({
+  title: 'Artigo'
 });
-const postUrl = 'https://heleno.dev' + route.path;
 
-useHead(() => {
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": page.value?.title,
-    "description": page.value?.description || 'Os olhos veem apenas o que traz consigo o poder de ver - Cícero.',
-    "image": page.value?.image || 'https://heleno.dev/images/default-post.png',
-    "datePublished": page.value?.date, // Assuming 'date' is available in page.value
-    "author": {
-      "@type": "Person",
-      "name": "Heleno Salgado" // Replace with actual author name
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Heleno Salgado Blog", // Replace with your blog name
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://heleno.dev/hsl-logo.ico" // Replace with your logo URL
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": postUrl
+// Define as meta tags específicas para este post
+useSeoMeta({
+  title: page.value?.title,
+  description: page.value?.description,
+  ogTitle: page.value?.title,
+  ogDescription: page.value?.description,
+  ogImage: page.value?.image || 'https://heleno.dev/images/default-post.png',
+  ogType: 'article',
+  twitterCard: 'summary_large_image',
+});
+
+// Adiciona o JSON-LD para Rich Results do Google
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      textContent: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": page.value?.title,
+        "description": page.value?.description,
+        "image": page.value?.image || 'https://heleno.dev/images/default-post.png',
+        "datePublished": page.value?.date,
+        "author": {
+          "@type": "Person",
+          "name": "Heleno Salgado"
+        }
+      })
     }
-  };
-
-  return {
-    title: page.value?.title,
-    meta: [
-      { name: 'description', content: page.value?.description || 'Os olhos veem apenas o que traz consigo o poder de ver - Cícero' },
-      // Open Graph
-      { property: 'og:title', content: page.value?.title },
-      { property: 'og:description', content: page.value?.description || 'Os olhos veem apenas o que traz consigo o poder de ver - Cícero' },
-      { property: 'og:image', content: page.value?.image || 'https://heleno.dev/images/default-post.png' },
-      { property: 'og:url', content: postUrl },
-      { property: 'og:type', content: 'article' },
-      // Twitter Card
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: page.value?.title },
-      { name: 'twitter:description', content: page.value?.description || 'Os olhos veem apenas o que traz consigo o poder de ver - Cícero' },
-      { name: 'twitter:image', content: page.value?.image || 'https://heleno.dev/images/default-post.png' },
-    ],
-    script: [
-      { type: 'application/ld+json', children: JSON.stringify(articleSchema) },
-      { src: '/js/share.js', defer: true }
-    ]
-  };
+  ]
 });
 </script>
 
 <template>
-  <article class="prose-container">
-    <ContentRenderer v-if="page" :value="page" />
-    <SharePost v-if="page" :postTitle="page.title" :postUrl="postUrl" />
-  </article>
+  <div>
+    <ReadingProgressBar />
+    <article class="prose-container">
+      <ContentRenderer v-if="page" :value="page" />
+      <SharePost v-if="page" :postTitle="page.title" :postUrl="`https://heleno.dev${page.path}`" />
+    </article>
+  </div>
 </template>
