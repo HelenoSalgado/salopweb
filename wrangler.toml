@@ -1,0 +1,5 @@
+# wrangler.toml
+
+name = "blog" 
+
+compatibility_date = "2025-09-19"
