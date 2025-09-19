@@ -25,8 +25,4 @@
 
 *   A refatoração de estilos foi concluída com sucesso.
 
-**Método de Aplicação de Alterações:**
-
-Para evitar problemas de precisão com a ferramenta `replace`, o conteúdo da `new_string` será fornecido em um arquivo temporário (`.new`). O usuário copiará manualmente o conteúdo desse arquivo para o arquivo original e, em seguida, excluirá o arquivo temporário.
-
 ---
