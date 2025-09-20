@@ -1,6 +1,6 @@
 <template>
   <div class="share-post">
-    <h4>Compartilhar:</h4>
+    <p>Compartilhar:</p>
     <div class="share-buttons">
       <a :href="twitterShareUrl" target="_blank" rel="noopener noreferrer" class="share-button twitter">
         Twitter
