@@ -1,5 +1,4 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
-import { title } from 'process'
 
 export default defineContentConfig({
   collections: {

@@ -51,6 +51,8 @@
   --color-text-heading: #e6e6e6;
   --color-border: #333;
   --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-primary: #007bff;
+  --color-primary-hover: #0056b3;
 
   /* Cores de Componentes (Modo Escuro) */
   --color-header-background: rgba(30, 30, 30, 0.8);
