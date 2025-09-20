@@ -80,7 +80,7 @@ html, body {
 
 /* Área de Conteúdo Principal */
 main {
-  margin: calc(var(--hextra-header-height) + 1rem) auto .5rem auto;
+  margin: calc(var(--hextra-header-height)) auto .5rem auto;
   max-width: 900px;
   padding: 1rem;
   position: relative;
@@ -98,7 +98,7 @@ main {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     line-height: 1.2;
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
   & h1 { font-size: 2.2rem; }
   & h2 { font-size: 2rem; }
