@@ -13,7 +13,12 @@ Tudo estava pronto. Eu tinha o melhor dos dois mundos: conteúdo dinâmico servi
 
 O problema surgiu quando resolvi passar o pente fino e otimizar meu site para **SEO (Search Engine Optimization)**. Nos testes do Google, utilizando ferramentas como o **PageSpeed Insights** e o **Lighthouse**, meu site era simplesmente o pior do mundo. Ninguém iria acessar uma página tão lenta; era uma tartaruga colossal.
 
-![Tartaruga Colossal com elementos de tecnologia ao entorno](/images/Gemini_Generated_Image_yk4akkyk4akkyk4a.png)
+::Imagem
+---
+src: "/images/Gemini_Generated_Image_yk4akkyk4akkyk4a.png"
+alt: "Tartaruga Colossal com elementos de tecnologia ao entorno"
+---
+::Image
 
 A primeira "pintura" da tela era demorada. Isso porque, para que o **DOM (Document Object Model)** fosse renderizado, o navegador precisava baixar dezenas de arquivos JavaScript e CSS individualmente — um para cada componente: cabeçalho, menu, posts, rodapé, etc. Só a partir daí ele poderia reagrupar tudo e começar o processo de exibição. O processamento inicial era enorme e o número de requisições ao servidor, fora do comum. Era um fato: a carga inicial era grande demais para passar nos testes de desempenho do Google. Tive que repensar a estratégia. Eu precisava da aprovação do Google; afinal, era ele quem iria recomendar meu site às pessoas.
 
