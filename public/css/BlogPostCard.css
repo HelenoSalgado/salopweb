@@ -47,7 +47,7 @@
   text-align: left; /* Link position at start */
   margin-top: 0.5rem; /* Space above link */
   font-size: 0.9rem;
-  color: var(--color-background);
+  color: var(----color-primary-button-text);
   background-color: var(--color-primary);
   transition: color 0.2s ease;
   padding: .2rem .5rem;
@@ -57,5 +57,5 @@
 
 .read-more-link:hover {
   background-color: var(--color-primary-hover); /* Darker link color on hover */
-  color: var(--color-background);
+  color: var(--color-primary-button-text);
 }
