@@ -1,7 +1,9 @@
 <template>
+  <div>
     <h1>Sobre {{ category }}</h1>
     <BlogPostCard v-if="posts && posts.length" v-for="post in posts" :key="post.path" :post="post" />
     <p v-else>Nenhum post encontrado nesta categoria.</p>
+  </div>
 </template>
 
 <script setup>
@@ -9,9 +11,7 @@ const route = useRoute();
 const category = route.params.slug;
 
 const { data: posts } = await useAsyncData(`posts-in-category-${category}`, () =>
-  queryCollection('blog')
-    .where('categories', 'LIKE', `%"${category}"%`)
-    .all()
+  queryCollection('blog').where('categories', 'LIKE', `%${category}%`).all()
 );
 
 useSeoMeta({

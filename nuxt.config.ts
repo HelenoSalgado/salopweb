@@ -1,8 +1,13 @@
 import { defineNuxtConfig } from "nuxt/config";
+import type { NitroConfig } from 'nitropack'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+  routeRules: <NitroConfig['routeRules']>{
+    // Aplica a regra para todas as rotas
+    '/**': { trailingSlash: true }
+  },
   app: {
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' }
