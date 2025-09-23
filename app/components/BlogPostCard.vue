@@ -33,6 +33,10 @@ div{
     margin: .5rem 0 1rem 0;
   }
 
+  & p{
+    line-height: 1.5rem;
+  }
+
   & a{
     text-decoration: none;
   }
