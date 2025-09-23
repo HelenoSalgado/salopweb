@@ -34,7 +34,7 @@ div{
   }
 
   & p{
-    line-height: 1.5rem;
+    line-height: 1.7rem;
   }
 
   & a{
