@@ -5,11 +5,6 @@ const { data: page } = await useAsyncData(`blog-post-${route.path}`, () =>
   queryCollection('blog').path(route.path).first()
 );
 
-// Adiciona uma verificação para garantir que a página foi encontrada
-if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Página não encontrada', fatal: true });
-}
-
 // Fetch related posts
 const { data: relatedPosts } = await useAsyncData(`blog-post-${route.path}-related`, () => {
 
