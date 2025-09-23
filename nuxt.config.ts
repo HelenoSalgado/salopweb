@@ -89,6 +89,9 @@ export default defineNuxtConfig({
       anchorLinks: false
     },
     build: {
+      transformers: [
+        '~~/transformers/date-published'
+      ],
       markdown: {
         toc: {
           depth: 3, // include h3 headings
@@ -99,5 +102,5 @@ export default defineNuxtConfig({
   dir: {
     public: 'public'
   },
-  
+
 });

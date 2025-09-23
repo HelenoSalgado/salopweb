@@ -1,9 +1,33 @@
 <script lang="ts" setup>
-import ReadingProgressBar from '~/components/ReadingProgressBar.vue';
 const route = useRoute();
-const { data: page } = await useAsyncData(`blog-post-${route.path}`, () => 
+
+const { data: page } = await useAsyncData(`blog-post-${route.path}`, () =>
   queryCollection('blog').path(route.path).first()
 );
+
+// Adiciona uma verificação para garantir que a página foi encontrada
+if (!page.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Página não encontrada', fatal: true });
+}
+
+// Fetch related posts
+const { data: relatedPosts } = await useAsyncData(`blog-post-${route.path}-related`, () => {
+
+  if (!page.value?.categories?.length) {
+    return Promise.resolve([]);
+  }
+
+  const query = queryCollection('blog').where('path', '<', route.path);
+  const categories = page.value.categories || [];
+
+  query.orWhere(q => {
+    for (const category of categories) {
+      q.where('categories', 'LIKE', `%"${category}"%`);
+    }
+    return q;
+  });
+  return query.limit(4).all();
+});
 
 // Define o título para o template no app.vue
 definePageMeta({
@@ -47,8 +71,16 @@ useHead({
   <div>
     <ReadingProgressBar />
     <article class="prose-container">
-      <ContentRenderer v-if="page" :value="page" />
+      <h1>{{ page?.title }}</h1>
+      <!-- Render categories using the component -->
+      <CategoriesList v-if="page?.categories?.length" :from="page.categories"/>
+      <!-- Data published -->
+      <time :datetime="page?.dateFormatted">{{ page?.dateFormatted }}</time>
+      <!-- Render body posts -->
+      <ContentRenderer class="markdown-content" v-if="page" :value="page" />
       <SharePost v-if="page" :postTitle="page.title" :postUrl="`https://heleno.dev${page.path}`" />
+      <!-- Related Posts Section -->
+      <RelatedPosts v-if="relatedPosts?.length" :posts="relatedPosts" />
     </article>
   </div>
 </template>

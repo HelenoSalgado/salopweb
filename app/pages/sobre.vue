@@ -1,4 +1,5 @@
 <template>
+  <h1>{{ page?.title }}</h1>
   <ContentRenderer v-if="page" :value="page" />
 </template>
 

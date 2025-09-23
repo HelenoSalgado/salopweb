@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-
 const route = useRoute();
 const POSTS_PER_PAGE = 7;
+
+// Fetch all categories for the list component
+const { data: allCategories } = await useAsyncData('all-blog-categories', async () => {
+  const postsWithCategories = await queryCollection('blog').select('categories').all();
+
+  const categories = postsWithCategories.flatMap(post => post.categories || []);
+  return [...new Set(categories)].sort();
+});
 
 // currentPage is now a computed property based on the route.
 const currentPage = computed(() => {
@@ -40,30 +46,12 @@ const { data } = await useAsyncData(
   }
 );
 
-// This computed property for the page links is fine.
-const pages = computed(() => {
-  const p = [];
-  if (data.value && data.value.totalPages) {
-    for (let i = 1; i <= data.value.totalPages; i++) {
-      p.push(i);
-    }
-  }
-  return p;
-});
-
-const getPageLink = (page: number) => {
-  // Prevent links to invalid pages
-  if (page < 1) return '#';
-  if (data.value && page > data.value.totalPages) return '#';
-
-  const baseUrl = '/blog';
-  return `${baseUrl}${page > 1 ? `?page=${page}` : ''}`;
-};
 </script>
 
 <template>
   <div class="blog-index-page">
-    <h1>Artigos Recentes</h1>
+    <h1>Escritos Recentes</h1>
+    <CategoriesList :from="allCategories" />
     <div v-if="data && data.posts && data.posts.length > 0" class="posts-grid">
       <BlogPostCard v-for="post in data.posts" :key="post.path" :post="post" />
     </div>
@@ -71,25 +59,12 @@ const getPageLink = (page: number) => {
       <p>Nenhum artigo encontrado.</p>
     </div>
 
-    <!-- Pagination HTML will be generated here directly -->
-    <nav v-if="data && data.totalPages > 1" class="pagination-container">
-      <ul class="pagination">
-        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-          <a :href="getPageLink(currentPage - 1)" class="page-link">Anterior</a>
-        </li>
-        <li
-          v-for="page in pages"
-          :key="page"
-          class="page-item"
-          :class="{ active: page === currentPage }"
-        >
-          <a :href="getPageLink(page)" class="page-link">{{ page }}</a>
-        </li>
-        <li class="page-item" :class="{ disabled: currentPage === data.totalPages }">
-          <a :href="getPageLink(currentPage + 1)" class="page-link">Próximo</a>
-        </li>
-      </ul>
-    </nav>
+    <Pagination
+      v-if="data && data.totalPages > 1"
+      :current-page="currentPage"
+      :total-pages="data.totalPages"
+      base-url="/blog"
+    />
   </div>
 </template>
 

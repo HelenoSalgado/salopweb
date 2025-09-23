@@ -1,5 +1,25 @@
 [
   {
+    "path": "/blog/dicas-de-seo-para-nuxt",
+    "title": "Dicas de SEO para Aplicações Nuxt.js",
+    "description": "Melhore o ranking do seu site nos motores de busca com estas dicas de SEO específicas para o framework Nuxt.js."
+  },
+  {
+    "path": "/blog/explorando-vue-3",
+    "title": "Explorando os Recursos do Vue 3",
+    "description": "Uma visão aprofundada da Composition API e outras novidades do Vue 3 que melhoram a organização e reatividade do código."
+  },
+  {
+    "path": "/blog/filosofia-do-codigo",
+    "title": "A Filosofia por Trás do Código Limpo",
+    "description": "Além da funcionalidade, o código carrega uma filosofia. Uma reflexão sobre a importância da clareza e da manutenção."
+  },
+  {
+    "path": "/blog/introducao-ao-arch-linux",
+    "title": "Introdução ao Arch Linux",
+    "description": "Um guia para iniciantes sobre o que é o Arch Linux, sua filosofia e por que você talvez queira usá-lo."
+  },
+  {
     "path": "/blog/loop-infinito-com-iwd",
     "title": "Loop infinito do IWD - Conflito",
     "description": "Entenda o conflito do IWD com outros gerenciadores de rede e como resolver o loop infinito de conexão."
@@ -10,6 +30,11 @@
     "description": "Aprenda a resolver problemas de dependência não encontrada ao usar o makepkg no Arch Linux, com dicas e soluções práticas."
   },
   {
+    "path": "/blog/o-google-ainda-nao-sabe",
+    "title": "O Google ainda não sabe",
+    "description": "A decisão foi tomada, é melhor ter a aprovação humana do que a aprovação do robôzinho do Google."
+  },
+  {
     "path": "/blog/o-proposito-filosofico-do-trabalho",
     "title": "O Propósito Filosófico do Trabalho: Além da Sobrevivência",
     "description": "Uma exploração filosófica sobre os múltiplos propósitos do trabalho, desde a distração existencial até a busca por virtude e autorrealização."
@@ -18,5 +43,10 @@
     "path": "/blog/o-que-e-um-nome-de-dominio",
     "title": "O que é um nome de domínio?",
     "description": "Entenda o que é um nome de domínio, como funciona o DNS e por que ele é essencial para seu site na internet."
+  },
+  {
+    "path": "/blog/o-zed-ainda-nao",
+    "title": "Configuração Minimalista para VsCodium",
+    "description": "No final das contas o zed ainda não está pronto, apesar de ser um editor leve e elegante, ele ainda não está pronto - Vou persistir minha configuração minimalista para o VSCode aqui."
   }
 ]

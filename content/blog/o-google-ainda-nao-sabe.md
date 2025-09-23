@@ -1,11 +1,10 @@
 ---
 title: "O Google ainda não sabe"
 description: "A decisão foi tomada, é melhor ter a aprovação humana do que a aprovação do robôzinho do Google."
+date: '2025-09-22'
 ---
 
-# A Batalha pela Performance: Por que Abandonei os 100 Pontos do Google
-
-Há cerca de três anos, desenvolvi um site com Nuxt.js. Minha intenção era obter o tão desejado desempenho prometido pelo seu modo de renderização híbrida, uma tecnologia conhecida como **Hidratação**. A premissa é fantástica: o Nuxt é capaz de gerar um site totalmente estático e, ao mesmo tempo, reaproveitar todos os componentes já baixados no navegador do usuário. Com isso, a cada nova página acessada, o servidor retorna apenas o conteúdo em si. A economia de rede e processamento é extraordinária.
+Há cerca de três anos, desenvolvi um site com Nuxt.js. Minha intenção era obter o tão desejado desempenho prometido pela renderização híbrida, uma tecnologia conhecida como **Hidratação**. A premissa é de que o Nuxt é capaz de gerar um site totalmente estático e, ao mesmo tempo, reaproveitar todos os componentes já baixados no navegador do usuário. Com isso, a cada nova página acessada, o servidor retorna apenas o conteúdo em si. A economia de rede e processamento é extraordinária.
 
 Tudo estava pronto. Eu tinha o melhor dos dois mundos: conteúdo dinâmico servido num site estático.
 

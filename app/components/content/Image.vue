@@ -36,23 +36,17 @@ defineProps({
 .image-optimizer-container {
   margin: 1.5rem 0;
   text-align: center;
-}
 
-.optimized-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
+  & .optimized-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    transition: transform 0.3s ease-in-out;
 
-.optimized-image:hover {
-  transform: scale(1.02);
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
 }
-
-/* Dark mode adjustments */
-.dark .optimized-image {
-  box-shadow: 0 44px 8px rgba(0, 0, 0, 0.3);
-}
-
 </style>

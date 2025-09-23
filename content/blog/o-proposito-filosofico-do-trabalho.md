@@ -2,9 +2,8 @@
 title: "O Propósito Filosófico do Trabalho: Além da Sobrevivência"
 description: "Uma exploração filosófica sobre os múltiplos propósitos do trabalho, desde a distração existencial até a busca por virtude e autorrealização."
 image: "/images/filosofia.png"
+date: '2025-09-22'
 ---
-
-# O Trabalho como Distração e Escudo Psicológico
 
 A ideia de que o trabalho serve para "passar o tempo" ou "impedir que pensamentos e sentimentos ruins tomem conta da pessoa" é uma perspectiva que, embora possa parecer cínica à primeira vista, toca em aspectos profundos da psicologia humana e da filosofia existencialista.
 

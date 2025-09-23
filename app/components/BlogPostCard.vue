@@ -1,15 +1,3 @@
-<template>
-  <div class="blog-post-card">
-    <div class="blog-post-card-content-wrapper">
-      <h3>{{ post.title }}</h3>
-      <p class="description">{{ post.description }}</p>
-    </div>
-    <NuxtLink :to="post.path" class="read-more-link">
-      Leia Mais
-    </NuxtLink>
-  </div>
-</template>
-
 <script setup>
 defineProps({
   post: {
@@ -18,5 +6,37 @@ defineProps({
   },
 });
 </script>
+
+<template>
+  <div>
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.description }}</p>
+    <NuxtLink :to="post.path" class="button">
+      Leia Mais &raquo;
+    </NuxtLink>
+  </div>
+</template>
+
+<style scoped>
+div{
+  display: block;
+  border-bottom: 1px solid var(--color-background-hover);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 0;
+  position: relative;
+  background-color: var(--color-background); /* Default background */
+  margin-bottom: 1.5rem; /* Spacing between cards */
+
+  & h3{
+    margin: .5rem 0 1rem 0;
+  }
+
+  & a{
+    text-decoration: none;
+  }
+}
+</style>
 
 

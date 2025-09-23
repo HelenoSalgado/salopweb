@@ -46,66 +46,51 @@ const calloutConfig = computed(() => {
   margin: 1.5rem 0;
   border-left-width: 4px;
   border-radius: 6px;
-}
 
-.callout-icon {
-  flex-shrink: 0;
-  margin-top: 0.125rem; /* Align icon nicely with text */
-}
+  &.callout-info {
+    border-color: var(--callout-info-border);
+    background-color: var(--callout-info-bg);
+    & .callout-icon {
+      color: var(--callout-info-icon);
+    }
+  }
 
-.callout-content > :first-child {
-  margin-top: 0;
-}
+  &.callout-idea {
+    border-color: var(--callout-idea-border);
+    background-color: var(--callout-idea-bg);
+    & .callout-icon {
+      color: var(--callout-idea-icon);
+    }
+  }
 
-.callout-content > :last-child {
-  margin-bottom: 0;
-}
+  &.callout-attention {
+    border-color: var(--callout-attention-border);
+    background-color: var(--callout-attention-bg);
+    & .callout-icon {
+      color: var(--callout-attention-icon);
+    }
+  }
 
-/* Info / Default */
-.callout-info {
-  border-color: #3b82f6; /* blue-500 */
-  background-color: rgba(59, 130, 246, 0.05);
-}
-.dark .callout-info {
-  background-color: rgba(59, 130, 246, 0.1);
-}
-.callout-info .callout-icon {
-  color: #3b82f6;
-}
+  &.callout-star {
+    border-color: var(--callout-star-border);
+    background-color: var(--callout-star-bg);
+    & .callout-icon {
+      color: var(--callout-star-icon);
+    }
+  }
 
-/* Idea */
-.callout-idea {
-  border-color: #f59e0b; /* amber-500 */
-  background-color: rgba(245, 158, 11, 0.05);
-}
-.dark .callout-idea {
-  background-color: rgba(245, 158, 11, 0.1);
-}
-.callout-idea .callout-icon {
-  color: #f59e0b;
-}
+  & .callout-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem; /* Align icon nicely with text */
+  }
 
-/* Attention */
-.callout-attention {
-  border-color: #ef4444; /* red-500 */
-  background-color: rgba(239, 68, 68, 0.05);
-}
-.dark .callout-attention {
-  background-color: rgba(239, 68, 68, 0.1);
-}
-.callout-attention .callout-icon {
-  color: #ef4444;
-}
-
-/* Star */
-.callout-star {
-  border-color: #8b5cf6; /* violet-500 */
-  background-color: rgba(139, 92, 246, 0.05);
-}
-.dark .callout-star {
-  background-color: rgba(139, 92, 246, 0.1);
-}
-.callout-star .callout-icon {
-  color: #8b5cf6;
+  & .callout-content {
+    & > :first-child {
+      margin-top: 0;
+    }
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 </style>
