@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   routeRules: <NitroConfig['routeRules']>{
     // Aplica a regra para todas as rotas
-    '/**': { trailingSlash: true }
+    '/**': { trailingSlash: false }
   },
   app: {
     buildAssetsDir: "nuxt",
