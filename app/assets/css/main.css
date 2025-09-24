@@ -139,6 +139,12 @@ main {
     padding-bottom: .5rem;
     }
 
+    & sup {
+      & a{
+        color: var(--color-text-primary);
+      }
+    }
+
     & ul {
       list-style: circle;
     }

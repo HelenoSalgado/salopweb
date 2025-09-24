@@ -3,7 +3,7 @@ title: "Configuração Minimalista para VSCode/VSCodium e adiando o Zed"
 description: "No final das contas o zed ainda não está pronto, apesar de ser um editor leve e elegante, ele ainda não está pronto - Vou persistir minha configuração minimalista para o VSCode aqui."
 date: '2025-09-22'
 categories:
-    - programação
+    - Programação
 ---
 
 Recentemente, comecei a usar o editor Zed, que é minimalista por natureza e, além disso, bonito e eficiente. Porém, ao abrir um projeto Vue nesse editor, ele começou a apresentar problemas: me sugeriu uma extensão para Vue que não era capaz de suportar. Naturalmente, esperava-se que as extensões recomendadas fossem mais otimizadas e eficientes, mas, nesse caso, não foi assim.

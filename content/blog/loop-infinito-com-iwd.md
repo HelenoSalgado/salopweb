@@ -5,7 +5,7 @@ image: "/images/default-post.png"
 date: '2025-09-22'
 published: true
 categories:
-   - linux
+   - Linux
 ---
 
 O [iwd](https://iwd.wiki.kernel.org/) (iNet wireless daemon), daemon sem fio para Linux escrito pela Intel, apesar de ser autônomo e compatível com outros gerenciadores de rede mais abrangentes, como o `systemd-networkd`, pode justamente entrar em conflito com ele, ou eles.

@@ -7,21 +7,32 @@ const { data: page } = await useAsyncData(`blog-post-${route.path}`, () =>
 
 // Fetch related posts
 const { data: relatedPosts } = await useAsyncData(`blog-post-${route.path}-related`, () => {
+  const currentPath = route.path;
+  const categories = page.value?.categories;
 
-  if (!page.value?.categories?.length) {
-    return Promise.resolve([]);
+  // If there are no categories, we can't find related posts.
+  if (!categories || categories.length === 0) {
+    return [];
   }
 
-  const query = queryCollection('blog').where('path', '<', route.path);
-  const categories = page.value.categories || [];
+  // Start query:
+  // 1. Must be in the 'blog' collection.
+  // 2. Must NOT be the current post itself.
+  // 3. Must have at least one matching category.
+  const query = queryCollection('blog')
+    .where('path', '<>', currentPath) // Exclude the current post
+    .orWhere(q => {
+      // Add an "OR" condition for each category.
+      // The post must match at least one of them.
+      for (const category of categories) {
+        q.where('categories', 'LIKE', `%"${category}"%`);
+      }
+      return q;
+    })
+    .order('date', 'DESC') // Order by date to get the most recent posts
+    .limit(4); // Limit to 4 related posts
 
-  query.orWhere(q => {
-    for (const category of categories) {
-      q.where('categories', 'LIKE', `%"${category}"%`);
-    }
-    return q;
-  });
-  return query.limit(4).all();
+  return query.all();
 });
 
 // Define o título para o template no app.vue

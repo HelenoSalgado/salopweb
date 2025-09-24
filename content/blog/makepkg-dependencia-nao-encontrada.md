@@ -2,6 +2,8 @@
 title: "Corrigindo dependência não encontrada pelo makepkg"
 description: "Aprenda a resolver problemas de dependência não encontrada ao usar o makepkg no Arch Linux, com dicas e soluções práticas."
 date: '2025-09-22'
+categories:
+   - Linux
 ---
 
 Recentemente tive que instalar o **Insominia** no Arch Linux, no entanto o build falhava por não encontrar o pacote nvm, que é uma dependência necessária para o tempo de execução.

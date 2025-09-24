@@ -25,7 +25,7 @@ export default defineContentConfig({
     }),
     blog: defineCollection({
       type: 'page',
-      source: 'blog/*.md',
+      source: 'blog/**/*.md',
       schema: blogSchema // <-- Usa o esquema estendido
     }),
     sobre: defineCollection({

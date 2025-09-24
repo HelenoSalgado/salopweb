@@ -4,8 +4,7 @@ description: "Entenda o que é um nome de domínio, como funciona o DNS e por qu
 image: "/images/default-post.png"
 date: '2025-09-22'
 categories:
-  - tecnologia
-  - conceitos
+  - Web
 ---
 
 Cada computador da Rede Mundial de Computadores, **World Wide Web**, é identificado por uma sequência numérica ou alfanumérica separada por pontos; esse conjunto de caracteres é o que chamamos de endereço IP da máquina, **Internet Protocol**. Cada dispositivo que se conecta à internet tem um endereço IP único, é com esse endereço digital que o dispositivo/computador envia e recebe dados.
