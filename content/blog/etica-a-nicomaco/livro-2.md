@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro II"
+title: "Ética a Nicômaco: Livro II"
 date: "2025-09-24"
 categories:
   - Filosofia

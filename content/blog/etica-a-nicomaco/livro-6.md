@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro VI"
+title: "Ética a Nicômaco: Livro VI"
 date: "2025-09-24"
 categories:
   - Filosofia

@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro VII"
+title: "Ética a Nicômaco: Livro VII"
 date: "2025-09-24"
 categories:
   - Filosofia

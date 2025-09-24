@@ -1,23 +1,8 @@
 [
   {
-    "path": "/blog/dicas-de-seo-para-nuxt",
-    "title": "Dicas de SEO para Aplicações Nuxt.js",
-    "description": "Melhore o ranking do seu site nos motores de busca com estas dicas de SEO específicas para o framework Nuxt.js."
-  },
-  {
-    "path": "/blog/explorando-vue-3",
-    "title": "Explorando os Recursos do Vue 3",
-    "description": "Uma visão aprofundada da Composition API e outras novidades do Vue 3 que melhoram a organização e reatividade do código."
-  },
-  {
-    "path": "/blog/filosofia-do-codigo",
-    "title": "A Filosofia por Trás do Código Limpo",
-    "description": "Além da funcionalidade, o código carrega uma filosofia. Uma reflexão sobre a importância da clareza e da manutenção."
-  },
-  {
-    "path": "/blog/introducao-ao-arch-linux",
-    "title": "Introdução ao Arch Linux",
-    "description": "Um guia para iniciantes sobre o que é o Arch Linux, sua filosofia e por que você talvez queira usá-lo."
+    "path": "/blog/alem-dos-sentidos",
+    "title": "Além dos sentidos: Sobre a Virtude e o Conhecimento",
+    "description": "Reflexão sobre a frase de Cícero 'Os olhos veem apenas o que traz consigo o poder de ver' e a sua critianização"
   },
   {
     "path": "/blog/loop-infinito-com-iwd",
@@ -46,7 +31,7 @@
   },
   {
     "path": "/blog/o-zed-ainda-nao",
-    "title": "Configuração Minimalista para VsCodium",
+    "title": "Configuração Minimalista para VSCode/VSCodium e adiando o Zed",
     "description": "No final das contas o zed ainda não está pronto, apesar de ser um editor leve e elegante, ele ainda não está pronto - Vou persistir minha configuração minimalista para o VSCode aqui."
   }
 ]

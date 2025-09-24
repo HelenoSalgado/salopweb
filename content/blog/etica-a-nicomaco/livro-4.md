@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro IV"
+title: "Ética a Nicômaco: Livro IV"
 date: "2025-09-24"
 categories:
   - Filosofia

@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro IX"
+title: "Ética a Nicômaco: Livro IX"
 date: "2025-09-24"
 categories:
   - Filosofia

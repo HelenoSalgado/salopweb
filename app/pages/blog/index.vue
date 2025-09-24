@@ -10,23 +10,18 @@ const { data: allCategories } = await useAsyncData('all-blog-categories', async 
   return [...new Set(categories)].sort();
 });
 
-// currentPage is now a computed property based on the route.
-const currentPage = computed(() => {
-  const page = parseInt(route.query.page as string);
-  return isNaN(page) || page < 1 ? 1 : page;
-});
-
-// useAsyncData will automatically re-fetch when `currentPage` changes.
 const { data } = await useAsyncData(
-  `blog-posts-list-${currentPage.value}`, // Dynamic key for caching
+  `blog-posts-list-${route.query.page || 1}`,
   async () => {
+    const page = parseInt(route.query.page as string);
+    const currentPage = isNaN(page) || page < 1 ? 1 : page;
+
     const baseQuery = queryCollection('blog').order('date', 'DESC');
 
     const totalPosts = await baseQuery.count();
     const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
 
-    // Ensure currentPage doesn't exceed totalPages
-    const pageToFetch = Math.min(currentPage.value, totalPages > 0 ? totalPages : 1);
+    const pageToFetch = Math.min(currentPage, totalPages > 0 ? totalPages : 1);
 
     const paginatedPosts = await queryCollection('blog')
       .order('date', 'DESC')
@@ -42,7 +37,7 @@ const { data } = await useAsyncData(
     };
   },
   {
-    watch: [currentPage],
+    watch: [() => route.query.page],
   }
 );
 
@@ -58,10 +53,12 @@ const { data } = await useAsyncData(
     <div v-else class="no-posts-message">
       <p>Nenhum artigo encontrado.</p>
     </div>
+<div>
 
+</div>
     <Pagination
       v-if="data && data.totalPages > 1"
-      :current-page="currentPage"
+      :current-page="data.currentPage"
       :total-pages="data.totalPages"
       base-url="/blog"
     />

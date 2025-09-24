@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro X"
+title: "Ética a Nicômaco: Livro X"
 date: "2025-09-24"
 categories:
   - Filosofia

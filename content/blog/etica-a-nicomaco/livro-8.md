@@ -1,5 +1,5 @@
 ---
-title: "A Ética a Nicômaco: Livro VIII"
+title: "Ética a Nicômaco: Livro VIII"
 date: "2025-09-24"
 categories:
   - Filosofia
