@@ -1,37 +1,37 @@
 <script lang="ts" setup>
+import type { STATUS_CODES } from 'http';
+
 const route = useRoute();
 
 const { data: page } = await useAsyncData(`blog-post-${route.path}`, () =>
   queryCollection('blog').path(route.path).first()
 );
 
-// Fetch related posts
+if(!page.value?.path){
+ throw createError({
+  statusCode: 404,
+  message: 'O recurso que você procura não existe ou foi movido de local.'
+ });
+}
+
 const { data: relatedPosts } = await useAsyncData(`blog-post-${route.path}-related`, () => {
   const currentPath = route.path;
   const categories = page.value?.categories;
 
-  // If there are no categories, we can't find related posts.
   if (!categories || categories.length === 0) {
-    return [];
+    return Promise.resolve([]);
   }
 
-  // Start query:
-  // 1. Must be in the 'blog' collection.
-  // 2. Must NOT be the current post itself.
-  // 3. Must have at least one matching category.
   const query = queryCollection('blog')
-    .where('path', '<>', currentPath) // Exclude the current post
+    .where('path', '<>', currentPath)
     .orWhere(q => {
-      // Add an "OR" condition for each category.
-      // The post must match at least one of them.
       for (const category of categories) {
         q.where('categories', 'LIKE', `%"${category}"%`);
       }
       return q;
     })
-    .order('date', 'DESC') // Order by date to get the most recent posts
-    .limit(4); // Limit to 4 related posts
-
+    .order('date', 'DESC')
+    .limit(4);
   return query.all();
 });
 

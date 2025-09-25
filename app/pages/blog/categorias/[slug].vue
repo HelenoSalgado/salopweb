@@ -3,7 +3,6 @@
     <h1>Sobre {{ category }}</h1>
 
     <BlogPostCard v-if="data?.posts?.length" v-for="post in data.posts" :key="post.path" :post="post" />
-    <p v-else>Nenhum post encontrado nesta categoria.</p>
 
     <Pagination
       v-if="data && data.totalPages > 1"
@@ -65,6 +64,13 @@ const { data } = await useAsyncData(
     watch: [currentPage],
   }
 );
+
+if(!data.value?.posts.length){
+ throw createError({
+  statusCode: 404,
+  message: 'O recurso que você procura não existe ou foi movido de local.'
+ });
+}
 
 useSeoMeta({
   title: `Posts sobre ${category}`,

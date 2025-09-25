@@ -11,7 +11,7 @@ const { data: allCategories } = await useAsyncData('all-blog-categories', async 
 });
 
 const { data } = await useAsyncData(
-  `blog-posts-list-${route.query.page || 1}`,
+  () => `blog-posts-list-${route.query.page || 1}`,
   async () => {
     const page = parseInt(route.query.page as string);
     const currentPage = isNaN(page) || page < 1 ? 1 : page;
@@ -35,68 +35,20 @@ const { data } = await useAsyncData(
       totalPages,
       currentPage: pageToFetch,
     };
-  },
-  {
-    watch: [() => route.query.page],
   }
 );
 
 </script>
 
 <template>
-  <div class="blog-index-page">
+  <div>
     <h1>Escritos Recentes</h1>
     <CategoriesList :from="allCategories" />
-    <div v-if="data && data.posts && data.posts.length > 0" class="posts-grid">
+    <div v-if="data && data.posts && data.posts.length > 0">
       <BlogPostCard v-for="post in data.posts" :key="post.path" :post="post" />
     </div>
-    <div v-else class="no-posts-message">
-      <p>Nenhum artigo encontrado.</p>
-    </div>
-<div>
 
-</div>
-    <Pagination
-      v-if="data && data.totalPages > 1"
-      :current-page="data.currentPage"
-      :total-pages="data.totalPages"
-      base-url="/blog"
-    />
+    <Pagination v-if="data && data.totalPages > 1" :current-page="data.currentPage" :total-pages="data.totalPages"
+      base-url="/blog" />
   </div>
 </template>
-
-<style scoped>
-.blog-index-page {
-  padding: 2rem 0;
-  max-width: 900px;
-  margin: auto;
-}
-h1 {
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-.posts-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Single column for list-like display */
-  gap: 0; /* No gap between list items */
-  max-width: 900px; /* Limit container width */
-  margin: 0 auto;
-}
-
-.no-posts-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #666;
-  padding: 3rem 0;
-}
-
-/* Dark Mode */
-.dark h1 {
-  color: #eee;
-}
-
-.dark .no-posts-message {
-  color: #aaa;
-}
-</style>
