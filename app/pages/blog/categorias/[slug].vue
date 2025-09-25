@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ClientOnly>
     <h1>Sobre {{ category }}</h1>
 
     <BlogPostCard v-if="data?.posts?.length" v-for="post in data.posts" :key="post.path" :post="post" />
@@ -10,6 +11,7 @@
       :total-pages="data.totalPages"
       :base-url="`/blog/categorias/${category}`"
     />
+   </ClientOnly>
   </div>
 </template>
 
