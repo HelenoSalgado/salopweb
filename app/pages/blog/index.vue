@@ -42,7 +42,6 @@ const { data } = await useAsyncData(
 
 <template>
   <div>
-    <ClientOnly>
     <h1>Escritos Recentes</h1>
     <CategoriesList :from="allCategories" />
     <div v-if="data && data.posts && data.posts.length > 0">
@@ -51,6 +50,5 @@ const { data } = await useAsyncData(
 
     <Pagination v-if="data && data.totalPages > 1" :current-page="data.currentPage" :total-pages="data.totalPages"
       base-url="/blog" />
-      </ClientOnly>
   </div>
 </template>
