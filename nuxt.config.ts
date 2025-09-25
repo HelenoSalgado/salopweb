@@ -1,22 +1,28 @@
 import { defineNuxtConfig } from "nuxt/config";
-// import type { NitroConfig } from 'nitropack'
+import type { NitroConfig } from 'nitropack'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   app: {
     buildAssetsDir: "nuxt",
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
   nitro: {
     preset: 'cloudflare-pages',
     output: {
       publicDir: 'dist',
     },
-    minify: true, // Enabled minification for production
+    minify: true,
     prerender: {
       crawlLinks: true,
-      routes: ['/']
+      routes: ['/'],
+      concurrency: 3
+    },
+    static: true,
+    compressPublicAssets: true,
+    routeRules: <NitroConfig['routeRules']>{
+      //'/blog/**': { ssr: true },
     },
     publicAssets: [
       {
@@ -33,15 +39,11 @@ export default defineNuxtConfig({
       }
     ]
   },
-  experimental: {
-    //renderJsonPayloads: false,
-    //payloadExtraction: false
-  },
   runtimeConfig: {
     public: {
       site: {
         defaultLocale: 'pt-BR',
-        url: process.env.BASE_URL
+        url: process.env.BASE_URL,
       },
     }
   },
@@ -102,5 +104,4 @@ export default defineNuxtConfig({
   dir: {
     public: 'public'
   },
-
 });

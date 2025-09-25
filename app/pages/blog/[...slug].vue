@@ -1,17 +1,20 @@
 <script lang="ts" setup>
-import type { STATUS_CODES } from 'http';
-
 const route = useRoute();
 
-const { data: page } = await useAsyncData(`blog-post-${route.path}`, () =>
-  queryCollection('blog').path(route.path).first()
+const { data: page, error } = await useAsyncData(`blog-post-${route.path}`, async () => {
+  const result = await queryCollection('blog').path(route.path).first()
+  if (!result?.path) {
+    throw createError({
+      statusCode: 404,
+      message: 'O recurso que você procura não existe ou foi movido de local.'
+    });
+  }
+  return result
+}
 );
 
-if(!page.value?.path){
- throw createError({
-  statusCode: 404,
-  message: 'O recurso que você procura não existe ou foi movido de local.'
- });
+if(error.value?.statusCode == 404){
+ throw createError(error.value);
 }
 
 const { data: relatedPosts } = await useAsyncData(`blog-post-${route.path}-related`, () => {
@@ -75,6 +78,7 @@ useHead({
 
 <template>
   <div>
+    <ClientOnly>
     <ReadingProgressBar />
     <article class="prose-container">
       <h1>{{ page?.title }}</h1>
@@ -83,10 +87,11 @@ useHead({
       <!-- Data published -->
       <time :datetime="page?.dateFormatted">{{ page?.dateFormatted }}</time>
       <!-- Render body posts -->
-      <ContentRenderer class="markdown-content" v-if="page" :value="page" />
+      <ContentRenderer class="markdown-content" v-if="page?.path" :value="page" />
       <SharePost v-if="page" :postTitle="page.title" :postUrl="`https://heleno.dev${page.path}`" />
       <!-- Related Posts Section -->
       <RelatedPosts v-if="relatedPosts?.length" :posts="relatedPosts" />
     </article>
+    </ClientOnly>
   </div>
 </template>
