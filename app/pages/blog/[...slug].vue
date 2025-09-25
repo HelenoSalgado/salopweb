@@ -78,7 +78,6 @@ useHead({
 
 <template>
   <div>
-    <ClientOnly>
     <ReadingProgressBar />
     <article class="prose-container">
       <h1>{{ page?.title }}</h1>
@@ -92,6 +91,5 @@ useHead({
       <!-- Related Posts Section -->
       <RelatedPosts v-if="relatedPosts?.length" :posts="relatedPosts" />
     </article>
-    </ClientOnly>
   </div>
 </template>
