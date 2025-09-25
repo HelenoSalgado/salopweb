@@ -29,41 +29,22 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useColorMode } from '#imports';
 
 const isOptionsOpen = ref(false);
-const currentTheme = ref('dark');
+const colorMode = useColorMode();
 
 const toggleThemeOptions = () => {
   isOptionsOpen.value = !isOptionsOpen.value;
 };
 
-const applyTheme = (theme: string) => {
-  const effectiveTheme = theme === 'system'
-    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    : theme;
-  document.documentElement.classList.toggle('dark', effectiveTheme === 'dark');
-};
-
 const setTheme = (theme: string) => {
-  currentTheme.value = theme;
-  localStorage.setItem("color-theme", theme);
-  applyTheme(theme);
+  colorMode.preference = theme;
   isOptionsOpen.value = false;
 };
 
 onMounted(() => {
-  // 1. Initialize component state from localStorage without re-applying the theme.
-  // The initial theme is already set by the script in app.html.
-  currentTheme.value = localStorage.getItem("color-theme") || 'dark';
-
-  // 2. Add listener for system theme changes.
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (localStorage.getItem("color-theme") === "system") {
-      applyTheme('system');
-    }
-  });
-
-  // 3. Add listener to close dropdown when clicking outside.
+  // Add listener to close dropdown when clicking outside.
   document.addEventListener('click', (e) => {
     const themeSwitcher = document.querySelector('.theme-switcher-container');
     if (themeSwitcher && !themeSwitcher.contains(e.target as Node)) {

@@ -78,7 +78,9 @@ useHead({
 
 <template>
   <div>
-    <ReadingProgressBar />
+    <ClientOnly>
+      <ReadingProgressBar />
+    </ClientOnly>
     <article class="prose-container">
       <h1>{{ page?.title }}</h1>
       <!-- Render categories using the component -->

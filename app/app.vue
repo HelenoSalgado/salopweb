@@ -17,17 +17,6 @@ useHead({
   },
   link: [
     { rel: "icon", href: "/hsl-logo.ico", type: "image/x-icon" }
-  ],
-  script: [
-    {
-      textContent: `(function() {
-        try {
-          const savedTheme = localStorage.getItem('color-theme') || 'dark';
-          const isDark = savedTheme === 'dark' || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          document.documentElement.classList.toggle('dark', isDark);
-        } catch (e) {}
-      })();`
-    },
   ]
 });
 

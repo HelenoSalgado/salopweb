@@ -27,7 +27,7 @@ A alternativa não é a passividade. É a persuasão. É o trabalho árduo de se
 
 Devemos rejeitar a tentação de usar rótulos que encerram o pensamento e incitam ao ódio. O caminho para uma sociedade sã não passa por socar aqueles de quem discordamos, mas por superá-los com argumentos melhores, com uma visão mais convincente do futuro. Rotular alguém como nazista não é um ato de coragem moral; é uma confissão de fracasso intelectual e um convite à barbárie.
 
-*Artigo original de [David Heinemeier Hansson](https://world.hey.com/dhh), traduzido do post [Calling someone a nazi is a permission slip for violence](https://world.hey.com/dhh/calling-someone-a-nazi-is-a-permission-slip-for-violence-4bfbbb82).*
+*Texto desenvolvido inspirado no artigo em inglês [Calling someone a nazi is a permission slip for violence](https://world.hey.com/dhh/calling-someone-a-nazi-is-a-permission-slip-for-violence-4bfbbb82).*
 
 ---
 
@@ -42,4 +42,4 @@ A reflexão de David Heinemeier Hansson (DHH) dialoga com um campo mais amplo de
     (Este estudo aborda como rótulos como "nazista" funcionam como mecanismos psicológicos que reduzem a dissonância cognitiva associada à agressão, facilitando atos de violência ao desumanizar o alvo.)
 
 3.  **SOUZA, L. A. F. de. Polarização e a Erosão do Debate Público: Uma Análise do Discurso Político Contemporâneo. *Comunicação e Sociedade*, v. 41, p. 101-122, 2022.**
-    (Analisa como a "inflação de terminologia" mencionada por DHH contribui para a polarização afetiva, onde o adversário político não é visto como alguém com uma opinião divergente, mas como um inimigo moral a ser aniquilado.)
+    (Analisa como a "inflação de terminologia" contribui para a polarização afetiva, onde o adversário político não é visto como alguém com uma opinião divergente, mas como um inimigo moral a ser aniquilado.)
