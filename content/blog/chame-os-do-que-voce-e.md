@@ -7,7 +7,6 @@ published: true
 categories:
    - Filosofia
    - Política
-   - Sociedade
 ---
 
 Se você pode rotular alguém como "nazista", não precisa mais se envolver com seus argumentos, muito menos com sua humanidade. Eles se tornam O Outro. Um mal encarnado que deve ser combatido, não persuadido. Um câncer que precisa ser extirpado, não compreendido. Essa é a lógica sombria que se desenrola quando abrimos mão da persuasão em favor da difamação.
@@ -32,15 +31,15 @@ Devemos rejeitar a tentação de usar rótulos que encerram o pensamento e incit
 
 ---
 
-#### Referências
+#### Análise e Leituras Recomendadas
 
-A reflexão de David Heinemeier Hansson (DHH) dialoga com um campo mais amplo de estudos sobre linguagem, desumanização e violência política. Embora o artigo seja um texto de opinião, suas premissas encontram eco em pesquisas acadêmicas.
+A reflexão de David Heinemeier Hansson (DHH) dialoga com um campo mais amplo de estudos sobre linguagem, desumanização e violência política. Embora o artigo seja um texto de opinião, suas premissas encontram eco em pesquisas acadêmicas que aprofundam os temas abordados. As seguintes obras servem como um ponto de partida para quem deseja explorar o assunto:
 
-<a id="ref1"></a>[1] GODOY, A. S. M. *O Nazismo e o Direito*. Leme: Mizuno, 2021.
-(Obra que detalha a especificidade histórica e jurídica do Nazismo, contrastando com o uso genérico do termo no debate contemporâneo.)
+1.  **GODOY, A. S. M. *O Nazismo e o Direito*. Leme: Mizuno, 2021.**
+    (Obra que detalha a especificidade histórica e jurídica do Nazismo, fundamental para entender o contraste com o uso genérico do termo no debate contemporâneo.)
 
-<a id="ref2"></a>[2] KELLE, G. A Linguagem como Arma: O Uso de Rótulos Desumanizantes na Violência Política. *Revista de Psicologia Social*, v. 34, n. 2, p. 293-314, 2019.
-(Este estudo aborda como rótulos como "nazista" funcionam como mecanismos psicológicos que reduzem a dissonância cognitiva associada à agressão, facilitando atos de violência ao desumanizar o alvo.)
+2.  **KELLE, G. A Linguagem como Arma: O Uso de Rótulos Desumanizantes na Violência Política. *Revista de Psicologia Social*, v. 34, n. 2, p. 293-314, 2019.**
+    (Este estudo aborda como rótulos como "nazista" funcionam como mecanismos psicológicos que reduzem a dissonância cognitiva associada à agressão, facilitando atos de violência ao desumanizar o alvo.)
 
-<a id="ref3"></a>[3] SOUZA, L. A. F. de. Polarização e a Erosão do Debate Público: Uma Análise do Discurso Político Contemporâneo. *Comunicação e Sociedade*, v. 41, p. 101-122, 2022.
-(Analisa como a "inflação de terminologia" mencionada por DHH contribui para a polarização afetiva, onde o adversário político não é visto como alguém com uma opinião divergente, mas como um inimigo moral a ser aniquilado.)
+3.  **SOUZA, L. A. F. de. Polarização e a Erosão do Debate Público: Uma Análise do Discurso Político Contemporâneo. *Comunicação e Sociedade*, v. 41, p. 101-122, 2022.**
+    (Analisa como a "inflação de terminologia" mencionada por DHH contribui para a polarização afetiva, onde o adversário político não é visto como alguém com uma opinião divergente, mas como um inimigo moral a ser aniquilado.)
