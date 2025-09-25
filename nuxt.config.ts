@@ -46,7 +46,12 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    format: ['webp'],
+    formats: ['avif', 'webp'],
+  ipx: {
+    modifiers: {
+      format: 'webp'
+    }
+  },
     presets: {
       avatar: {
         modifiers: {
@@ -62,12 +67,6 @@ export default defineNuxtConfig({
         'xl': 1280,
         'xxl': 1536,
         '2xl': 1536
-      },
-      postImage: {
-        sizes: 'sm:100vw md:70vw lg:800px xl:1200px', // Ajustado para desktop
-        modifiers: {
-          quality: 80, // Manter qualidade padrão, pode ser ajustado
-        }
       }
     }
   },
