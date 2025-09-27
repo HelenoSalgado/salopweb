@@ -1,9 +1,8 @@
 <script setup>
-import { computed } from 'vue'
-import IconIdea from '~/components/icons/IconIdea.vue'
-import IconAttention from '~/components/icons/IconAttention.vue'
-import IconStar from '~/components/icons/IconStar.vue'
-import IconInfo from '~/components/icons/IconInfo.vue'
+import IconAttention from '~/components/Icons/Attention.vue'
+import IconIdea from '~/components/Icons/Idea.vue'
+import IconInfo from '~/components/Icons/Info.vue'
+import IconStar from '~/components/Icons/Star.vue'
 
 const props = defineProps({
   type: {
@@ -50,6 +49,7 @@ const calloutConfig = computed(() => {
   &.callout-info {
     border-color: var(--callout-info-border);
     background-color: var(--callout-info-bg);
+
     & .callout-icon {
       color: var(--callout-info-icon);
     }
@@ -58,6 +58,7 @@ const calloutConfig = computed(() => {
   &.callout-idea {
     border-color: var(--callout-idea-border);
     background-color: var(--callout-idea-bg);
+
     & .callout-icon {
       color: var(--callout-idea-icon);
     }
@@ -66,6 +67,7 @@ const calloutConfig = computed(() => {
   &.callout-attention {
     border-color: var(--callout-attention-border);
     background-color: var(--callout-attention-bg);
+
     & .callout-icon {
       color: var(--callout-attention-icon);
     }
@@ -74,6 +76,7 @@ const calloutConfig = computed(() => {
   &.callout-star {
     border-color: var(--callout-star-border);
     background-color: var(--callout-star-bg);
+
     & .callout-icon {
       color: var(--callout-star-icon);
     }
@@ -81,14 +84,16 @@ const calloutConfig = computed(() => {
 
   & .callout-icon {
     flex-shrink: 0;
-    margin-top: 0.125rem; /* Align icon nicely with text */
+    margin-top: 0.125rem;
+    /* Align icon nicely with text */
   }
 
   & .callout-content {
-    & > :first-child {
+    &> :first-child {
       margin-top: 0;
     }
-    & > :last-child {
+
+    &> :last-child {
       margin-bottom: 0;
     }
   }

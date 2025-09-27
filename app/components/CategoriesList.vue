@@ -1,20 +1,21 @@
 <template>
-    <ul v-if="from && from.length" class="categories-list">
-      <li v-for="category in from" :key="category">
-        <NuxtLink :to="`/blog/categorias/${category}`">
-          {{ category }}
-        </NuxtLink>
-      </li>
+<ul v-if="from.categories?.length" class="categories-list">
+       <li v-for="(category, index) in from.categories[0]" :key="category">
+      <NuxtLink :to="`/blog/categorias/${slugified_categories[index]}`">
+        {{ category }}
+      </NuxtLink>
+    </li>
     </ul>
 </template>
-
-<script setup>
-defineProps({
+<script setup lang="ts">
+import type { BlogCollectionItem } from '@nuxt/content';
+const props = defineProps<{
   from: {
-    type: Array,
-    required: true,
+    categories: Array<BlogCollectionItem['categories']>,
+    slugified_categories: Array<BlogCollectionItem['slugified_categories']>
   }
-});
+}>();
+const slugified_categories = ref(props.from.slugified_categories[0]) as any;
 </script>
 
 <style scoped>

@@ -1,5 +1,27 @@
 # wrangler.toml
 
-name = "blog" 
-
+name = "blog"
 compatibility_date = "2025-09-19"
+
+# --- LOCAL DEVELOPMENT ---
+# This configuration is for LOCAL DEVELOPMENT.
+# Wrangler will automatically create a local 'content.sqlite' file in the .wrangler directory.
+[[d1_databases]]
+binding = "DB"
+database_name = ""
+database_id = ""
+
+# --- PRODUCTION ---
+# For PRODUCTION, you must create a D1 database in the Cloudflare dashboard
+# and then replace the placeholders below with your actual database details.
+#
+# You can find the 'database_name' and 'database_id' in your D1 database's page
+# on the Cloudflare dashboard.
+#
+# Alternatively, for Cloudflare Pages, you can link the database directly in your
+# project's dashboard under: Settings > Functions > D1 database bindings.
+[env.production]
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "blog"
+database_id = "8e86893f-eba7-4a61-9926-7f4c91681314"

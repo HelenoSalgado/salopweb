@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import IconSearch from './icons/IconSearch.vue';
-
 interface SearchResult {
   id: string;
   path: string;
@@ -13,9 +10,13 @@ const query = ref('');
 const results = ref<SearchResult[]>([]);
 const showResults = ref(false);
 const noResults = ref(false);
-let searchTimeout: NodeJS.Timeout | null = null;
+let searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
 const performSearch = async () => {
+  if (import.meta.server) {
+    return;
+  }
+
   if (!query.value.trim()) {
     results.value = [];
     showResults.value = false;
@@ -74,25 +75,13 @@ const expandAndFocus = () => {
 <template>
   <div class="search-container">
     <div class="search-input-wrapper">
-      <IconSearch class="search-icon" @click="expandAndFocus" />
-      <input
-        id="search"
-        type="search"
-        placeholder="Pesquisar..."
-        v-model="query"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="hideResultsAndCollapse"
-      />
+      <IconsSearch class="search-icon" @click="expandAndFocus" />
+      <input id="search" type="search" placeholder="Pesquisar..." v-model="query" @input="handleInput"
+        @focus="handleFocus" @blur="hideResultsAndCollapse" />
     </div>
     <div v-if="showResults && results.length > 0" class="search-results">
-      <NuxtLink
-        v-for="post in results"
-        :key="post.id"
-        :to="post.path"
-        class="search-result-item"
-        @click="onResultClick"
-      >
+      <NuxtLink v-for="post in results" :key="post.id" :to="post.path" class="search-result-item"
+        @click="onResultClick">
         <h3 class="search-result-title">{{ post.title }}</h3>
         <p class="search-result-description">{{ post.description }}</p>
       </NuxtLink>
@@ -105,8 +94,10 @@ const expandAndFocus = () => {
 
 <style scoped>
 .search-container {
-  margin-left: auto; /* Push to the right */
-  margin-right: 1rem; /* Space from other elements */
+  margin-left: auto;
+  /* Push to the right */
+  margin-right: 1rem;
+  /* Space from other elements */
 }
 
 .search-input-wrapper {
@@ -138,7 +129,8 @@ const expandAndFocus = () => {
   position: absolute;
   left: 0.75rem;
   pointer-events: none;
-  color: var(--color-text-secondary); /* Use semantic color */
+  color: var(--color-text-secondary);
+  /* Use semantic color */
 }
 
 /* Estilos comuns para o box de resultados e o box de "nenhum resultado" */
@@ -146,48 +138,63 @@ const expandAndFocus = () => {
 .search-no-results {
   position: absolute;
   top: 100%;
-  right: 0; /* Alinha o box de resultados à direita do campo de pesquisa */
-  left: auto; /* Permite que a largura seja controlada por max-width e right */
-  max-width: 500px; /* Largura máxima para comportar os posts */
+  right: 0;
+  /* Alinha o box de resultados à direita do campo de pesquisa */
+  left: auto;
+  /* Permite que a largura seja controlada por max-width e right */
+  max-width: 500px;
+  /* Largura máxima para comportar os posts */
   background-color: var(--color-background);
   border-bottom-left-radius: 6px;
   box-shadow: 0 4px 12px var(--color-shadow-light);
-  z-index: 100; /* Ensure it's above other content */
+  z-index: 100;
+  /* Ensure it's above other content */
   border: 1px solid var(--color-border);
 }
 
 .search-result-item {
   display: block;
-  padding: 0.6rem 1rem; /* Ajusta o padding para um visual mais elegante */
+  padding: 0.6rem 1rem;
+  /* Ajusta o padding para um visual mais elegante */
   color: var(--color-text-secondary);
   text-decoration: none;
   transition: background-color 0.2s ease;
-  font-size: 0.95rem; /* Levemente menor para resultados */
+  font-size: 0.95rem;
+  /* Levemente menor para resultados */
   line-height: 1.4;
-  border-bottom: 1px solid var(--color-border); /* Separador entre os itens */
+  border-bottom: 1px solid var(--color-border);
+  /* Separador entre os itens */
 }
 
 .search-result-item:last-child {
-  border-bottom: none; /* Remove o separador do último item */
+  border-bottom: none;
+  /* Remove o separador do último item */
 }
 
 .search-result-item:hover,
-.search-result-item:focus, /* Adiciona estado de foco para acessibilidade */
-.search-result-item.selected { /* Classe para item selecionado (pode ser controlada por JS) */
+.search-result-item:focus,
+/* Adiciona estado de foco para acessibilidade */
+.search-result-item.selected {
+  /* Classe para item selecionado (pode ser controlada por JS) */
   background-color: var(--color-background-hover);
   color: var(--color-primary);
-  outline: none; /* Remove o outline padrão do foco */
+  outline: none;
+  /* Remove o outline padrão do foco */
 }
 
 .search-result-item .search-result-title {
-  font-size: 1rem; /* Tamanho do título */
-  font-weight: 600; /* Semibold */
-  margin-bottom: 0.25rem; /* Espaçamento abaixo do título */
+  font-size: 1rem;
+  /* Tamanho do título */
+  font-weight: 600;
+  /* Semibold */
+  margin-bottom: 0.25rem;
+  /* Espaçamento abaixo do título */
   color: var(--color-text-primary);
 }
 
 .search-result-item .search-result-description {
-  font-size: 0.85rem; /* Tamanho da descrição */
+  font-size: 0.85rem;
+  /* Tamanho da descrição */
   color: var(--color-text-secondary);
   line-height: 1.3;
 }
@@ -198,7 +205,8 @@ const expandAndFocus = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px; /* Garante uma altura mínima para centralização vertical */
+  min-height: 50px;
+  /* Garante uma altura mínima para centralização vertical */
 }
 
 /* Expansão apenas em mobile */

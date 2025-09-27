@@ -3,7 +3,7 @@
     <div class="hextra-footer-container">
       <div class="theme-switcher-container">
         <div
-          @click="toggleThemeOptions"
+          @click="isOptionsOpen = true"
           class="hextra-theme-toggle"
           :class="{ 'active': isOptionsOpen }"
         >
@@ -28,30 +28,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useColorMode } from '#imports';
-
 const isOptionsOpen = ref(false);
 const colorMode = useColorMode();
-
-const toggleThemeOptions = () => {
-  isOptionsOpen.value = !isOptionsOpen.value;
-};
-
 const setTheme = (theme: string) => {
   colorMode.preference = theme;
   isOptionsOpen.value = false;
 };
-
-onMounted(() => {
-  // Add listener to close dropdown when clicking outside.
-  document.addEventListener('click', (e) => {
-    const themeSwitcher = document.querySelector('.theme-switcher-container');
-    if (themeSwitcher && !themeSwitcher.contains(e.target as Node)) {
-      isOptionsOpen.value = false;
-    }
-  });
-});
 </script>
 
 <style scoped>

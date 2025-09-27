@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+const copyLink = ref(() => {});
 
 const props = defineProps({
   postTitle: { type: String, required: true, default: '' },
@@ -16,7 +17,8 @@ const facebookShareUrl = computed(() => `https://www.facebook.com/sharer/sharer.
 const linkedinShareUrl = computed(() => `https://www.linkedin.com/shareArticle?mini=true&url=${encodedPostUrl.value}&title=${encodedPostTitle.value}`);
 const whatsappShareUrl = computed(() => `https://api.whatsapp.com/send?text=${encodedPostTitle.value}%20${encodedPostUrl.value}`);
 
-const copyLink = async () => {
+onMounted(() => {
+  copyLink.value = async () => {
   try {
     await navigator.clipboard.writeText(props.postUrl);
     copied.value = true;
@@ -28,6 +30,8 @@ const copyLink = async () => {
     alert('Não foi possível copiar o link. Por favor, copie manualmente: ' + props.postUrl);
   }
 };
+});
+
 </script>
 
 <template>

@@ -6,9 +6,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: page } = await useAsyncData(`sobre`, () => {
-  return queryCollection('sobre').first();
-});
+const { data: page } = await useFetch('/api/pages/sobre', { key: 'sobre' });
 
 // Define o título para o template no app.vue
 definePageMeta({

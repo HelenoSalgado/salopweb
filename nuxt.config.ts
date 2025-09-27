@@ -14,12 +14,14 @@ export default defineNuxtConfig({
       publicDir: 'dist',
     },
     minify: true,
+    rollupConfig: {
+      cache: true
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/'],
       concurrency: 3
     },
-    static: true,
     compressPublicAssets: true,
     routeRules: <NitroConfig['routeRules']>{
       //'/blog/**': { ssr: true },
@@ -87,6 +89,7 @@ export default defineNuxtConfig({
         ital: [400]
       }
     },
+    subsets: ['latin', 'latin-ext'],
     display: 'swap',
     preconnect: true,
     useStylesheet: true
@@ -97,7 +100,8 @@ export default defineNuxtConfig({
     },
     build: {
       transformers: [
-        '~~/transformers/date-published'
+        '~~/transformers/date-published',
+        '~~/transformers/category-slugifier'
       ],
       markdown: {
         toc: {
@@ -109,4 +113,10 @@ export default defineNuxtConfig({
   dir: {
     public: 'public'
   },
+  $development: {
+    debug: false,
+    devtools: {
+       vueDevTools: false
+    }
+  }
 });

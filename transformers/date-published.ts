@@ -10,7 +10,7 @@ export default defineTransformer({
         month: 'long',
         day: 'numeric',
         timeZone: 'America/Sao_Paulo'
-      }).format(new Date(file.date))
+      }).format(new Date(file.date as string))
       // Cria um novo campo 'dateFormatted' em vez de sobrescrever 'date'
       file.dateFormatted = formatted
     }

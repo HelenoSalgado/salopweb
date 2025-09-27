@@ -3,9 +3,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: page } = await useAsyncData(`home`, () => {
-  return queryCollection('home').first();
-});
+const { data: page } = await useFetch('/api/pages/home', { key: 'home' });
 
 // Define o título para o template no app.vue
 definePageMeta({

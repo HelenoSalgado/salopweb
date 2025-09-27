@@ -20,7 +20,7 @@ const { currentPage, totalPages, baseUrl } = defineProps({
     <ul class="pagination">
       <li class="page-item" :class="{ disabled: currentPage === 1 }">
         <NuxtLink
-          :to="`${baseUrl}?page=${currentPage - 1}`"
+          :to="currentPage === 1 ? undefined : `${baseUrl}?page=${currentPage - 1}`"
           class="page-link"
           aria-label="Previous"
           :tabindex="currentPage === 1 ? -1 : 0"
@@ -42,7 +42,7 @@ const { currentPage, totalPages, baseUrl } = defineProps({
 
       <li class="page-item" :class="{ disabled: currentPage === totalPages }">
         <NuxtLink
-          :to="`${baseUrl}?page=${currentPage + 1}`"
+          :to="currentPage === totalPages ? undefined : `${baseUrl}?page=${currentPage + 1}`"
           class="page-link"
           aria-label="Next"
           :tabindex="currentPage === totalPages ? -1 : 0"

@@ -1,54 +1,57 @@
 <script setup lang="ts">
+import type { Categories, PostsPagination } from '~~/server/types';
 const route = useRoute();
+
 const POSTS_PER_PAGE = 7;
 
-// Fetch all categories for the list component
-const { data: allCategories } = await useAsyncData('all-blog-categories', async () => {
-  const postsWithCategories = await queryCollection('blog').select('categories').all();
-
-  const categories = postsWithCategories.flatMap(post => post.categories || []);
-  return [...new Set(categories)].sort();
+const currentPage = computed(() => {
+  const page = parseInt(route.query.page as string);
+  return isNaN(page) || page < 1 ? 1 : page;
 });
 
-const { data } = await useAsyncData(
-  () => `blog-posts-list-${route.query.page || 1}`,
-  async () => {
-    const page = parseInt(route.query.page as string);
-    const currentPage = isNaN(page) || page < 1 ? 1 : page;
+// Fetch all categories for the list component
+const { data: allCategories } = await useFetch<Categories>('/api/categories/get', {
+  pick: ['categories', 'slugified_categories'],
+});
 
-    const baseQuery = queryCollection('blog').order('date', 'DESC');
+// --- Busca de Dados ---
+const { data, error } = useFetch<PostsPagination>('/api/posts/get', {
+  query: {
+    limit: POSTS_PER_PAGE,
+    page: currentPage
+  },
+  pick: ['posts', 'totalPages'],
+})
 
-    const totalPosts = await baseQuery.count();
-    const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+useSeoMeta({
+  title: 'Escritos Recentes',
+  description: 'Explore todos os posts do blog.',
+});
 
-    const pageToFetch = Math.min(currentPage, totalPages > 0 ? totalPages : 1);
-
-    const paginatedPosts = await queryCollection('blog')
-      .order('date', 'DESC')
-      .skip((pageToFetch - 1) * POSTS_PER_PAGE)
-      .limit(POSTS_PER_PAGE)
-      .all();
-
-    return {
-      posts: paginatedPosts,
-      totalPosts,
-      totalPages,
-      currentPage: pageToFetch,
-    };
-  }
-);
+// --- Efeitos Reativos e Metadados ---
+watch(error, () => {
+if (error.value) {
+  throw createError({
+    statusCode: error.value.statusCode || 500,
+    message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
+});
+}
+}, { immediate: true });
 
 </script>
 
 <template>
   <div>
     <h1>Escritos Recentes</h1>
-    <CategoriesList :from="allCategories" />
+    <CategoriesList v-if="allCategories?.categories?.length" :from="{
+      categories: [allCategories?.categories],
+      slugified_categories: [allCategories?.slugified_categories]
+    }" />
     <div v-if="data && data.posts && data.posts.length > 0">
       <BlogPostCard v-for="post in data.posts" :key="post.path" :post="post" />
     </div>
 
-    <Pagination v-if="data && data.totalPages > 1" :current-page="data.currentPage" :total-pages="data.totalPages"
-      base-url="/blog" />
+    <Pagination v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
+      :total-pages="data?.totalPages" :base-url="`/blog`" />
   </div>
 </template>

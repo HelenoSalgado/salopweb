@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import IconGithub from './icons/IconGithub.vue';
-import IconInstagram from './icons/IconInstagram.vue';
-import IconTwitter from './icons/IconTwitter.vue';
-
 const isSidebarOpen = ref(false);
-
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
 };
@@ -28,17 +22,17 @@ const toggleSidebar = () => {
         </ul>
         <div class="social-media">
           <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer">
-            <IconInstagram />
+            <IconsInstagram />
           </a>
           <a href="http://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer">
-            <IconTwitter />
+            <IconsTwitter />
           </a>
           <a href="http://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer">
-            <IconGithub />
+            <IconsGithub />
           </a>
         </div>
       </nav>
-      <div class="hextra-hamburger-menu" :class="{ 'open': isSidebarOpen }" @click="toggleSidebar">
+      <div class="hextra-hamburger-menu" :class="{ 'open': isSidebarOpen }" @click="toggleSidebar" >
         <span></span><span></span><span></span>
       </div>
     </div>
