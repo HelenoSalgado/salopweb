@@ -4,7 +4,10 @@ const route = useRoute();
 const relatedPosts = ref<BlogCollectionItem[]>([]);
 
 // --- Buscas de Dados ---
-const { data: post, error } = useFetch<BlogCollectionItem>(`/api/posts/${route.path}`, {
+const { data: post, error } = useFetch<BlogCollectionItem>('/api/post', {
+  query: {
+    path: route.path
+  },
   pick: ['categories', 'slugified_categories', 'description', 'body', 'dateFormatted', 'title', 'image']
 });
 
@@ -30,7 +33,7 @@ watch([post, error], ([newPage, newError]) => {
     });
 
     if (newPage.categories?.length) {
-      $fetch<BlogCollectionItem[]>('/api/posts/get', {
+      $fetch<BlogCollectionItem[]>('/api/posts', {
         query: {
           categories: JSON.stringify(newPage.categories),
           excludePath: newPage.path,

@@ -10,12 +10,12 @@ const currentPage = computed(() => {
 });
 
 // Fetch all categories for the list component
-const { data: allCategories } = await useFetch<Categories>('/api/categories/get', {
+const { data: allCategories } = await useFetch<Categories>('/api/categories', {
   pick: ['categories', 'slugified_categories'],
 });
 
 // --- Busca de Dados ---
-const { data, error } = useFetch<PostsPagination>('/api/posts/get', {
+const { data, error } = useFetch<PostsPagination>('/api/posts', {
   query: {
     limit: POSTS_PER_PAGE,
     page: currentPage
