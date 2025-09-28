@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { setup, $fetch } from '@nuxt/test-utils'
+import type { PostsPagination, CardPost } from '~~/server/types';
 
 // Mock data
 const allPosts = [
@@ -16,10 +17,12 @@ const techPosts = allPosts.filter(p => p.categories.includes('tech')); // 3 post
 const mockQueryBuilder = {
   where: vi.fn().mockReturnThis(),
   order: vi.fn().mockReturnThis(),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   skip: vi.fn(function(this: any, num: number) {
     this.skipped = num;
     return this;
   }),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   limit: vi.fn(function(this: any, num: number) {
     this.limited = num;
     return this;
@@ -42,6 +45,7 @@ describe('GET /api/categories/:slug', async () => {
     vi.clearAllMocks();
     // Default mock behavior for a successful query on 'tech' posts
     mockQueryBuilder.count.mockResolvedValue(techPosts.length);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockQueryBuilder.all.mockImplementation(function(this: any) {
       const start = this.skipped || 0;
       const end = start + (this.limited || techPosts.length);
@@ -56,7 +60,7 @@ describe('GET /api/categories/:slug', async () => {
     const category = 'tech';
     const response = await $fetch(`/api/categories/${category}`, {
       params: { page: 1, limit: 2 }
-    }) as any;
+    }) as PostsPagination<CardPost[]>;
 
     expect(mockQueryBuilder.where).toHaveBeenCalledWith('categories', 'LIKE', `%"${category}"%`);
     expect(response.posts).toBeDefined();

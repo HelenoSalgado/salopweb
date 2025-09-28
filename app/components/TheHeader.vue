@@ -33,7 +33,7 @@ const toggleSidebar = () => {
         </div>
       </nav>
       <div class="hextra-hamburger-menu" :class="{ 'open': isSidebarOpen }" @click="toggleSidebar" >
-        <span></span><span></span><span></span>
+        <span/><span/><span/>
       </div>
     </div>
   </header>

@@ -2,15 +2,15 @@
 import { ref, computed } from 'vue';
 const copyLink = ref(() => {});
 
-const props = defineProps({
-  postTitle: { type: String, required: true, default: '' },
-  postUrl: { type: String, required: true },
-});
+const { postTitle, postUrl } = defineProps<{
+  postTitle: string,
+  postUrl: string
+}>();
 
 const copied = ref(false);
 
-const encodedPostTitle = computed(() => encodeURIComponent(props.postTitle));
-const encodedPostUrl = computed(() => encodeURIComponent(props.postUrl));
+const encodedPostTitle = computed(() => encodeURIComponent(postTitle));
+const encodedPostUrl = computed(() => encodeURIComponent(postUrl));
 
 const twitterShareUrl = computed(() => `https://twitter.com/intent/tweet?text=${encodedPostTitle.value}&url=${encodedPostUrl.value}`);
 const facebookShareUrl = computed(() => `https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl.value}`);
@@ -20,14 +20,14 @@ const whatsappShareUrl = computed(() => `https://api.whatsapp.com/send?text=${en
 onMounted(() => {
   copyLink.value = async () => {
   try {
-    await navigator.clipboard.writeText(props.postUrl);
+    await navigator.clipboard.writeText(postUrl);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;
     }, 2000);
   } catch (err) {
     console.error('Falha ao copiar o link: ', err);
-    alert('Não foi possível copiar o link. Por favor, copie manualmente: ' + props.postUrl);
+    alert('Não foi possível copiar o link. Por favor, copie manualmente: ' + postUrl);
   }
 };
 });
@@ -50,7 +50,7 @@ onMounted(() => {
       <a :href="whatsappShareUrl" target="_blank" rel="noopener noreferrer" class="button whatsapp">
         WhatsApp
       </a>
-      <button @click="copyLink" class="button copy">
+      <button class="button copy" @click="copyLink">
         Copiar Link
       </button>
     </div>

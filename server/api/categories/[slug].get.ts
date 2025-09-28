@@ -1,7 +1,9 @@
 // server/api/categories/[slug].get.ts
+import type { BlogCollectionItem } from '@nuxt/content';
 import { queryCollection } from '@nuxt/content/server';
-import { H3Event, getQuery } from 'h3';
-import { PostsPagination } from '~~/server/types';
+import { getQuery } from 'h3';
+import type { H3Event } from 'h3';
+import type { CardPost, PostsPagination } from '~~/server/types';
 
 export default defineEventHandler(async (event: H3Event) => {
     const category = event.context.params?.slug as string;
@@ -19,12 +21,15 @@ export default defineEventHandler(async (event: H3Event) => {
     }
 
     let categoryName = '';
-    const firstPostForCat = await baseQuery().select('categories', 'slugified_categories').first() as any;
+    const firstPostForCat = await baseQuery().select('categories', 'slugified_categories').first() as {
+        categories: BlogCollectionItem['categories'],
+        slugified_categories: BlogCollectionItem['slugified_categories']
+    };
 
     if (firstPostForCat) {
-        const categoryIndex = firstPostForCat.slugified_categories.indexOf(category);
+        const categoryIndex = firstPostForCat?.slugified_categories?.indexOf(category);
         if (categoryIndex !== -1 && firstPostForCat.categories) {
-            categoryName = firstPostForCat.categories[categoryIndex];
+            categoryName = firstPostForCat.categories[categoryIndex as number];
         }
     }
 
@@ -32,13 +37,13 @@ export default defineEventHandler(async (event: H3Event) => {
     const offset = (page - 1) * limit;
 
     const paginatedPosts = await baseQuery()
-        .select('title', 'description', 'path', 'date')
+        .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
         .order('date', 'DESC')
         .skip(offset)
         .limit(limit)
         .all();
 
-    return <PostsPagination>{
+    return <PostsPagination<CardPost[]>>{
         posts: paginatedPosts,
         totalPages,
         categoryName,

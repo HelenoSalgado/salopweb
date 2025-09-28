@@ -1,19 +1,21 @@
 import { queryCollection } from "@nuxt/content/server";
-import { PostsPagination } from "~~/server/types";
+import type { CardPost, PostsPagination } from "~~/server/types";
 
 export default defineEventHandler(async (event) => {
     const query = getQuery(event);
     const page = parseInt(query.page as string) || 1;
     const limit = parseInt(query.limit as string) || 7;
     const excludePath = query.excludePath as string;
-    const categories = query.categories as string[];
+    const categoriesParam = query.categories;
+
+    const categories = Array.isArray(categoriesParam) ? categoriesParam : (typeof categoriesParam === 'string' ? [categoriesParam] : []);
 
     const baseQuery = () => queryCollection(event, 'blog');
 
-    // Se a query 'categories' estiver presente, retorna posts relacionados (lógica para outro componente)
-    if (categories?.length > 0) {
+    // Se a query 'categories' estiver presente, retorna posts relacionados
+    if (categories.length > 0 && excludePath) {
         const relatedPostsQuery = baseQuery()
-            .select('title', 'description', 'path', 'date')
+            .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
             .where('path', '<>', excludePath)
             .orWhere(q => {
                 for (const category of categories) {
@@ -39,13 +41,13 @@ export default defineEventHandler(async (event) => {
     const offset = (page - 1) * limit;
 
     const paginatedPosts = await baseQuery()
-        .select('title', 'description', 'path', 'date')
+        .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
         .order('date', 'DESC')
         .skip(offset)
         .limit(limit)
         .all();
 
-    return <PostsPagination>{
+    return <PostsPagination<CardPost[]>>{
         posts: paginatedPosts,
         totalPages
     };

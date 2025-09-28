@@ -76,11 +76,13 @@ const expandAndFocus = () => {
   <div class="search-container">
     <div class="search-input-wrapper">
       <IconsSearch class="search-icon" @click="expandAndFocus" />
-      <input id="search" type="search" placeholder="Pesquisar..." v-model="query" @input="handleInput"
-        @focus="handleFocus" @blur="hideResultsAndCollapse" />
+      <input
+id="search" v-model="query" type="search" placeholder="Pesquisar..." @input="handleInput"
+        @focus="handleFocus" @blur="hideResultsAndCollapse" >
     </div>
     <div v-if="showResults && results.length > 0" class="search-results">
-      <NuxtLink v-for="post in results" :key="post.id" :to="post.path" class="search-result-item"
+      <NuxtLink
+v-for="post in results" :key="post.id" :to="post.path" class="search-result-item"
         @click="onResultClick">
         <h3 class="search-result-title">{{ post.title }}</h3>
         <p class="search-result-description">{{ post.description }}</p>

@@ -1,4 +1,4 @@
-import { defineEventHandler, getRouterParam } from 'h3'
+import { defineEventHandler } from 'h3'
 import { queryCollection } from '@nuxt/content/server'
 
 export default defineEventHandler(async (event) => {
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const page = await queryCollection(event, slug as any).first()
+    const page = await queryCollection(event, slug).first()
 
     if (!page) {
       throw createError({

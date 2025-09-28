@@ -15,10 +15,12 @@ const mockPosts = Array.from({ length: 20 }, (_, i) => ({
 const mockQueryBuilder = {
   where: vi.fn().mockReturnThis(),
   order: vi.fn().mockReturnThis(),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   skip: vi.fn(function (this: any, num: number) {
     this.skipped = num;
     return this;
   }),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   limit: vi.fn(function (this: any, num: number) {
     this.limited = num;
     return this;
@@ -44,6 +46,7 @@ describe('GET /api/posts', async () => {
 
     // Default mock behavior for a successful query
     mockQueryBuilder.count.mockResolvedValue(mockPosts.length);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockQueryBuilder.all.mockImplementation(function (this: any) {
       const start = this.skipped || 0;
       const end = start + (this.limited || mockPosts.length);
@@ -55,6 +58,7 @@ describe('GET /api/posts', async () => {
   });
 
   it('should return the first page of posts with default limit', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const response = await $fetch('/api/posts', { params: { page: 1 } }) as any;
 
     expect(response.posts).toBeDefined();
@@ -66,6 +70,7 @@ describe('GET /api/posts', async () => {
   });
 
   it('should return the second page of posts with a custom limit', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const response = await $fetch('/api/posts', { params: { page: 2, limit: 5 } }) as any;
 
     expect(response.posts.length).toBe(5);
@@ -80,6 +85,7 @@ describe('GET /api/posts', async () => {
     mockQueryBuilder.count.mockResolvedValue(0);
     mockQueryBuilder.all.mockResolvedValue([]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const response = await $fetch('/api/posts') as any;
 
     expect(response.posts.length).toBe(0);

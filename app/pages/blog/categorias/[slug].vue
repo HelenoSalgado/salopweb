@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PostsPagination } from '~~/server/types';
+import type { CardPost, PostsPagination } from '~~/server/types';
 
 const route = useRoute();
 const category = route.params.slug as string;
@@ -10,7 +10,7 @@ const currentPage = computed(() => {
   return isNaN(page) || page < 1 ? 1 : page;
 });
 
-const { data, error } = useFetch<PostsPagination>(`/api/categories/${category}`, {
+const { data, error } = useFetch<PostsPagination<CardPost[]>>(`/api/categories/${category}`, {
   query: {
     page: currentPage,
     limit: POSTS_PER_PAGE
@@ -18,31 +18,28 @@ const { data, error } = useFetch<PostsPagination>(`/api/categories/${category}`,
   pick: ['categoryName', 'posts', 'totalPages']
 });
 
-if (error.value) {
-  throw createError({
-    statusCode: error.value.statusCode || 500,
-    message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
-  });
-}
+watchEffect(() => {
+  if (error.value) {
+    throw createError({
+      statusCode: error.value.statusCode || 500,
+      message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
+    });
+  }
+})
 
-const title = computed(() => {
-  const catName = data.value?.categoryName || category;
-  return `Posts sobre ${catName}`;
+watchEffect(() => {
+  useSeoMeta({
+  title: `Posts sobre ${data.value?.categoryName || category}`,
+  description: `Explore todos os posts na categoria ${data.value?.categoryName || category}.`
 });
-
-const description = computed(() => `Explore todos os posts na categoria ${data.value?.categoryName || category}.`);
-
-useSeoMeta({
-  title,
-  description,
-});
+})
 </script>
 
 <template>
   <div>
     <h1>Sobre {{ data?.categoryName }}</h1>
 
-    <BlogPostCard v-if="data?.posts?.length" v-for="post in data.posts" :key="post.path" :post="post" />
+    <RelatedPosts v-if="data?.posts.length" :posts="data?.posts" />
 
     <Pagination
       v-if="data?.totalPages && data?.totalPages > 1"

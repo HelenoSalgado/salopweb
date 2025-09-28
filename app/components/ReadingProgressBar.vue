@@ -1,5 +1,5 @@
 <template>
-  <div class="reading-progress-bar" :style="{ width: progress + '%' }"></div>
+  <div class="reading-progress-bar" :style="{ width: progress + '%' }"/>
 </template>
 
 <script setup>

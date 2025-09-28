@@ -1,5 +1,5 @@
 import { queryCollection } from "@nuxt/content/server";
-import { Categories } from "~~/server/types";
+import type { Categories } from "~~/server/types";
 
 export default defineEventHandler(async (event) => {
 

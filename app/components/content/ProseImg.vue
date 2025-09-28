@@ -1,29 +1,22 @@
 <template>
   <NuxtImg
     :src="src"
-    :alt="alt"
-    :width
-    :height
+    :alt="alt || 'Image'"
+    :title="title"
+    :width="width || 900"
+    :height="height || 400"
+    loading="lazy"
+    format="webp,avif"
+    densities="x1 x2"
   />
 </template>
 
-<script setup lang="ts">
-const props = defineProps({
-  width: {
-    type: [String, Number],
-    default: 900
-  },
-  height: {
-    type: [String, Number],
-    default: 400
-  },
-  src: {
-    type: String,
-    required: true
-  },
-  alt: {
-    type: String,
-    default: ''
-  }
+<script setup>
+defineProps({
+  src: { type: String, required: true },
+  alt: String,
+  title: String,
+  width: [String, Number],
+  height: [String, Number]
 })
 </script>

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   app: {
     buildAssetsDir: "nuxt",
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   nitro: {
     preset: 'cloudflare-pages',
@@ -14,9 +14,6 @@ export default defineNuxtConfig({
       publicDir: 'dist',
     },
     minify: true,
-    rollupConfig: {
-      cache: true
-    },
     prerender: {
       crawlLinks: true,
       routes: ['/'],
@@ -50,12 +47,11 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    formats: ['avif', 'webp'],
-  ipx: {
-    modifiers: {
-      format: 'webp'
-    }
-  },
+    provider: 'cloudflare',
+    cloudflare: {
+      baseURL: process.env.BASE_URL
+    },
+    formats: ['webp'],
     presets: {
       avatar: {
         modifiers: {
@@ -79,7 +75,9 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     preference: 'dark',
-    fallback: 'dark'
+    storageKey: 'salop-color-mode',
+    fallback: 'dark',
+    storage: 'localStorage'
   },
   googleFonts: {
     families: {
@@ -101,7 +99,8 @@ export default defineNuxtConfig({
     build: {
       transformers: [
         '~~/transformers/date-published',
-        '~~/transformers/category-slugifier'
+        '~~/transformers/category-slugifier',
+        '~~/transformers/defaults-global.ts'
       ],
       markdown: {
         toc: {
@@ -114,9 +113,9 @@ export default defineNuxtConfig({
     public: 'public'
   },
   $development: {
-    debug: false,
+    debug: true,
     devtools: {
-       vueDevTools: false
+      vueDevTools: true
     }
   }
 });

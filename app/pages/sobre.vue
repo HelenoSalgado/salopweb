@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: page } = await useFetch('/api/pages/sobre', { key: 'sobre' });
+const { data: page } = await useFetch('/api/pages/sobre');
 
 // Define o título para o template no app.vue
 definePageMeta({
@@ -14,7 +14,8 @@ definePageMeta({
 });
 
 // Define as meta tags específicas para esta página
-useSeoMeta({
+watchEffect(() => {
+  useSeoMeta({
   title: page.value?.title || 'Sobre Mim',
   description: page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
   ogTitle: page.value?.title || 'Sobre | Heleno Salgado',
@@ -22,4 +23,5 @@ useSeoMeta({
   ogImage: page.value?.image || 'https://heleno.dev/images/default-post.png',
   ogType: 'profile',
 });
+})
 </script>
