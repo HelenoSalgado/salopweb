@@ -1,5 +1,6 @@
 <template>
   <NuxtImg
+     provider="cloudflare"
     :src="src"
     :alt="alt || 'Image'"
     :title="title"
