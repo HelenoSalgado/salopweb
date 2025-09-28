@@ -49,7 +49,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: process.env.BASE_URL
+      baseURL: process.env.BASE_URL || 'https://heleno.dev'
     },
     formats: ['webp'],
     presets: {

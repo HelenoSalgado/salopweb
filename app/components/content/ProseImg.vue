@@ -6,7 +6,7 @@
     :width="width || 900"
     :height="height || 400"
     loading="lazy"
-    format="webp,avif"
+    format="webp"
     densities="x1 x2"
   />
 </template>
