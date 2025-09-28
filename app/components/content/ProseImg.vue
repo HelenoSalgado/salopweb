@@ -1,13 +1,16 @@
 <template>
   <NuxtImg
-     provider="cloudflare"
     :src="src"
     :alt="alt || 'Image'"
     :title="title"
     :width="width || 900"
     :height="height || 400"
+    :modifiers="{
+      width: 900,
+      height: 400,
+      format: 'webp'
+    }"
     loading="lazy"
-    format="webp"
     densities="x1 x2"
   />
 </template>

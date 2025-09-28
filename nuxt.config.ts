@@ -52,22 +52,11 @@ export default defineNuxtConfig({
       baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
     },
     formats: ['webp'],
-    presets: {
-      avatar: {
-        modifiers: {
-          width: 60,
-          height: 60
-        }
-      },
-      screens: {
-        'xs': 320,
-        'sm': 640,
-        'md': 768,
-        'lg': 1024,
-        'xl': 1280,
-        'xxl': 1536,
-        '2xl': 1536
-      }
+    screens: {
+      'xs': 320,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024
     }
   },
   css: ['~/assets/css/main.css'],
