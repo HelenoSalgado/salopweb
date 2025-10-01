@@ -9,6 +9,6 @@
         </template>
       </Suspense>
     </main>
-    <!-- <TheFooter /> -->
+    <TheFooter />
   </div>
 </template>
