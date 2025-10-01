@@ -4,6 +4,7 @@ description: "Aprenda a resolver problemas de dependência não encontrada ao us
 date: '2025-09-22'
 categories:
    - Linux
+published: true
 ---
 
 Recentemente tive que instalar o **Insominia** no Arch Linux, no entanto o build falhava por não encontrar o pacote nvm, que é uma dependência necessária para o tempo de execução.
