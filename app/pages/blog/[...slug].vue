@@ -86,9 +86,9 @@ v-if="post.categories?.length" v-bind="{
 
       <ContentRenderer class="markdown-content" :value="post.body" />
 
-      <SharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
+      <LazySharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
 
-      <RelatedPosts v-if="relatedPosts?.length" :posts="relatedPosts" />
+      LazyRelatedPosts v-if="relatedPosts?.length" :posts="relatedPosts" />
     </article>
   </div>
 </template>
