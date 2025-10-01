@@ -8,7 +8,9 @@ export default defineNuxtConfig({
   experimental: {
     sharedPrerenderData: false,
     renderJsonPayloads: false,
-    entryImportMap: false
+    entryImportMap: false,
+    asyncContext: true,
+    lazyHydration: true
   },
   app: {
     buildAssetsDir: "nuxt",
