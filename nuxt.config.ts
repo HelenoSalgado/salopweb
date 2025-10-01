@@ -50,7 +50,7 @@ export default defineNuxtConfig({
       noExternal: ['@nuxt/content'] // Trata o módulo como não externo no SSR, reduzindo client bundle
     },
     build: {
-      //cssCodeSplit: false,
+      cssCodeSplit: false,
       rollupOptions: {
         output: {
           manualChunks(id) {
