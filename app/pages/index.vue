@@ -1,15 +1,14 @@
 <template>
-    <ContentRenderer v-if="page" :value="page" />
+    <ContentRenderer v-if="page" :value="page.body" />
 </template>
 <script setup lang="ts">
-const { data: page } = await useFetch('/api/pages/home', { key: 'home' });
+const { data: page } = await useFetch('/api/pages/home');
 
 // Define o título para o template no app.vue
 definePageMeta({
   title: 'Início'
 });
 
-// Define as meta tags específicas para esta página
 watchEffect(() => {
   useSeoMeta({
     title: page.value?.title || 'Início',

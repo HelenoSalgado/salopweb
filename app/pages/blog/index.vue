@@ -29,14 +29,14 @@ useSeoMeta({
 });
 
 // --- Efeitos Reativos e Metadados ---
-watch(error, () => {
-if (error.value) {
-  throw createError({
-    statusCode: error.value.statusCode || 500,
-    message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
+watchEffect(() => {
+  if (error.value) {
+    throw createError({
+      statusCode: error.value.statusCode || 500,
+      message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
+    });
+  }
 });
-}
-}, { immediate: true });
 
 </script>
 
@@ -44,16 +44,14 @@ if (error.value) {
   <div>
     <h1>Escritos Recentes</h1>
 
-    <CategoriesList
-v-if="allCategories?.categories?.length" v-bind="{
+    <CategoriesList v-if="allCategories?.categories?.length" v-bind="{
       categories: allCategories.categories,
       slugifiedCategories: allCategories.slugified_categories
     }" />
 
     <RelatedPosts v-if="data?.posts" :posts="data.posts" />
 
-    <Pagination
-v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
+    <Pagination v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
       :total-pages="data?.totalPages" :base-url="`/blog`" />
   </div>
 </template>

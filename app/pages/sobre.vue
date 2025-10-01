@@ -8,12 +8,10 @@
 <script setup lang="ts">
 const { data: page } = await useFetch('/api/pages/sobre');
 
-// Define o título para o template no app.vue
 definePageMeta({
   title: 'Sobre'
 });
 
-// Define as meta tags específicas para esta página
 watchEffect(() => {
   useSeoMeta({
   title: page.value?.title || 'Sobre Mim',

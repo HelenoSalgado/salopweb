@@ -1,43 +1,15 @@
 import { defineNuxtConfig } from "nuxt/config";
-import type { NitroConfig } from 'nitropack'
+import nitro from "./server/nitro";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+  ssr: true, // Força SSR/hidratação híbrida explícito
   app: {
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  nitro: {
-    preset: 'cloudflare-pages',
-    output: {
-      publicDir: 'dist',
-    },
-    minify: true,
-    prerender: {
-      crawlLinks: true,
-      routes: ['/'],
-      concurrency: 3
-    },
-    compressPublicAssets: true,
-    routeRules: <NitroConfig['routeRules']>{
-      //'/blog/**': { ssr: true },
-    },
-    publicAssets: [
-      {
-        baseURL: 'css',
-        dir: 'public/css',
-      },
-      {
-        baseURL: 'images',
-        dir: 'public/images',
-      },
-      {
-        baseURL: '/',
-        dir: 'public',
-      }
-    ]
-  },
+  nitro,
   runtimeConfig: {
     public: {
       site: {
@@ -60,13 +32,33 @@ export default defineNuxtConfig({
     }
   },
   css: ['~/assets/css/main.css'],
-  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/eslint", "@nuxtjs/google-fonts", "@nuxtjs/color-mode"],
+  vite: {
+    optimizeDeps: {
+      include: ['vue']
+    },
+    ssr: {
+      noExternal: ['@nuxt/content'] // Trata o módulo como não externo no SSR, reduzindo client bundle
+    },
+    build: {
+      cssCodeSplit: false,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+          }
+        }
+      }
+    }
+  },
+  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/eslint", "@nuxtjs/google-fonts", "@nuxtjs/color-mode", "@nuxtjs/sitemap"],
   colorMode: {
     classSuffix: '',
     preference: 'dark',
     storageKey: 'salop-color-mode',
     fallback: 'dark',
-    storage: 'localStorage'
+    storage: 'cookie'
   },
   googleFonts: {
     families: {
@@ -76,35 +68,30 @@ export default defineNuxtConfig({
         ital: [400]
       }
     },
-    subsets: ['latin', 'latin-ext'],
+    subsets: ['latin-ext'],
     display: 'swap',
     preconnect: true,
     useStylesheet: true
   },
   content: {
     renderer: {
-      anchorLinks: false
+      anchorLinks: false, // Evita criação de índices
     },
     build: {
       transformers: [
         '~~/transformers/date-published',
         '~~/transformers/category-slugifier',
         '~~/transformers/defaults-global.ts'
-      ],
-      markdown: {
-        toc: {
-          depth: 3, // include h3 headings
-        }
-      }
+      ]
     }
   },
   dir: {
     public: 'public'
   },
   $development: {
-    debug: true,
+    debug: false,
     devtools: {
-      vueDevTools: true
+      vueDevTools: false
     }
   }
 });

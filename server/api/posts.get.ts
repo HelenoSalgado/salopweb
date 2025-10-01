@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
                 return q;
             })
             .order('date', 'DESC')
+            .order('id', 'ASC')
             .limit(limit);
 
         const posts = await relatedPostsQuery.all();
@@ -43,6 +44,7 @@ export default defineEventHandler(async (event) => {
     const paginatedPosts = await baseQuery()
         .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
         .order('date', 'DESC')
+        .order('id', 'ASC')
         .skip(offset)
         .limit(limit)
         .all();

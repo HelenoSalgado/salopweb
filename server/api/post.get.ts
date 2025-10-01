@@ -1,3 +1,4 @@
+
 import type { BlogCollectionItem } from "@nuxt/content";
 import { queryCollection } from "@nuxt/content/server";
 

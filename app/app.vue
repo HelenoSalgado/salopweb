@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+// --- Possível causa de renderização dupla ---
 watchEffect(() => {
   useHead({
     titleTemplate: (titleChunk) => {

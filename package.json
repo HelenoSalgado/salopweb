@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "node scripts/generate-search-index.mjs && nuxt build",
+    "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -16,7 +16,7 @@
     "@nuxt/image": "^1.11.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/sitemap": "^7.4.3",
+    "better-sqlite3": "^12.4.1",
     "cheerio": "^1.0.0-rc.12",
     "eslint": "^9.35.0",
     "gray-matter": "^4.0.3",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/test-utils": "^3.19.2",
+    "@nuxtjs/sitemap": "^7.4.7",
     "@types/node": "^24.4.0",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",

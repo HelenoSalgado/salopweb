@@ -1,4 +1,4 @@
-import { defineCollection, defineContentConfig, z } from '@nuxt/content'
+import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
 // 1. Esquema base reutilizável
 const pageSchema = z.object({

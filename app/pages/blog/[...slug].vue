@@ -29,7 +29,6 @@ const { data, error: postError } = await useAsyncData(`post-${route.path}`, asyn
 const post = computed(() => data.value?.post);
 const relatedPosts = computed(() => data.value?.relatedPosts);
 
-
 watchEffect(() => {
   if (postError?.value) {
     throw createError({

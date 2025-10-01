@@ -31,7 +31,7 @@ Em uma sociedade onde a vida era vista como um teste ou uma jornada espiritual, 
 
 Essa perspectiva elevou o trabalho a um status moral e espiritual, transformando-o de uma mera necessidade em um caminho para a retidão e a salvação. Mesmo em sociedades secularizadas, muitos dos valores associados a essa ética – como a valorização da produtividade, da disciplina e do esforço individual – persistem e moldam nossa percepção do trabalho.
 
-::Callout{type="idea"}
+::LazyCallout{type="idea"}
 O trabalho, em sua essência mais profunda, pode ser um veículo para a **autorrealização**. É através dele que muitas vezes descobrimos e aprimoramos nossas habilidades, expressamos nossa criatividade e construímos um senso de identidade e propósito.
 ::
 
