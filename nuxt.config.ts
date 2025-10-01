@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   ssr: true, // Força SSR/hidratação híbrida explícito
   experimental: {
     sharedPrerenderData: false,
-    renderJsonPayloads: false,
+    //renderJsonPayloads: false,
     entryImportMap: false
   },
   app: {
