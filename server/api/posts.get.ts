@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     // Se a query 'categories' estiver presente, retorna posts relacionados
     if (categories.length > 0 && excludePath) {
         const relatedPostsQuery = baseQuery()
+            .where('published', '=', true)
             .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
             .where('path', '<>', excludePath)
             .orWhere(q => {
@@ -42,6 +43,7 @@ export default defineEventHandler(async (event) => {
     const offset = (page - 1) * limit;
 
     const paginatedPosts = await baseQuery()
+        .where('published', '=', true)
         .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
         .order('date', 'DESC')
         .order('id', 'ASC')

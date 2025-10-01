@@ -1,8 +1,6 @@
 
 import { getQuery } from 'h3';
 import { queryCollection } from '@nuxt/content/server';
-import type { BlogCollectionItem } from '@nuxt/content';
-import { CardPost } from '../types';
 
 // Função auxiliar para remover acentos
 const removeAccents = (str: string) => {
@@ -19,7 +17,7 @@ export default defineEventHandler(async (event) => {
 
   // Busca os posts diretamente do Nuxt Content
   const posts = await queryCollection(event, 'blog')
-    .where('published', '=', 'true')
+    .where('published', '=', true)
     .select('path', 'title', 'description')
     .all();
 
@@ -32,9 +30,13 @@ export default defineEventHandler(async (event) => {
     return titleMatch || descriptionMatch;
   });
 
-  return filteredPosts.map(post => ({
+  const result = filteredPosts.map(post => ({
     path: post.path,
     title: post.title,
     description: post.description,
   }));
+
+  console.log(result);
+
+  return result;
 });

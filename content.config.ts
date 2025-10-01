@@ -12,7 +12,8 @@ const pageSchema = z.object({
 const blogSchema = pageSchema.extend({
   dateFormatted: z.string(),
   categories: z.array(z.string()).optional(),
-  slugified_categories: z.array(z.string()).optional()
+  slugified_categories: z.array(z.string()).optional(),
+  published: z.boolean().optional()
 })
 
 // 3. Configuração final
