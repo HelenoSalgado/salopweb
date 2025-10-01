@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     asyncContext: true,
     lazyHydration: true
   },
+  features: {
+    inlineStyles: true  // Força todo CSS a ser inline
+  },
   app: {
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' }
