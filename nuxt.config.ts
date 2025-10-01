@@ -1,42 +1,37 @@
 import { defineNuxtConfig } from "nuxt/config";
 import nitro from "./server/nitro";
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
-
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  ssr: true, // Força SSR/hidratação híbrida explícito
+  
+  ssr: true,
+  
   experimental: {
-    sharedPrerenderData: false,
+    sharedPrerenderData: true,
     renderJsonPayloads: true,
-    entryImportMap: false,
+    entryImportMap: true,
     asyncContext: true,
-    lazyHydration: true
+    lazyHydration: true,
+    defaults: {
+      nuxtLink: {
+        prefetchOn: 'interaction'
+      }
+    }
   },
-  build: {
-      rollupOptions: {
-        output: {
-          // Manual chunking for code splitting: group vendor libs, modules, etc.
-          manualChunks: (id) => {
-            if (id.includes('node_modules')) {
-              if (id.includes('@nuxt/content')) return 'nuxt-content';
-              if (id.includes('vue')) return 'vue';
-              if (id.includes('@nuxt/image')) return 'nuxt-image';
-              return 'vendor'; // Default for other node_modules
-            }
-            if (id.includes('assets/css')) return 'styles';
-            return null; // Let Nuxt handle the rest
-          }
-        }
-      },
+  
   features: {
-    //inlineStyles: true  // Força todo CSS a ser inline
+    // Inline apenas CSS de componentes Vue, não CSS global
+    // Reduz duplicação mantendo CSS global em arquivo separado cacheável
+    inlineStyles: (id) => !!id && id.includes('.vue')
   },
+  
   app: {
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' }
   },
+  
   nitro,
+  
   runtimeConfig: {
     public: {
       site: {
@@ -45,29 +40,97 @@ export default defineNuxtConfig({
       },
     }
   },
+  
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
+      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(//+$/, '')
     },
-    formats: ['webp'],
+    formats: ['webp', 'avif'],
     screens: {
       'xs': 320,
       'sm': 640,
       'md': 768,
-      'lg': 1024
+      'lg': 1024,
+      'xl': 1280
     }
   },
+  
   css: ['~/assets/css/main.css'],
+  
   vite: {
     optimizeDeps: {
-      include: ['vue']
+      include: ['vue'],
+      // Exclui @nuxt/content do cliente se usado apenas no servidor
+      exclude: ['@nuxt/content']
     },
-    ssr: {
-      noExternal: ['@nuxt/content'] // Trata o módulo como não externo no SSR, reduzindo client bundle
+    
+    build: {
+      // Mantém true para code splitting de CSS por rota
+      cssCodeSplit: true,
+      
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Componentes críticos de layout (apenas JS)
+            if (id.includes('TheHeader') || 
+                id.includes('TheFooter') ||
+                id.includes('layouts/default')) {
+              return 'critical-layout';
+            }
+            
+            // Separação granular de node_modules
+            if (id.includes('node_modules')) {
+              // Vue core
+              if (id.includes('vue') || id.includes('@vue')) {
+                return 'vue-core';
+              }
+              
+              // @nuxt/content será excluído do cliente via optimizeDeps.exclude
+              // mas se algum código cliente ainda o referenciar, isola aqui
+              if (id.includes('@nuxt/content')) {
+                return 'nuxt-content-fallback';
+              }
+              
+              // Nuxt Image
+              if (id.includes('@nuxt/image')) {
+                return 'nuxt-image';
+              }
+              
+              // UI libraries
+              if (id.includes('@headlessui') || id.includes('@heroicons')) {
+                return 'ui-libs';
+              }
+              
+              // Utilities
+              if (id.includes('lodash') || id.includes('date-fns')) {
+                return 'utils';
+              }
+              
+              return 'vendor';
+            }
+          }
+        }
+      }
     }
   },
-  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/eslint", "@nuxtjs/google-fonts", "@nuxtjs/color-mode", "@nuxtjs/sitemap"],
+  
+  modules: [
+    "@nuxt/content", 
+    "@nuxt/image", 
+    "@nuxt/eslint", 
+    "@nuxtjs/google-fonts", 
+    "@nuxtjs/color-mode", 
+    "@nuxtjs/sitemap",
+    "nuxt-vitalizer"
+  ],
+  
+  // Configuração opcional do nuxt-vitalizer (se instalado)
+  vitalizer: {
+     disableStylesheets: 'entry', // Remove entry.css duplicado
+     disablePrefetchLinks: 'dynamicImports' // Melhora LCP
+  // },
+  
   colorMode: {
     classSuffix: '',
     preference: 'dark',
@@ -75,6 +138,7 @@ export default defineNuxtConfig({
     fallback: 'dark',
     storage: 'cookie'
   },
+  
   googleFonts: {
     families: {
       Inter: [400, 700],
@@ -86,11 +150,13 @@ export default defineNuxtConfig({
     subsets: ['latin-ext'],
     display: 'swap',
     preconnect: true,
-    useStylesheet: true
+    useStylesheet: false,
+    download: true
   },
+  
   content: {
     renderer: {
-      anchorLinks: false, // Evita criação de índices
+      anchorLinks: false,
     },
     build: {
       transformers: [
@@ -100,9 +166,11 @@ export default defineNuxtConfig({
       ]
     }
   },
+  
   dir: {
     public: 'public'
   },
+  
   $development: {
     debug: false,
     devtools: {
