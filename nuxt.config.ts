@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(//+$/, '')
+      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
     },
     formats: ['webp'],
     screens: { xs: 320, sm: 640, md: 768, lg: 1024 }
