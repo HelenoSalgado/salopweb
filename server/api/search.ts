@@ -36,7 +36,5 @@ export default defineEventHandler(async (event) => {
     description: post.description,
   }));
 
-  console.log(result);
-
   return result;
 });
