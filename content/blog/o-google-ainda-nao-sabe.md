@@ -4,6 +4,7 @@ description: "A decisão foi tomada, é melhor ter a aprovação humana do que a
 date: '2025-09-22'
 categories:
     - SEO
+published: true
 ---
 
 Há cerca de três anos, desenvolvi um site com Nuxt.js. Minha intenção era obter o tão desejado desempenho prometido pela renderização híbrida, uma tecnologia conhecida como **Hidratação**. A premissa é de que o Nuxt é capaz de gerar um site totalmente estático e, ao mesmo tempo, reaproveitar todos os componentes já baixados no navegador do usuário. Com isso, a cada nova página acessada, o servidor retorna apenas o conteúdo em si. A economia de rede e processamento é extraordinária.
