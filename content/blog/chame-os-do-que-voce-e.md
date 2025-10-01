@@ -3,10 +3,10 @@ title: "Chamar Alguém de Nazista é um Passe Livre para a Violência"
 description: "Uma análise sobre como a banalização do termo 'nazista' no discurso político moderno serve como uma justificativa para a desumanização e a violência contra opositores."
 image: "/images/default-post.png"
 date: '2025-09-25'
-published: true
 categories:
    - Filosofia
    - Política
+published: true
 ---
 
 Se você pode rotular alguém como "nazista", não precisa mais se envolver com seus argumentos, muito menos com sua humanidade. Eles se tornam O Outro. Um mal encarnado que deve ser combatido, não persuadido. Um câncer que precisa ser extirpado, não compreendido. Essa é a lógica sombria que se desenrola quando abrimos mão da persuasão em favor da difamação.
