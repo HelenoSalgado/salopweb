@@ -49,16 +49,44 @@ export default defineNuxtConfig({
     ssr: {
       noExternal: ['@nuxt/content'] // Trata o módulo como não externo no SSR, reduzindo client bundle
     },
-    build: {
-      cssCodeSplit: false,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
+   hooks: {
+    "vite:extendConfig"(config, { isClient }) {
+      if (isClient) {
+        config.build = config.build || {}
+        config.build.rollupOptions = config.build.rollupOptions || {}
+        config.build.rollupOptions.output = config.build.rollupOptions.output || {}
+        
+        config.build.rollupOptions.output.manualChunks = function(id) {
+          // 1. Separar Vue Reactivity (a maior parte do bundle)
+          if (id.includes('@vue/reactivity') || 
+              id.includes('vue/dist/vue.runtime') ||
+              id.includes('reactivity')) {
+            return 'vue-reactivity'
+          }
+          
+          // 2. Separar Vue Shared utilities
+          if (id.includes('@vue/shared') || 
+              id.includes('vue/shared')) {
+            return 'vue-shared'
+          }
+          
+          // 3. Separar Vite runtime e polyfills
+          if (id.includes('vite/modulepreload-polyfill') ||
+              id.includes('vite/client') ||
+              id.includes('virtual:vite') ||
+              id.includes('__vite__')) {
+            return 'vite-runtime'
+          }
+          
+          // 4. Vendors gerais do node_modules
+          if (id.includes('node_modules')) {
+            return 'vendor'
           }
         }
+        
+        // Configurações adicionais para otimizar chunks
+        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js'
+        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js'
       }
     }
   },
