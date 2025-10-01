@@ -2,6 +2,13 @@ import { defineNuxtConfig } from "nuxt/config";
 import nitro from "./server/nitro";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+function manualChunks(id: string) {
+  if (id.includes('node_modules')) {
+    return 'vendor';
+  }
+}
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   ssr: true, // Força SSR/hidratação híbrida explícito
@@ -20,6 +27,20 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   nitro,
+  hooks: {
+    'vite:extendConfig'(config, { isClient }) {
+      if (isClient) {
+        config.build = config.build || {};
+        config.build.rollupOptions = config.build.rollupOptions || {};
+        config.build.rollupOptions.output = config.build.rollupOptions.output || {};
+
+        config.build.rollupOptions.output.manualChunks = manualChunks;
+
+        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js';
+        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js';
+      }
+    }
+  },
   runtimeConfig: {
     public: {
       site: {
