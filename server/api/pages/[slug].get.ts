@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   if (!slug) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Slug is required'
+      message: 'Caminho é obrigatório'
     })
   }
 
@@ -17,16 +17,15 @@ export default defineEventHandler(async (event) => {
     if (!page) {
       throw createError({
         statusCode: 404,
-        statusMessage: 'Page not found'
+        message: 'Página não encontrada'
       })
     }
 
     return page
   } catch (e) {
-    console.error(e);
     throw createError({
       statusCode: 500,
-      statusMessage: 'Error fetching page content'
+      message: 'Erro na busca de conteúdo.'
     })
   }
 })
