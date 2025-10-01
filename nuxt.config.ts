@@ -21,29 +21,6 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   nitro,
-  hooks: {
-    'vite:extendConfig'(config, { isClient }) {
-      if (isClient) {
-        config.build = config.build || {};
-        config.build.rollupOptions = config.build.rollupOptions || {};
-        config.build.rollupOptions.output = config.build.rollupOptions.output || {};
-
-        config.build.rollupOptions.output.manualChunks = (id: string) => {
-          // Mantém TODO o Vue no bundle principal para evitar problemas de hidratação
-          if (id.includes('node_modules/vue')) {
-            return null;
-          }
-          // Outras libs de node_modules vão para vendor
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
-        };
-
-        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js';
-        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js';
-      }
-    }
-  },
   runtimeConfig: {
     public: {
       site: {
