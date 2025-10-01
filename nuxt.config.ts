@@ -4,7 +4,7 @@ import nitro from "./server/nitro";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  ssr: true, // Força SSR/hidratação híbrida explícito
+  ssr: true,
   experimental: {
     sharedPrerenderData: false,
     renderJsonPayloads: false,
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     lazyHydration: true
   },
   features: {
-    //inlineStyles: true  // Força todo CSS a ser inline
+    //inlineStyles: true
   },
   app: {
     buildAssetsDir: "nuxt",
@@ -31,15 +31,10 @@ export default defineNuxtConfig({
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
+      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(//+$/, '')
     },
     formats: ['webp'],
-    screens: {
-      'xs': 320,
-      'sm': 640,
-      'md': 768,
-      'lg': 1024
-    }
+    screens: { xs: 320, sm: 640, md: 768, lg: 1024 }
   },
   css: ['~/assets/css/main.css'],
   vite: {
@@ -47,46 +42,37 @@ export default defineNuxtConfig({
       include: ['vue']
     },
     ssr: {
-      noExternal: ['@nuxt/content'] // Trata o módulo como não externo no SSR, reduzindo client bundle
-    },
-   hooks: {
+      noExternal: ['@nuxt/content']
+    }
+  },
+  hooks: {
     "vite:extendConfig"(config, { isClient }) {
       if (isClient) {
-        config.build = config.build || {}
-        config.build.rollupOptions = config.build.rollupOptions || {}
-        config.build.rollupOptions.output = config.build.rollupOptions.output || {}
-        
+        config.build = config.build || {};
+        config.build.rollupOptions = config.build.rollupOptions || {};
+        config.build.rollupOptions.output = config.build.rollupOptions.output || {};
         config.build.rollupOptions.output.manualChunks = function(id) {
-          // 1. Separar Vue Reactivity (a maior parte do bundle)
-          if (id.includes('@vue/reactivity') || 
+          if (id.includes('@vue/reactivity') ||
               id.includes('vue/dist/vue.runtime') ||
               id.includes('reactivity')) {
-            return 'vue-reactivity'
+            return 'vue-reactivity';
           }
-          
-          // 2. Separar Vue Shared utilities
-          if (id.includes('@vue/shared') || 
+          if (id.includes('@vue/shared') ||
               id.includes('vue/shared')) {
-            return 'vue-shared'
+            return 'vue-shared';
           }
-          
-          // 3. Separar Vite runtime e polyfills
           if (id.includes('vite/modulepreload-polyfill') ||
               id.includes('vite/client') ||
               id.includes('virtual:vite') ||
               id.includes('__vite__')) {
-            return 'vite-runtime'
+            return 'vite-runtime';
           }
-          
-          // 4. Vendors gerais do node_modules
           if (id.includes('node_modules')) {
-            return 'vendor'
+            return 'vendor';
           }
-        }
-        
-        // Configurações adicionais para otimizar chunks
-        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js'
-        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js'
+        };
+        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js';
+        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js';
       }
     }
   },
@@ -101,10 +87,7 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Inter: [400, 700],
-      Lora: {
-        wght: [400, 700],
-        ital: [400]
-      }
+      Lora: { wght: [400, 700], ital: [400] }
     },
     subsets: ['latin-ext'],
     display: 'swap',
@@ -113,7 +96,7 @@ export default defineNuxtConfig({
   },
   content: {
     renderer: {
-      anchorLinks: false, // Evita criação de índices
+      anchorLinks: false,
     },
     build: {
       transformers: [
@@ -123,13 +106,9 @@ export default defineNuxtConfig({
       ]
     }
   },
-  dir: {
-    public: 'public'
-  },
+  dir: { public: 'public' },
   $development: {
     debug: false,
-    devtools: {
-      vueDevTools: false
-    }
+    devtools: { vueDevTools: false }
   }
 });
