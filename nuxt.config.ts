@@ -4,8 +4,17 @@ import nitro from "./server/nitro";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 function manualChunks(id: string) {
+  if (
+    id.includes('node_modules/vue/runtime-core') ||
+    id.includes('node_modules/vue/runtime-dom') ||
+    id.includes('node_modules/vue/server-renderer') ||
+    id.includes('node_modules/.vite/deps/vue')
+  ) {
+    return null; // Mantém runtime no bundle principal para preservar hidratação
+  }
+
   if (id.includes('node_modules')) {
-    return 'vendor';
+    return 'vendor'; // Outras libs no vendor
   }
 }
 
@@ -28,19 +37,31 @@ export default defineNuxtConfig({
   },
   nitro,
   hooks: {
-    'vite:extendConfig'(config, { isClient }) {
-      if (isClient) {
-        config.build = config.build || {};
-        config.build.rollupOptions = config.build.rollupOptions || {};
-        config.build.rollupOptions.output = config.build.rollupOptions.output || {};
+  'vite:extendConfig'(config, { isClient }) {
+    if (isClient) {
+      config.build = config.build || {};
+      config.build.rollupOptions = config.build.rollupOptions || {};
+      config.build.rollupOptions.output = config.build.rollupOptions.output || {};
 
-        config.build.rollupOptions.output.manualChunks = manualChunks;
+      config.build.rollupOptions.output.manualChunks = function manualChunks(id) {
+        if (
+          id.includes('node_modules/vue/runtime-core') ||
+          id.includes('node_modules/vue/runtime-dom') ||
+          id.includes('node_modules/vue/server-renderer') ||
+          id.includes('node_modules/.vite/deps/vue')
+        ) {
+          return null; // runtime no bundle principal
+        }
+        if (id.includes('node_modules')) {
+          return 'vendor';
+        }
+      };
 
-        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js';
-        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js';
-      }
+      config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js';
+      config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js';
     }
-  },
+  }
+},
   runtimeConfig: {
     public: {
       site: {
