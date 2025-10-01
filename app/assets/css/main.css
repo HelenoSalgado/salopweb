@@ -227,3 +227,43 @@ main {
     border-radius: 4px;
   }
 }
+
+.content-placeholder {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.placeholder-title {
+  height: 2.5rem;
+  width: 75%;
+  background-color: var(--color-background-hover);
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.placeholder-line {
+  height: 1rem;
+  width: 100%;
+  background-color: var(--color-background-hover);
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.placeholder-line.short {
+  width: 50%;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
