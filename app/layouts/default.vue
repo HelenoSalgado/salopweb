@@ -3,7 +3,9 @@
     <TheHeader />
     <main>
       <Suspense>
+       <template #default>
         <slot />
+        <template>
         <template #fallback>
           <ContentPlaceholder />
         </template>
