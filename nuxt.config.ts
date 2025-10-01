@@ -5,6 +5,11 @@ import nitro from "./server/nitro";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   ssr: true, // Força SSR/hidratação híbrida explícito
+  experimental: {
+    sharedPrerenderData: false,
+    renderJsonPayloads: false,
+    entryImportMap: false
+  },
   app: {
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' }
