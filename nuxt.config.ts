@@ -31,14 +31,14 @@ export default defineNuxtConfig({
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
+      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(//+$/, '')
     },
     formats: ['webp'],
     screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024
+      'xs': 320,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024
     }
   },
   css: ['~/assets/css/main.css'],
@@ -50,77 +50,13 @@ export default defineNuxtConfig({
       noExternal: ['@nuxt/content'] // Trata o módulo como não externo no SSR, reduzindo client bundle
     }
   },
-  hooks: {
-    "vite:extendConfig"(config, { isClient }) {
-      if (isClient) {
-        config.build = config.build || {};
-        config.build.rollupOptions = config.build.rollupOptions || {};
-        config.build.rollupOptions.output = config.build.rollupOptions.output || {};
-
-        config.build.rollupOptions.output.manualChunks = function manualChunks(id) {
-          // Separar os módulos essenciais do Vue para manter hidratação
-          if (
-            id.includes('node_modules/vue/runtime-core') ||
-            id.includes('node_modules/vue/runtime-dom') ||
-            id.includes('node_modules/vue/server-renderer') ||
-            id.includes('node_modules/.vite/deps/vue')
-          ) {
-            return 'vue-runtime';
-          }
-
-          // Separar a maior parte do sistema de reatividade
-          if (
-            id.includes('@vue/reactivity') ||
-            (id.includes('reactivity') && !id.includes('runtime-core'))
-          ) {
-            return 'vue-reactivity';
-          }
-
-          // Separar utilitários compartilhados do Vue
-          if (
-            id.includes('@vue/shared') ||
-            id.includes('vue/shared')
-          ) {
-            return 'vue-shared';
-          }
-
-          // Separar runtime do Vite e polyfills
-          if (
-            id.includes('vite/modulepreload-polyfill') ||
-            id.includes('vite/client') ||
-            id.includes('virtual:vite') ||
-            id.includes('__vite__')
-          ) {
-            return 'vite-runtime';
-          }
-
-          // Todos os módulos restantes de node_modules
-          if (
-            id.includes('node_modules')
-          ) {
-            return 'vendor';
-          }
-        };
-
-        config.build.rollupOptions.output.chunkFileNames = '[name]-[hash].js';
-        config.build.rollupOptions.output.entryFileNames = '[name]-[hash].js';
-      }
-    }
-  },
-  modules: [
-    "@nuxt/content",
-    "@nuxt/image",
-    "@nuxt/eslint",
-    "@nuxtjs/google-fonts",
-    "@nuxtjs/color-mode",
-    "@nuxtjs/sitemap"
-  ],
+  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/eslint", "@nuxtjs/google-fonts", "@nuxtjs/color-mode", "@nuxtjs/sitemap"],
   colorMode: {
     classSuffix: '',
     preference: 'dark',
     storageKey: 'salop-color-mode',
     fallback: 'dark',
-    storage: 'cookie',
+    storage: 'cookie'
   },
   googleFonts: {
     families: {
