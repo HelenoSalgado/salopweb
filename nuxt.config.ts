@@ -13,6 +13,22 @@ export default defineNuxtConfig({
     asyncContext: true,
     lazyHydration: true
   },
+  build: {
+      rollupOptions: {
+        output: {
+          // Manual chunking for code splitting: group vendor libs, modules, etc.
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('@nuxt/content')) return 'nuxt-content';
+              if (id.includes('vue')) return 'vue';
+              if (id.includes('@nuxt/image')) return 'nuxt-image';
+              return 'vendor'; // Default for other node_modules
+            }
+            if (id.includes('assets/css')) return 'styles';
+            return null; // Let Nuxt handle the rest
+          }
+        }
+      },
   features: {
     //inlineStyles: true  // Força todo CSS a ser inline
   },
