@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     .select('id', 'categories', 'slugified_categories', 'description', 'body', 'date', 'dateFormatted', 'title', 'image').first();
 
     if (!post) {
-       throw createError({ statusCode: 404, statusMessage: 'Post não encontrado' })
+       throw createError({ statusCode: 404, message: 'Post não encontrado' })
     }
 
     return post as BlogCollectionItem;
