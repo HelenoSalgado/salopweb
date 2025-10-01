@@ -44,7 +44,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(//+$/, '')
+      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
     },
     formats: ['webp', 'avif'],
     screens: {
@@ -129,7 +129,7 @@ export default defineNuxtConfig({
   vitalizer: {
      disableStylesheets: 'entry', // Remove entry.css duplicado
      disablePrefetchLinks: 'dynamicImports' // Melhora LCP
-  // },
+  },
   
   colorMode: {
     classSuffix: '',
