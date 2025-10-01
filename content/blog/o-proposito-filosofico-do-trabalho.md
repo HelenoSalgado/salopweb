@@ -5,6 +5,7 @@ image: "/images/filosofia.png"
 date: '2025-09-22'
 categories:
    - Filosofia
+published: true
 ---
 
 A ideia de que o trabalho serve para "passar o tempo" ou "impedir que pensamentos e sentimentos ruins tomem conta da pessoa" é uma perspectiva que, embora possa parecer cínica à primeira vista, toca em aspectos profundos da psicologia humana e da filosofia existencialista.
