@@ -29,6 +29,7 @@ export default defineEventHandler(async (event) => {
             .limit(limit);
 
         const posts = await relatedPostsQuery.all();
+
         return posts;
     }
 

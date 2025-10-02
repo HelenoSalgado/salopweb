@@ -1,94 +1,100 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content';
 import type { CardPost, PostsPagination } from '~~/server/types';
+
 const route = useRoute();
 
-// --- Buscas de Dados ---
-const { data, error: postError } = await useAsyncData(`post-${route.path}`, async () => {
-  const postData = await $fetch<BlogCollectionItem>('/api/post', {
+// Use useAsyncData para encadear as buscas de forma sequencial no servidor (SSR)
+const { data, error: postError } = await useAsyncData('postAndRelated', async () => {
+  // Busca o post principal
+  const post = await $fetch<BlogCollectionItem>('/api/post', {
     query: { path: route.path }
   });
 
-  if (!postData) {
-    throw createError({ statusCode: 404 });
-  }
-  let relatedPostsData: CardPost[] = [];
-  if (postData.categories?.length) {
-    const relatedResponse = await $fetch<PostsPagination<CardPost[]>>('/api/posts', {
-      query: {
-        categories: postData.categories,
-        excludePath: postData.path,
-        limit: 4
-      }
-    });
-    relatedPostsData = relatedResponse.posts || [];
-  }
-  return { post: postData, relatedPosts: relatedPostsData };
+  // Busca os posts relacionados, dependendo do post principal
+  const postsRelated = await $fetch<PostsPagination<CardPost[]>>('/api/posts', {
+    query: {
+      categories: post.categories || [],
+      excludePath: post.path || '',
+      limit: 4
+    }
+  });
+
+  return { post, postsRelated };
 });
 
-const post = computed(() => data.value?.post);
-const relatedPosts = computed(() => data.value?.relatedPosts);
+// Computed para os posts relacionados
+const posts = computed(() => data.value?.postsRelated?.posts || []);
 
-watchEffect(() => {
-  if (postError?.value) {
+console.log(posts.value)
+
+// Manipulação de erro
+watch(postError, (newError) => {
+  if (newError) {
     throw createError({
-      statusCode: postError.value.statusCode || 404,
-      message: postError.value.message || 'O recurso que você procura não existe ou foi movido de local.'
+      statusCode: newError.statusCode || 404,
+      message: newError.message || 'O recurso que você procura não existe ou foi movido de local.'
     });
   }
-})
+});
 
-watchEffect(() => {
-  useSeoMeta({
-    title: post?.value?.title,
-    description: post?.value?.description,
-    ogTitle: post?.value?.title,
-    ogDescription: post?.value?.description,
-    ogImage: post?.value?.image || 'https://heleno.dev/images/default-post.png',
-    ogType: 'article',
-    twitterCard: 'summary_large_image',
-  });
-  useHead({
-    script: [
-      {
-        type: 'application/ld+json',
-        textContent: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": post.value?.title || 'Post do blog',
-          "description": post.value?.description || 'Tecnologia, Literatura e Teologia',
-          "image": post.value?.image || 'https://heleno.dev/images/default-post.png',
-          "datePublished": post.value?.date || '',
-          "author": {
-            "@type": "Person",
-            "name": "Heleno Salgado"
-          }
-        })
-      }
-    ]
-  });
-})
+// Configuração de SEO
+watch(data, (newData) => {
+  if (newData?.post) {
+    useSeoMeta({
+      title: newData.post.title,
+      description: newData.post.description,
+      ogTitle: newData.post.title,
+      ogDescription: newData.post.description,
+      ogImage: newData.post.image || 'https://heleno.dev/images/default-post.png',
+      ogType: 'article',
+      twitterCard: 'summary_large_image',
+    });
+
+    useHead({
+      script: [
+        {
+          type: 'application/ld+json',
+          textContent: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": newData.post.title || 'Post do blog',
+            "description": newData.post.description || 'Tecnologia, Literatura e Teologia',
+            "image": newData.post.image || 'https://heleno.dev/images/default-post.png',
+            "datePublished": newData.post.date || '',
+            "author": {
+              "@type": "Person",
+              "name": "Heleno Salgado"
+            }
+          })
+        }
+      ]
+    });
+  }
+}, { immediate: true });
 </script>
+
 <template>
   <div>
     <ReadingProgressBar />
-    <article v-if="post?.id" class="prose-container">
-
-      <h1>{{ post.title }}</h1>
+    <article v-if="data?.post?.id" class="prose-container">
+      <h1>{{ data.post.title }}</h1>
 
       <CategoriesList
-v-if="post.categories?.length" v-bind="{
-        categories: post.categories,
-        slugifiedCategories: post.slugified_categories
-      }" />
+        v-if="data.post.categories?.length"
+        v-bind="{
+          categories: data.post.categories,
+          slugifiedCategories: data.post.slugified_categories
+        }"
+      />
 
-      <time v-if="post.dateFormatted" :datetime="post.dateFormatted">{{ post.dateFormatted }}</time>
+      <time v-if="data.post.dateFormatted" :datetime="data.post.dateFormatted">{{ data.post.dateFormatted }}</time>
 
-      <ContentRenderer class="markdown-content" :value="post.body" />
+      <ContentRenderer class="markdown-content" :value="data.post.body" />
 
-      <LazySharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
+      <LazySharePost :post-title="data.post.title || 'Post'" :post-url="`https://heleno.dev${data.post.path}`" />
 
-      <LazyRelatedPosts v-if="relatedPosts?.length" :posts="relatedPosts" />
+      <RelatedPosts v-if="posts?.length" :posts="posts" />
     </article>
   </div>
 </template>

@@ -3,9 +3,9 @@ import nitro from "./server/nitro";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  
+
   ssr: true,
-  
+
   experimental: {
     sharedPrerenderData: true,
     renderJsonPayloads: true,
@@ -14,24 +14,26 @@ export default defineNuxtConfig({
     lazyHydration: true,
     defaults: {
       nuxtLink: {
-        prefetchOn: 'interaction'
+        prefetchOn: {
+          interaction: true
+        }
       }
     }
   },
-  
+
   features: {
     // Inline apenas CSS de componentes Vue, não CSS global
     // Reduz duplicação mantendo CSS global em arquivo separado cacheável
     inlineStyles: (id) => !!id && id.includes('.vue')
   },
-  
+
   app: {
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  
+
   nitro,
-  
+
   runtimeConfig: {
     public: {
       site: {
@@ -40,7 +42,7 @@ export default defineNuxtConfig({
       },
     }
   },
-  
+
   image: {
     provider: 'cloudflare',
     cloudflare: {
@@ -55,58 +57,66 @@ export default defineNuxtConfig({
       'xl': 1280
     }
   },
-  
+
   css: ['~/assets/css/main.css'],
-  
+
   vite: {
     optimizeDeps: {
       include: ['vue'],
       // Exclui @nuxt/content do cliente se usado apenas no servidor
       exclude: ['@nuxt/content']
     },
-    
+
     build: {
-      // Mantém true para code splitting de CSS por rota
+      // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
       cssCodeSplit: true,
-      
+
       rollupOptions: {
         output: {
           manualChunks(id) {
-            // Componentes críticos de layout (apenas JS)
-            if (id.includes('TheHeader') || 
-                id.includes('TheFooter') ||
-                id.includes('layouts/default')) {
-              return 'critical-layout';
+            /*=== Componentes críticos de layout e core vue (apenas JS) ===*/
+            /*
+              Chunk 1: O esqueleto principal do layout. | Preciso entender melhor a forma como o Vue toma o controle no client, pois ele precisa de acesso imediato aos componentes principais do layout, tive que deixá-los no mesmo arquivo. Mesmo assim a otimização foi bem sucedida, pude dividir o chunk mais pesado em dois: 1. 103.34 kB 2 .157.42 kB.
+            */
+
+            if (
+              (id.includes('vue') || id.includes('@vue')) ||
+              id.includes('TheHeader') ||
+              id.includes('TheSearch') ||
+              id.includes('ReadingProgressBar') ||
+              id.includes('TheFooter') ||
+              id.includes('@nuxt/image')) {
+
+              return 'chunk-layout-shell';
+
             }
-            
+
+            // Chunk 2: Componentes que renderizam conteúdo.
+            if (id.includes('CategoriesList') || id.includes('RelatedPosts') || id.includes('BlogPostCard') || id.includes('Pagination')) {
+              return 'chunk-content-helpers';
+            }
+
             // Separação granular de node_modules
             if (id.includes('node_modules')) {
-              // Vue core
-              if (id.includes('vue') || id.includes('@vue')) {
-                return 'vue-core';
-              }
-              
-              // @nuxt/content será excluído do cliente via optimizeDeps.exclude
-              // mas se algum código cliente ainda o referenciar, isola aqui
+
+              /*
+                @nuxt/content será excluído do cliente via optimizeDeps.exclude
+                mas se algum código cliente ainda o referenciar, isola aqui.
+              */
               if (id.includes('@nuxt/content')) {
                 return 'nuxt-content-fallback';
               }
-              
-              // Nuxt Image
-              if (id.includes('@nuxt/image')) {
-                return 'nuxt-image';
-              }
-              
+
               // UI libraries
               if (id.includes('@headlessui') || id.includes('@heroicons')) {
                 return 'ui-libs';
               }
-              
+
               // Utilities
               if (id.includes('lodash') || id.includes('date-fns')) {
                 return 'utils';
               }
-              
+
               return 'vendor';
             }
           }
@@ -114,23 +124,23 @@ export default defineNuxtConfig({
       }
     }
   },
-  
+
   modules: [
-    "@nuxt/content", 
-    "@nuxt/image", 
-    "@nuxt/eslint", 
-    "@nuxtjs/google-fonts", 
-    "@nuxtjs/color-mode", 
+    "@nuxt/content",
+    "@nuxt/image",
+    "@nuxt/eslint",
+    "@nuxtjs/google-fonts",
+    "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
     "nuxt-vitalizer"
   ],
-  
+
   // Configuração opcional do nuxt-vitalizer (se instalado)
-  vitalizer: {
-     disableStylesheets: 'entry', // Remove entry.css duplicado
-     disablePrefetchLinks: 'dynamicImports' // Melhora LCP
-  },
-  
+  // vitalizer: {
+  //    disableStylesheets: 'entry',
+  //    disablePrefetchLinks: 'dynamicImports' // Melhora LCP
+  // },
+
   colorMode: {
     classSuffix: '',
     preference: 'dark',
@@ -138,8 +148,9 @@ export default defineNuxtConfig({
     fallback: 'dark',
     storage: 'cookie'
   },
-  
+
   googleFonts: {
+    fontsDir: 'public/fonts',
     families: {
       Inter: [400, 700],
       Lora: {
@@ -153,7 +164,7 @@ export default defineNuxtConfig({
     useStylesheet: false,
     download: true
   },
-  
+
   content: {
     renderer: {
       anchorLinks: false,
@@ -166,11 +177,11 @@ export default defineNuxtConfig({
       ]
     }
   },
-  
+
   dir: {
     public: 'public'
   },
-  
+
   $development: {
     debug: false,
     devtools: {

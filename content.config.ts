@@ -5,7 +5,8 @@ const pageSchema = z.object({
   title: z.string().optional(),
   date: z.string(),
   dateFormatted: z.string(),
-  image: z.string().optional()
+  image: z.string().optional(),
+  path: z.string().optional()
 })
 
 // 2. Esquema estendido para o blog
