@@ -26,8 +26,6 @@ const { data, error: postError } = await useAsyncData('postAndRelated', async ()
 // Computed para os posts relacionados
 const posts = computed(() => data.value?.postsRelated?.posts || []);
 
-console.log(posts.value)
-
 // Manipulação de erro
 watch(postError, (newError) => {
   if (newError) {
