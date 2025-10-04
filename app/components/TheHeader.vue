@@ -45,7 +45,7 @@ const toggleSidebar = () => {
   background-color: var(--color-header-background);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
-  padding: 1rem;
+  padding: .7rem 1rem;
   position: fixed;
   top: 0;
   z-index: 10;
