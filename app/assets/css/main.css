@@ -161,7 +161,7 @@ main {
     color: var(--color-text-primary);
   }
   & p {
-    font-size: clamp(1rem, 6vw, 1.5rem );
+    font-size: clamp(1rem, 5vw, 1.5rem );
     line-height: 1.7;
     margin-bottom: 1em;
   }
@@ -175,12 +175,12 @@ main {
 
   /* Links */
   & a {
+    font-size: clamp(.9rem, 5vw, 1.3rem );
     color: var(--color-primary);
     text-decoration: underline;
     &:hover {
       color: var(--color-primary-hover);
     }
-    font-size: clamp(1rem, 5vw, 1.3rem );
   }
 
   /* Outros Elementos de Texto */
