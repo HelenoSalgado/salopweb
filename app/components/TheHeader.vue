@@ -9,7 +9,7 @@ const toggleSidebar = () => {
   <header class="hextra-header">
     <div class="hextra-header-container">
       <div class="brand">
-        <NuxtLink to="/"><NuxtImg src="/images/profile.jpg" width="40" height="40" alt="logo"/> Heleno Salgado</NuxtLink>
+        <NuxtLink to="/"><NuxtImg src="/images/profile.jpg" width="40" height="40" quality="100" alt="logo"/> Heleno Salgado</NuxtLink>
       </div>
 
       <TheSearch /> <!-- Integrated Search Component -->
