@@ -4,6 +4,11 @@ import nitro from "./server/nitro";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
 
+  routeRules: {
+    // Pré-renderiza a página inicial para ser totalmente estática
+    '/': { prerender: true },
+  },
+
   ssr: true,
 
   experimental: {
