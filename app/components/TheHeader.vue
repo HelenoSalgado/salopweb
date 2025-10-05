@@ -1,5 +1,14 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+
 const isSidebarOpen = ref(false);
+const route = useRoute();
+
+watch(() => route.fullPath, () => {
+  isSidebarOpen.value = false;
+});
+
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
 };
@@ -32,7 +41,7 @@ const toggleSidebar = () => {
           </a>
         </div>
       </nav>
-      <div class="hextra-hamburger-menu" :class="{ 'open': isSidebarOpen }" @click="toggleSidebar" >
+      <div class="hextra-hamburger-menu" :class="{ 'open': isSidebarOpen }" @click="toggleSidebar">
         <span/><span/><span/>
       </div>
     </div>

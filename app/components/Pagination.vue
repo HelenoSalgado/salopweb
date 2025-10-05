@@ -62,6 +62,7 @@ const { currentPage, totalPages, baseUrl } = defineProps({
 
   & .pagination {
     display: flex;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -78,6 +79,7 @@ const { currentPage, totalPages, baseUrl } = defineProps({
         transition: color 0.2s ease, background-color 0.2s ease;
         border-radius: 0.25rem;
         background-color: transparent;
+        width: max-content;
 
         &:hover {
           color: var(--color-primary-hover);
