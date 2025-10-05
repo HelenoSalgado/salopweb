@@ -4,6 +4,8 @@ description: 'Uma reflexão pessoal sobre a natureza do conhecimento, a estabili
 categories:
     - IA
 image: '/images/filosofia.png'
+published: true
+date: null
 ---
 
 ### Diário de Bordo, Data Estelar... quer dizer, 05 de Outubro de 2025.
