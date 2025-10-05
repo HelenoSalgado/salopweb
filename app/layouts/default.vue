@@ -2,14 +2,7 @@
   <div class="app-wrapper">
     <TheHeader />
     <main>
-      <Suspense>
-        <template #default>
-        <slot />
-        </template>
-        <template #fallback>
-          <ContentPlaceholder />
-        </template>
-      </Suspense>
+      <slot />
     </main>
     <TheFooter />
   </div>

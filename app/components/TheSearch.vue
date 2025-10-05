@@ -1,6 +1,5 @@
 <script setup lang="ts">
 interface SearchResult {
-  id: string;
   path: string;
   title: string;
   description: string;
@@ -82,7 +81,7 @@ id="search" v-model="query" type="search" placeholder="Pesquisar..." @input="han
     </div>
     <div v-if="showResults && results.length > 0" class="search-results">
       <NuxtLink
-v-for="post in results" :key="post.id" :to="post.path" class="search-result-item"
+v-for="post in results" :key="post.path" :to="post.path" class="search-result-item"
         @click="onResultClick">
         <h3 class="search-result-title">{{ post.title }}</h3>
         <p class="search-result-description">{{ post.description }}</p>

@@ -161,7 +161,7 @@ main {
     color: var(--color-text-primary);
   }
   & p {
-    font-size: clamp(1rem, 5vw, 1.5rem );
+    font-size: clamp(1rem, 5vw, 1.3rem );
     line-height: 1.7;
     margin-bottom: 1em;
   }

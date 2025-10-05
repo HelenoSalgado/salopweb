@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { CardPost } from '~~/server/types';
-const {title, description, path} = defineProps<CardPost>();
+
+const props = defineProps<CardPost>();
 </script>
 <template>
   <div>
-    <h3>{{ title }}</h3>
-    <p>{{ description }}</p>
-    <NuxtLink :to="path" class="button">
+    <h3>{{ props.title }}</h3>
+    <p>{{ props.description }}</p>
+    <NuxtLink :to="props.path" class="button">
       Leia Mais &raquo;
     </NuxtLink>
   </div>

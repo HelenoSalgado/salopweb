@@ -7,7 +7,9 @@ export default defineNuxtConfig({
   ssr: true,
 
   experimental: {
-    sharedPrerenderData: true,
+    // Desabilitado para evitar conflito de estado entre cards de posts
+    // Com 'true', todos os links redirecionavam para o último post
+    sharedPrerenderData: false,
     renderJsonPayloads: true,
     entryImportMap: true,
     asyncContext: true,
@@ -55,6 +57,15 @@ export default defineNuxtConfig({
       'md': 768,
       'lg': 1024,
       'xl': 1280
+    },
+    presets: {
+      profile: {
+        modifiers: {
+          width: 60,
+          height: 60,
+          quality: 100
+        }
+      }
     }
   },
 
