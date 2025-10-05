@@ -3,8 +3,7 @@
     <!-- Seção 1: Apresentação -->
     <section class="presentation-section">
       <div class="bio">
-        <h1 class="main-title">Heleno Salgado</h1>
-        <p class="subtitle">Desenvolvedor e entusiasta de software livre, focado em performance e código limpo. Neste espaço, compartilho o que aprendo.</p>
+        <p class="subtitle">Desenvolvedor e entusiasta de software livre, focado em performance e código limpo. Neste espaço, compartilho o que aprendo, não só sobre código, mas os <NuxtLink to="/sobre">meus interesses mais pertinentes</NuxtLink>. Obrigado pela visita.</p>
         <div class="social-links">
           <a href="https://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <IconsGithub />
@@ -18,29 +17,7 @@
         </div>
       </div>
       <div class="skills-cloud">
-        <div id="myCanvasContainer">
-          <canvas id="myCanvas" width="500" height="500">
-            <p>Seu navegador não suporta o elemento canvas.</p>
-          </canvas>
-        </div>
-        <div id="tags" style="display: none;">
-          <ul>
-            <li><a href="#">TypeScript</a></li>
-            <li><a href="#">Vue.js</a></li>
-            <li><a href="#">Nuxt.js</a></li>
-            <li><a href="#">Node.js</a></li>
-            <li><a href="#">Nest.js</a></li>
-            <li><a href="#">PHP</a></li>
-            <li><a href="#">Laravel</a></li>
-            <li><a href="#">SQL</a></li>
-            <li><a href="#">Docker</a></li>
-            <li><a href="#">Git</a></li>
-            <li><a href="#">HTML5</a></li>
-            <li><a href="#">CSS3</a></li>
-            <li><a href="#">Perl</a></li>
-            <li><a href="#">Linux</a></li>
-          </ul>
-        </div>
+        <!-- O container para a nova nuvem de tags. A biblioteca irá preenchê-lo. -->
       </div>
     </section>
 
@@ -70,6 +47,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue';
+import TagCloud from 'TagCloud';
 import IconsGithub from '~/components/Icons/Github.vue';
 import IconsTwitter from '~/components/Icons/Twitter.vue';
 import IconsInstagram from '~/components/Icons/Instagram.vue';
@@ -83,49 +62,40 @@ definePageMeta({
   description: 'Portfólio de projetos e habilidades de Heleno Salgado.',
 });
 
-// Lógica para carregar o TagCanvas
-useHead({
-  script: [
-    {
-      src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
-      tagPosition: 'bodyClose',
-      onload: () => {
-        const scriptTag = document.createElement('script');
-        scriptTag.src = 'https://www.goat1000.com/jquery.tagcanvas.min.js';
-        scriptTag.onload = () => {
-          try {
-            // Inicializa o canvas com o zoom ATIVADO
-            $('#myCanvas').tagcanvas({
-              textColour: '#007bff',
-              outlineColour: 'transparent',
-              reverse: true,
-              depth: 0.8,
-              maxSpeed: 0.05,
-              weight: true,
-              wheelZoom: true, // Ativado por padrão
-            }, 'tags');
+let tagCloudInstance: any = null;
 
-            // Adiciona um listener ao container para previnir o scroll da página
-            const skillsCloudEl = document.querySelector('.skills-cloud');
-            if (skillsCloudEl) {
-              skillsCloudEl.addEventListener('wheel', (event) => {
-                // Previne o scroll da página quando o mouse está sobre a área do gráfico
-                event.preventDefault();
-              }, { passive: false });
-            }
+onMounted(() => {
+  const container = '.skills-cloud';
+  const texts = [
+    'TypeScript', 'Vue.js', 'Nuxt.js',
+    'Node.js', 'Nest.js', 'PHP',
+    'Laravel', 'SQL', 'Docker',
+    'Git', 'HTML5', 'CSS3',
+    'Perl', 'Linux', 'JavaScript',
+  ];
 
-          } catch(e) {
-            const canvasContainer = document.getElementById('myCanvasContainer');
-            if(canvasContainer) {
-              canvasContainer.style.display = 'none';
-            }
-          }
-        };
-        document.body.appendChild(scriptTag);
-      }
-    }
-  ]
+  const options = {
+    radius: 250, // O raio da esfera
+    maxSpeed: 'normal' as const, // Velocidade da animação
+    initSpeed: 'normal' as const,
+    direction: 135,
+    keep: true, // Manter a animação mesmo quando o mouse está fora
+    // Personalização de cores será feita via CSS
+  };
+
+  // Apenas executa no lado do cliente
+  if (typeof window !== 'undefined') {
+    tagCloudInstance = TagCloud(container, texts, options);
+  }
 });
+
+onUnmounted(() => {
+  // Destrói a instância para evitar memory leaks
+  if (tagCloudInstance) {
+    tagCloudInstance.destroy();
+  }
+});
+
 </script>
 
 <style scoped>
@@ -141,26 +111,39 @@ section {
 
 /* Seção 1: Apresentação */
 .presentation-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
   align-items: center;
   min-height: 70vh;
 }
 
-.main-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--color-text-primary);
+.bio, .skills-cloud {
+  flex: 1 1 400px;
+  min-width: 300px;
+}
+
+.bio {
+  text-align: left;
 }
 
 .subtitle {
   font-family: 'Lora', serif;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   color: var(--color-text-secondary);
   margin-top: 1rem;
-  line-height: 1.6;
+  line-height: 1.4;
+}
+
+.subtitle :deep(a) {
+  text-decoration: underline;
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.subtitle :deep(a:hover) {
+  color: var(--color-primary-hover);
 }
 
 .social-links {
@@ -188,7 +171,27 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 1 / 1;
+  max-width: 500px;
+  margin: 0 auto;
 }
+
+/* Estilização para a nova biblioteca TagCloud.js */
+.skills-cloud :deep(.tagcloud) {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.skills-cloud :deep(.tagcloud--item) {
+    padding: 2px 4px;
+    transition: color 0.3s ease;
+}
+
+.skills-cloud :deep(.tagcloud--item:hover) {
+    color: var(--color-primary-hover);
+}
+
 
 /* Seção 2: Projetos */
 .section-title {
@@ -254,22 +257,15 @@ section {
 
 /* Responsividade */
 @media (max-width: 900px) {
-  .presentation-section {
-    grid-template-columns: 1fr;
+  .bio {
     text-align: center;
   }
-
-  .skills-cloud {
-    margin-top: 3rem;
-  }
-
   .social-links {
     justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .main-title { font-size: 2.5rem; }
   .section-title { font-size: 2rem; }
   .projects-grid {
     grid-template-columns: 1fr;

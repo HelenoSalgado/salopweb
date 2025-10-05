@@ -4,12 +4,7 @@ import nitro from "./server/nitro";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
 
-  routeRules: {
-    // Pré-renderiza a página inicial para ser totalmente estática
-    '/': { prerender: true },
-  },
-
-  ssr: true,
+  //ssr: true,
 
   experimental: {
     // Desabilitado para evitar conflito de estado entre cards de posts
@@ -114,6 +109,11 @@ export default defineNuxtConfig({
 
             // Separação granular de node_modules
             if (id.includes('node_modules')) {
+
+              // Isola a biblioteca TagCloud em seu próprio chunk
+              if (id.includes('TagCloud')) {
+                return 'tagcloud-lib';
+              }
 
               /*
                 @nuxt/content será excluído do cliente via optimizeDeps.exclude

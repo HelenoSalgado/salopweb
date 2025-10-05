@@ -24,7 +24,7 @@ logs
 !.env.example
 stats.html
 
-.wrangler
+.wrangler/
 # Curiosidades e desobertas
 
 db/md.sqlite

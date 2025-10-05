@@ -23,6 +23,7 @@ export default {
     '/css/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
     '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
     '/__nuxt_content/**': { prerender: false, ssr: true },
+    '/': { static: true },
     '/**': {
       trailingSlash: false
     }
