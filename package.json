@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
     "eslint-plugin-vue": "^10.4.0",
-    "happy-dom": "^18.0.1",
+    "happy-dom": "^20.0.0",
     "nuxt-vitalizer": "^2.0.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
