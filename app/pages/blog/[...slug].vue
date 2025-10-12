@@ -92,7 +92,10 @@ watch(data, (newData) => {
 
       <LazySharePost :post-title="data.post.title || 'Post'" :post-url="`https://heleno.dev${data.post.path}`" />
 
-      <RelatedPosts v-if="posts?.length" :posts="posts" />
+      <h3>Posts Relacionados</h3>
+
+      <LazyBlogPostCard v-if="posts.length" v-for="post in posts" v-bind="post"/>
+
     </article>
   </div>
 </template>
