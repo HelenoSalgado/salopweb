@@ -8,7 +8,7 @@ const route = useRoute();
 const { data, error: postError } = await useAsyncData(route.path, async () => {
   // Busca o post principal
   const post = await $fetch<BlogCollectionItem>('/api/post', {
-    query: { path: route.path }
+    query: { path: route.path.replace(/\/$/, '') }
   });
 
   // Busca os posts relacionados, dependendo do post principal
