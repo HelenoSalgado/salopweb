@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     sharedPrerenderData: false,
     renderJsonPayloads: true,
     entryImportMap: true,
-    asyncContext: true,
+    asyncContext: false, // Suspeito de redirecionamento também
     lazyHydration: true,
     defaults: {
       nuxtLink: {
