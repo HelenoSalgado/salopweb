@@ -8,7 +8,7 @@ export default {
   minify: true,
   prerender: {
     crawlLinks: true,
-    routes: ['/'],
+    routes: ['/blog', '/sobre'],
     ignore: [
       '__nuxt_content/home/sql_dump.txt',
       '__nuxt_content/blog/sql_dump.txt',
@@ -22,7 +22,7 @@ export default {
     '/_nuxt/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
     '/css/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
     '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-    '/__nuxt_content/**': { prerender: false, ssr: true },
+    // '/__nuxt_content/**': { prerender: false, ssr: true },
     '/': { static: true },
     '/**': {
       trailingSlash: false
