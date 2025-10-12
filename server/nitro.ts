@@ -8,7 +8,7 @@ export default {
   minify: true,
   prerender: {
     crawlLinks: true,
-    routes: ['/blog', '/sobre'],
+    routes: ['/'],
     ignore: [
       '__nuxt_content/home/sql_dump.txt',
       '__nuxt_content/blog/sql_dump.txt',

@@ -39,7 +39,7 @@ watchEffect(() => {
   <div>
     <h1>Sobre {{ data?.categoryName }}</h1>
 
-    <RelatedPosts v-if="data?.posts.length" :posts="data?.posts" />
+    <BlogPostCard v-if="data?.posts.length" post in data.posts :key="post.path" :title="post.title" :description="post.description" :path="post.path"/>
 
     <Pagination
       v-if="data?.totalPages && data?.totalPages > 1"
