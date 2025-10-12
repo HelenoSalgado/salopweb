@@ -5,7 +5,7 @@ import type { CardPost, PostsPagination } from '~~/server/types';
 const route = useRoute();
 
 // Use useAsyncData para encadear as buscas de forma sequencial no servidor (SSR)
-const { data, error: postError } = await useAsyncData('postAndRelated', async () => {
+const { data, error: postError } = await useAsyncData(route.path, async () => {
   // Busca o post principal
   const post = await $fetch<BlogCollectionItem>('/api/post', {
     query: { path: route.path }
@@ -94,7 +94,7 @@ watch(data, (newData) => {
 
       <h3>Posts Relacionados</h3>
 
-      <LazyBlogPostCard v-if="posts.length" v-for="post in posts" v-bind="post"/>
+      <LazyBlogPostCard v-if="posts.length" v-for="post in posts" :key="post.path" v-bind="post" />
 
     </article>
   </div>

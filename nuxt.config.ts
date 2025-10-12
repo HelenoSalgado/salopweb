@@ -7,12 +7,10 @@ export default defineNuxtConfig({
   //ssr: true,
 
   experimental: {
-    // Desabilitado para evitar conflito de estado entre cards de posts
-    // Com 'true', todos os links redirecionavam para o último post
-    sharedPrerenderData: false,
+    sharedPrerenderData: true,
     renderJsonPayloads: true,
     entryImportMap: true,
-    asyncContext: false, // Suspeito de redirecionamento também
+    asyncContext: true,
     lazyHydration: true,
     defaults: {
       nuxtLink: {

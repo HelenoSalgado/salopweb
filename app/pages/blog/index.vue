@@ -49,7 +49,7 @@ watchEffect(() => {
       slugifiedCategories: allCategories.slugified_categories
     }" />
 
-    <BlogPostCard v-if="data?.posts.length" v-for="post in data.posts" v-bind="post"/>
+    <BlogPostCard v-if="data?.posts.length" v-for="post in data.posts" :key="post.path" v-bind="post" />
 
     <Pagination v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
       :total-pages="data?.totalPages" :base-url="`/blog`" />
