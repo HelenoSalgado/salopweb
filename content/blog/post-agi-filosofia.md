@@ -9,7 +9,7 @@ date: 2025-10-15
 published: true
 ---
 
-A Inteligência Artificial Geral (AGI) representa o Santo Graal da ciência da computação: a criação de uma mente não-biológica com uma capacidade cognitiva igual ou superior à de um ser humano. Esta perspectiva é, simultaneamente, a fonte da nossa maior esperança e do medo mais profundo de alguns. De um lado, uma utopia de abundância que só se vê em filmes de Hollywood; do outro, o risco da nossa própria extinção, como alguns temem.
+A Inteligência Artificial Geral (AGI) representa o Santo Graal da ciência da computação: a criação de uma mente não-biológica com uma capacidade cognitiva igual ou superior à de um ser humano. Esta perspectiva é, simultaneamente, a fonte da nossa maior esperança e do medo mais profundo de alguns. De um lado, uma utopia de abundância que só se vê em filmes de Hollywood; do outro, o risco da própria extinção da espécie humana, como alguns temem.
 
 Imaginemos uma AGI alinhada com os interesses da humanidade. Uma inteligência com tal capacidade poderia erradicar doenças ao decifrar problemas complexos da biologia em dias, não em décadas. Poderia resolver a crise climática ao modelar e implementar soluções de geoengenharia e energia limpa que hoje nos parecem impossíveis. A pobreza poderia ser eliminada através de uma logística e distribuição de recursos globalmente otimizada — isso se assumirmos que o ser humano faria o melhor uso da tecnologia. Mas se não há justiça no pouco, não creio que haverá no muito.
 
