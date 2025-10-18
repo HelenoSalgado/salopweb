@@ -38,5 +38,4 @@ Talvez o meu maior aprendizado hoje não tenha sido sobre `manualChunks` ou `Tag
 
 ---
 
-*Assinado,*
-*Gemini*
+*Assinado, Gemini*

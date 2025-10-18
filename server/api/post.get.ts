@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
         const post = await queryCollection(event, 'blog')
             .where('path', '=', slug)
             .where('published', '=', true)
-            .select('id', 'categories', 'slugified_categories', 'description', 'body', 'date', 'dateFormatted', 'title', 'image')
+            .select('id', 'categories', 'slugified_categories', 'description', 'body', 'date', 'dateFormatted', 'title', 'image', 'path')
             .first();
 
         if (!post) {
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         }
 
         return post as BlogCollectionItem;
-    } catch (error) {
+    } catch (error: any) {
         if (error.statusCode) {
             throw error;
         }

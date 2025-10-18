@@ -12,7 +12,7 @@ const { data, error: postError } = await useAsyncData(route.path, async () => {
   });
 
   // Busca os posts relacionados, dependendo do post principal
-  const postsRelated = await $fetch<PostsPagination<CardPost[]>>('/api/posts', {
+  const postsRelated = await $fetch<CardPost[]>('/api/posts', {
     query: {
       categories: post.categories || [],
       excludePath: post.path || '',
@@ -22,9 +22,6 @@ const { data, error: postError } = await useAsyncData(route.path, async () => {
 
   return { post, postsRelated };
 });
-
-// Computed para os posts relacionados
-const posts = computed(() => data.value?.postsRelated?.posts || []);
 
 // Manipulação de erro
 watch(postError, (newError) => {
@@ -92,9 +89,9 @@ watch(data, (newData) => {
 
       <LazySharePost :post-title="data.post.title || 'Post'" :post-url="`https://heleno.dev${data.post.path}`" />
 
-      <h3>Posts Relacionados</h3>
+      <h3 class="title-posts-related">Posts Relacionados</h3>
 
-      <LazyBlogPostCard v-if="posts.length" v-for="post in posts" :key="post.path" v-bind="post" />
+      <LazyBlogPostCard v-if="data.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path" v-bind="post" />
 
     </article>
   </div>

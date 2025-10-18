@@ -18,29 +18,21 @@ export default defineEventHandler(async (event) => {
 
         // Posts relacionados por categoria
         if (categories.length > 0 && excludePath) {
-            // Buscar todos os posts primeiro e filtrar no código
-            const allPosts = await baseQuery()
-                .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image', 'categories')
+            const relatedPosts = await baseQuery()
+                .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
                 .where('path', '<>', excludePath)
+                .orWhere(q => {
+                    for (const category of categories) {
+                        q.where('categories', 'LIKE', `%"${category}"%`);
+                    };
+                    return q;
+                })
                 .order('date', 'DESC')
                 .order('id', 'ASC')
+                .limit(limit)
                 .all();
 
-            // Filtrar posts que compartilham pelo menos uma categoria
-            const relatedPosts = allPosts.filter(post => {
-                if (!post.categories || !Array.isArray(post.categories)) return false;
-                return categories.some(category => post.categories.includes(category));
-            }).slice(0, limit);
-
-            return relatedPosts.map(post => ({
-                id: post.id,
-                title: post.title,
-                description: post.description,
-                path: post.path,
-                date: post.date,
-                dateFormatted: post.dateFormatted,
-                image: post.image
-            })) as CardPost[];
+            return relatedPosts;
         }
 
         // Lista paginada de posts

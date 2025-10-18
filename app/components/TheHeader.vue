@@ -149,7 +149,6 @@ const toggleSidebar = () => {
 
       & li {
         font-weight: bold;
-        padding-bottom: .4rem;
         border-bottom: 1px solid var(--color-border);
         /* Use semantic border color */
       }
