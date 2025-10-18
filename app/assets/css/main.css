@@ -81,6 +81,28 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  font-family: sans-serif;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Inherit color by default, specific styles will override */
+}
+
 /* ===== ESTILOS GLOBAIS E DE CONTEÚDO ===== */
 
 /* Estilos do Body */
@@ -92,17 +114,6 @@ html, body {
   position: relative;
 }
 
- /* Parágrafos e Listas */
-  & p,
-  & ul,
-  & ol,
-  & li {
-    font-family: 'Lora', serif;
-    color: var(--color-text-primary);
-    list-style: none;
-  }
-
-
 /* Área de Conteúdo Principal */
 main {
   margin: calc(var(--hextra-header-height)) auto .5rem auto;
@@ -111,30 +122,25 @@ main {
   position: relative;
 
   /* Títulos */
-  & h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  & h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     line-height: 1.2;
     margin: 2rem 0;
   }
 
-  & article {
+  & article{
 
     & time {
-      display: block;
-      margin: 1rem 0;
-      font-style: oblique;
-      border-bottom: 1px solid var(--color-background-hover);
-      padding-bottom: .5rem;
+    display: block;
+    margin: 1rem 0;
+    font-style: oblique;
+    border-bottom: 1px solid var(--color-background-hover);
+    padding-bottom: .5rem;
     }
 
     & sup {
-      & a {
+      & a{
         color: var(--color-text-primary);
       }
     }
@@ -142,19 +148,57 @@ main {
     & ul {
       list-style: circle;
     }
+  }
 
-    /* Citação */
-    & blockquote {
-      font-family: 'Lora', serif;
-      border-left: 4px solid var(--color-border);
-      padding-left: 1em;
-      margin: 1.5em 0;
-      color: var(--color-text-secondary);
-      font-style: italic;
-      transition: border-color 0.3s ease, color 0.3s ease;
+  & h1 { font-size: 2.2rem; }
+  & h2 { font-size: 1.7rem; }
+  & h3 { font-size: 1.5rem; }
+  & h4 { font-size: 1rem; }
+
+  /* Parágrafos e Listas */
+  & p, & ul, & ol, & li {
+    font-family: 'Lora', serif;
+    color: var(--color-text-primary);
+  }
+  & p {
+    font-size: clamp(1rem, 5vw, 1.3rem );
+    line-height: 1.7;
+    margin-bottom: 1em;
+  }
+  & ul, ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+  & li {
+    margin-bottom: 0.5em;
+  }
+
+  /* Links */
+  & a {
+    font-size: clamp(.9rem, 5vw, 1.3rem );
+    color: var(--color-primary);
+    text-decoration: underline;
+    &:hover {
+      color: var(--color-primary-hover);
     }
+  }
 
-    /* Blocos de Código */
+  /* Outros Elementos de Texto */
+  & strong { font-weight: bold; }
+  & em { font-style: italic; }
+
+  /* Citação */
+  & blockquote {
+    font-family: 'Lora', serif;
+    border-left: 4px solid var(--color-border);
+    padding-left: 1em;
+    margin: 1.5em 0;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Blocos de Código */
     & pre {
       border-radius: 4px;
       padding: 1em;
@@ -172,67 +216,21 @@ main {
       border-radius: 3px;
     }
 
-    /* Imagens */
-    & img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 1em auto;
-      border-radius: 4px;
-    }
-
-    & ul,
-    ol {
-      margin-bottom: 1em;
-      padding-left: 1.5em;
-    }
-
-    & li {
-      margin-bottom: 0.5em;
-    }
-
+  /* Imagens */
+  & img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+    border-radius: 4px;
   }
 
-  & h1 {
-    font-size: 2.2rem;
-  }
-
-  & h2 {
-    font-size: 1.7rem;
-  }
-
-  & h3 {
-    font-size: 1.5rem;
-  }
-
-  & h4 {
-    font-size: 1rem;
-  }
-
-  & p {
-    font-size: clamp(1rem, 5vw, 1.3rem);
-    line-height: 1.7;
-    margin-bottom: 1em;
-  }
-
-     /* Links */
-    & a {
-      font-size: clamp(.9rem, 5vw, 1.3rem);
-      color: var(--color-primary);
-      text-decoration: underline;
-      font-family: 'Lora', serif;
-
-      &:hover {
-        color: var(--color-primary-hover);
-      }
-    }
-
-    & .title-posts-related {
+  & .title-posts-related {
       margin-top: 4rem;
     }
 }
 
-/* .content-placeholder {
+.content-placeholder {
   max-width: 900px;
   margin: 2rem auto;
   padding: 1rem;
@@ -258,7 +256,7 @@ main {
 
 .placeholder-line.short {
   width: 50%;
-} */
+}
 
 @keyframes pulse {
   0% {
@@ -270,4 +268,13 @@ main {
   100% {
     opacity: 0.6;
   }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }
