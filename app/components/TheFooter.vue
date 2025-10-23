@@ -55,6 +55,7 @@ const setTheme = (theme: string) => {
 
   & .copyright {
     & p {
+      font-family: 'Inter', sans-serif;
       margin: 0;
       color: var(--color-text-secondary);
       font-size: 0.9rem;
