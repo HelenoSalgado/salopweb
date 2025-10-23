@@ -49,7 +49,7 @@ const setTheme = (theme: string) => {
     width: 100%;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: center;
     column-gap: 1rem;
 
