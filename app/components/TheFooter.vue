@@ -40,6 +40,7 @@ const setTheme = (theme: string) => {
 /* ================== Footer ================== */
 .hextra-footer {
   position: relative;
+  width: 100%;
   background-color: var(--color-background);
   border-top: 1px solid var(--color-border);
   padding: 2rem 1rem;
