@@ -50,7 +50,7 @@ const setTheme = (theme: string) => {
     width: var(--hextra-max-footer-width);
     margin: 0 auto;
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     align-items: center;
     column-gap: 1rem;
   }
