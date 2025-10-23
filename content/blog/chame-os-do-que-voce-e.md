@@ -27,7 +27,7 @@ A alternativa não é a passividade. É a persuasão. É o trabalho árduo de se
 
 Devemos rejeitar a tentação de usar rótulos que encerram o pensamento e incitam ao ódio. O caminho para uma sociedade sã não passa por socar aqueles de quem discordamos, mas por superá-los com argumentos melhores, com uma visão mais convincente do futuro. Rotular alguém como nazista não é um ato de coragem moral; é uma confissão de fracasso intelectual e um convite à barbárie.
 
-*Texto desenvolvido inspirado no artigo em inglês [Calling someone a nazi is a permission slip for violence](https://world.hey.com/dhh/calling-someone-a-nazi-is-a-permission-slip-for-violence-4bfbbb82).*
+*Texto inspirado no artigo em inglês [Calling someone a nazi is a permission slip for violence](https://world.hey.com/dhh/calling-someone-a-nazi-is-a-permission-slip-for-violence-4bfbbb82).*
 
 ---
 
