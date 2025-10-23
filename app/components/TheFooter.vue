@@ -37,23 +37,21 @@ const setTheme = (theme: string) => {
 </script>
 
 <style scoped>
-/* ================== Footer ================== */
 .hextra-footer {
   position: relative;
-  width: 100%;
+  max-width: 1200px;
   background-color: var(--color-background);
   border-top: 1px solid var(--color-border);
   padding: 2rem 1rem;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 
   & .hextra-footer-container {
-    width: var(--hextra-max-footer-width);
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     column-gap: 1rem;
-  }
 
   & .copyright {
     & p {
@@ -65,9 +63,8 @@ const setTheme = (theme: string) => {
     }
   }
 
-  /* Theme Switcher */
   & .theme-switcher-container {
-    position: relative; /* Added for absolute positioning of options */
+    position: relative;
 
     & .hextra-theme-toggle {
       cursor: pointer;
@@ -80,16 +77,16 @@ const setTheme = (theme: string) => {
     }
 
     & .hextra-theme-toggle-options {
-      position: absolute; /* Changed from fixed */
-      bottom: 100%; /* Position above the button */
-      left: 0; /* Align to the left of the button to prevent leaking */
+      position: absolute;
+      bottom: 100%;
+      left: 0;
       z-index: 50;
       background-color: var(--color-background);
       border: 1px solid var(--color-border);
       border-radius: 8px;
       padding: 0.5rem;
       box-shadow: 0 10px 15px -3px var(--color-shadow-light), 0 4px 6px -2px var(--color-shadow-light);
-      min-width: 120px; /* Ensure it has a minimum width */
+      min-width: 120px;
 
       & p {
         margin: 0;
@@ -102,6 +99,7 @@ const setTheme = (theme: string) => {
         }
       }
     }
+   }
   }
 }
 </style>
