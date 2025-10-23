@@ -135,7 +135,7 @@ const toggleSidebar = () => {
     max-width: 400px;
     position: fixed;
     height: calc(100vh - var(--hextra-header-height));
-    top: var(--hextra-header-height);
+    top: calc(var(--hextra-header-height) - 5px);
     right: -400px;
     transition: ease 200ms;
 
