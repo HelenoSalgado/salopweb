@@ -50,6 +50,7 @@ const setTheme = (theme: string) => {
     width: var(--hextra-max-footer-width);
     margin: 0 auto;
     display: flex;
+    /* flex-wrap: wrap; */
     align-items: center;
     column-gap: 1rem;
   }
@@ -59,6 +60,8 @@ const setTheme = (theme: string) => {
       margin: 0;
       color: var(--color-text-secondary);
       font-size: 0.9rem;
+      white-space: normal;
+      word-break: break-word;
     }
   }
 
