@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="copyright">
-        <p>© 2025 Heleno Salgado • Estudante de Teologia pelo IRSE, desenvolvedor de software e web com foco em performance e SEO, domador de IA.</p>
+        <p>© 2025 Heleno Salgado • Estudante de Teologia pelo IRSE, desenvolvedor de software e web com foco em performance, domador de IA.</p>
       </div>
     </div>
   </footer>
