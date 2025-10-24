@@ -59,8 +59,8 @@ export default defineNuxtConfig({
     presets: {
       profile: {
         modifiers: {
-          width: 60,
-          height: 60,
+          width: 50,
+          height: 50,
           quality: 100
         }
       }
