@@ -1,0 +1,11 @@
+---
+title: O IRSE,
+published: false
+---
+
+>
+
+Acredito que todos vocês aqui amam o IRSE de alguma forma, não recomendo amar a instituição. Mas e quanto àquele que a mantem? Sim, com certeza amamos a Deus. Eu sou infinitamente grato a Deus por ter conhecido o IRSE, acho que teria feito muito mais besteira na vida se Deus não tivesse feito o IRSE aparecer a mim por uma pesquisa na internet. Certamente existem milhares de instituições EAD que ensinam teologia, mas Deus quis que fosse o IRSE, muitos de vocês devem ter o mesmo sentimento. Deus quis que fosse o IRSE. Então naturalmente amamos o IRSE por amor a Deus. Nós não sabemos até quando Deus vai sustentar esse negócio. Talvez um dia tudo acabe e a memória do IRSE passe como tudo passa, no entanto se Deus quiser manter, vai manter até que Ele venha. Não podemos olhar para o IRSE como algo que existirá só em nossa geração, acredito que não seja essa a ideia, e se fosse, seria muito triste. Definitivamente a vocação de todos nós e o propósito da própria instituição parece ecoar para a eternidade; tem que ser assim.
+
+Todos nós fomos abençoados por Deus através do trabalho de um só homem, esse homem nunca está excessivamente cansado, apesar de estar. Mas Deus tem renovado as suas forças diariamente, porque ele está totalmente em Deus e Deus nele. Quantos aqui podem dizer o mesmo? Quantos aqui estão literalmente morrendo pelo serviço do reino? Há um milhão de coisas a serem feitas e não há trabalhadores! Como diz as Escrituras: "Muitos servem a Cristo por porfia ou inveja" e ainda: "Muitos buscam os próprios interesses, e não os de Cristo". A oração do pastor Plínio é justa: que nenhum deles fique no IRSE. Eu tenho refletido sobre isso, a conversão tem que ser provada todos os dias, não podemos correr o risco de não carregar a cruz de Cristo, é preciso estar completamente morto para si e para os próprios interesses. O pastor Plínio tem me ensinado isso. Se por um lado é o trabalho de um homem só que faz com que o IRSE seja especial, caminhando na contramão da grande maioria dos seminários de teologia; por outro lado, as exigencias e o trabalho aumentam a cada dia. É um ato de amor olhar e dizer: temos que ajudar, o dinheiro não é suficiênte quando o que se deseja não é meramente material.
+

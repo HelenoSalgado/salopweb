@@ -5,7 +5,7 @@
         <div
           class="hextra-theme-toggle"
           :class="{ 'active': isOptionsOpen }"
-          @click="isOptionsOpen = true"
+          @click="isOptionsOpen = !isOptionsOpen"
         >
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
@@ -39,7 +39,8 @@ const setTheme = (theme: string) => {
 <style scoped>
 .hextra-footer {
   position: relative;
-  max-width: 1200px;
+  max-width: var(--hextra-max-footer-width);
+  margin: 5rem auto 0 auto;
   background-color: var(--color-background);
   border-top: 1px solid var(--color-border);
   padding: 2rem 1rem;
@@ -47,7 +48,6 @@ const setTheme = (theme: string) => {
 
   & .hextra-footer-container {
     width: 100%;
-    margin: 0 auto;
     display: flex;
     /* flex-wrap: wrap; */
     align-items: center;
@@ -69,17 +69,13 @@ const setTheme = (theme: string) => {
 
     & .hextra-theme-toggle {
       cursor: pointer;
-      padding: 0.5rem;
       border-radius: 6px;
       transition: background-color 0.2s ease;
-      &:hover {
-        background-color: var(--color-background-hover);
-      }
     }
 
     & .hextra-theme-toggle-options {
       position: absolute;
-      bottom: 100%;
+      bottom: 110%;
       left: 0;
       z-index: 50;
       background-color: var(--color-background);

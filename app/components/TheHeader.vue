@@ -48,7 +48,6 @@ const toggleSidebar = () => {
   </header>
 </template>
 <style scoped>
-/* ================== Header ================== */
 .hextra-header {
   width: 100%;
   background-color: var(--color-header-background);
@@ -150,7 +149,6 @@ const toggleSidebar = () => {
       & li {
         font-weight: bold;
         border-bottom: 1px solid var(--color-border);
-        /* Use semantic border color */
       }
 
       & a {
@@ -174,8 +172,6 @@ const toggleSidebar = () => {
       width: calc(100% - 2rem);
       margin-left: 1rem;
       border-bottom: 1px solid var(--color-border);
-      /* Use semantic border color */
-      /*padding: 0 1rem 0 0;*/
 
       & a {
         font-size: 1.3rem;
