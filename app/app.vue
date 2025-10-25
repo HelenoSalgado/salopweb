@@ -26,7 +26,7 @@ useSeoMeta({
   ogLocale: 'pt-BR',
   ogSiteName: 'Heleno Salgado',
   ogType: 'website',
-  ogImage: 'https://heleno.dev/images/default-post.png', // Imagem padrão
+  ogImage: 'https://heleno.dev/images/default-post.webp', // Imagem padrão
   twitterCard: 'summary_large_image',
   twitterCreator: '@helenosalgado',
   twitterSite: '@helenosalgado',
