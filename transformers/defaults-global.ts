@@ -5,7 +5,7 @@ export default defineTransformer({
   extensions: ['.md'],
   async transform(file) {
     if (file.image == null) {
-      file.image = '/images/default-post.webp';
+      file.image = 'https://heleno.dev/images/default-post.webp';
     }
     return file;
   },
