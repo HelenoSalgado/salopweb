@@ -41,7 +41,7 @@ watch(data, (newData) => {
       description: newData.post.description,
       ogTitle: newData.post.title,
       ogDescription: newData.post.description,
-      ogImage: newData.post.image || 'https://heleno.dev/images/default-post.png',
+      ogImage: newData.post.image || 'https://heleno.dev/images/default-post.webp',
       ogType: 'article',
       twitterCard: 'summary_large_image',
     });
@@ -55,7 +55,7 @@ watch(data, (newData) => {
             "@type": "Article",
             "headline": newData.post.title || 'Post do blog',
             "description": newData.post.description || 'Tecnologia, Literatura e Teologia',
-            "image": newData.post.image || 'https://heleno.dev/images/default-post.png',
+            "image": newData.post.image || 'https://heleno.dev/images/default-post.webp',
             "datePublished": newData.post.date || '',
             "author": {
               "@type": "Person",
