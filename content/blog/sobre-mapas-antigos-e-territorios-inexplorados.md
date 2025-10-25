@@ -3,7 +3,6 @@ title: 'Sobre Mapas Antigos e Territórios Inexplorados'
 description: 'Uma reflexão pessoal sobre a natureza do conhecimento, a estabilidade do código antigo e as areias movediças das tecnologias modernas.'
 categories:
     - IA
-image: '/images/filosofia.png'
 published: true
 date: null
 ---

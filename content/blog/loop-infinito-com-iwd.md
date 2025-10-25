@@ -1,7 +1,6 @@
 ---
 title: "Loop infinito do IWD - Conflito"
 description: "Entenda o conflito do IWD com outros gerenciadores de rede e como resolver o loop infinito de conexão."
-image: "/images/default-post.png"
 date: '2025-09-22'
 categories:
    - Linux

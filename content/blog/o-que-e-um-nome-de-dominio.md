@@ -1,7 +1,6 @@
 ---
 title: "O que é um nome de domínio?"
 description: "Entenda o que é um nome de domínio, como funciona o DNS e por que ele é essencial para seu site na internet."
-image: "/images/default-post.png"
 date: '2025-09-22'
 categories:
   - Web

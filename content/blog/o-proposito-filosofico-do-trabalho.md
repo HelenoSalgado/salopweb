@@ -1,7 +1,6 @@
 ---
 title: "O Propósito Filosófico do Trabalho: Além da Sobrevivência"
 description: "Uma exploração filosófica sobre os múltiplos propósitos do trabalho, desde a distração existencial até a busca por virtude e autorrealização."
-image: "/images/filosofia.png"
 date: '2025-09-22'
 categories:
    - Filosofia
