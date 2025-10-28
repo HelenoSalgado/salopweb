@@ -53,7 +53,7 @@
 
     <!-- Seção 3: Call to Action -->
     <section class="cta-section">
-      <h2 class="section-title">Gostou do que viu?</h2>
+      <h2>Gostou do que viu?</h2>
       <p>Explore meus artigos ou entre em contato.</p>
       <div class="cta-links">
         <NuxtLink to="/blog" class="cta-button">Ler meus escritos</NuxtLink>

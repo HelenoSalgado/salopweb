@@ -123,42 +123,8 @@ article {
 
   & .markdown-content {
     margin-top: 3rem;
-
-    & blockquote {
-      font-family: 'Lora', serif;
-      border-left: 4px solid var(--color-border);
-      padding-left: 1em;
-      margin: 1.5em 0;
-      color: var(--color-text-secondary);
-      font-style: italic;
-      transition: border-color 0.3s ease, color 0.3s ease;
-    }
-
-    & pre {
-      border-radius: 4px;
-      padding: 1em;
-      overflow-x: auto;
-      margin-bottom: 1em;
-      background-color: var(--color-background-hover);
-      font-family: 'Lora', Courier, monospace;
-    }
-
-    & code {
-      font-family: 'Lora', Courier, monospace;
-      font-size: 0.9em;
-      background-color: var(--color-background-hover);
-      padding: 0.1em 0.4em;
-      border-radius: 3px;
-    }
-
-    & img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 1em auto;
-      border-radius: 4px;
-    }
   }
+
 }
 
 & .title-posts-related {
