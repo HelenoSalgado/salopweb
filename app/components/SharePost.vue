@@ -38,20 +38,20 @@ onMounted(() => {
   <div class="share-post">
     <p>Compartilhar:</p>
     <div class="share-buttons">
-      <a :href="twitterShareUrl" target="_blank" rel="noopener noreferrer" class="button twitter">
-        Twitter
+      <a :href="twitterShareUrl" target="_blank" rel="noopener noreferrer" class="button" title="X">
+        <IconsTwitter />
       </a>
-      <a :href="facebookShareUrl" target="_blank" rel="noopener noreferrer" class="button facebook">
-        Facebook
+      <a :href="facebookShareUrl" target="_blank" rel="noopener noreferrer" class="button" title="Facebook">
+        <IconsFacebook/>
       </a>
-      <a :href="linkedinShareUrl" target="_blank" rel="noopener noreferrer" class="button linkedin">
-        LinkedIn
+      <a :href="linkedinShareUrl" target="_blank" rel="noopener noreferrer" class="button" title="Linkedin">
+        <IconsLinkedin/>
       </a>
-      <a :href="whatsappShareUrl" target="_blank" rel="noopener noreferrer" class="button whatsapp">
-        WhatsApp
+      <a :href="whatsappShareUrl" target="_blank" rel="noopener noreferrer" class="button" title="Whatsapp">
+        <IconsWhatsapp/>
       </a>
-      <button class="button copy" @click="copyLink">
-        Copiar Link
+      <button class="button" @click="copyLink" title="Link">
+        <IconsLink/>
       </button>
     </div>
     <p v-if="copied" class="copied-message">Link copiado!</p>
@@ -82,11 +82,13 @@ onMounted(() => {
       transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       cursor: pointer;
       border: 1px solid var(--color-border);
-      /* Borda para estilo "lite" */
-
-      /* Cores padrão do blog para os botões */
       background-color: var(--color-background);
       color: var(--color-text-primary);
+
+      & svg{
+        width: 22px;
+        height: 22px;
+      }
 
       &:hover {
         background-color: var(--color-background-hover);
@@ -94,18 +96,6 @@ onMounted(() => {
         /* Destacar a borda no hover */
         color: var(--color-primary);
       }
-    }
-  }
-
-  & .button.copy {
-    background-color: var(--color-primary-button-bg);
-    color: var(--color-primary-button-text);
-    border-color: var(--color-primary-button-border);
-
-    &:hover {
-      background-color: var(--color-primary-hover);
-      border-color: var(--color-primary-hover);
-      color: var(--color-primary-button-text);
     }
   }
 

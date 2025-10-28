@@ -2,27 +2,33 @@
   <footer class="hextra-footer">
     <div class="hextra-footer-container">
       <div class="theme-switcher-container">
-        <div
-          class="hextra-theme-toggle"
-          :class="{ 'active': isOptionsOpen }"
-          @click="isOptionsOpen = !isOptionsOpen"
-        >
+        <div class="hextra-theme-toggle" :class="{ 'active': isOptionsOpen }" @click="isOptionsOpen = !isOptionsOpen" title="Tema">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </div>
-        <div
-          v-if="isOptionsOpen"
-          class="hextra-theme-toggle-options"
-        >
+        <div v-if="isOptionsOpen" class="hextra-theme-toggle-options">
           <p @click="setTheme('light')">Claro</p>
           <p @click="setTheme('dark')">Escuro</p>
           <p @click="setTheme('system')">Sistema</p>
         </div>
+        <div class="copyright">
+        <p>© 2025 Heleno Salgado • Estudante de Teologia pelo IRSE, desenvolvedor de software e web com foco em
+          performance, domador de IA.</p>
       </div>
-      <div class="copyright">
-        <p>© 2025 Heleno Salgado • Estudante de Teologia pelo IRSE, desenvolvedor de software e web com foco em performance, domador de IA.</p>
       </div>
+      <div class="credentials">
+        <a href="https://orcid.org/0009-0003-3945-2493" rel="me noopener noreferrer" title="ORCID" arial-label="Meu Perfil no ORCID">
+          <LazyIconsOrcid />
+        </a>
+        <a href="https://github.com/HelenoSalgado" rel="me noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">
+          <LazyIconsGithub />
+        </a>
+        <a href="https://www.linkedin.com/in/helenosalgado" rel="me noopener noreferrer" title="Linkedin" aria-label="Meu Perfil do LinkedIn">
+          <LazyIconsLinkedin />
+        </a>
+    </div>
     </div>
   </footer>
 </template>
@@ -47,25 +53,46 @@ const setTheme = (theme: string) => {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 
   & .hextra-footer-container {
-    width: 100%;
-    display: flex;
-    /* flex-wrap: wrap; */
-    align-items: center;
-    column-gap: 1rem;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 1rem;
+      row-gap: 3rem;
 
-  & .copyright {
-    & p {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      color: var(--color-text-secondary);
-      font-size: 0.9rem;
-      white-space: normal;
-      word-break: break-word;
-    }
-  }
+      & .credentials {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        column-gap: 1.5rem;
+
+        & a {
+
+          & svg {
+            width: 22px;
+            height: 22px;
+          }
+
+        }
+      }
 
   & .theme-switcher-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+
+    & .copyright {
+        & p {
+          font-family: 'Inter', sans-serif;
+          margin: 0;
+          color: var(--color-text-secondary);
+          font-size: 0.9rem;
+          white-space: normal;
+          word-break: break-word;
+        }
+      }
 
     & .hextra-theme-toggle {
       cursor: pointer;

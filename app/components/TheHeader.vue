@@ -30,14 +30,14 @@ const toggleSidebar = () => {
           <li><NuxtLink to="/sobre">Sobre</NuxtLink></li>
         </ul>
         <div class="social-media">
-          <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer">
-            <IconsInstagram />
+          <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer" title="Instagram" arial-label="Meu Perfil no Instagram">
+            <LazyIconsInstagram />
           </a>
-          <a href="http://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer">
-            <IconsTwitter />
+          <a href="http://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="X" arial-label="Meu Perfil no X">
+            <LazyIconsTwitter />
           </a>
-          <a href="http://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer">
-            <IconsGithub />
+          <a href="http://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">
+            <LazyIconsGithub />
           </a>
         </div>
       </nav>
@@ -178,6 +178,11 @@ const toggleSidebar = () => {
         width: 2rem;
         color: var(--color-text-secondary);
         transition: color 0.2s ease;
+
+        & svg{
+          width: 22px;
+          height: 22px;
+        }
       }
 
       & a:hover {
