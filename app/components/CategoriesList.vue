@@ -28,6 +28,7 @@ defineProps<{
     border-bottom: 1px solid var(--color-background-hover);
 
     & a {
+      font-size: clamp(.9rem, 5vw, 1.3rem );
       text-decoration: none;
     }
   }

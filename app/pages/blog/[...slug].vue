@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content';
-import type { CardPost, PostsPagination } from '~~/server/types';
+import type { CardPost } from '~~/server/types';
 
 const route = useRoute();
 
@@ -75,15 +75,18 @@ watch(data, (newData) => {
     <article v-if="data?.post?.id" class="prose-container">
       <h1>{{ data.post.title }}</h1>
 
-      <CategoriesList
-        v-if="data.post.categories?.length"
-        v-bind="{
+      <div class="categories">
+        <IconsTag />
+        <CategoriesList v-if="data.post.categories?.length" v-bind="{
           categories: data.post.categories,
           slugifiedCategories: data.post.slugified_categories
-        }"
-      />
+        }" />
+      </div>
 
-      <time v-if="data.post.dateFormatted" :datetime="data.post.dateFormatted">{{ data.post.dateFormatted }}</time>
+      <div class="date-published">
+        <IconsCalendar />
+        <time v-if="data.post.dateFormatted" :datetime="data.post.dateFormatted">{{ data.post.dateFormatted }}</time>
+      </div>
 
       <ContentRenderer class="markdown-content" :value="data.post.body" />
 
@@ -91,8 +94,74 @@ watch(data, (newData) => {
 
       <h3 class="title-posts-related">Posts Relacionados</h3>
 
-      <LazyBlogPostCard v-if="data.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path" v-bind="post" />
+      <LazyBlogPostCard v-if="data.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path"
+        v-bind="post" />
 
     </article>
   </div>
 </template>
+<style scoped>
+article {
+
+  & .date-published,
+  & .categories {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    margin-bottom: .5rem;
+
+    & svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    & time {
+      font-style: oblique;
+    }
+
+  }
+
+  & .markdown-content {
+    margin-top: 3rem;
+
+    & blockquote {
+      font-family: 'Lora', serif;
+      border-left: 4px solid var(--color-border);
+      padding-left: 1em;
+      margin: 1.5em 0;
+      color: var(--color-text-secondary);
+      font-style: italic;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    & pre {
+      border-radius: 4px;
+      padding: 1em;
+      overflow-x: auto;
+      margin-bottom: 1em;
+      background-color: var(--color-background-hover);
+      font-family: 'Lora', Courier, monospace;
+    }
+
+    & code {
+      font-family: 'Lora', Courier, monospace;
+      font-size: 0.9em;
+      background-color: var(--color-background-hover);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+    }
+
+    & img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1em auto;
+      border-radius: 4px;
+    }
+  }
+}
+
+& .title-posts-related {
+  margin-top: 4rem;
+}
+</style>

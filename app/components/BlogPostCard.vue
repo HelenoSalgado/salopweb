@@ -34,6 +34,7 @@ div{
   }
 
   & a{
+    font-size: clamp(.9rem, 5vw, 1.3rem );
     text-decoration: none;
   }
 }
