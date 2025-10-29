@@ -70,6 +70,7 @@ watch(data, (newData) => {
   <div>
     <ReadingProgressBar />
     <article class="prose-container">
+
       <h1>{{ data!.post.title }}</h1>
 
       <div class="categories">
@@ -85,7 +86,7 @@ watch(data, (newData) => {
         <time v-if="data!.post.dateFormatted" :datetime="data!.post.dateFormatted">{{ data!.post.dateFormatted }}</time>
       </div>
 
-      <ContentRenderer class="markdown-content" :value="data!.post.body" />
+      <ContentRenderer v-if="data!.post.body" class="markdown-content" :value="data!.post.body" />
 
       <LazySharePost :post-title="data!.post.title || 'Post'" :post-url="`https://heleno.dev${data!.post.path}`" />
 
