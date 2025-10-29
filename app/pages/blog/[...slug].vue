@@ -5,7 +5,7 @@ import type { CardPost } from '~~/server/types';
 const route = useRoute();
 
 // Use useAsyncData para encadear as buscas de forma sequencial no servidor (SSR)
-const { data, error: postError } = await useAsyncData(route.path, async () => {
+const { data, error } = await useAsyncData(route.path, async () => {
   // Busca o post principal
   const post = await $fetch<BlogCollectionItem>('/api/post', {
     query: { path: route.path.replace(/\/$/, '') }
@@ -23,15 +23,12 @@ const { data, error: postError } = await useAsyncData(route.path, async () => {
   return { post, postsRelated };
 });
 
-// Manipulação de erro
-watch(postError, (newError) => {
-  if (newError) {
-    throw createError({
-      statusCode: newError.statusCode || 404,
-      message: newError.message || 'O recurso que você procura não existe ou foi movido de local.'
-    });
-  }
-});
+if(error.value){
+  throw createError({
+    statusCode: error?.value?.statusCode || 404,
+    data: error?.value?.data || 'O recurso que você procura não existe ou foi movido de local.'
+  });
+}
 
 // Configuração de SEO
 watch(data, (newData) => {
@@ -92,12 +89,17 @@ watch(data, (newData) => {
 
       <LazySharePost :post-title="data.post.title || 'Post'" :post-url="`https://heleno.dev${data.post.path}`" />
 
-      <h3 class="title-posts-related">Posts Relacionados</h3>
-
-      <LazyBlogPostCard v-if="data.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path"
-        v-bind="post" />
-
     </article>
+
+
+    <h3 class="title-posts-related">Posts Relacionados</h3>
+
+    <LazyBlogPostCard v-if="data?.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path"
+      v-bind="post" />
+    <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
+        <LazyIconsFeather />
+        <p>Escrevendo...</p>
+    </div>
   </div>
 </template>
 <style scoped>
@@ -128,6 +130,6 @@ article {
 }
 
 & .title-posts-related {
-  margin-top: 4rem;
+  margin-top: 5rem;
 }
 </style>

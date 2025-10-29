@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
         if (!post) {
             throw createError({
                 statusCode: 404,
-                message: 'Post não encontrado'
+                message: 'Post não encontrado',
             });
         }
 

@@ -1,24 +1,21 @@
 <template>
   <NuxtLayout>
     <div class="page-error">
-      <h2>Erro {{ error?.statusCode || ''}}</h2>
-      <p>{{ error?.message }}</p>
-      <button @click="handleError">Voltar para o Início</button>
+      <h2 style="display: inline-flex; align-items: center; column-gap: 1rem;">
+        <LazyIconsFrown /> <span>Erro {{ error?.statusCode }}</span>
+      </h2>
+      <p>{{ error?.data?.message }}</p>
+      <NuxtLink @click="clearError" to="/blog">Ver Posts</NuxtLink>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { clearError } from 'nuxt/app';
+import type { NuxtError } from '#app';
 
 const { error } = defineProps({
-  error: {
-    type: Object,
-    default: () => ({}),
-  },
+  error: Object as () => NuxtError,
 });
-
-const handleError = () => clearError({ redirect: "/" });
 
 // Define o template do título e outros atributos globais do <head>
 useHead({
@@ -49,16 +46,24 @@ useHead({
 
 <style scoped>
 .page-error {
+  width: fit-content;
   min-height: calc(100vh - 250px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: auto;
 
-  & h2{
-    margin: 1rem 0;
+
+  & h2 {
+    margin: 0;
+
+    & svg{
+      width: 50px;
+      height: 50px;
+    }
   }
 
-  & button {
+  & a {
     display: inline-block;
     padding: .5rem 1rem;
     background-color: var(--color-primary);
@@ -74,6 +79,7 @@ useHead({
     &:hover {
       background-color: var(--color-primary-hover);
     }
+
   }
 }
 </style>
