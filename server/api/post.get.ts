@@ -29,6 +29,7 @@ export default defineEventHandler(async (event) => {
         }
 
         return post as BlogCollectionItem;
+        
     } catch (error: any) {
         if (error.statusCode) {
             throw error;
