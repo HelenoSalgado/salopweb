@@ -91,6 +91,9 @@ watch(data, (newData) => {
 
     </article>
 
+    <template v-else>
+      <ContentPlaceholder />
+    </template>
 
     <h3 class="title-posts-related">Posts Relacionados</h3>
 

@@ -185,18 +185,21 @@ main {
 }
 
 .content-placeholder {
-  max-width: 900px;
+  width: 100%;
   margin: 2rem auto;
-  padding: 1rem;
 }
 
 .placeholder-title {
-  height: 2.5rem;
-  width: 75%;
+  height: 3rem;
   background-color: var(--color-background-hover);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   border-radius: 4px;
   animation: pulse 1.5s infinite ease-in-out;
+}
+
+.placeholder-meta {
+  max-width: 200px;
+  margin-bottom: 3rem;
 }
 
 .placeholder-line {
@@ -209,7 +212,8 @@ main {
 }
 
 .placeholder-line.short {
-  width: 50%;
+  max-width: 300px;
+  margin-bottom: 2.5rem;
 }
 
 @keyframes pulse {

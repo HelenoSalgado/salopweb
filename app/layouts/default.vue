@@ -2,12 +2,7 @@
   <div>
     <TheHeader />
     <main>
-      <Suspense>
-        <slot />
-        <template #fallback>
-          <ContentPlaceholder />
-        </template>
-      </Suspense>
+      <slot />
     </main>
     <TheFooter />
   </div>
