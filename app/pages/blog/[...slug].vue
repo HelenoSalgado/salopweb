@@ -69,36 +69,36 @@ watch(data, (newData) => {
 <template>
   <div>
     <ReadingProgressBar />
-    <article v-if="data?.post?.id" class="prose-container">
-      <h1>{{ data.post.title }}</h1>
+    <article class="prose-container">
+      <h1>{{ data!.post.title }}</h1>
 
       <div class="categories">
         <IconsTag />
-        <CategoriesList v-if="data.post.categories?.length" v-bind="{
-          categories: data.post.categories,
-          slugifiedCategories: data.post.slugified_categories
+        <CategoriesList v-if="data!.post.categories?.length" v-bind="{
+          categories: data!.post.categories,
+          slugifiedCategories: data!.post.slugified_categories
         }" />
       </div>
 
       <div class="date-published">
         <IconsCalendar />
-        <time v-if="data.post.dateFormatted" :datetime="data.post.dateFormatted">{{ data.post.dateFormatted }}</time>
+        <time v-if="data!.post.dateFormatted" :datetime="data!.post.dateFormatted">{{ data!.post.dateFormatted }}</time>
       </div>
 
-      <ContentRenderer class="markdown-content" :value="data.post.body" />
+      <ContentRenderer class="markdown-content" :value="data!.post.body" />
 
-      <LazySharePost :post-title="data.post.title || 'Post'" :post-url="`https://heleno.dev${data.post.path}`" />
+      <LazySharePost :post-title="data!.post.title || 'Post'" :post-url="`https://heleno.dev${data!.post.path}`" />
 
     </article>
 
 
     <h3 class="title-posts-related">Posts Relacionados</h3>
 
-    <LazyBlogPostCard v-if="data?.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path"
+    <LazyBlogPostCard v-if="data!.postsRelated?.length" v-for="post in data!.postsRelated" :key="post?.path"
       v-bind="post" />
     <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
-        <LazyIconsFeather />
-        <p>Escrevendo...</p>
+      <LazyIconsFeather />
+      <p>Escrevendo...</p>
     </div>
   </div>
 </template>
