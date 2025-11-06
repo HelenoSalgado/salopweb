@@ -13,10 +13,6 @@
           <p @click="setTheme('dark')">Escuro</p>
           <p @click="setTheme('system')">Sistema</p>
         </div>
-        <div class="copyright">
-        <p>© 2025 Heleno Salgado • Estudante de Teologia pelo IRSE, desenvolvedor de software e web com foco em
-          performance, domador de IA.</p>
-      </div>
       </div>
       <div class="credentials">
         <a href="https://orcid.org/0009-0003-3945-2493" rel="me noopener noreferrer" title="ORCID" arial-label="Meu Perfil no ORCID">
@@ -82,17 +78,6 @@ const setTheme = (theme: string) => {
     display: flex;
     align-items: center;
     column-gap: 1rem;
-
-    & .copyright {
-        & p {
-          font-family: 'Inter', sans-serif;
-          margin: 0;
-          color: var(--color-text-secondary);
-          font-size: 0.9rem;
-          white-space: normal;
-          word-break: break-word;
-        }
-      }
 
     & .hextra-theme-toggle {
       cursor: pointer;

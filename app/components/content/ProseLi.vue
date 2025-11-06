@@ -7,5 +7,6 @@
 li{
     margin-top: 1rem;
     font-family: 'Lora', serif;
+    line-height: 1.4rem;
 }
 </style>
