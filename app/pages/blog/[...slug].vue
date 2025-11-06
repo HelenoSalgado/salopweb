@@ -64,41 +64,44 @@ watch(post, (newData) => {
 
 <template>
 
-  <ReadingProgressBar />
+  <div>
 
-  <article v-if="post.path" class="prose-container">
+    <ReadingProgressBar />
 
-    <h1>{{ post.title }}</h1>
+    <article v-if="post?.path" class="prose-container">
 
-    <div class="categories">
-      <IconsTag />
-      <CategoriesList v-if="post.categories?.length" v-bind="{
-        categories: post.categories,
-        slugifiedCategories: post.slugified_categories
-      }" />
+      <h1>{{ post.title }}</h1>
+
+      <div class="categories">
+        <IconsTag />
+        <CategoriesList v-if="post.categories?.length" v-bind="{
+          categories: post.categories,
+          slugifiedCategories: post.slugified_categories
+        }" />
+      </div>
+
+      <div v-if="post.dateFormatted" class="date-published">
+        <IconsCalendar />
+        <time :datetime="post.dateFormatted">{{ post.dateFormatted }}</time>
+      </div>
+
+      <ContentRenderer class="markdown-content" :value="post.body" />
+
+      <LazySharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
+
+    </article>
+
+    <template v-else>
+      <ContentPlaceholder />
+    </template>
+
+    <h3 class="title-posts-related">Posts Relacionados</h3>
+
+    <BlogPostCard v-if="postsRelated?.length" v-for="post in postsRelated" :key="post?.path" v-bind="post" />
+    <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
+      <LazyIconsFeather />
+      <p>Escrevendo...</p>
     </div>
-
-    <div v-if="post.dateFormatted" class="date-published">
-      <IconsCalendar />
-      <time :datetime="post.dateFormatted">{{ post.dateFormatted }}</time>
-    </div>
-
-    <ContentRenderer class="markdown-content" :value="post.body" />
-
-    <LazySharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
-
-  </article>
-
-  <template v-else>
-    <ContentPlaceholder />
-  </template>
-
-  <h3 class="title-posts-related">Posts Relacionados</h3>
-
-  <BlogPostCard v-if="postsRelated?.length" v-for="post in postsRelated" :key="post?.path" v-bind="post" />
-  <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
-    <LazyIconsFeather />
-    <p>Escrevendo...</p>
   </div>
 </template>
 <style scoped>

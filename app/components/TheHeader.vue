@@ -53,9 +53,12 @@ const toggleSidebar = () => {
   background-color: var(--color-header-background);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
-  padding: .7rem 1rem;
+  padding: 0 1rem;
+  height: var(--hextra-header-height);
   position: fixed;
   top: 0;
+  display: flex;
+  justify-items: center;
   z-index: 10;
   /* Increased z-index to overlap sidebar */
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -67,7 +70,6 @@ const toggleSidebar = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
 
   & .brand {
@@ -134,7 +136,7 @@ const toggleSidebar = () => {
     max-width: 400px;
     position: fixed;
     height: calc(100vh - var(--hextra-header-height));
-    top: calc(var(--hextra-header-height) - 5.5px);
+    top: calc(var(--hextra-header-height));
     right: -400px;
     transition: ease 200ms;
 

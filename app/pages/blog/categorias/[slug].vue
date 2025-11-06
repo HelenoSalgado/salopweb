@@ -18,21 +18,19 @@ const { data, error } = useFetch<PostsPagination<CardPost[]>>(`/api/categories/$
   pick: ['categoryName', 'posts', 'totalPages']
 });
 
-watchEffect(() => {
-  if (error.value) {
-    throw createError({
-      statusCode: error.value.statusCode || 500,
-      message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
-    });
-  }
-})
 
-watchEffect(() => {
-  useSeoMeta({
+if (error.value) {
+  throw createError({
+    statusCode: error.value.statusCode || 500,
+    message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
+  });
+}
+
+useSeoMeta({
   title: `Posts sobre ${data.value?.categoryName || category}`,
   description: `Explore todos os posts na categoria ${data.value?.categoryName || category}.`
 });
-})
+
 </script>
 
 <template>
@@ -41,11 +39,7 @@ watchEffect(() => {
 
     <BlogPostCard v-if="data?.posts.length" v-for="post in data.posts" :key="post.path" v-bind="post" />
 
-    <Pagination
-      v-if="data?.totalPages && data?.totalPages > 1"
-      :current-page="currentPage"
-      :total-pages="data.totalPages"
-      :base-url="`/blog/categorias/${category}`"
-    />
+    <Pagination v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
+      :total-pages="data.totalPages" :base-url="`/blog/categorias/${category}`" />
   </div>
 </template>

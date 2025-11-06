@@ -62,14 +62,10 @@ Essa ideia se desenvolve ainda mais em obras como as *Confissões*, onde Agostin
 
 ---
 
-
-#### Referências
-
-
 [^1]: Cícero. (46 a.C.). *De Oratore* (S. C. de Lima, Trad.). Rónai – Revista de Estudos Clássicos e Tradutórios, 11(1), 23–42. [https://doi.org/10.34019/2318-3446.2023.v11.40515](https://doi.org/10.34019/2318-3446.2023.v11.40515)
 
 
-[^2]: Del Vecchio, F. B. (2024). As virtudes nas obras de Marco Túlio Cícero. *Trans/Form/Ação*, 47(1). (Explora a concepção estoica de virtude em Cícero como discernimento da verdade).
+[^2]: Del Vecchio, F. B. (2024). As virtudes nas obras de Marco Túlio Cícero. *Transformação*, 47(1). (Explora a concepção estoica de virtude em Cícero como discernimento da verdade).
 
 
 [^3]: Cochrane, C. N. (1957). *Cristianismo e Cultura Clássica*. (Discute a ética das virtudes em Cícero como base para o conhecimento moral).
