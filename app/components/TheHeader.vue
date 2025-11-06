@@ -31,13 +31,13 @@ const toggleSidebar = () => {
         </ul>
         <div class="social-media">
           <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer" title="Instagram" arial-label="Meu Perfil no Instagram">
-            <LazyIconsInstagram />
+            <IconsInstagram />
           </a>
           <a href="http://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="X" arial-label="Meu Perfil no X">
-            <LazyIconsTwitter />
+            <IconsTwitter />
           </a>
           <a href="http://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">
-            <LazyIconsGithub />
+            <IconsGithub />
           </a>
         </div>
       </nav>

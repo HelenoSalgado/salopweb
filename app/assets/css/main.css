@@ -130,7 +130,7 @@ main {
     color: var(--color-text-primary);
   }
   & p {
-    font-size: clamp(1rem, 5vw, 1.3rem );
+    font-size: clamp(1rem, 5vw, 1.2rem );
     line-height: 1.7;
   }
 

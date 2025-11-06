@@ -18,13 +18,17 @@ export default defineNuxtConfig({
           interaction: true
         }
       }
-    }
+    },
+    buildCache: true,
+    // Otimizações adicionais para Nuxt 4
+    appManifest: true, // Habilita manifesto para melhor caching
+    headNext: true // Nova engine de head otimizada
   },
 
   features: {
     // Inline apenas CSS de componentes Vue, não CSS global
     // Reduz duplicação mantendo CSS global em arquivo separado cacheável
-    inlineStyles: (id) => !!id && id.includes('.vue')
+    inlineStyles: false
   },
 
   app: {
@@ -43,30 +47,6 @@ export default defineNuxtConfig({
     }
   },
 
-  image: {
-    provider: 'cloudflare',
-    cloudflare: {
-      baseURL: (process.env.BASE_URL || 'https://heleno.dev').trim().replace(/\/+$/, '')
-    },
-    formats: ['webp', 'avif'],
-    screens: {
-      'xs': 320,
-      'sm': 640,
-      'md': 768,
-      'lg': 1024,
-      'xl': 1280
-    },
-    presets: {
-      profile: {
-        modifiers: {
-          width: 60,
-          height: 60,
-          quality: 100
-        }
-      }
-    }
-  },
-
   css: ['~/assets/css/main.css'],
 
   vite: {
@@ -79,6 +59,18 @@ export default defineNuxtConfig({
     build: {
       // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
       cssCodeSplit: true,
+      
+      // Reduz tamanho do bundle
+      minify: 'esbuild',
+      
+      // Remove comentários e sourcemaps em produção
+      sourcemap: false,
+      
+      // Otimizações de performance
+      target: 'esnext',
+      
+      // Controla tamanho dos chunks para melhor caching
+      chunkSizeWarningLimit: 1000,
 
       rollupOptions: {
         output: {
@@ -164,18 +156,23 @@ export default defineNuxtConfig({
   },
 
   googleFonts: {
-    fontsDir: 'public/fonts',
+    outputDir: 'app/assets',
+    fontsDir: 'fonts',
+    fontsPath: '~/assets/fonts',
     families: {
-      Inter: [400, 700],
+      Inter: [400],  // Removido 700 - não usado no CSS
       Lora: {
-        wght: [400, 700],
+        wght: [400],  // Removido 700 - pode usar font-weight: bold que simula
         ital: [400]
       }
     },
-    subsets: ['latin-ext'],
+    subsets: ['latin'],  // Mudado de latin-ext para latin (menor)
     display: 'swap',
     preconnect: true,
     useStylesheet: false,
+    overwriting: false,
+    preload: true,
+    inject: true,
     download: true
   },
 
@@ -189,6 +186,29 @@ export default defineNuxtConfig({
         '~~/transformers/category-slugifier',
         '~~/transformers/defaults-global.ts'
       ]
+    }
+  },
+
+  image: {
+    provider: 'ipx',
+    domains: ['heleno.dev'],
+    format: ['webp'],
+    presets: {
+      profile: {
+        width: 60,
+        height: 60,
+        quality: 100
+      }
+    },
+    screens: {
+      'xs': 320,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1280
+    },
+    ipx: {
+      maxAge: 31536000
     }
   },
 

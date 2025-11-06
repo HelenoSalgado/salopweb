@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CardPost, Categories, PostsPagination } from '~~/server/types';
 const route = useRoute();
-
 const POSTS_PER_PAGE = 7;
 
 const currentPage = computed(() => {
@@ -20,7 +19,7 @@ const { data, error } = useFetch<PostsPagination<CardPost[]>>('/api/posts', {
     limit: POSTS_PER_PAGE,
     page: currentPage
   },
-  pick: ['posts', 'totalPages'],
+  pick: ['posts', 'totalPages']
 })
 
 useSeoMeta({
@@ -28,15 +27,13 @@ useSeoMeta({
   description: 'Explore todos os posts do blog.',
 });
 
-// --- Efeitos Reativos e Metadados ---
-watchEffect(() => {
-  if (error.value) {
-    throw createError({
-      statusCode: error.value.statusCode || 500,
-      message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
-    });
-  }
-});
+if (error.value) {
+  throw createError({
+    statusCode: error.value.statusCode || 500,
+    message: error.value.message || 'Ocorreu um erro ao buscar os posts.'
+  });
+}
+
 
 </script>
 

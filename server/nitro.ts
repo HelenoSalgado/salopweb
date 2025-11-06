@@ -14,15 +14,12 @@ export default {
       '__nuxt_content/blog/sql_dump.txt',
       '__nuxt_content/sobre/sql_dump.txt'
     ],
+    // Aumenta paralelismo para prerender mais rápido
     concurrency: 3,
     failOnError: true
   },
   compressPublicAssets: true,
   routeRules: {
-    '/_nuxt/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-    '/css/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-    '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-    '/__nuxt_content/**': { prerender: false, ssr: true },
     '/': { static: true },
     '/**': {
       trailingSlash: false
@@ -41,5 +38,19 @@ export default {
       baseURL: '/',
       dir: 'public',
     }
-  ]
+  ],
+  esbuild: { 
+    options: { 
+      legalComments: 'none',
+      // Otimizações adicionais do esbuild
+      treeShaking: true,
+      minifyIdentifiers: true,
+      minifySyntax: true,
+      minifyWhitespace: true,
+    } 
+  },
+  // Otimiza imports externos
+  externals: {
+    inline: ['#internal/nitro']
+  }
 } as NitroConfig

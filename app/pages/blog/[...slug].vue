@@ -4,41 +4,37 @@ import type { CardPost } from '~~/server/types';
 
 const route = useRoute();
 
-// Use useAsyncData para encadear as buscas de forma sequencial no servidor (SSR)
-const { data, error } = await useAsyncData(route.path, async () => {
-  // Busca o post principal
-  const post = await $fetch<BlogCollectionItem>('/api/post', {
-    query: { path: route.path.replace(/\/$/, '') }
-  });
+// Busca o post principal
+const { data: post, error } = await useFetch<BlogCollectionItem>('/api/post', {
+  query: { path: route.path.replace(/\/$/, '') },
+  server: true
+})
 
-  // Busca os posts relacionados, dependendo do post principal
-  const postsRelated = await $fetch<CardPost[]>('/api/posts', {
-    query: {
-      categories: post.categories || [],
-      excludePath: post.path || '',
-      limit: 4
-    }
-  });
-
-  return { post, postsRelated };
-});
-
-if(error.value){
+if (error.value) {
   throw createError({
     statusCode: error?.value?.statusCode || 404,
     data: error?.value?.data || 'O recurso que você procura não existe ou foi movido de local.'
   });
 }
 
+const { data: postsRelated } = await useFetch<CardPost[]>('/api/posts', {
+  query: {
+    categories: post.value?.categories || [],
+    excludePath: post.value?.path || '',
+    limit: 4
+  },
+  watch: [post]
+})
+
 // Configuração de SEO
-watch(data, (newData) => {
-  if (newData?.post) {
+watch(post, (newData) => {
+  if (newData) {
     useSeoMeta({
-      title: newData.post.title,
-      description: newData.post.description,
-      ogTitle: newData.post.title,
-      ogDescription: newData.post.description,
-      ogImage: newData.post.image || 'https://heleno.dev/images/default-post.webp',
+      title: newData?.title,
+      description: newData?.description,
+      ogTitle: newData?.title,
+      ogDescription: newData?.description,
+      ogImage: newData?.image || 'https://heleno.dev/images/default-post.webp',
       ogType: 'article',
       twitterCard: 'summary_large_image',
     });
@@ -50,10 +46,10 @@ watch(data, (newData) => {
           textContent: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            "headline": newData.post.title || 'Post do blog',
-            "description": newData.post.description || 'Tecnologia, Literatura e Teologia',
-            "image": newData.post.image || 'https://heleno.dev/images/default-post.webp',
-            "datePublished": newData.post.date || '',
+            "headline": newData?.title || 'Post do blog',
+            "description": newData?.description || 'Tecnologia, Literatura e Teologia',
+            "image": newData?.image || 'https://heleno.dev/images/default-post.webp',
+            "datePublished": newData?.date || '',
             "author": {
               "@type": "Person",
               "name": "Heleno Salgado"
@@ -67,42 +63,42 @@ watch(data, (newData) => {
 </script>
 
 <template>
-  <div>
-    <ReadingProgressBar />
-    <article v-if="data?.post?.id" class="prose-container">
-      <h1>{{ data.post.title }}</h1>
 
-      <div class="categories">
-        <IconsTag />
-        <CategoriesList v-if="data.post.categories?.length" v-bind="{
-          categories: data.post.categories,
-          slugifiedCategories: data.post.slugified_categories
-        }" />
-      </div>
+  <ReadingProgressBar />
 
-      <div class="date-published">
-        <IconsCalendar />
-        <time v-if="data.post.dateFormatted" :datetime="data.post.dateFormatted">{{ data.post.dateFormatted }}</time>
-      </div>
+  <article v-if="post.path" class="prose-container">
 
-      <ContentRenderer class="markdown-content" :value="data.post.body" />
+    <h1>{{ post.title }}</h1>
 
-      <LazySharePost :post-title="data.post.title || 'Post'" :post-url="`https://heleno.dev${data.post.path}`" />
-
-    </article>
-
-    <template v-else>
-      <ContentPlaceholder />
-    </template>
-
-    <h3 class="title-posts-related">Posts Relacionados</h3>
-
-    <LazyBlogPostCard v-if="data?.postsRelated?.length" v-for="post in data.postsRelated" :key="post?.path"
-      v-bind="post" />
-    <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
-        <LazyIconsFeather />
-        <p>Escrevendo...</p>
+    <div class="categories">
+      <IconsTag />
+      <CategoriesList v-if="post.categories?.length" v-bind="{
+        categories: post.categories,
+        slugifiedCategories: post.slugified_categories
+      }" />
     </div>
+
+    <div v-if="post.dateFormatted" class="date-published">
+      <IconsCalendar />
+      <time :datetime="post.dateFormatted">{{ post.dateFormatted }}</time>
+    </div>
+
+    <ContentRenderer class="markdown-content" :value="post.body" />
+
+    <LazySharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
+
+  </article>
+
+  <template v-else>
+    <ContentPlaceholder />
+  </template>
+
+  <h3 class="title-posts-related">Posts Relacionados</h3>
+
+  <BlogPostCard v-if="postsRelated?.length" v-for="post in postsRelated" :key="post?.path" v-bind="post" />
+  <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
+    <LazyIconsFeather />
+    <p>Escrevendo...</p>
   </div>
 </template>
 <style scoped>

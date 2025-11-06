@@ -20,13 +20,13 @@
       </div>
       <div class="credentials">
         <a href="https://orcid.org/0009-0003-3945-2493" rel="me noopener noreferrer" title="ORCID" arial-label="Meu Perfil no ORCID">
-          <LazyIconsOrcid />
+          <IconsOrcid />
         </a>
         <a href="https://github.com/HelenoSalgado" rel="me noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">
-          <LazyIconsGithub />
+          <IconsGithub />
         </a>
         <a href="https://www.linkedin.com/in/helenosalgado" rel="me noopener noreferrer" title="Linkedin" aria-label="Meu Perfil do LinkedIn">
-          <LazyIconsLinkedin />
+          <IconsLinkedin />
         </a>
     </div>
     </div>
