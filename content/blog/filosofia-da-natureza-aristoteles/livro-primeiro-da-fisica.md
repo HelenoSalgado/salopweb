@@ -15,13 +15,13 @@ _Este conteúdo é uma transcrição, com algumas correções de digitação, do
 
 ### Livro Primeiro da Física
 
-1. **A determinação dos princípios da natureza segundo os antigos filósofos**.
+### 1. A determinação dos princípios da natureza segundo os antigos filósofos.
 	
 Aristóteles inicia o Livro I da Física fazendo um apanhado das principais colocações que os antigos filósofos fizeram sobre os princípios da natureza. Alguns disseram que estes princípios seriam o ar, a água, o fogo, um princípio indeterminado, os átomos ou ainda outros. Em todos estes casos Aristóteles afirma que a consideração destes filósofos não ultrapassou a abordagem da causa material.
 
 Houve ainda outros filósofos que falaram da natureza de um modo não natural, como Parmênides, que negou a multiplicidade dos entes e a existência das mutações na natureza, afirmando que tratavam-se de ilusões e que só havia na realidade um único ser imóvel e eterno. Quem fala assim, diz Aristóteles, na verdade nega a natureza pois ela é, conforme afirma mais adiante o Filósofo, um princípio intrínseco de movimento.
 
-2. **Determinação dos primeiros princípios da natureza, segundo Aristóteles**.
+### 2. Determinação dos primeiros princípios da natureza, segundo Aristóteles.
 
 Em seguida Aristóteles passa à consideração dos princípios da natureza, entendidos estes em sua abordagem mais fundamental possível. Sejam quais forem os primeiros princípios da natureza, os quais terão que ser também os primeiros princípios do movimento, terão que possuir as seguintes características:
 
@@ -55,7 +55,7 @@ _Ou, ainda melhor_,
 * A forma;
 * A privação da forma.
 
-3. **A matéria, a forma e a privação da forma como princípios da natureza**.
+### 3. A matéria, a forma e a privação da forma como princípios da natureza.
 
 Deve-se considerar, porém, a hipótese que em algumas transformações da natureza pode ocorrer não apenas uma passagem de uma forma para a privação desta forma ou vice versa, conservando-se o sujeito, mas também que o próprio sujeito mude e se torne outro sujeito.
 
@@ -67,7 +67,7 @@ Isto, porém, só poderá ser explicado se se admitir que haja uma composição 
 
 A matéria primeira, não existindo separadamente sem estar em composição com a forma, não pode ser conhecida em si mesma. Apenas podemos inferir a sua natureza indiretamente por analogia.
 
-4. **Substância e acidente**.
+### 4. Substância e acidente.
 
 Chama-se com o nome de substância ao ente que em primeiro lugar entra efetivamente na existência, que por primeiro e por si mesmo existe em ato, e não apenas em potência como a matéria primeira.
 
@@ -75,7 +75,7 @@ Por este motivo chama-se também de forma substancial à primeira forma que entr
 
 Já existindo um sujeito em ato composto de matéria primeira e forma substancial, outras formas podem advir ao sujeito já existente, chamadas de formas acidentais, as quais constituem aquelas realidades às quais chamamos de acidentes. São acidentes atributivos[^1] tais como a cor, a temperatura, as diversas qualidades sensíveis de que está dotado o sujeito, suas dimensões geométricas, e outras. Estas diversas qualidades e atributos chamam-se de acidentes por contraposição à substância, pois os acidentes não subsistem por si mesmos, mas necessitam de um sujeito, que neste caso é uma substância já existente em ato, para poderem subsistir nela.
 
-5. **O cuidado que devemos ter em não interpretar a forma substancial como algo identificável pelos sentidos ou por experimentação laboratorial**.
+### 5. O cuidado que devemos ter em não interpretar a forma substancial como algo identificável pelos sentidos ou por experimentação laboratorial.
 
 Segundo a doutrina de Aristóteles, a matéria primeira não pode ser conhecida senão indiretamente por analogia, a forma substancial só pode ser conhecida pela atividade da inteligência, e o que vemos ou captamos dos diversos entes pelos cinco sentidos, ou, por extensão, por instrumentos de laboratório, são apenas as formas acidentais dos entes.
 
@@ -93,6 +93,6 @@ O terceiro princípio necessário para explicar as mutações encontradas na nat
 
 [^3]: *Forma*: **Filos**. *Princípio que confere a um ser os atributos que lhe determinam a natureza própria*. **NOVO Dicionário Aurélio Eletrônico 6.0**. [S.l.: s.n., s.d.]. Software. Verbete “princípio”, acepção 17.
 
-## Referências
+*Referências:*
 
 **NOVO Dicionário Aurélio Eletrônico 6.0**: Conforme a Nova Ortografia. [S.l.]: [s.n.], [s.d.]. Software. Acesso via: GoldDict-ng.

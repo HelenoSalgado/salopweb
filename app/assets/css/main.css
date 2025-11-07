@@ -115,14 +115,12 @@ main {
   & h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
-    line-height: 1.2;
+    line-height: 1.3;
     margin: 2rem 0;
   }
 
   & h1 { font-size: 2.2rem; }
   & h2 { font-size: 1.7rem; }
-  & h3 { font-size: 1.5rem; }
-  & h4 { font-size: 1rem; }
 
   /* Parágrafos e Listas */
   & p, & ul, & ol, & li {
@@ -130,8 +128,12 @@ main {
     color: var(--color-text-primary);
   }
   & p {
-    font-size: clamp(1rem, 5vw, 1.2rem );
-    line-height: 1.7;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    line-height: 1.6;
+  }
+
+  & strong {
+    font-size: clamp(1rem, 5vw, 1.1rem);
   }
 
   /* Links */
@@ -142,10 +144,6 @@ main {
       color: var(--color-primary-hover);
     }
   }
-
-  /* Outros Elementos de Texto */
-  & strong { font-weight: bold; }
-  & em { font-style: italic; }
 
   & blockquote {
     font-family: 'Lora', serif;
