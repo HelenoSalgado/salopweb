@@ -65,11 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
 import TagCloud from 'TagCloud';
-import IconsGithub from '~/components/Icons/Github.vue';
-import IconsTwitter from '~/components/Icons/Twitter.vue';
-import IconsInstagram from '~/components/Icons/Instagram.vue';
 
 definePageMeta({
   layout: 'portfolio'
