@@ -1,17 +1,17 @@
 <template>
-    <div class="podcast-page">
-        <h1>Podcasts - NotebookLM</h1>
-        <p class="subtitle">Episódios sobre filosofia, teologia e tecnologia, gerados com o auxílio de IA.</p>
+    <div>
+        <h1>Podcast - NotebookLM</h1>
+        <p>Episódios sobre filosofia, teologia e tecnologia, gerados com o auxílio de IA.</p>
 
         <section v-for="episode in episodes" :key="episode.path" class="podcast-episode">
             <h2>{{ episode.title }}</h2>
-            <p>{{ episode.description }}</p>
+            <p style="margin-bottom: 2.5rem;">{{ episode.description }}</p>
 
             <PodcastPlayer :src="episode.audioSrc" />
 
             <div class="episode-footer">
                 <p class="source">
-                    Fonte: 
+                    Fonte:
                     <a :href="episode.sourceUrl" target="_blank" rel="noopener noreferrer">
                         <em>{{ episode.sourceName }}</em>
                     </a>
@@ -27,49 +27,69 @@ import type { PodcastEpisode } from '../../../server/types';
 
 const { data: episodes } = await useFetch<PodcastEpisode[]>('/api/podcasts');
 
-// SEO Meta
-const pageTitle = "Podcasts | SalopWeb";
-const pageDescription = "Explore episódios de podcast sobre filosofia, teologia, tecnologia e mais. Conteúdo aprofundado gerado com o auxílio de IA.";
+const title = "Podcast - NotebookLM";
+const description = "Explore episódios de podcast sobre filosofia, teologia, tecnologia e mais. Conteúdo aprofundado gerado com o auxílio de IA.";
+const canonicalUrl = 'https://heleno.dev/podcast';
+const image = 'https://heleno.dev/images/default-post.webp';
+
 useSeoMeta({
-    title: pageTitle,
-    description: pageDescription,
-    ogTitle: pageTitle,
-    ogDescription: pageDescription,
+    title: title,
+    description: description,
+    ogTitle: title,
+    ogDescription: description,
+    ogUrl: canonicalUrl,
+    ogImage: image,
+    ogType: 'website',
+    twitterTitle: title,
+    twitterDescription: description,
+    twitterImage: image,
 });
+
+
+useHead({
+    script: [
+        {
+            type: 'application/ld+json',
+            textContent: computed(() => JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "PodcastSeries",
+                "name": title,
+                "description": description,
+                "url": canonicalUrl,
+                "image": image,
+                "author": {
+                    "@type": "Person",
+                    "name": "Heleno Salgado" // Seu nome como autor
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Heleno Salgado",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://heleno.dev/images/logo.png"
+                    }
+                }
+            }))
+        }
+    ]
+});
+
 </script>
 
 <style scoped>
-.podcast-page h1 {
-    margin-bottom: 0.5rem;
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    margin-top: 0;
-    margin-bottom: 3rem;
-}
-
 .podcast-episode {
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-    margin-bottom: 2rem;
+    margin-top: 3rem;
     box-shadow: 0 2px 4px var(--color-shadow);
-}
-
-.podcast-episode h2 {
-    font-size: 1.5rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--color-text-heading);
 }
 
 .episode-footer {
     display: flex;
     flex-direction: column;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 .source {

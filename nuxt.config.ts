@@ -184,6 +184,7 @@ export default defineNuxtConfig({
       transformers: [
         '~~/transformers/date-published',
         '~~/transformers/category-slugifier',
+        '~~/transformers/convert-time-podcast.ts',
         '~~/transformers/defaults-global.ts'
       ]
     }

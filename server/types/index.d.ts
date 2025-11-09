@@ -29,5 +29,6 @@ export interface PodcastEpisode {
     date: string;
     dateFormatted?: string;
     image?: string;
+    categories: BlogCollectionItem['categories']
 }
 

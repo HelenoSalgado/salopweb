@@ -21,9 +21,12 @@ const blogSchema = pageSchema.extend({
 const podcastSchema = pageSchema.extend({
   description: z.string(),
   audioSrc: z.string(),
+  duration: z.string().optional(),
   sourceName: z.string().optional(),
   sourceUrl: z.string().url().optional(),
-  published: z.boolean().optional()
+  published: z.boolean().optional(),
+  categories: z.array(z.string()).optional(),
+  slugified_categories: z.array(z.string()).optional()
 });
 
 // 3. Configuração final

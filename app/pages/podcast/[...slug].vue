@@ -1,112 +1,101 @@
 <script setup lang="ts">
-import ContentPodcastPlayer from '~/components/PodcastPlayer.vue';
-import SharePost from '~/components/SharePost.vue';
-import type { PodcastEpisode } from '../../../server/types';
+import type { PodcastsCollectionItem } from '@nuxt/content';
 
 const route = useRoute();
 
 const slug = route.params.slug;
 
-const { data: episode, error } = await useAsyncData<PodcastEpisode>(`podcast-${slug}`, () =>
-    $fetch(`/api/podcasts/${slug}`)
-);
-
-console.log(episode.value)
+const { data: episode, error } = await useFetch<PodcastsCollectionItem>(`/api/podcasts/${slug}`);
 
 if (error.value) {
-  throw createError({
-    statusCode: error?.value?.statusCode || 404,
-    data: error?.value?.data || 'O recurso que você procura não existe ou foi movido de local.'
-  });
+    throw createError({
+        statusCode: error?.value?.statusCode || 404,
+        data: error?.value?.data || 'O recurso que você procura não existe ou foi movido de local.'
+    });
 }
 
-useSeoMeta({
-    title: episode.value?.title,
-    description: episode.value?.description,
-    ogTitle: episode.value?.title,
-    ogDescription: episode.value?.description,
-    ogType: 'music.song',
-    ogUrl: 'https://heleno.dev/images/default-post.webp',
-    ogImage: episode.value?.image || 'https://heleno.dev/images/default-post.webp',
-    articlePublishedTime: episode.value?.date,
-    twitterCard: 'summary_large_image',
-});
+// Configuração de SEO
+watch(episode, (newData) => {
+    if (newData) {
+        useSeoMeta({
+            title: newData?.title,
+            description: newData?.description,
+            ogTitle: newData?.title,
+            ogDescription: newData?.description,
+            ogImage: newData?.image || 'https://heleno.dev/images/default-post.webp',
+            ogType: 'article',
+            ogAudio: 'https://heleno.dev' + newData?.audioSrc,
+            ogAudioType: 'audio/mpeg',
+            twitterCard: 'summary_large_image',
+            articlePublishedTime: newData?.date,
+            ogUrl: 'https://heleno.dev' + newData.path
+        });
+
+        useHead({
+            script: [
+                {
+                    type: 'application/ld+json',
+                    textContent: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": newData?.title || 'Podcast do blog - NotebookLM',
+                        "description": newData?.description || 'Tecnologia, Literatura e Teologia',
+                        "image": newData?.image || 'https://heleno.dev/images/default-post.webp',
+                        "datePublished": newData?.date || '',
+                        "author": {
+                            "@type": "Person",
+                            "name": "Heleno Salgado"
+                        },
+                        "audio": newData.audioSrc ? {
+                            "@type": "AudioObject",
+                            "name": newData.title,
+                            "contentUrl": 'https://heleno.dev' + newData?.audioSrc,
+                            "description": newData.description,
+                            "encodingFormat": "audio/mpeg",
+                            "duration": newData.duration, // Duração no formato ISO 8601
+                            "uploadDate": newData.date
+                        } : undefined
+                    })
+                }
+            ]
+        });
+    }
+}, { immediate: true });
 
 </script>
 
 <template>
-    <article v-if="episode?.path">
-        <header class="episode-header">
-            <h1>{{ episode.title }}</h1>
-            <p class="publish-date">Publicado em {{ episode.dateFormatted }}</p>
-            <p class="description">{{ episode.description }}</p>
-        </header>
+    <article v-if="episode?.path" class="prose-container">
 
-        <ContentPodcastPlayer :src="episode.audioSrc" />
+        <h1>{{ episode.title }}</h1>
 
-        <!-- O Nuxt Content renderizará o corpo do .md aqui se houver algum -->
-        <!-- <ContentDoc /> -->
+        <div class="categories">
+            <IconsTag />
+            <CategoriesList v-if="episode.categories?.length" v-bind="{
+                categories: episode.categories,
+                slugifiedCategories: episode.slugified_categories
+            }" />
+        </div>
 
-        <footer class="episode-footer">
-            <p class="source" v-if="episode.sourceName">
-                Fonte: 
-                <a :href="episode.sourceUrl" target="_blank" rel="noopener noreferrer">
-                    <em>{{ episode.sourceName }}</em>
-                </a>
-            </p>
-            <SharePost :post-title="episode.title" :post-url="`https://heleno.dev${episode.path}`" />
-        </footer>
+        <div v-if="episode.dateFormatted" class="date-published">
+            <IconsCalendar />
+            <time :datetime="episode.dateFormatted">{{ episode.dateFormatted }}</time>
+        </div>
+
+        <p v-if="episode?.description" style="margin: 2rem 0 2.5rem 0"><em>{{ episode.description }}</em></p>
+
+        <PodcastPlayer :src="episode.audioSrc" />
+
+        <p v-if="episode?.sourceName" style="text-align: end; font-size: .9rem;">
+            Fonte:
+            <a :href="episode.sourceUrl" target="_blank" rel="noopener noreferrer">
+                <em>{{ episode.sourceName }}</em>
+            </a>
+        </p>
+
+        <SharePost :post-title="episode.title || 'Podcast'" :post-url="`https://heleno.dev${episode.path}`" />
+
+        <ContentRenderer v-if="episode?.body" class="markdown-content" :value="episode.body" />
+
     </article>
 </template>
-
-<style scoped>
-.episode-header {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.episode-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.publish-date {
-    color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.description {
-    font-size: 1.2rem;
-    max-width: 80ch;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-.content-body {
-    margin-top: 2rem;
-}
-
-.episode-footer {
-    margin-top: 3rem;
-    border-top: 1px solid var(--color-border);
-    padding-top: 1rem;
-}
-
-.source {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    text-align: right;
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-.source a {
-    text-decoration: underline;
-}
-
-.episode-footer :deep(.share-post) {
-    margin: 0;
-    padding-top: 1rem;
-}
-</style>

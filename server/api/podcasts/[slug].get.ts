@@ -5,8 +5,6 @@ import type { H3Event } from 'h3';
 export default defineEventHandler(async (event: H3Event) => {
     const slug = event.context.params?.slug as string;
 
-    console.log(slug)
-
     if (!slug) {
         throw createError({
             statusCode: 400,
@@ -17,11 +15,9 @@ export default defineEventHandler(async (event: H3Event) => {
     try {
         const podcast = await queryCollection(event, 'podcasts')
             .where('published', '=', true)
-            .where('path', '=', slug)
-            .select('id', 'description', 'audioSrc', 'date', 'dateFormatted', 'title', 'image', 'path')
+            .where('path', '=', `/podcast/${slug}`)
+            .select('id', 'description', 'audioSrc', 'body', 'date', 'dateFormatted', 'title', 'image', 'path', 'sourceName', 'sourceUrl', 'categories', 'slugified_categories', 'duration')
             .first();
-
-        console.log(podcast)
 
         if (!podcast) {
             throw createError({
@@ -29,8 +25,6 @@ export default defineEventHandler(async (event: H3Event) => {
                 message: 'podcast não encontrado',
             });
         }
-
-        console.log(podcast)
 
         return podcast as PodcastEpisode;
 

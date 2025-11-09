@@ -37,6 +37,8 @@ watch(post, (newData) => {
       ogImage: newData?.image || 'https://heleno.dev/images/default-post.webp',
       ogType: 'article',
       twitterCard: 'summary_large_image',
+      articlePublishedTime: newData?.date,
+      ogUrl: 'https://heleno.dev' + newData.path
     });
 
     useHead({
@@ -87,7 +89,7 @@ watch(post, (newData) => {
 
       <ContentRenderer class="markdown-content" :value="post.body" />
 
-      <LazySharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
+      <SharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
 
     </article>
 
@@ -104,34 +106,3 @@ watch(post, (newData) => {
     </div>
   </div>
 </template>
-<style scoped>
-article {
-
-  & .date-published,
-  & .categories {
-    display: flex;
-    align-items: center;
-    column-gap: 1rem;
-    margin-bottom: .5rem;
-
-    & svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    & time {
-      font-style: oblique;
-    }
-
-  }
-
-  & .markdown-content {
-    margin-top: 3rem;
-  }
-
-}
-
-& .title-posts-related {
-  margin-top: 5rem;
-}
-</style>

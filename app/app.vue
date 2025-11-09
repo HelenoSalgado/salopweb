@@ -28,8 +28,8 @@ useSeoMeta({
   ogType: 'website',
   ogImage: 'https://heleno.dev/images/default-post.webp', // Imagem padrão
   twitterCard: 'summary_large_image',
-  twitterCreator: '@helenosalgado',
-  twitterSite: '@helenosalgado',
+  twitterCreator: '@HelenoSalgado',
+  twitterSite: '@HelenoSalgado',
   themeColor: '#14171a'
 });
 </script>
