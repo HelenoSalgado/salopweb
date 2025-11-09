@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ page?.title }}</h1>
+    <h1>{{ page?. }}</h1>
     <ContentRenderer v-if="page" :value="page" />
   </div>
 </template>

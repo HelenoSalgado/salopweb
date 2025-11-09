@@ -17,6 +17,15 @@ const blogSchema = pageSchema.extend({
   published: z.boolean().optional()
 })
 
+// Esquema para podcasts
+const podcastSchema = pageSchema.extend({
+  description: z.string(),
+  audioSrc: z.string(),
+  sourceName: z.string().optional(),
+  sourceUrl: z.string().url().optional(),
+  published: z.boolean().optional()
+});
+
 // 3. Configuração final
 export default defineContentConfig({
   collections: {
@@ -29,6 +38,11 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog/**/*.md',
       schema: blogSchema // <-- Usa o esquema estendido
+    }),
+    podcasts: defineCollection({
+      type: 'page',
+      source: 'podcast/**/*.md',
+      schema: podcastSchema
     }),
     sobre: defineCollection({
       type: 'page',

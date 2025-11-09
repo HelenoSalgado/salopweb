@@ -18,3 +18,16 @@ export interface CardPost {
     date?: string,
     dateFormatted?: string
 }
+
+export interface PodcastEpisode {
+    title: string;
+    description: string;
+    audioSrc: string;
+    sourceName?: string;
+    sourceUrl?: string;
+    path: string;
+    date: string;
+    dateFormatted?: string;
+    image?: string;
+}
+
