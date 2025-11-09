@@ -1,7 +1,7 @@
 <template>
     <div class="audio-player-wrapper">
         <audio controls>
-            <source :src="src" type="audio/mp4">
+            <source :src="src" type="audio/mp3">
             Seu navegador não suporta o elemento de áudio.
         </audio>
     </div>
