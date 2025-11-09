@@ -88,6 +88,7 @@ const toggleSidebar = () => {
 
       & img{
         border-radius: 50%;
+        max-width: 40px;
       }
     }
   }
