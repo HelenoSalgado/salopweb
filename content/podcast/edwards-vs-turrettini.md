@@ -4,6 +4,7 @@ description: "Uma análise filosófica e teológica sobre as visões de Jonathan
 sourceName: "IRSE"
 sourceUrl: "https://santoevangelho.com.br/jonathan-edwards-e-francois-turrettini-sobre-necessidade-contingencia-e-liberdade-da-vontade/"
 audioSrc: "/podcast/edwards_vs_francois.mp3"
+image: "/images/default-podcast.webp"
 date: "2025-11-09"
 duration: "23:22"
 categories: 

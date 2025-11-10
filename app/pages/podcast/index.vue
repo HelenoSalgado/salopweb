@@ -30,7 +30,7 @@ const { data: episodes } = await useFetch<PodcastEpisode[]>('/api/podcasts');
 const title = "Podcast - NotebookLM";
 const description = "Explore episódios de podcast sobre filosofia, teologia, tecnologia e mais. Conteúdo aprofundado gerado com o auxílio de IA.";
 const canonicalUrl = 'https://heleno.dev/podcast';
-const image = 'https://heleno.dev/images/default-post.webp';
+const image = 'https://heleno.dev/images/default-podcast.webp';
 
 useSeoMeta({
     title: title,
@@ -66,7 +66,7 @@ useHead({
                     "name": "Heleno Salgado",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://heleno.dev/images/logo.png"
+                        "url": "https://heleno.dev/images/profile.webp"
                     }
                 }
             }))

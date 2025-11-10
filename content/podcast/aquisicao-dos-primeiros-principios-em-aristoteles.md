@@ -4,6 +4,7 @@ description: "Examina-se a função da dialética, da indução (epagoge) e da i
 sourceName: "UFPel"
 sourceUrl: https://periodicos.ufpel.edu.br/index.php/dissertatio/article/view/8526
 audioSrc: "/podcast/aquisicao-dos-primeiros-principios-em-aristoteles_jaqueline-stefani.mp3"
+image: "/images/default-podcast.webp"
 categories: 
     - Filosofia
     - Epistemologia
