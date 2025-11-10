@@ -22,7 +22,6 @@ export default defineNuxtConfig({
     buildCache: true,
     // Otimizações adicionais para Nuxt 4
     appManifest: true, // Habilita manifesto para melhor caching
-    headNext: true // Nova engine de head otimizada
   },
 
   features: {

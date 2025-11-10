@@ -15,7 +15,7 @@ O Grok afirma ser capaz de decompôr uma questão até às suas verdades mais ba
 
 ## Princípio da idêntidade
 
-Aristóteles afirmava que o ente deve existir e não pode ser outra coisa senão ele mesmo; uma mesa será sempre uma mesa. Se não aceitarmos a identidade entrísica e individual de cada coisa corremos o risco de cair em grande confusão de pensamento, onde tudo é uma só e mesma coisa. Não haveria o mínimo de substrato raciocinar sobre qualquer coisa, visto que não haveria diferênça entre uma coisa e outra. “não há entidade sem identidade”[^1].
+Aristóteles afirmava que o ente deve existir e não pode ser outra coisa senão ele mesmo; uma mesa será sempre uma mesa. Se não aceitarmos a identidade entrísica e individual de cada coisa corremos o risco de cair em grande confusão de pensamento, onde tudo é uma só e mesma coisa. Não haveria o mínimo de substrato para raciocinar sobre qualquer coisa, visto que não haveria diferença entre uma coisa e outra. “não há entidade sem identidade”[^1]. 
 
 ---
 [^1]: QUINE, W. V. O. Ontological relativity and other essays. New York: Columbia University Press, 1969.
