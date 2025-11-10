@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   experimental: {
     sharedPrerenderData: true,
     renderJsonPayloads: true,
-    entryImportMap: true,
+    entryImportMap: false,
     asyncContext: true,
     lazyHydration: true,
     defaults: {
@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     buildCache: true,
     // Otimizações adicionais para Nuxt 4
     appManifest: true, // Habilita manifesto para melhor caching
+    headNext: true // Nova engine de head otimizada
   },
 
   features: {

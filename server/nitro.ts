@@ -48,5 +48,9 @@ export default {
       minifySyntax: true,
       minifyWhitespace: true,
     } 
+  },
+  // Otimiza imports externos
+  externals: {
+    inline: ['#internal/nitro']
   }
 } as NitroConfig
