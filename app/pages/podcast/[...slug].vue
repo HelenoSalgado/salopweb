@@ -93,7 +93,7 @@ watch(episode, (newData) => {
             </a>
         </p>
 
-        <SharePost :post-title="episode.title || 'Podcast'" :post-url="`https://heleno.dev${episode.path}`" />
+        <SharePost :post-title="''" :post-url="`https://heleno.dev${episode.path}`" />
 
         <ContentRenderer v-if="episode?.body" class="markdown-content" :value="episode.body" />
 

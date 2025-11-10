@@ -89,7 +89,7 @@ watch(post, (newData) => {
 
       <ContentRenderer class="markdown-content" :value="post.body" />
 
-      <SharePost :post-title="post.title || 'Post'" :post-url="`https://heleno.dev${post.path}`" />
+      <SharePost :post-title="''" :post-url="`https://heleno.dev${post.path}`" />
 
     </article>
 
