@@ -15,7 +15,8 @@ watchEffect(() => {
       lang: 'pt-BR'
     },
     link: [
-      { rel: "icon", href: "/hsl-logo.ico", type: "image/x-icon" }
+      { rel: "icon", href: "/hsl-logo.ico", type: "image/x-icon" },
+      { rel: "alternate", type: "application/rss+xml", title: "RSS Feed", href: "/rss.xml" }
     ]
   });
 })
