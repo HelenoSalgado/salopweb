@@ -14,6 +14,8 @@ if (error.value) {
     });
 }
 
+const image = 'https://heleno.dev' + episode.value?.image || 'https://heleno.dev/images/default-podcast.webp'
+
 // Configuração de SEO
 watch(episode, (newData) => {
     if (newData) {
@@ -22,7 +24,7 @@ watch(episode, (newData) => {
             description: newData?.description,
             ogTitle: newData?.title,
             ogDescription: newData?.description,
-            ogImage: newData?.image || 'https://heleno.dev/images/default-podcast.webp',
+            ogImage: image,
             ogType: 'article',
             ogAudio: 'https://heleno.dev' + newData?.audioSrc,
             ogAudioType: 'audio/mpeg',
@@ -40,7 +42,7 @@ watch(episode, (newData) => {
                         "@type": "Article",
                         "headline": newData?.title || 'Podcast do blog - NotebookLM',
                         "description": newData?.description || 'Tecnologia, Literatura e Teologia',
-                        "image": newData?.image || 'https://heleno.dev/images/default-podcast.webp',
+                        "image": image,
                         "datePublished": newData?.date || '',
                         "author": {
                             "@type": "Person",
