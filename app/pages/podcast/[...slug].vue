@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PodcastsCollectionItem } from '@nuxt/content';
+import { computed } from 'vue';
 
 const route = useRoute();
 
@@ -14,7 +15,8 @@ if (error.value) {
     });
 }
 
-const image = episode.value?.image ? 'https://heleno.dev' + episode.value.image : 'https://heleno.dev/images/default-podcast.webp'
+// Caminho relativo para componentes locais como NuxtImg
+const relativeArtworkPath = computed(() => episode?.value?.image ? 'https://heleno.dev' + episode?.value?.image : 'https://heleno.dev/images/default-podcast.webp');
 
 // Configuração de SEO
 watch(episode, (newData) => {
@@ -149,7 +151,7 @@ watch(episode, (newData) => {
             :title="episode.title"
             :artist="'Heleno Salgado'"
             :album="'Podcast do Blog - NotebookLM'"
-            :artwork="image"
+            :artwork="relativeArtworkPath"
         />
 
         <p v-if="episode?.sourceName" style="text-align: end; font-size: .9rem;">

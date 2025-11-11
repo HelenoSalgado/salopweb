@@ -1,30 +1,3 @@
-<!--
-BUG_REPORT_AND_FIX_SUMMARY
-
-[Problem]
-The audio player exhibits a critical bug where both the audio playback and the progress bar reset to time 0. This occurs under two conditions:
-1. After seeking to a new position on the progress bar (via click or drag) while the player is PAUSED, and then pressing PLAY.
-2. Intermittently when seeking via drag or using the forward/rewind buttons while the audio is playing.
-
-[Root Cause Analysis]
-The reset-on-play issue is characteristic of the underlying <audio> element's media being completely reloaded. This is likely caused by Vue/Nuxt's reactivity system re-rendering the component when state changes (e.g., `isPlaying` on play). The original implementation used a nested `<source :src="...">` element inside the `<audio>` tag. In reactive frameworks, this pattern can be unstable, as any re-render of the component tree can cause the `<source>` element to be re-evaluated, triggering a full, destructive reload of the parent `<audio>` element and resetting its `currentTime`.
-
-The intermittent resets during active playback are likely due to race conditions and attempts to seek before the audio element is fully ready. Sending a `currentTime` update to an element with an invalid `duration` or a `readyState` of 0 can cause it to error out and reset.
-
-[Solution Implemented]
-This component has been refactored with a two-part "defensive" solution to address these issues:
-
-1.  **Template Stabilization:** The nested `<source>` element was removed. The audio source is now bound directly to the `<audio>` element via the `:src="src"` attribute. This is a more stable pattern in Vue/Nuxt that is less susceptible to re-rendering issues causing a full media reload.
-
-2.  **Defensive Scripting:**
-    a. A central `isReadyToSeek()` function has been added. All user interactions that trigger a seek (drag, click, forward/rewind) are now guarded by this function. It prevents seek commands from being sent unless the audio element has a `readyState > 0` and a valid, positive `duration`. This stops errors from invalid seek attempts.
-    b. A simple `isDragging` boolean flag is used to prevent the `onTimeUpdate` event from conflicting with direct UI updates performed during a drag operation, ensuring a smooth visual experience.
-    c. Skip functions (`forward`, `rewind`) now calculate the new time based on the component's internal state (`currentTime.value`) rather than reading from the potentially stale `audioElement.value.currentTime`, preventing race conditions on rapid clicks.
-
-[Project Context]
-- Framework: Nuxt (likely v3, based on file structure)
-- Rendering Mode: Assumed to be hybrid or universal (SSR + Hydration), where reactivity-induced DOM changes can be particularly sensitive.
--->
 <template>
     <div class="audio-player-wrapper">
         <NuxtImg 
@@ -66,7 +39,7 @@ This component has been refactored with a two-part "defensive" solution to addre
                         <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                         <path d="M3 3v5h5" />
                     </svg>
-                    <span class="skip-label">10s</span>
+                    <span class="skip-label">{{ formatSkipTime(rewindAccumulator) }}</span>
                 </button>
 
                 <button 
@@ -94,7 +67,7 @@ This component has been refactored with a two-part "defensive" solution to addre
                         <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
                         <path d="M21 3v5h-5" />
                     </svg>
-                    <span class="skip-label">10s</span>
+                    <span class="skip-label">{{ formatSkipTime(forwardAccumulator) }}</span>
                 </button>
             </div>
 
@@ -133,8 +106,6 @@ This component has been refactored with a two-part "defensive" solution to addre
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-
 const props = defineProps({
     src: {
         type: String,
@@ -171,6 +142,12 @@ const tooltipPosition = ref(0);
 const isDragging = ref(false);
 const isSeeking = ref(false);
 const playAfterSeek = ref(false);
+
+// Feedback visual para saltos consecutivos
+const forwardAccumulator = ref(0);
+const rewindAccumulator = ref(0);
+let forwardResetTimer: NodeJS.Timeout | null = null;
+let rewindResetTimer: NodeJS.Timeout | null = null;
 
 // --- Funções de Verificação de Estado ---
 
@@ -259,6 +236,13 @@ const rewind = () => {
     audioElement.value!.currentTime = newTime;
     currentTime.value = newTime;
     progressPercent.value = (newTime / duration.value) * 100;
+
+    // Lógica de feedback visual
+    rewindAccumulator.value += 10;
+    if (rewindResetTimer) clearTimeout(rewindResetTimer);
+    rewindResetTimer = setTimeout(() => {
+        rewindAccumulator.value = 0;
+    }, 1500); // Reseta após 1.5s
 };
 
 const forward = () => {
@@ -269,6 +253,13 @@ const forward = () => {
     audioElement.value!.currentTime = newTime;
     currentTime.value = newTime;
     progressPercent.value = (newTime / duration.value) * 100;
+
+    // Lógica de feedback visual
+    forwardAccumulator.value += 10;
+    if (forwardResetTimer) clearTimeout(forwardResetTimer);
+    forwardResetTimer = setTimeout(() => {
+        forwardAccumulator.value = 0;
+    }, 1500); // Reseta após 1.5s
 };
 
 
@@ -330,6 +321,19 @@ const handleTouchEnd = () => {
 
 
 // --- Funções Utilitárias ---
+
+const formatSkipTime = (seconds: number): string => {
+    const displaySeconds = seconds > 0 ? seconds : 10;
+
+    if (displaySeconds < 60) {
+        return `${displaySeconds}s`;
+    }
+    const minutes = displaySeconds / 60;
+    if (Number.isInteger(minutes)) {
+        return `${minutes}min`;
+    }
+    return `${minutes.toFixed(1)}min`;
+};
 
 const onProgressHover = (event: MouseEvent) => {
     if (!isReadyToSeek()) return;
@@ -439,6 +443,7 @@ onMounted(() => {
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     min-height: 180px;
+    padding-top: 1.5rem;
 }
 
 /* Background com NuxtImg */

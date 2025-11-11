@@ -27,14 +27,6 @@ export default {
   },
   publicAssets: [
     {
-      baseURL: 'css',
-      dir: 'public/css',
-    },
-    {
-      baseURL: 'images',
-      dir: 'public/images',
-    },
-    {
       baseURL: '/',
       dir: 'public',
     }
