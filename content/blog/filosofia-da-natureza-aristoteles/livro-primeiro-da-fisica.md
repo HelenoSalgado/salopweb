@@ -19,7 +19,7 @@ _Este conteúdo é uma transcrição, com algumas correções de digitação, do
 	
 Aristóteles inicia o Livro I da Física fazendo um apanhado das principais colocações que os antigos filósofos fizeram sobre os princípios da natureza. Alguns disseram que estes princípios seriam o ar, a água, o fogo, um princípio indeterminado, os átomos ou ainda outros. Em todos estes casos Aristóteles afirma que a consideração destes filósofos não ultrapassou a abordagem da causa material.
 
-Houve ainda outros filósofos que falaram da natureza de um modo não natural, como Parmênides, que negou a multiplicidade dos entes e a existência das mutações na natureza, afirmando que tratavam-se de ilusões e que só havia na realidade um único ser imóvel e eterno. Quem fala assim, diz Aristóteles, na verdade nega a natureza pois ela é, conforme afirma mais adiante o Filósofo, um princípio intrínseco de movimento.
+Houve ainda outros filósofos que falaram da natureza de um modo não natural, como Parmênides, que negou a multiplicidade dos entes e a existência das mutações na natureza, afirmando que tratavam-se de ilusões e que só havia na realidade um único ser imóvel e eterno. Quem fala assim, diz Aristóteles, na verdade nega a natureza, pois ela é, conforme afirma mais adiante o Filósofo, um princípio intrínseco de movimento.
 
 ### 2. Determinação dos primeiros princípios da natureza, segundo Aristóteles.
 

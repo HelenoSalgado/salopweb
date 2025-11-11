@@ -14,52 +14,110 @@ if (error.value) {
     });
 }
 
-const image = 'https://heleno.dev' + episode.value?.image || 'https://heleno.dev/images/default-podcast.webp'
+const image = episode.value?.image ? 'https://heleno.dev' + episode.value.image : 'https://heleno.dev/images/default-podcast.webp'
 
 // Configuração de SEO
 watch(episode, (newData) => {
     if (newData) {
+        const fullAudioUrl = 'https://heleno.dev' + newData?.audioSrc
+        const fullPageUrl = 'https://heleno.dev' + newData.path
+        const fullImageUrl = newData?.image ? 'https://heleno.dev' + newData.image : 'https://heleno.dev/images/default-podcast.webp'
+
         useSeoMeta({
             title: newData?.title,
             description: newData?.description,
             ogTitle: newData?.title,
             ogDescription: newData?.description,
-            ogImage: image,
-            ogType: 'article',
-            ogAudio: 'https://heleno.dev' + newData?.audioSrc,
+            ogImage: fullImageUrl,
+            ogImageAlt: newData?.title,
+            ogType: 'music.song',
+            ogAudio: fullAudioUrl,
+            ogAudioSecureUrl: fullAudioUrl,
             ogAudioType: 'audio/mpeg',
-            twitterCard: 'summary_large_image',
+            ogUrl: fullPageUrl,
+            ogLocale: 'pt_BR',
+            ogSiteName: 'Heleno Salgado',
+            twitterCard: 'player',
+            twitterPlayer: fullAudioUrl,
+            twitterPlayerWidth: '480',
+            twitterPlayerHeight: '80',
+            twitterTitle: newData?.title,
+            twitterDescription: newData?.description,
+            twitterImage: fullImageUrl,
             articlePublishedTime: newData?.date,
-            ogUrl: 'https://heleno.dev' + newData.path
+            articleAuthor: ['Heleno Salgado'],
+            articleTag: newData?.categories
         });
 
         useHead({
+            link: [
+                {
+                    rel: 'canonical',
+                    href: fullPageUrl
+                }
+            ],
             script: [
                 {
                     type: 'application/ld+json',
                     textContent: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "Article",
-                        "headline": newData?.title || 'Podcast do blog - NotebookLM',
+                        "@type": "PodcastEpisode",
+                        "url": fullPageUrl,
+                        "name": newData?.title || 'Podcast do blog - NotebookLM',
                         "description": newData?.description || 'Tecnologia, Literatura e Teologia',
-                        "image": image,
+                        "image": fullImageUrl,
                         "datePublished": newData?.date || '',
+                        "timeRequired": newData.duration,
+                        "associatedMedia": {
+                            "@type": "MediaObject",
+                            "contentUrl": fullAudioUrl,
+                            "encodingFormat": "audio/mpeg",
+                            "duration": newData.duration
+                        },
                         "author": {
                             "@type": "Person",
-                            "name": "Heleno Salgado"
+                            "name": "Heleno Salgado",
+                            "url": "https://heleno.dev"
                         },
-                        "audio": newData.audioSrc ? {
-                            "@type": "AudioObject",
-                            "name": newData.title,
-                            "contentUrl": 'https://heleno.dev' + newData?.audioSrc,
-                            "description": newData.description,
-                            "encodingFormat": "audio/mpeg",
-                            "duration": newData.duration, // Duração no formato ISO 8601
-                            "uploadDate": newData.date
-                        } : undefined
+                        "partOfSeries": {
+                            "@type": "PodcastSeries",
+                            "name": "Podcast do Blog - NotebookLM",
+                            "url": "https://heleno.dev/podcast"
+                        },
+                        "inLanguage": "pt-BR"
+                    })
+                },
+                {
+                    type: 'application/ld+json',
+                    textContent: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://heleno.dev"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "Podcast",
+                                "item": "https://heleno.dev/podcast"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 3,
+                                "name": newData?.title,
+                                "item": fullPageUrl
+                            }
+                        ]
                     })
                 }
-            ]
+            ],
+            htmlAttrs: {
+                lang: 'pt-BR'
+            }
         });
     }
 }, { immediate: true });
@@ -86,7 +144,13 @@ watch(episode, (newData) => {
 
         <p v-if="episode?.description" style="margin: 2rem 0 2.5rem 0"><em>{{ episode.description }}</em></p>
 
-        <PodcastPlayer :src="episode.audioSrc" />
+        <PodcastPlayer 
+            :src="episode.audioSrc"
+            :title="episode.title"
+            :artist="'Heleno Salgado'"
+            :album="'Podcast do Blog - NotebookLM'"
+            :artwork="image"
+        />
 
         <p v-if="episode?.sourceName" style="text-align: end; font-size: .9rem;">
             Fonte:

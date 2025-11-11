@@ -97,6 +97,13 @@ export default defineNuxtConfig({
               return 'chunk-content-helpers';
             }
 
+            /*=== ISOLAMENTO: Podcast Player e recursos relacionados ===*/
+            // Isola o PodcastPlayer e suas dependências em um chunk separado
+            // Carregado apenas quando a página de podcast é acessada
+            if (id.includes('PodcastPlayer') || id.includes('/podcast/[...slug]')) {
+              return 'chunk-podcast-player';
+            }
+
             // Separação granular de node_modules
             if (id.includes('node_modules')) {
 
