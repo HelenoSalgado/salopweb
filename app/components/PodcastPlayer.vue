@@ -1,110 +1,3 @@
-<template>
-    <div class="audio-player-wrapper">
-        <NuxtImg 
-            :src="artwork"
-            class="background-artwork" 
-            :alt="title"
-            width="600"
-            height="600"
-            format="webp"
-            quality="80"
-            loading="lazy"
-        />
-        <div class="background-overlay"></div>
-        
-        <div class="player-content">
-            <audio 
-                ref="audioElement"
-                :src="src"
-                preload="metadata"
-                @timeupdate="onTimeUpdate" 
-                @loadedmetadata="onLoadedMetadata"
-                @play="onPlay"
-                @pause="onPause"
-                @ended="onEnded"
-                @seeking="onSeeking"
-                @seeked="onSeeked"
-            >
-                Seu navegador não suporta o elemento de áudio.
-            </audio>
-            
-            <div class="custom-controls">
-                <button 
-                    title="Retroceder 10 segundos"
-                    aria-label="Retroceder 10 segundos"
-                    class="control-button rewind-button" 
-                    @click="rewind"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                        <path d="M3 3v5h5" />
-                    </svg>
-                    <span class="skip-label">{{ formatSkipTime(rewindAccumulator) }}</span>
-                </button>
-
-                <button 
-                    :title="isPlaying ? 'Pausar' : 'Reproduzir'"
-                    :aria-label="isPlaying ? 'Pausar' : 'Reproduzir'"
-                    class="control-button play-pause-button"
-                    @click="togglePlayPause"
-                >
-                    <svg v-if="!isPlaying" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="6" y="4" width="4" height="16" />
-                        <rect x="14" y="4" width="4" height="16" />
-                    </svg>
-                </button>
-
-                <button 
-                    title="Avançar 10 segundos"
-                    aria-label="Avançar 10 segundos"
-                    class="control-button forward-button"
-                    @click="forward"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
-                        <path d="M21 3v5h-5" />
-                    </svg>
-                    <span class="skip-label">{{ formatSkipTime(forwardAccumulator) }}</span>
-                </button>
-            </div>
-
-            <div 
-                class="progress-container" 
-                @mousemove="onProgressHover"
-                @mouseleave="hideTimeTooltip"
-            >
-                <!-- Tooltip de tempo no hover -->
-                <div 
-                    v-if="showTimeTooltip" 
-                    class="time-tooltip"
-                    :style="{ left: tooltipPosition + '%' }"
-                >
-                    {{ formatTime(hoverTime) }}
-                </div>
-                
-                <div 
-                    class="progress-bar" 
-                    ref="progressBar"
-                    @mousedown="onProgressMouseDown"
-                    @touchstart="handleTouchStart"
-                    @touchmove="handleTouchMove"
-                    @touchend="handleTouchEnd"
-                >
-                    <div class="progress-filled" :style="{ width: progressPercent + '%' }"></div>
-                </div>
-            </div>
-
-            <div class="time-display">
-                <span class="current-time">{{ formatTime(currentTime) }}</span>
-                <span class="duration">{{ formatTime(duration) }}</span>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 const props = defineProps({
     src: {
@@ -167,10 +60,16 @@ const isReadyToSeek = () => {
 
 const onPlay = () => {
     isPlaying.value = true;
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = 'playing';
+    }
 };
 
 const onPause = () => {
     isPlaying.value = false;
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = 'paused';
+    }
 };
 
 const onEnded = () => {
@@ -418,8 +317,8 @@ onMounted(() => {
                         playbackRate: audio.playbackRate,
                         position: audio.currentTime
                     });
-                } catch {
-                    // Ignorar
+                } catch (error) {
+                    console.warn('MediaSession: Erro ao atualizar positionState:', error);
                 }
             }
         };
@@ -433,6 +332,108 @@ onMounted(() => {
     }
 });
 </script>
+<template>
+    <div class="audio-player-wrapper">
+        <NuxtImg 
+            :src="artwork"
+            class="background-artwork" 
+            :alt="title"
+            loading="lazy"
+        />
+        <div class="background-overlay"></div>
+        
+        <div class="player-content">
+            <audio 
+                ref="audioElement"
+                :src="src"
+                preload="metadata"
+                @timeupdate="onTimeUpdate" 
+                @loadedmetadata="onLoadedMetadata"
+                @play="onPlay"
+                @pause="onPause"
+                @ended="onEnded"
+                @seeking="onSeeking"
+                @seeked="onSeeked"
+            >
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+            
+            <div class="custom-controls">
+                <button 
+                    title="Retroceder 10 segundos"
+                    aria-label="Retroceder 10 segundos"
+                    class="control-button rewind-button" 
+                    @click="rewind"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                    </svg>
+                    <span class="skip-label">{{ formatSkipTime(rewindAccumulator) }}</span>
+                </button>
+
+                <button 
+                    :title="isPlaying ? 'Pausar' : 'Reproduzir'"
+                    :aria-label="isPlaying ? 'Pausar' : 'Reproduzir'"
+                    class="control-button play-pause-button"
+                    @click="togglePlayPause"
+                >
+                    <svg v-if="!isPlaying" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" />
+                        <rect x="14" y="4" width="4" height="16" />
+                    </svg>
+                </button>
+
+                <button 
+                    title="Avançar 10 segundos"
+                    aria-label="Avançar 10 segundos"
+                    class="control-button forward-button"
+                    @click="forward"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+                        <path d="M21 3v5h-5" />
+                    </svg>
+                    <span class="skip-label">{{ formatSkipTime(forwardAccumulator) }}</span>
+                </button>
+            </div>
+
+            <div 
+                class="progress-container" 
+                @mousemove="onProgressHover"
+                @mouseleave="hideTimeTooltip"
+            >
+                <!-- Tooltip de tempo no hover -->
+                <div 
+                    v-if="showTimeTooltip" 
+                    class="time-tooltip"
+                    :style="{ left: tooltipPosition + '%' }"
+                >
+                    {{ formatTime(hoverTime) }}
+                </div>
+                
+                <div 
+                    class="progress-bar" 
+                    ref="progressBar"
+                    @mousedown="onProgressMouseDown"
+                    @touchstart="handleTouchStart"
+                    @touchmove="handleTouchMove"
+                    @touchend="handleTouchEnd"
+                >
+                    <div class="progress-filled" :style="{ width: progressPercent + '%' }"></div>
+                </div>
+            </div>
+
+            <div class="time-display">
+                <span class="current-time">{{ formatTime(currentTime) }}</span>
+                <span class="duration">{{ formatTime(duration) }}</span>
+            </div>
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .audio-player-wrapper {
@@ -442,7 +443,7 @@ onMounted(() => {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    min-height: 180px;
+    min-height: 300px;
     padding-top: 1.5rem;
 }
 
@@ -455,9 +456,8 @@ onMounted(() => {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: blur(40px) brightness(0.7);
     transform: scale(1.2);
-    z-index: 1;
+    filter: opacity(.3);
 }
 
 .background-overlay {
@@ -468,18 +468,19 @@ onMounted(() => {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.5) 50%,
-        rgba(0, 0, 0, 0.7) 100%
+        rgba(0, 0, 0, 0.751) 0%,
+        rgba(0, 0, 0, 0.742) 50%,
+        rgba(0, 0, 0, 0.815) 100%
     );
-    backdrop-filter: blur(10px);
     z-index: 2;
 }
 
 .player-content {
-    position: relative;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     z-index: 3;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
 }
 
 audio {
@@ -491,7 +492,7 @@ audio {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    column-gap: 2.5rem;
     margin-bottom: 1.5rem;
 }
 
@@ -536,13 +537,13 @@ audio {
 }
 
 .play-pause-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #764ba2 100%);
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
 .play-pause-button:hover {
-    background: linear-gradient(135deg, #7c93f7 0%, #8a5ab8 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #8a5ab8 100%);
     border-color: rgba(255, 255, 255, 0.6);
     transform: scale(1.12);
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
@@ -583,7 +584,7 @@ audio {
 
 .progress-filled {
     height: 100%;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, var(--color-primary) 0%, #764ba2 100%);
     border-radius: 25px;
     transition: width 0.1s linear;
     box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
@@ -636,7 +637,7 @@ audio {
     left: 50%;
     transform: translateX(-50%);
     border: 6px solid transparent;
-    border-top-color: rgba(0, 0, 0, 0.9);
+    border-top-color: var(--color-background);
 }
 
 .progress-bar:hover {
@@ -661,18 +662,11 @@ audio {
 
 /* Responsividade */
 @media (max-width: 480px) {
-    .player-content {
-        padding: 1.5rem 1rem;
-    }
-
-    .custom-controls {
-        gap: 1rem;
-    }
 
     .rewind-button svg,
     .forward-button svg {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
     }
 
     .play-pause-button svg {
