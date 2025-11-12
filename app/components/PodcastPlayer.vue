@@ -457,7 +457,7 @@ onMounted(() => {
     object-fit: cover;
     object-position: center;
     transform: scale(1.2);
-    filter: opacity(.3);
+    filter: opacity(.5);
 }
 
 .background-overlay {
