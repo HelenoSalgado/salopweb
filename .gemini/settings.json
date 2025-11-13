@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "nuxt-remote": {
+      "httpUrl": "https://nuxt.com/mcp"
+    }
+  }
+}

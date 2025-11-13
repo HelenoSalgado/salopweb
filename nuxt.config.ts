@@ -20,9 +20,7 @@ export default defineNuxtConfig({
       }
     },
     buildCache: true,
-    // Otimizações adicionais para Nuxt 4
-    appManifest: true, // Habilita manifesto para melhor caching
-    headNext: true // Nova engine de head otimizada
+    viteEnvironmentApi: true
   },
 
   features: {
@@ -41,7 +39,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:8788',
       }
     }
   },
@@ -75,17 +73,17 @@ export default defineNuxtConfig({
         output: {
           manualChunks(id) {
 
-            if (id.includes('PodcastPlayer')) {
-              return 'chunk-podcast';
-            }
+            // if (id.includes('PodcastPlayer')) {
+            //   return 'chunk-podcast';
+            // }
 
-            if (id.includes('CategoriesList') || id.includes('RelatedPosts') || id.includes('BlogPostCard') || id.includes('Pagination')) {
-              return 'chunk-content-helpers';
-            }
+            // if (id.includes('CategoriesList') || id.includes('RelatedPosts') || id.includes('BlogPostCard') || id.includes('Pagination')) {
+            //   return 'chunk-content-helpers';
+            // }
 
-            if (id.includes('@nuxt/content')) {
-              return 'vendor-nuxt-content';
-            }
+            // if (id.includes('@nuxt/content')) {
+            //   return 'vendor-nuxt-content';
+            // }
 
             if (
               (id.includes('vue') || id.includes('@vue')) ||
