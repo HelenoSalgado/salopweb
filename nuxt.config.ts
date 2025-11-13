@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:8788',
       }
     }
   },

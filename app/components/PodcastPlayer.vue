@@ -347,7 +347,7 @@ onMounted(() => {
             <audio 
                 ref="audioElement"
                 :src="src"
-                preload="auto"
+                preload="metadata"
                 @timeupdate="onTimeUpdate" 
                 @loadedmetadata="onLoadedMetadata"
                 @play="onPlay"
