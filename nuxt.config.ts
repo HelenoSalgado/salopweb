@@ -85,17 +85,17 @@ export default defineNuxtConfig({
             //   return 'vendor-nuxt-content';
             // }
 
-            // if (
-            //   (id.includes('vue') || id.includes('@vue')) ||
-            //   id.includes('TheHeader') ||
-            //   id.includes('TheSearch') ||
-            //   id.includes('ReadingProgressBar') ||
-            //   id.includes('TheFooter') ||
-            //   id.includes('@nuxt/image')) {
+            if (
+              (id.includes('vue') || id.includes('@vue')) ||
+              id.includes('TheHeader') ||
+              id.includes('TheSearch') ||
+              id.includes('ReadingProgressBar') ||
+              id.includes('TheFooter') ||
+              id.includes('@nuxt/image')) {
 
-            //   return 'chunk-layout-shell';
+              return 'chunk-layout-shell';
 
-            // }
+            }
 
             // Separação granular de node_modules
             if (id.includes('node_modules')) {
