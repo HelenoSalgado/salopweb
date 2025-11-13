@@ -142,10 +142,10 @@ export default defineNuxtConfig({
   ],
 
   // Configuração opcional do nuxt-vitalizer (se instalado)
-  // vitalizer: {
-  //    disableStylesheets: 'entry',
-  //    disablePrefetchLinks: 'dynamicImports' // Melhora LCP
-  // },
+  vitalizer: {
+     disableStylesheets: 'entry',
+     disablePrefetchLinks: 'dynamicImports' // Melhora LCP
+  },
 
   colorMode: {
     classSuffix: '',
