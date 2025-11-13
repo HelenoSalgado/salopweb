@@ -133,16 +133,18 @@ const toggleSidebar = () => {
 
   /* Desktop Navigation */
   & .hextra-sidebar-container {
-    background-color: var(--color-header-background);
     width: 100%;
     max-width: 400px;
     position: fixed;
     height: calc(100vh - var(--hextra-header-height));
+    background-color: var(--color-header-background);
     top: calc(var(--hextra-header-height));
     right: -400px;
     transition: ease 200ms;
+    z-index: 10;
 
     & ul {
+      position: relative;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -154,6 +156,7 @@ const toggleSidebar = () => {
         font-weight: bold;
         border-bottom: 1px solid var(--color-border);
         list-style: none;
+        padding-bottom: .2rem;
       }
 
       & a {
@@ -177,10 +180,11 @@ const toggleSidebar = () => {
       width: calc(100% - 2rem);
       margin-left: 1rem;
       border-bottom: 1px solid var(--color-border);
+      padding-bottom: .2rem;
 
       & a {
-        font-size: 1.3rem;
         width: 2rem;
+        font-size: 1.5rem;
         color: var(--color-text-secondary);
         transition: color 0.2s ease;
 

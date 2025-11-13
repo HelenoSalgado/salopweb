@@ -28,7 +28,7 @@
   --color-shadow: rgba(0, 0, 0, 0.1);
 
   /* Cores de Componentes (Modo Claro) */
-  --color-header-background: var(--color-background);
+  --color-header-background: rgba(216, 216, 216, 0.8);
   --color-primary-button-bg: var(--color-primary);
   --color-primary-button-text: #eeeeee;
   --color-primary-button-border: var(--color-primary);
