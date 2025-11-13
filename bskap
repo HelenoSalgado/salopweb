@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:8788',
       }
     }
   },
@@ -74,18 +74,10 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {
           manualChunks(id) {
-
-            if (id.includes('PodcastPlayer')) {
-              return 'chunk-podcast';
-            }
-
-            if (id.includes('CategoriesList') || id.includes('RelatedPosts') || id.includes('BlogPostCard') || id.includes('Pagination')) {
-              return 'chunk-content-helpers';
-            }
-
-            if (id.includes('@nuxt/content')) {
-              return 'vendor-nuxt-content';
-            }
+            /*=== Componentes críticos de layout e core vue (apenas JS) ===*/
+            /*
+              Chunk 1: O esqueleto principal do layout. | Preciso entender melhor a forma como o Vue toma o controle no client, pois ele precisa de acesso imediato aos componentes principais do layout, tive que deixá-los no mesmo arquivo. Mesmo assim a otimização foi bem sucedida, pude dividir o chunk mais pesado em dois: 1. 103.34 kB 2 .157.42 kB.
+            */
 
             if (
               (id.includes('vue') || id.includes('@vue')) ||
@@ -97,6 +89,18 @@ export default defineNuxtConfig({
 
               return 'chunk-layout-shell';
 
+            }
+
+            // Chunk 2: Componentes que renderizam conteúdo.
+            if (id.includes('CategoriesList') || id.includes('RelatedPosts') || id.includes('BlogPostCard') || id.includes('Pagination')) {
+              return 'chunk-content-helpers';
+            }
+
+            /*=== ISOLAMENTO: Podcast Player e recursos relacionados ===*/
+            // Isola o PodcastPlayer e suas dependências em um chunk separado
+            // Carregado apenas quando a página de podcast é acessada
+            if (id.includes('PodcastPlayer') || id.includes('/podcast/[...slug]')) {
+              return 'chunk-podcast-player';
             }
 
             // Separação granular de node_modules
