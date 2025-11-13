@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { reactive, ref, shallowRef, onMounted } from 'vue';
-
 const props = defineProps({
     src: {
         type: String,
@@ -24,26 +22,19 @@ const props = defineProps({
     }
 });
 
-// --- Estado Reativo ---
+const audioElement = ref<HTMLAudioElement | null>(null);
+const progressBar = ref<HTMLDivElement | null>(null);
+const isPlaying = ref(false);
+const currentTime = ref(0);
+const duration = ref(0);
+const progressPercent = ref(0);
 
-const audioElement = shallowRef<HTMLAudioElement | null>(null);
-const progressBar = shallowRef<HTMLDivElement | null>(null);
-
-const playerState = reactive({
-    isPlaying: false,
-    isDragging: false,
-    isSeeking: false,
-    playAfterSeek: false,
-    currentTime: 0,
-    duration: 0,
-    progressPercent: 0,
-});
-
-const tooltipState = reactive({
-    show: false,
-    time: 0,
-    position: 0,
-});
+const showTimeTooltip = ref(false);
+const hoverTime = ref(0);
+const tooltipPosition = ref(0);
+const isDragging = ref(false);
+const isSeeking = ref(false);
+const playAfterSeek = ref(false);
 
 // Feedback visual para saltos consecutivos
 const forwardAccumulator = ref(0);
@@ -53,128 +44,156 @@ let rewindResetTimer: NodeJS.Timeout | null = null;
 
 // --- Funções de Verificação de Estado ---
 
+// Verifica se o player está pronto para aceitar comandos de busca.
 const isReadyToSeek = () => {
     if (!audioElement.value || !progressBar.value) return false;
+    // readyState > 0 significa que temos pelo menos os metadados.
     if (audioElement.value.readyState === 0) return false;
-    const { duration } = playerState;
-    if (!duration || isNaN(duration) || duration <= 0) return false;
+    // A duração deve ser um número válido e positivo.
+    if (!duration.value || isNaN(duration.value) || duration.value <= 0) return false;
+    
     return true;
 };
+
 
 // --- Manipuladores de Eventos do Player ---
 
 const onPlay = () => {
-    playerState.isPlaying = true;
+    isPlaying.value = true;
     if ('mediaSession' in navigator) {
         navigator.mediaSession.playbackState = 'playing';
     }
 };
 
 const onPause = () => {
-    playerState.isPlaying = false;
+    isPlaying.value = false;
     if ('mediaSession' in navigator) {
         navigator.mediaSession.playbackState = 'paused';
     }
 };
 
 const onEnded = () => {
-    playerState.isPlaying = false;
-    playerState.progressPercent = 0;
-    playerState.currentTime = 0;
+    isPlaying.value = false;
+    progressPercent.value = 0;
+    currentTime.value = 0;
 };
 
 const onTimeUpdate = () => {
-    if (!audioElement.value || playerState.isDragging || playerState.isSeeking) return;
+    // Não atualiza o tempo enquanto o usuário arrasta a barra ou o player está buscando
+    if (!audioElement.value || isDragging.value || isSeeking.value) return;
     
-    playerState.currentTime = audioElement.value.currentTime;
+    currentTime.value = audioElement.value.currentTime;
     if (isReadyToSeek()) {
-        playerState.progressPercent = (playerState.currentTime / playerState.duration) * 100;
+        progressPercent.value = (currentTime.value / duration.value) * 100;
     }
 };
 
 const onLoadedMetadata = () => {
     if (!audioElement.value) return;
-    playerState.duration = audioElement.value.duration;
+    duration.value = audioElement.value.duration;
 };
 
 const onSeeking = () => {
-    playerState.isSeeking = true;
+    isSeeking.value = true;
 };
 
 const onSeeked = () => {
-    playerState.isSeeking = false;
-    if (playerState.playAfterSeek) {
-        playerState.playAfterSeek = false;
+    isSeeking.value = false;
+    if (playAfterSeek.value) {
+        playAfterSeek.value = false;
         if (audioElement.value?.paused) {
             audioElement.value.play();
         }
     }
 };
 
+
 // --- Controles de Interação do Usuário ---
 
 const togglePlayPause = () => {
+    // Removido o check de readyState para forçar o início do carregamento
+    // com o primeiro play, caso o navegador não tenha feito o preload.
     if (!audioElement.value) return;
 
     if (audioElement.value.paused) {
-        if (playerState.isSeeking) {
-            playerState.playAfterSeek = true;
+        // Se estiver buscando, adia a reprodução. Caso contrário, toca imediatamente.
+        if (isSeeking.value) {
+            playAfterSeek.value = true;
         } else {
             audioElement.value.play();
         }
     } else {
-        playerState.playAfterSeek = false;
+        // Se o usuário pausar, cancela qualquer reprodução agendada.
+        playAfterSeek.value = false;
         audioElement.value.pause();
     }
 };
 
 const rewind = () => {
-    if (!isReadyToSeek() || !audioElement.value) return;
-    audioElement.value.currentTime = Math.max(playerState.currentTime - 10, 0);
+    if (!isReadyToSeek()) return;
+    const newTime = Math.max(currentTime.value - 10, 0);
+    
+    // Atualiza a UI e o áudio
+    audioElement.value!.currentTime = newTime;
+    currentTime.value = newTime;
+    progressPercent.value = (newTime / duration.value) * 100;
 
+    // Lógica de feedback visual
     rewindAccumulator.value += 10;
     if (rewindResetTimer) clearTimeout(rewindResetTimer);
     rewindResetTimer = setTimeout(() => {
         rewindAccumulator.value = 0;
-    }, 1500);
+    }, 1500); // Reseta após 1.5s
 };
 
 const forward = () => {
-    if (!isReadyToSeek() || !audioElement.value) return;
-    audioElement.value.currentTime = Math.min(playerState.currentTime + 10, playerState.duration);
+    if (!isReadyToSeek()) return;
+    const newTime = Math.min(currentTime.value + 10, duration.value);
 
+    // Atualiza a UI e o áudio
+    audioElement.value!.currentTime = newTime;
+    currentTime.value = newTime;
+    progressPercent.value = (newTime / duration.value) * 100;
+
+    // Lógica de feedback visual
     forwardAccumulator.value += 10;
     if (forwardResetTimer) clearTimeout(forwardResetTimer);
     forwardResetTimer = setTimeout(() => {
         forwardAccumulator.value = 0;
-    }, 1500);
+    }, 1500); // Reseta após 1.5s
 };
+
 
 // --- Lógica da Barra de Progresso ---
 
 const updateSeekPosition = (clientX: number) => {
-    if (!isReadyToSeek() || !audioElement.value || !progressBar.value) return;
+    if (!isReadyToSeek()) return;
     
-    const rect = progressBar.value.getBoundingClientRect();
+    const rect = progressBar.value!.getBoundingClientRect();
     const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    const newTime = percent * playerState.duration;
+    const newTime = percent * duration.value;
 
-    playerState.progressPercent = percent * 100;
-    playerState.currentTime = newTime;
-    audioElement.value.currentTime = newTime;
+    // Atualiza a UI diretamente para feedback imediato
+    progressPercent.value = percent * 100;
+    currentTime.value = newTime;
+    
+    // Comanda o áudio
+    audioElement.value!.currentTime = newTime;
 };
 
 const onProgressMouseDown = (event: MouseEvent) => {
     if (!isReadyToSeek()) return;
     
     event.preventDefault();
-    playerState.isDragging = true;
+    isDragging.value = true;
     updateSeekPosition(event.clientX);
     
-    const onMouseMove = (e: MouseEvent) => updateSeekPosition(e.clientX);
+    const onMouseMove = (e: MouseEvent) => {
+        updateSeekPosition(e.clientX);
+    };
     
     const onMouseUp = () => {
-        playerState.isDragging = false;
+        isDragging.value = false;
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
     };
@@ -185,42 +204,51 @@ const onProgressMouseDown = (event: MouseEvent) => {
 
 const handleTouchStart = (event: TouchEvent) => {
     if (!isReadyToSeek()) return;
-    playerState.isDragging = true;
+    
+    // Removido event.preventDefault() - o CSS 'touch-action: none' cuida disso.
+    isDragging.value = true;
     updateSeekPosition(event.touches[0].clientX);
 };
 
 const handleTouchMove = (event: TouchEvent) => {
-    if (!playerState.isDragging) return;
+    if (!isDragging.value) return;
     updateSeekPosition(event.touches[0].clientX);
 };
 
 const handleTouchEnd = () => {
-    playerState.isDragging = false;
+    isDragging.value = false;
 };
+
 
 // --- Funções Utilitárias ---
 
 const formatSkipTime = (seconds: number): string => {
     const displaySeconds = seconds > 0 ? seconds : 10;
-    if (displaySeconds < 60) return `${displaySeconds}s`;
+
+    if (displaySeconds < 60) {
+        return `${displaySeconds}s`;
+    }
     const minutes = displaySeconds / 60;
-    return Number.isInteger(minutes) ? `${minutes}min` : `${minutes.toFixed(1)}min`;
+    if (Number.isInteger(minutes)) {
+        return `${minutes}min`;
+    }
+    return `${minutes.toFixed(1)}min`;
 };
 
 const onProgressHover = (event: MouseEvent) => {
-    if (!isReadyToSeek() || !progressBar.value) return;
+    if (!isReadyToSeek()) return;
     
-    const rect = progressBar.value.getBoundingClientRect();
+    const rect = progressBar.value!.getBoundingClientRect();
     const hoverX = event.clientX - rect.left;
     const percent = Math.max(0, Math.min(1, hoverX / rect.width));
     
-    tooltipState.time = percent * playerState.duration;
-    tooltipState.position = percent * 100;
-    tooltipState.show = true;
+    hoverTime.value = percent * duration.value;
+    tooltipPosition.value = percent * 100;
+    showTimeTooltip.value = true;
 };
 
 const hideTimeTooltip = () => {
-    tooltipState.show = false;
+    showTimeTooltip.value = false;
 };
 
 const formatTime = (seconds: number): string => {
@@ -236,58 +264,72 @@ const formatTime = (seconds: number): string => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
 };
 
+
 // --- Ciclo de Vida e Media Session ---
 
-const setupMediaSession = (audio: HTMLAudioElement) => {
-    if (!('mediaSession' in navigator)) return;
-
-    const updateMetadata = () => {
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: props.title,
-            artist: props.artist,
-            album: props.album,
-            artwork: [
-                { src: props.artwork, sizes: '96x96', type: 'image/webp' },
-                { src: props.artwork, sizes: '128x128', type: 'image/webp' },
-                { src: props.artwork, sizes: '192x192', type: 'image/webp' },
-                { src: props.artwork, sizes: '256x256', type: 'image/webp' },
-                { src: props.artwork, sizes: '384x384', type: 'image/webp' },
-                { src: props.artwork, sizes: '512x512', type: 'image/webp' }
-            ]
-        });
-    };
-
-    const updatePositionState = () => {
-        if (navigator.mediaSession.setPositionState && !isNaN(audio.duration) && audio.duration > 0) {
-            try {
-                navigator.mediaSession.setPositionState({
-                    duration: audio.duration,
-                    playbackRate: audio.playbackRate,
-                    position: audio.currentTime
-                });
-            } catch (error) {
-                console.warn('MediaSession: Erro ao atualizar positionState:', error);
-            }
-        }
-    };
-
-    navigator.mediaSession.setActionHandler('play', () => audio.play());
-    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
-    navigator.mediaSession.setActionHandler('seekbackward', (d) => { audio.currentTime = Math.max(audio.currentTime - (d.seekOffset || 10), 0); });
-    navigator.mediaSession.setActionHandler('seekforward', (d) => { audio.currentTime = Math.min(audio.currentTime + (d.seekOffset || 10), audio.duration || 0); });
-    navigator.mediaSession.setActionHandler('seekto', (d) => { if (d.seekTime != null) audio.currentTime = d.seekTime; });
-
-    updateMetadata();
-    audio.addEventListener('loadedmetadata', () => {
-        updateMetadata();
-        updatePositionState();
-    });
-    audio.addEventListener('timeupdate', updatePositionState);
-};
-
 onMounted(() => {
-    if (audioElement.value) {
-        setupMediaSession(audioElement.value);
+    if (!audioElement.value) return;
+    
+    const audio = audioElement.value;
+
+    if ('mediaSession' in navigator) {
+        const updateMetadata = () => {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: props.title,
+                artist: props.artist,
+                album: props.album,
+                artwork: [
+                    { src: props.artwork, sizes: '96x96', type: 'image/webp' },
+                    { src: props.artwork, sizes: '128x128', type: 'image/webp' },
+                    { src: props.artwork, sizes: '192x192', type: 'image/webp' },
+                    { src: props.artwork, sizes: '256x256', type: 'image/webp' },
+                    { src: props.artwork, sizes: '384x384', type: 'image/webp' },
+                    { src: props.artwork, sizes: '512x512', type: 'image/webp' }
+                ]
+            });
+        };
+
+        navigator.mediaSession.setActionHandler('play', () => audio.play());
+        navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+
+        navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+            const skipTime = details.seekOffset || 10;
+            audio.currentTime = Math.max(audio.currentTime - skipTime, 0);
+        });
+
+        navigator.mediaSession.setActionHandler('seekforward', (details) => {
+            const skipTime = details.seekOffset || 10;
+            audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration || 0);
+        });
+
+        navigator.mediaSession.setActionHandler('seekto', (details) => {
+            if (details.seekTime !== null && details.seekTime !== undefined) {
+                audio.currentTime = details.seekTime;
+            }
+        });
+
+        updateMetadata();
+        
+        const updatePositionState = () => {
+            if (navigator.mediaSession.setPositionState && !isNaN(audio.duration) && audio.duration > 0) {
+                try {
+                    navigator.mediaSession.setPositionState({
+                        duration: audio.duration,
+                        playbackRate: audio.playbackRate,
+                        position: audio.currentTime
+                    });
+                } catch (error) {
+                    console.warn('MediaSession: Erro ao atualizar positionState:', error);
+                }
+            }
+        };
+
+        audio.addEventListener('loadedmetadata', () => {
+            updateMetadata();
+            updatePositionState();
+        });
+        
+        audio.addEventListener('timeupdate', updatePositionState);
     }
 });
 </script>
@@ -332,12 +374,12 @@ onMounted(() => {
                 </button>
 
                 <button 
-                    :title="playerState.isPlaying ? 'Pausar' : 'Reproduzir'"
-                    :aria-label="playerState.isPlaying ? 'Pausar' : 'Reproduzir'"
+                    :title="isPlaying ? 'Pausar' : 'Reproduzir'"
+                    :aria-label="isPlaying ? 'Pausar' : 'Reproduzir'"
                     class="control-button play-pause-button"
                     @click="togglePlayPause"
                 >
-                    <svg v-if="!playerState.isPlaying" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <svg v-if="!isPlaying" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                         <polygon points="5 3 19 12 5 21 5 3" />
                     </svg>
                     <svg v-else xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
@@ -367,11 +409,11 @@ onMounted(() => {
             >
                 <!-- Tooltip de tempo no hover -->
                 <div 
-                    v-if="tooltipState.show" 
+                    v-if="showTimeTooltip" 
                     class="time-tooltip"
-                    :style="{ left: tooltipState.position + '%' }"
+                    :style="{ left: tooltipPosition + '%' }"
                 >
-                    {{ formatTime(tooltipState.time) }}
+                    {{ formatTime(hoverTime) }}
                 </div>
                 
                 <div 
@@ -382,13 +424,13 @@ onMounted(() => {
                     @touchmove.passive="handleTouchMove"
                     @touchend="handleTouchEnd"
                 >
-                    <div class="progress-filled" :style="{ width: playerState.progressPercent + '%' }"></div>
+                    <div class="progress-filled" :style="{ width: progressPercent + '%' }"></div>
                 </div>
             </div>
 
             <div class="time-display">
-                <span class="current-time">{{ formatTime(playerState.currentTime) }}</span>
-                <span class="duration">{{ formatTime(playerState.duration) }}</span>
+                <span class="current-time">{{ formatTime(currentTime) }}</span>
+                <span class="duration">{{ formatTime(duration) }}</span>
             </div>
         </div>
     </div>
