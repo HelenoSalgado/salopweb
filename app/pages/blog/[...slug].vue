@@ -2,6 +2,9 @@
 import type { BlogCollectionItem } from '@nuxt/content';
 import type { CardPost } from '~~/server/types';
 
+const config = useRuntimeConfig();
+const siteUrl = config.public.site.url;
+
 const route = useRoute();
 
 // Busca o post principal
@@ -34,11 +37,11 @@ watch(post, (newData) => {
       description: newData?.description,
       ogTitle: newData?.title,
       ogDescription: newData?.description,
-      ogImage: newData?.image || 'https://heleno.dev/images/default-post.webp',
+      ogImage: newData?.image || `${siteUrl}/images/default-post.webp`,
       ogType: 'article',
       twitterCard: 'summary_large_image',
       articlePublishedTime: newData?.date,
-      ogUrl: 'https://heleno.dev' + newData.path
+      ogUrl: siteUrl + newData.path
     });
 
     useHead({
@@ -50,7 +53,7 @@ watch(post, (newData) => {
             "@type": "Article",
             "headline": newData?.title || 'Post do blog',
             "description": newData?.description || 'Tecnologia, Literatura e Teologia',
-            "image": newData?.image || 'https://heleno.dev/images/default-post.webp',
+            "image": newData?.image || `${siteUrl}/images/default-post.webp`,
             "datePublished": newData?.date || '',
             "author": {
               "@type": "Person",
@@ -89,7 +92,7 @@ watch(post, (newData) => {
 
       <ContentRenderer class="markdown-content" :value="post.body" />
 
-      <SharePost :post-title="''" :post-url="`https://heleno.dev${post.path}`" />
+      <SharePost :post-title="''" :post-url="`${siteUrl}${post.path}`" />
 
     </article>
 

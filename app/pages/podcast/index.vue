@@ -7,7 +7,7 @@
             <h2>{{ episode.title }}</h2>
             <p style="margin-bottom: 2.5rem;">{{ episode.description }}</p>
 
-            <PodcastPlayer :src="episode.audioSrc" />
+            <PodcastPlayer :src="siteUrl + episode.audioSrc" />
 
             <div class="episode-footer">
                 <p class="source">
@@ -16,7 +16,7 @@
                         <em>{{ episode.sourceName }}</em>
                     </a>
                 </p>
-                <SharePost :post-title="episode.title" :post-url="`https://heleno.dev${episode.path}`" />
+                <SharePost :post-title="episode.title" :post-url="`${siteUrl}${episode.path}`" />
             </div>
         </section>
     </div>
@@ -25,12 +25,14 @@
 <script setup lang="ts">
 import type { PodcastEpisode } from '../../../server/types';
 
+const siteUrl = useRuntimeConfig().public.site.url;
+
 const { data: episodes } = await useFetch<PodcastEpisode[]>('/api/podcasts');
 
 const title = "Podcast - NotebookLM";
 const description = "Explore episódios de podcast sobre filosofia, teologia, tecnologia e mais. Conteúdo aprofundado gerado com o auxílio de IA.";
-const canonicalUrl = 'https://heleno.dev/podcast';
-const image = 'https://heleno.dev/images/default-podcast.webp';
+const canonicalUrl = siteUrl + '/podcast';
+const image = siteUrl + '/images/default-podcast.webp';
 
 useSeoMeta({
     title: title,
@@ -59,14 +61,14 @@ useHead({
                 "image": image,
                 "author": {
                     "@type": "Person",
-                    "name": "Heleno Salgado" // Seu nome como autor
+                    "name": "Heleno Salgado"
                 },
                 "publisher": {
                     "@type": "Organization",
                     "name": "Heleno Salgado",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://heleno.dev/images/profile.webp"
+                        "url": siteUrl + '/images/profile.webp'
                     }
                 }
             }))

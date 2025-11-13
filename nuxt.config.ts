@@ -41,9 +41,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        defaultLocale: 'pt-BR',
-        url: process.env.BASE_URL,
-      },
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+      }
     }
   },
 

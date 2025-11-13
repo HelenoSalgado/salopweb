@@ -6,7 +6,7 @@ categories:
   - Física
   - Aristóteles
 description: "Notas sobre a filosofia da natureza em Aristóteles - baseadas no Comentário de S. Tomás de Aquino à Física de Aristóteles."
-published: true
+published: false
 ---
 
 _Este conteúdo é uma transcrição, com algumas correções de digitação, do original disponível em [cristianismo.org.br](https://cristianismo.org.br/m-fisica.htm)_

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { PodcastsCollectionItem } from '@nuxt/content';
-import { computed } from 'vue';
+
+const siteUrl = useRuntimeConfig().public.site.url;
 
 const route = useRoute();
 
@@ -16,14 +17,14 @@ if (error.value) {
 }
 
 // Caminho relativo para componentes locais como NuxtImg
-const relativeArtworkPath = computed(() => episode?.value?.image ? 'https://heleno.dev' + episode?.value?.image : 'https://heleno.dev/images/default-podcast.webp');
+const relativeArtworkPath = computed(() => episode?.value?.image ? siteUrl + episode?.value?.image : siteUrl + '/images/default-podcast.webp');
 
 // Configuração de SEO
 watch(episode, (newData) => {
     if (newData) {
-        const fullAudioUrl = 'https://heleno.dev' + newData?.audioSrc
-        const fullPageUrl = 'https://heleno.dev' + newData.path
-        const fullImageUrl = newData?.image ? 'https://heleno.dev' + newData.image : 'https://heleno.dev/images/default-podcast.webp'
+        const fullAudioUrl = siteUrl + newData?.audioSrc
+        const fullPageUrl = siteUrl + newData.path
+        const fullImageUrl = newData?.image ? siteUrl + newData.image : siteUrl + '/images/default-podcast.webp'
 
         useSeoMeta({
             title: newData?.title,
@@ -79,12 +80,12 @@ watch(episode, (newData) => {
                         "author": {
                             "@type": "Person",
                             "name": "Heleno Salgado",
-                            "url": "https://heleno.dev"
+                            "url": siteUrl
                         },
                         "partOfSeries": {
                             "@type": "PodcastSeries",
                             "name": "Podcast do Blog - NotebookLM",
-                            "url": "https://heleno.dev/podcast"
+                            "url": siteUrl + '/podcast'
                         },
                         "inLanguage": "pt-BR"
                     })
@@ -99,13 +100,13 @@ watch(episode, (newData) => {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "Home",
-                                "item": "https://heleno.dev"
+                                "item": siteUrl
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "Podcast",
-                                "item": "https://heleno.dev/podcast"
+                                "item": siteUrl + '/podcast'
                             },
                             {
                                 "@type": "ListItem",
@@ -147,7 +148,7 @@ watch(episode, (newData) => {
         <p v-if="episode?.description" style="margin: 2rem 0 2.5rem 0"><em>{{ episode.description }}</em></p>
 
         <PodcastPlayer 
-            :src="episode.audioSrc"
+            :src="siteUrl+episode.audioSrc"
             :title="episode.title"
             :artist="'Heleno Salgado'"
             :album="'Podcast do Blog - NotebookLM'"
@@ -161,7 +162,7 @@ watch(episode, (newData) => {
             </a>
         </p>
 
-        <SharePost :post-title="''" :post-url="`https://heleno.dev${episode.path}`" />
+        <SharePost :post-title="''" :post-url="`${siteUrl}${episode.path}`" />
 
         <ContentRenderer v-if="episode?.body" class="markdown-content" :value="episode.body" />
 

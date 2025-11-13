@@ -67,6 +67,9 @@
 <script setup lang="ts">
 import TagCloud from 'TagCloud';
 
+const config = useRuntimeConfig();
+const siteUrl = config.public.site.url;
+
 definePageMeta({
   layout: 'portfolio'
 });
@@ -92,7 +95,7 @@ useHead({
           '@type': 'Person',
           'name': 'Heleno Salgado',
           'alternateName': 'Leno',
-          'url': 'https://heleno.dev',
+          'url': siteUrl,
           'jobTitle': 'Desenvolvedor de Software',
           'knowsAbout': [
             'TypeScript', 'Vue.js', 'Nuxt.js', 'Node.js', 'PHP', 'Laravel', 'SQL', 'Docker', 'Linux', 'Kotlin'

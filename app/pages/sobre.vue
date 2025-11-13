@@ -6,6 +6,9 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
+const siteUrl = config.public.site.url;
+
 const { data: page } = await useFetch('/api/pages/sobre');
 
 definePageMeta({
@@ -18,7 +21,7 @@ watchEffect(() => {
   description: page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
   ogTitle: page.value?.title || 'Sobre',
   ogDescription: page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
-  ogImage: page.value?.image || 'https://heleno.dev/images/default-post.webp',
+  ogImage: page.value?.image || `${siteUrl}/images/default-post.webp`,
   ogType: 'profile',
 });
 })

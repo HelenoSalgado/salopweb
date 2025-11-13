@@ -111,7 +111,9 @@ const onSeeked = () => {
 // --- Controles de Interação do Usuário ---
 
 const togglePlayPause = () => {
-    if (!audioElement.value || audioElement.value.readyState === 0) return;
+    // Removido o check de readyState para forçar o início do carregamento
+    // com o primeiro play, caso o navegador não tenha feito o preload.
+    if (!audioElement.value) return;
 
     if (audioElement.value.paused) {
         // Se estiver buscando, adia a reprodução. Caso contrário, toca imediatamente.
@@ -210,7 +212,6 @@ const handleTouchStart = (event: TouchEvent) => {
 
 const handleTouchMove = (event: TouchEvent) => {
     if (!isDragging.value) return;
-    event.preventDefault(); // M mantido aqui para garantir um arrastar suave.
     updateSeekPosition(event.touches[0].clientX);
 };
 
@@ -346,7 +347,7 @@ onMounted(() => {
             <audio 
                 ref="audioElement"
                 :src="src"
-                preload="metadata"
+                preload="auto"
                 @timeupdate="onTimeUpdate" 
                 @loadedmetadata="onLoadedMetadata"
                 @play="onPlay"
@@ -419,8 +420,8 @@ onMounted(() => {
                     class="progress-bar" 
                     ref="progressBar"
                     @mousedown="onProgressMouseDown"
-                    @touchstart="handleTouchStart"
-                    @touchmove="handleTouchMove"
+                    @touchstart.passive="handleTouchStart"
+                    @touchmove.passive="handleTouchMove"
                     @touchend="handleTouchEnd"
                 >
                     <div class="progress-filled" :style="{ width: progressPercent + '%' }"></div>

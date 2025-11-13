@@ -5,6 +5,9 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
+const siteUrl = config.public.site.url;
+
 // --- Possível causa de renderização dupla ---
 watchEffect(() => {
   useHead({
@@ -27,7 +30,7 @@ useSeoMeta({
   ogLocale: 'pt-BR',
   ogSiteName: 'Heleno Salgado',
   ogType: 'website',
-  ogImage: 'https://heleno.dev/images/default-post.webp', // Imagem padrão
+  ogImage: `${siteUrl}/images/default-post.webp`, // Imagem padrão
   twitterCard: 'summary_large_image',
   twitterCreator: '@HelenoSalgado',
   twitterSite: '@HelenoSalgado',

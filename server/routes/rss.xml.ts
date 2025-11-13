@@ -3,7 +3,7 @@ import type { H3Event } from 'h3'
 
 export default defineEventHandler(async (event: H3Event) => {
 
-  const siteUrl = 'https://heleno.dev'
+  const siteUrl = useRuntimeConfig().public.site.url
   
   // Busca todos os posts do blog publicados
   const posts = await queryCollection(event, 'blog')
