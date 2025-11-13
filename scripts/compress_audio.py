@@ -41,8 +41,12 @@ def compress_audio_files():
         command = [
             'ffmpeg',
             '-i', input_path,
-            '-b:a', '96k',       # Set audio bitrate to 96k
-            '-y',                # Overwrite output file if it exists
+            '-vn',                # Remove any video track if present
+            '-c:a', 'libmp3lame', # Use LAME encoder for MP3
+            '-b:a', '96k',        # Constant bitrate at 96k (keeps file < 24MB for ~20-25min)
+            '-write_xing', '1',   # Force writing Xing/Info header to enable accurate seeking
+            '-map_metadata', '-1',# Drop all metadata that could carry odd container tags (dash/mp4)
+            '-y',                 # Overwrite output file if it exists
             temp_output_path
         ]
 
