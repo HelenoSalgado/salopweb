@@ -137,16 +137,16 @@ main {
   & p,
   & li {
     color: var(--color-text-primary);
-font-size: 1.3rem;
-text-align: justify;
-hyphens: auto;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
+    font-size: 1.3rem;
   }
 
   & p {
     line-height: 1.8rem;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
   }
 
   /* Links */
