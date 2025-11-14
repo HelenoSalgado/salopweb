@@ -54,7 +54,6 @@ const toggleSidebar = () => {
   background-color: var(--color-header-background);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
-  padding: 0 1rem;
   height: var(--hextra-header-height);
   position: fixed;
   top: 0;
@@ -71,6 +70,7 @@ const toggleSidebar = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 1rem;
   }
 
   & .brand {

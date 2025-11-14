@@ -36,13 +36,6 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'preload',
-          href: '/fonts/Inter-normal-400-latin.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous'
-        },
-        {
-          rel: 'preload',
           href: '/fonts/Baskervville-Regular.ttf',
           as: 'font',
           type: 'font/ttf',
