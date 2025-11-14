@@ -135,14 +135,12 @@ main {
 
   /* Parágrafos e Listas */
   & p,
-  & ul,
-  & ol,
   & li {
     color: var(--color-text-primary);
+font-size: 1.3rem;
   }
 
   & p {
-    font-size: 1.3rem;
     line-height: 1.8rem;
   }
 
