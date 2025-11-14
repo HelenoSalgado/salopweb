@@ -139,8 +139,10 @@ main {
     color: var(--color-text-primary);
 font-size: 1.3rem;
 text-align: justify;
-overflow-wrap: break-word;
-text-wrap: pretty;
+hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
   }
 
   & p {
