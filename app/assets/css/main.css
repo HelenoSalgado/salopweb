@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-normal-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Lora-normal-400-latin.woff2') format('woff2');
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.2s ease;
@@ -77,37 +93,23 @@
   --callout-star-bg: rgba(139, 92, 246, 0.1);
 }
 
-/* Global CSS Presets */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+a {
+  text-decoration: none;
+  color: inherit;
+  font-family: 'Inter', sans-serif;
 }
+
 
 html,
 body {
   margin: 0;
-  font-family: sans-serif;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  /* Inherit color by default, specific styles will override */
-}
-
-/* ===== ESTILOS GLOBAIS E DE CONTEÚDO ===== */
-
-/* Estilos do Body */
-html,
-body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  font-family: sans-serif;
 }
 
 /* Área de Conteúdo Principal */
@@ -153,6 +155,7 @@ main {
 
   & strong {
     font-size: clamp(1rem, 5vw, 1.1rem);
+    font-family: 'Lora';
   }
 
   /* Links */
@@ -171,7 +174,6 @@ main {
     padding-left: 1em;
     margin: 1.5em 0;
     color: var(--color-text-secondary);
-    font-style: italic;
     transition: border-color 0.3s ease, color 0.3s ease;
   }
 

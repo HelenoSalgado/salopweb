@@ -8,6 +8,7 @@
 const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
 
+
 // --- Possível causa de renderização dupla ---
 watchEffect(() => {
   useHead({

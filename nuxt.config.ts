@@ -31,7 +31,25 @@ export default defineNuxtConfig({
 
   app: {
     buildAssetsDir: "nuxt",
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      link: [
+        {
+          rel: 'preload',
+          href: '/fonts/Inter-normal-400-latin.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/Lora-normal-400-latin.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        },
+      ]
+    }
   },
 
   nitro,
@@ -39,12 +57,14 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:8788',
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
       }
     }
   },
 
+
   css: ['~/assets/css/main.css'],
+  
 
   vite: {
     optimizeDeps: {
@@ -56,16 +76,16 @@ export default defineNuxtConfig({
     build: {
       // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
       cssCodeSplit: true,
-      
+
       // Reduz tamanho do bundle
       minify: 'esbuild',
-      
+
       // Remove comentários e sourcemaps em produção
       sourcemap: false,
-      
+
       // Otimizações de performance
       target: 'esnext',
-      
+
       // Controla tamanho dos chunks para melhor caching
       chunkSizeWarningLimit: 1000,
 
@@ -135,17 +155,9 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@nuxt/eslint",
-    "@nuxtjs/google-fonts",
     "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
-    "nuxt-vitalizer"
   ],
-
-  // Configuração opcional do nuxt-vitalizer (se instalado)
-  vitalizer: {
-     disableStylesheets: 'entry',
-     disablePrefetchLinks: 'dynamicImports' // Melhora LCP
-  },
 
   colorMode: {
     classSuffix: '',
@@ -153,27 +165,6 @@ export default defineNuxtConfig({
     storageKey: 'salop-color-mode',
     fallback: 'dark',
     storage: 'cookie'
-  },
-
-  googleFonts: {
-    outputDir: 'app/assets',
-    fontsDir: 'fonts',
-    fontsPath: '~/assets/fonts',
-    families: {
-      Inter: [400],  // Removido 700 - não usado no CSS
-      Lora: {
-        wght: [400],  // Removido 700 - pode usar font-weight: bold que simula
-        ital: [400]
-      }
-    },
-    subsets: ['latin'],  // Mudado de latin-ext para latin (menor)
-    display: 'swap',
-    preconnect: true,
-    useStylesheet: false,
-    overwriting: false,
-    preload: true,
-    inject: true,
-    download: true
   },
 
   content: {
