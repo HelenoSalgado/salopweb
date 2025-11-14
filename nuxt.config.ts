@@ -43,9 +43,9 @@ export default defineNuxtConfig({
         },
         {
           rel: 'preload',
-          href: '/fonts/Lora-normal-400-latin.woff2',
+          href: '/fonts/Baskervville-Regular.ttf',
           as: 'font',
-          type: 'font/woff2',
+          type: 'font/ttf',
           crossorigin: 'anonymous'
         },
       ]
