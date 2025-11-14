@@ -606,6 +606,7 @@ audio {
 
 /* Display de Tempo */
 .time-display {
+    margin-top: .4rem;
     display: flex;
     justify-content: space-between;
     font-size: 0.875rem;
