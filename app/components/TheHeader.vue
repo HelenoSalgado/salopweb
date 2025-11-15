@@ -29,6 +29,7 @@ const toggleSidebar = () => {
           <li><NuxtLink to="/sobre">Sobre</NuxtLink></li>
           <li><NuxtLink to="/blog">Escritos</NuxtLink></li>
           <li><NuxtLink to="/podcast">Podcast</NuxtLink></li>
+          <li><NuxtLink to="/newsletter">Newsletter</NuxtLink></li>
         </ul>
         <div class="social-media">
           <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer" title="Instagram" arial-label="Meu Perfil no Instagram">

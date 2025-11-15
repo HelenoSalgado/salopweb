@@ -107,5 +107,8 @@ watch(post, (newData) => {
       <LazyIconsFeather />
       <p>Escrevendo...</p>
     </div>
+
+    <h3 style="margin-top: 5rem;">Newsletter</h3>
+    <NewsletterForm/>
   </div>
 </template>

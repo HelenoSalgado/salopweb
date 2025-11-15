@@ -8,7 +8,7 @@ compatibility_date = "2025-09-19"
 # Wrangler will automatically create a local 'content.sqlite' file in the .wrangler directory.
 [[d1_databases]]
 binding = "DB"
-database_name = ""
+database_name = "blog"
 database_id = ""
 
 # --- PRODUCTION ---
