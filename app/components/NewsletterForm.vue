@@ -43,11 +43,10 @@ form {
   width: 100%;
   border-radius: 6px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-background);
   transition: all 0.2s ease;
   overflow: hidden;
 
-  & :focus-within {
+  &:focus-within {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
   }
@@ -68,19 +67,18 @@ form {
   }
 
   & button {
-    min-width: 100px;
+    min-width: 85px;
     padding: 0 1rem;
     border: none;
     border-radius: 0;
     background-color: var(--color-primary-button-bg);
-    color: var(--color-text-primary);
+    color: #1e1e1e;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 
     &:hover:not(:disabled) {
       background-color: var(--color-primary-hover);
@@ -121,15 +119,5 @@ form {
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }
 </style>
