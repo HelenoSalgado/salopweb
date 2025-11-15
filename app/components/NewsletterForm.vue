@@ -23,7 +23,7 @@ const { data, error, pending, execute } = await useFetch('/api/newsletter/subscr
       </button>
     </form>
     <div v-if="data" class="message success">
-      {{ data }}
+      {{ data.message }}
     </div>
     <div v-if="error?.message" class="message error">
       {{ error.data.message }}
@@ -80,6 +80,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 
     &:hover:not(:disabled) {
       background-color: var(--color-primary-hover);
