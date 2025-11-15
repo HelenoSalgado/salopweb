@@ -4,7 +4,7 @@ const email = ref('')
 
 const { data, error, pending, execute } = await useFetch('/api/newsletter/subscribe', {
   method: 'POST',
-  body: { email: email.value },
+  body: { email },
   lazy: true,
   immediate: false
 })
@@ -38,6 +38,7 @@ const { data, error, pending, execute } = await useFetch('/api/newsletter/subscr
 }
 
 form {
+  position: relative;
   display: flex;
   width: 100%;
   border-radius: 6px;
@@ -67,6 +68,7 @@ form {
   }
 
   & button {
+    min-width: 100px;
     padding: 0 1rem;
     border: none;
     border-radius: 0;
