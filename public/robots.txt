@@ -1,2 +1,4 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Disallow: /api/
+
+Sitemap: https://heleno.dev/sitemap.xml
