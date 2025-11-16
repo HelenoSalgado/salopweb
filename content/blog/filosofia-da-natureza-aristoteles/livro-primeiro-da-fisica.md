@@ -9,7 +9,7 @@ description: "Notas sobre a filosofia da natureza em Aristóteles - baseadas no 
 published: true
 ---
 
-_Este conteúdo é uma transcrição, com algumas correções de digitação, do original disponível em [cristianismo.org.br](https://cristianismo.org.br/m-fisica.htm)_
+_Este conteúdo é uma transcrição do original disponível em [cristianismo.org.br](https://cristianismo.org.br/m-fisica.htm)_
 
 ## Notas Sobre a Filosofia da Natureza em Aristóteles - baseadas no Comentário de S. Tomás de Aquino à Física de Aristóteles
 
