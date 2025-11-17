@@ -173,13 +173,11 @@ main {
     overflow-x: auto;
     margin-bottom: 1em;
     background-color: var(--color-background-hover);
-    font-family: Courier, monospace;
-    font-size: 1.3em;
   }
 
   & code {
     font-family: Courier, monospace;
-    font-size: 1.1em;
+    font-size: 1rem;
     background-color: var(--color-background-hover);
     padding: 0.1em 0.4em;
     border-radius: 3px;
