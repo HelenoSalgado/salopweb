@@ -177,7 +177,7 @@ main {
   }
 
   & code {
-    font-family: 'Baskervville', Courier, monospace;
+    font-family: Courier, monospace;
     font-size: 1.2em;
     background-color: var(--color-background-hover);
     padding: 0.1em 0.4em;
