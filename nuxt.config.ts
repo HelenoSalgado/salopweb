@@ -98,7 +98,7 @@ export default defineNuxtConfig({
             // }
 
             // Vue core must be separate from components for proper initialization
-            if (id.includes('node_modules') && (id.includes('vue') || id.includes('@vue'))) {
+            if (id.includes('node_modules/vue/') || id.includes('node_modules/@vue/')) {
               return 'vendor-vue';
             }
 
