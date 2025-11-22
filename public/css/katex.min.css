@@ -1,301 +1,9 @@
 @font-face {
-  font-family: 'Baskervville';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/Baskervville-Regular.ttf') format('truetype');
-}
-
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-}
-
-:root {
-  /* Layout */
-  --hextra-max-page-width: 90rem;
-  --hextra-max-navbar-width: 75rem;
-  --hextra-max-footer-width: 75rem;
-  --hextra-header-height: 3.5rem;
-
-  /* Cores Semânticas (Modo Claro) */
-  --color-background: #d8d8d8;
-  --color-background-hover: #cccccc;
-  --color-background-active: #e0e0e0;
-  --color-text-primary: #3a3a3a;
-  --color-text-secondary: #424242;
-  --color-text-heading: #444;
-  --color-border: #d6d6d6;
-  --color-primary: #3094ff;
-  --color-primary-hover: #007bff;
-  --color-shadow: rgba(0, 0, 0, 0.1);
-
-  /* Cores de Componentes (Modo Claro) */
-  --color-header-background: rgba(216, 216, 216, 0.8);
-  --color-primary-button-bg: var(--color-primary);
-  --color-primary-button-text: #eeeeee;
-  --color-primary-button-border: var(--color-primary);
-
-  /* Cores de Destaque (Callouts) */
-  --callout-info-border: #3b82f6;
-  --callout-info-bg: rgba(59, 130, 246, 0.05);
-  --callout-info-icon: #3b82f6;
-  --callout-idea-border: #f59e0b;
-  --callout-idea-bg: rgba(245, 158, 11, 0.05);
-  --callout-idea-icon: #f59e0b;
-  --callout-attention-border: #ef4444;
-  --callout-attention-bg: rgba(239, 68, 68, 0.05);
-  --callout-attention-icon: #ef4444;
-  --callout-star-border: #8b5cf6;
-  --callout-star-bg: rgba(139, 92, 246, 0.05);
-  --callout-star-icon: #8b5cf6;
-
-  /* Utilitários */
-  --color-primary-rgb: 0, 123, 255;
-}
-
-.dark {
-  /* Cores Semânticas (Modo Escuro) */
-  --color-background: #1e1e1e;
-  --color-background-hover: #2a2a2a;
-  --color-background-active: #3a3a3a;
-  --color-text-primary: #dfdfdf;
-  --color-text-secondary: #ccc;
-  --color-text-heading: #e6e6e6;
-  --color-border: #333;
-  --color-shadow: rgba(0, 0, 0, 0.3);
-  --color-primary: #3094ff;
-  --color-primary-hover: #007bff;
-
-  /* Cores de Componentes (Modo Escuro) */
-  --color-header-background: rgba(30, 30, 30, 0.8);
-  --color-primary-button-bg: var(--color-primary);
-  --color-primary-button-text: #1e1e1e;
-  --color-primary-button-border: var(--color-primary);
-
-  /* Cores de Destaque (Callouts) */
-  --callout-info-bg: rgba(59, 130, 246, 0.1);
-  --callout-idea-bg: rgba(245, 158, 11, 0.1);
-  --callout-attention-bg: rgba(239, 68, 68, 0.1);
-  --callout-star-bg: rgba(139, 92, 246, 0.1);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  font-family: 'Baskervville', sans-serif;
-}
-
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-  width: 100%;
-  overflow-x: hidden;
-  position: relative;
-  box-sizing: border-box;
-  font-family: 'Baskervville', sans-serif;
-}
-
-/* Área de Conteúdo Principal */
-main {
-  margin: calc(var(--hextra-header-height)) auto .5rem auto;
-  max-width: 900px;
-  padding: 1rem;
-  position: relative;
-
-  /* Títulos */
-  & h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 1.9rem 0;
-  }
-
-  & h1 {
-    font-size: 2.2rem;
-  }
-
-  & h2 {
-    font-size: 1.7rem;
-  }
-
-  & h3 {
-    font-size: 1.5rem;
-  }
-
-  /* Parágrafos e Listas */
-  & p,
-  & li {
-    color: var(--color-text-primary);
-    font-size: 1.3rem;
-  }
-
-  & p {
-    line-height: 1.8rem;
-  }
-
-  /* Links */
-  & a {
-    color: var(--color-primary);
-    text-decoration: underline;
-
-    &:hover {
-      color: var(--color-primary-hover);
-    }
-  }
-
-  & blockquote {
-    border-left: 4px solid var(--color-border);
-    padding-left: 1em;
-    margin: 1.5em 0;
-    color: var(--color-text-secondary);
-    transition: border-color 0.3s ease, color 0.3s ease;
-  }
-
-  & pre {
-    border-radius: 4px;
-    padding: 1em;
-    overflow-x: auto;
-    margin-bottom: 1em;
-    background-color: var(--color-background-hover);
-  }
-
-  & code {
-    font-family: Courier, monospace;
-    font-size: 1rem;
-    background-color: var(--color-background-hover);
-    padding: 0.1em 0.4em;
-    border-radius: 3px;
-  }
-
-  & img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 2rem auto;
-    border-radius: 4px;
-    background-color: var(--color-background-hover);
-    padding: .2rem;
-  }
-
-  & article {
-    
-    & .author,
-    & .date-published,
-    & .categories {
-      display: flex;
-      align-items: center;
-      column-gap: 1rem;
-      margin-bottom: .5rem;
-
-      & svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      & time {
-        font-style: oblique;
-        font-size: 1.3rem;
-      }
-
-    }
-
-    & .markdown-content {
-      margin-top: 3rem;
-
-      & img {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        transition: 200ms ease-in;
-        
-        &:hover{
-          filter: brightness(110%);
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.342); 
-        }
-      }
-    }
-
-  }
-
-  & .title-posts-related {
-    margin-top: 5rem;
-  }
-
-}
-
-.content-placeholder {
-  width: 100%;
-  margin: 2rem auto;
-}
-
-.placeholder-title {
-  height: 5rem;
-  background-color: var(--color-background-hover);
-  margin-bottom: 3rem;
-  border-radius: 4px;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.placeholder-meta {
-  max-width: 200px;
-  margin-bottom: 3rem;
-}
-
-.placeholder-line {
-  height: 1rem;
-  width: 100%;
-  background-color: var(--color-background-hover);
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.placeholder-line.short {
-  max-width: 300px;
-  margin-bottom: 2.5rem;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.6;
-  }
-}
-
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-}
-
-/* CSS equaçoes matemáticas */
-
-@font-face {
     font-display: block;
     font-family: KaTeX_AMS;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_AMS-Regular.woff2) format("woff2"), url(/fonts/KaTeX_AMS-Regular.woff) format("woff"), url(/fonts/KaTeX_AMS-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_AMS-Regular.woff2) format("woff2"), url(fonts/KaTeX_AMS-Regular.woff) format("woff"), url(fonts/KaTeX_AMS-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -303,7 +11,7 @@ main {
     font-family: KaTeX_Caligraphic;
     font-style: normal;
     font-weight: 700;
-    src: url(/fonts/KaTeX_Caligraphic-Bold.woff2) format("woff2"), url(/fonts/KaTeX_Caligraphic-Bold.woff) format("woff"), url(/fonts/KaTeX_Caligraphic-Bold.ttf) format("truetype")
+    src: url(fonts/KaTeX_Caligraphic-Bold.woff2) format("woff2"), url(fonts/KaTeX_Caligraphic-Bold.woff) format("woff"), url(fonts/KaTeX_Caligraphic-Bold.ttf) format("truetype")
 }
 
 @font-face {
@@ -311,7 +19,7 @@ main {
     font-family: KaTeX_Caligraphic;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Caligraphic-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Caligraphic-Regular.woff) format("woff"), url(/fonts/KaTeX_Caligraphic-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Caligraphic-Regular.woff2) format("woff2"), url(fonts/KaTeX_Caligraphic-Regular.woff) format("woff"), url(fonts/KaTeX_Caligraphic-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -319,7 +27,7 @@ main {
     font-family: KaTeX_Fraktur;
     font-style: normal;
     font-weight: 700;
-    src: url(/fonts/KaTeX_Fraktur-Bold.woff2) format("woff2"), url(/fonts/KaTeX_Fraktur-Bold.woff) format("woff"), url(/fonts/KaTeX_Fraktur-Bold.ttf) format("truetype")
+    src: url(fonts/KaTeX_Fraktur-Bold.woff2) format("woff2"), url(fonts/KaTeX_Fraktur-Bold.woff) format("woff"), url(fonts/KaTeX_Fraktur-Bold.ttf) format("truetype")
 }
 
 @font-face {
@@ -327,7 +35,7 @@ main {
     font-family: KaTeX_Fraktur;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Fraktur-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Fraktur-Regular.woff) format("woff"), url(/fonts/KaTeX_Fraktur-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Fraktur-Regular.woff2) format("woff2"), url(fonts/KaTeX_Fraktur-Regular.woff) format("woff"), url(fonts/KaTeX_Fraktur-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -335,7 +43,7 @@ main {
     font-family: KaTeX_Main;
     font-style: normal;
     font-weight: 700;
-    src: url(/fonts/KaTeX_Main-Bold.woff2) format("woff2"), url(/fonts/KaTeX_Main-Bold.woff) format("woff"), url(/fonts/KaTeX_Main-Bold.ttf) format("truetype")
+    src: url(fonts/KaTeX_Main-Bold.woff2) format("woff2"), url(fonts/KaTeX_Main-Bold.woff) format("woff"), url(fonts/KaTeX_Main-Bold.ttf) format("truetype")
 }
 
 @font-face {
@@ -343,7 +51,7 @@ main {
     font-family: KaTeX_Main;
     font-style: italic;
     font-weight: 700;
-    src: url(/fonts/KaTeX_Main-BoldItalic.woff2) format("woff2"), url(/fonts/KaTeX_Main-BoldItalic.woff) format("woff"), url(/fonts/KaTeX_Main-BoldItalic.ttf) format("truetype")
+    src: url(fonts/KaTeX_Main-BoldItalic.woff2) format("woff2"), url(fonts/KaTeX_Main-BoldItalic.woff) format("woff"), url(fonts/KaTeX_Main-BoldItalic.ttf) format("truetype")
 }
 
 @font-face {
@@ -351,7 +59,7 @@ main {
     font-family: KaTeX_Main;
     font-style: italic;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Main-Italic.woff2) format("woff2"), url(/fonts/KaTeX_Main-Italic.woff) format("woff"), url(/fonts/KaTeX_Main-Italic.ttf) format("truetype")
+    src: url(fonts/KaTeX_Main-Italic.woff2) format("woff2"), url(fonts/KaTeX_Main-Italic.woff) format("woff"), url(fonts/KaTeX_Main-Italic.ttf) format("truetype")
 }
 
 @font-face {
@@ -359,7 +67,7 @@ main {
     font-family: KaTeX_Main;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Main-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Main-Regular.woff) format("woff"), url(/fonts/KaTeX_Main-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Main-Regular.woff2) format("woff2"), url(fonts/KaTeX_Main-Regular.woff) format("woff"), url(fonts/KaTeX_Main-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -367,7 +75,7 @@ main {
     font-family: KaTeX_Math;
     font-style: italic;
     font-weight: 700;
-    src: url(/fonts/KaTeX_Math-BoldItalic.woff2) format("woff2"), url(/fonts/KaTeX_Math-BoldItalic.woff) format("woff"), url(/fonts/KaTeX_Math-BoldItalic.ttf) format("truetype")
+    src: url(fonts/KaTeX_Math-BoldItalic.woff2) format("woff2"), url(fonts/KaTeX_Math-BoldItalic.woff) format("woff"), url(fonts/KaTeX_Math-BoldItalic.ttf) format("truetype")
 }
 
 @font-face {
@@ -375,7 +83,7 @@ main {
     font-family: KaTeX_Math;
     font-style: italic;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Math-Italic.woff2) format("woff2"), url(/fonts/KaTeX_Math-Italic.woff) format("woff"), url(/fonts/KaTeX_Math-Italic.ttf) format("truetype")
+    src: url(fonts/KaTeX_Math-Italic.woff2) format("woff2"), url(fonts/KaTeX_Math-Italic.woff) format("woff"), url(fonts/KaTeX_Math-Italic.ttf) format("truetype")
 }
 
 @font-face {
@@ -383,7 +91,7 @@ main {
     font-family: "KaTeX_SansSerif";
     font-style: normal;
     font-weight: 700;
-    src: url(/fonts/KaTeX_SansSerif-Bold.woff2) format("woff2"), url(/fonts/KaTeX_SansSerif-Bold.woff) format("woff"), url(/fonts/KaTeX_SansSerif-Bold.ttf) format("truetype")
+    src: url(fonts/KaTeX_SansSerif-Bold.woff2) format("woff2"), url(fonts/KaTeX_SansSerif-Bold.woff) format("woff"), url(fonts/KaTeX_SansSerif-Bold.ttf) format("truetype")
 }
 
 @font-face {
@@ -391,7 +99,7 @@ main {
     font-family: "KaTeX_SansSerif";
     font-style: italic;
     font-weight: 400;
-    src: url(/fonts/KaTeX_SansSerif-Italic.woff2) format("woff2"), url(/fonts/KaTeX_SansSerif-Italic.woff) format("woff"), url(/fonts/KaTeX_SansSerif-Italic.ttf) format("truetype")
+    src: url(fonts/KaTeX_SansSerif-Italic.woff2) format("woff2"), url(fonts/KaTeX_SansSerif-Italic.woff) format("woff"), url(fonts/KaTeX_SansSerif-Italic.ttf) format("truetype")
 }
 
 @font-face {
@@ -399,7 +107,7 @@ main {
     font-family: "KaTeX_SansSerif";
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_SansSerif-Regular.woff2) format("woff2"), url(/fonts/KaTeX_SansSerif-Regular.woff) format("woff"), url(/fonts/KaTeX_SansSerif-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_SansSerif-Regular.woff2) format("woff2"), url(fonts/KaTeX_SansSerif-Regular.woff) format("woff"), url(fonts/KaTeX_SansSerif-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -407,7 +115,7 @@ main {
     font-family: KaTeX_Script;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Script-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Script-Regular.woff) format("woff"), url(/fonts/KaTeX_Script-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Script-Regular.woff2) format("woff2"), url(fonts/KaTeX_Script-Regular.woff) format("woff"), url(fonts/KaTeX_Script-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -415,7 +123,7 @@ main {
     font-family: KaTeX_Size1;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Size1-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Size1-Regular.woff) format("woff"), url(/fonts/KaTeX_Size1-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Size1-Regular.woff2) format("woff2"), url(fonts/KaTeX_Size1-Regular.woff) format("woff"), url(fonts/KaTeX_Size1-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -423,7 +131,7 @@ main {
     font-family: KaTeX_Size2;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Size2-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Size2-Regular.woff) format("woff"), url(/fonts/KaTeX_Size2-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Size2-Regular.woff2) format("woff2"), url(fonts/KaTeX_Size2-Regular.woff) format("woff"), url(fonts/KaTeX_Size2-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -431,7 +139,7 @@ main {
     font-family: KaTeX_Size3;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Size3-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Size3-Regular.woff) format("woff"), url(/fonts/KaTeX_Size3-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Size3-Regular.woff2) format("woff2"), url(fonts/KaTeX_Size3-Regular.woff) format("woff"), url(fonts/KaTeX_Size3-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -439,7 +147,7 @@ main {
     font-family: KaTeX_Size4;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Size4-Regular.woff2) format("woff2"), url(/fonts/KaTeX_Size4-Regular.woff) format("woff"), url(/fonts/KaTeX_Size4-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Size4-Regular.woff2) format("woff2"), url(fonts/KaTeX_Size4-Regular.woff) format("woff"), url(fonts/KaTeX_Size4-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -447,7 +155,7 @@ main {
     font-family: KaTeX_Typewriter;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/KaTeX_Typewriter-Regular.woff2) format("woff2"), url(fonts/KaTeX_Typewriter-Regular.woff) format("woff"), url(/fonts/KaTeX_Typewriter-Regular.ttf) format("truetype")
+    src: url(fonts/KaTeX_Typewriter-Regular.woff2) format("woff2"), url(fonts/KaTeX_Typewriter-Regular.woff) format("woff"), url(fonts/KaTeX_Typewriter-Regular.ttf) format("truetype")
 }
 
 .katex {
@@ -1629,4 +1337,3 @@ main {
 body {
     counter-reset: katexEqnNo mmlEqnNo
 }
-

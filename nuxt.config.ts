@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from "nuxt/config";
 import nitro from "./server/nitro";
 
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
 
@@ -55,9 +56,7 @@ export default defineNuxtConfig({
     }
   },
 
-
   css: ['~/assets/css/main.css'],
-  
 
   vite: {
     optimizeDeps: {
@@ -162,15 +161,25 @@ export default defineNuxtConfig({
 
   content: {
     renderer: {
-      anchorLinks: false,
+      anchorLinks: false
+
     },
     build: {
       transformers: [
-        '~~/transformers/date-published',
-        '~~/transformers/category-slugifier',
+        '~~/transformers/author-default.ts',
+        '~~/transformers/date-published.ts',
+        '~~/transformers/category-slugifier.ts',
         '~~/transformers/convert-time-podcast.ts',
         '~~/transformers/defaults-global.ts'
-      ]
+      ],
+      markdown: {
+        remarkPlugins: {
+          'remark-math': {}
+        },
+        rehypePlugins: {
+          'rehype-katex': {}
+        }
+      },
     }
   },
 

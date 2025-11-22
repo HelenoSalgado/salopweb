@@ -33,6 +33,7 @@ const { data: postsRelated } = await useFetch<CardPost[]>('/api/posts', {
 watch(post, (newData) => {
   if (newData) {
     useSeoMeta({
+      articleAuthor: [newData.author || "Heleno Salgado"],
       title: newData?.title,
       description: newData?.description,
       ogTitle: newData?.title,
@@ -57,7 +58,7 @@ watch(post, (newData) => {
             "datePublished": newData?.date || '',
             "author": {
               "@type": "Person",
-              "name": "Heleno Salgado"
+              "name": newData.author
             }
           })
         }
@@ -65,6 +66,8 @@ watch(post, (newData) => {
     });
   }
 }, { immediate: true });
+
+console.log(post.value?.meta)
 </script>
 
 <template>
@@ -77,9 +80,9 @@ watch(post, (newData) => {
 
       <h1>{{ post.title }}</h1>
 
-      <div class="categories">
+      <div v-if="post.categories?.length" class="categories">
         <IconsTag />
-        <CategoriesList v-if="post.categories?.length" v-bind="{
+        <CategoriesList v-bind="{
           categories: post.categories,
           slugifiedCategories: post.slugified_categories
         }" />
@@ -90,7 +93,12 @@ watch(post, (newData) => {
         <time :datetime="post.dateFormatted">{{ post.dateFormatted }}</time>
       </div>
 
-      <ContentRenderer class="markdown-content" :value="post.body" />
+      <div v-if="(post.author != 'Heleno Salgado')" class="author">
+        <IconsUser />
+        <p>{{ post.author }}</p>
+      </div>
+
+      <ContentRenderer :value="post.body" class="markdown-content"/>
 
       <SharePost :post-title="''" :post-url="`${siteUrl}${post.path}`" />
 
