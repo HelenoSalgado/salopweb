@@ -97,13 +97,17 @@ export default defineNuxtConfig({
             //   return 'vendor-nuxt-content';
             // }
 
+            // Vue core must be separate from components for proper initialization
+            if (id.includes('node_modules') && (id.includes('vue') || id.includes('@vue'))) {
+              return 'vendor-vue';
+            }
+
+            // Layout components chunk (without Vue core)
             if (
-              (id.includes('vue') || id.includes('@vue')) ||
               id.includes('TheHeader') ||
               id.includes('TheSearch') ||
               id.includes('ReadingProgressBar') ||
-              id.includes('TheFooter') ||
-              id.includes('@nuxt/image')) {
+              id.includes('TheFooter')) {
 
               return 'chunk-layout-shell';
 
@@ -123,6 +127,11 @@ export default defineNuxtConfig({
               */
               if (id.includes('@nuxt/content')) {
                 return 'nuxt-content-fallback';
+              }
+
+              // @nuxt/image in separate chunk for caching
+              if (id.includes('@nuxt/image')) {
+                return 'vendor-nuxt-image';
               }
 
               // UI libraries
