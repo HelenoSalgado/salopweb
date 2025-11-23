@@ -45,7 +45,32 @@ watch(post, (newData) => {
       ogUrl: siteUrl + newData.path
     });
 
+    const links: any[] = [];
+    if (newData.mathfont) {
+      links.push(
+        {
+          rel: 'stylesheet',
+          href: '/css/katex.min.css',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/KaTeX_Main-Regular.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/KaTeX_Math-Italic.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        }
+      );
+    }
+
     useHead({
+      link: links,
       script: [
         {
           type: 'application/ld+json',

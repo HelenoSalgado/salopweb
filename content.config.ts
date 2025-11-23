@@ -15,7 +15,8 @@ const blogSchema = pageSchema.extend({
   categories: z.array(z.string()).optional(),
   slugified_categories: z.array(z.string()).optional(),
   published: z.boolean().optional(),
-  author: z.string().optional()
+  author: z.string().optional(),
+  mathfont: z.boolean().optional()
 })
 
 // Esquema para podcasts

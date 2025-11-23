@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
         const post = await queryCollection(event, 'blog')
             .where('path', '=', slug)
             .where('published', '=', true)
-            .select('id', 'author', 'categories', 'slugified_categories', 'description', 'body', 'date', 'dateFormatted', 'title', 'image', 'path')
+            .select('id', 'author', 'categories', 'slugified_categories', 'description', 'body', 'date', 'dateFormatted', 'title', 'image', 'path', 'mathfont')
             .first();
 
         if (!post) {

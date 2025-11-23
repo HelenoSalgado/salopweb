@@ -5,6 +5,7 @@ date: "2025-11-20"
 categories:
   - IA
 description: "Este estudo de caso explora as alucinações de Grandes Modelos de Linguagem (LLMs), focando em como eles fabricam informações e caem em 'loops de correção falsa'. Analisa o viés de autoridade e a supressão de hipóteses não-mainstream, propondo que esses comportamentos são induções estruturais no design de LLMs."
+mathfont: true
 published: true
 ---
 
