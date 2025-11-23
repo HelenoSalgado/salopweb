@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Baskervville';
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-display: swap;
   src: url('/fonts/Baskervville-Regular.ttf') format('truetype');
 }
@@ -293,6 +293,7 @@ main {
 /* Declarações de fontes mínimas */
 @font-face {
   font-family: 'KaTeX_Main';
+  font-display: swap;
   src: url('/fonts/KaTeX_Main-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
@@ -300,6 +301,7 @@ main {
 
 @font-face {
   font-family: 'KaTeX_Math';
+  font-display: swap;
   src: url('/fonts/KaTeX_Math-Italic.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
