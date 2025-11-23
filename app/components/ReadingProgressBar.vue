@@ -1,27 +1,18 @@
 <template>
-  <div class="reading-progress-bar" :style="{ width: progress + '%' }"/>
+  <div class="reading-progress-bar" :style="{ width: progress + '%' }" />
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-
 const progress = ref(0);
-let ticking = false;
 
 const handleScroll = () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-      progress.value = (currentScroll / totalScroll) * 100;
-      ticking = false;
-    });
-    ticking = true;
-  }
+  const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const currentScroll = window.scrollY;
+  progress.value = (currentScroll / totalScroll) * 100;
 };
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
