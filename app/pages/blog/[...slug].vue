@@ -47,11 +47,7 @@ watch(post, (newData) => {
     });
 
     const links: any[] = [];
-    const styles: any[] = [];
     if (newData.mathfont) {
-      styles.push({
-        textContent: katexCSS,
-      })
       links.push(
         {
           rel: 'preload',
@@ -72,7 +68,6 @@ watch(post, (newData) => {
 
     useHead({
       link: links,
-      style: styles,
       script: [
         {
           type: 'application/ld+json',
@@ -93,6 +88,10 @@ watch(post, (newData) => {
     });
   }
 }, { immediate: true });
+
+useHead({
+  style: post.value?.mathfont? [katexCSS] : [],
+})
 </script>
 
 <template>
