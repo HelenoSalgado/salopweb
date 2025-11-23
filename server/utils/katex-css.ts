@@ -22,7 +22,7 @@ export const katexCSS = `@font-face {
   color: var(--color-text-primary);
 }
 
-.katex > .katex-mathml {
+.katex-mathml {
   clip: rect(1px, 1px, 1px, 1px);
   border: 0;
   height: 1px;
@@ -32,11 +32,11 @@ export const katexCSS = `@font-face {
   width: 1px;
 }
 
-.katex > .katex-html > .newline {
+.newline {
   display: block;
 }
 
-.katex > .base {
+.base {
   position: relative;
   display: inline-block;
   white-space: nowrap;
@@ -45,21 +45,10 @@ export const katexCSS = `@font-face {
 
 .katex-display {
   display: block;
-  margin: 1em 0;
   text-align: center;
   overflow-x: auto;
   white-space: nowrap;
   padding: .4rem 0;
-}
-
-.katex-display > .katex {
-  display: block;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.mfrac > span > span {
-  text-align: center;
 }
 
 .frac-line {
