@@ -31,22 +31,25 @@ export default defineEventHandler(async (event) => {
             .select('path', 'title', 'description')
             .all();
 
-        const filteredPosts = posts.filter(post => {
+        const results: Array<{ path: string; title: string; description: string }> = [];
+        
+        for (const post of posts) {
+            if (results.length >= 10) break;
+            
             const normalizedTitle = post.title ? removeAccents(post.title.toLowerCase()) : '';
             const normalizedDescription = post.description ? removeAccents(post.description.toLowerCase()) : '';
 
-            return normalizedTitle.includes(normalizedSearchTerm) || 
-                   normalizedDescription.includes(normalizedSearchTerm);
-        });
+            if (normalizedTitle.includes(normalizedSearchTerm) || 
+                normalizedDescription.includes(normalizedSearchTerm)) {
+                results.push({
+                    path: post.path,
+                    title: post.title,
+                    description: post.description,
+                });
+            }
+        }
 
-        // Limita a 10 resultados para performance
-        return filteredPosts
-            .slice(0, 10)
-            .map(post => ({
-                path: post.path,
-                title: post.title,
-                description: post.description,
-            }));
+        return results;
 
     } catch (error) {
         throw createError({

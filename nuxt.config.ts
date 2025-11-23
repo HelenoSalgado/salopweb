@@ -89,61 +89,6 @@ export default defineNuxtConfig({
         output: {
           compact: true,
           inlineDynamicImports: true,
-          // manualChunks(id) {
-
-          //   if (
-          //     (id.includes('vue') || id.includes('@vue')) ||
-          //     id.includes('TheHeader') ||
-          //     id.includes('TheSearch') ||
-          //     id.includes('ReadingProgressBar') ||
-          //     id.includes('TheFooter') ||
-          //     id.includes('@nuxt/image')) {
-
-          //     return 'core';
-
-          //   }
-
-          //   if (id.includes('TagCloud')) {
-          //     return 'lazy-tagcloud';
-          //   }
-
-          //   // Cada página tem seu próprio chunk
-          //   if (id.includes('pages/index.vue')) {
-          //     return 'page-index';
-          //   }
-
-          //   if (id.includes('pages/sobre.vue')) {
-          //     return 'page-sobre';
-          //   }
-
-          //   if (id.includes('pages/newsletter.vue')) {
-          //     return 'page-newsletter';
-          //   }
-
-          //   if (id.includes('pages/blog')) {
-          //     return 'page-blog';
-          //   }
-
-          //   if (id.includes('pages/podcast')) {
-          //     return 'page-podcast';
-          //   }
-
-          //   // Componentes específicos isolados
-          //   if (id.includes('ProjectCard')) {
-          //     return 'component-project-card';
-          //   }
-
-          //   // Ícones em chunk separado
-          //   if (id.includes('components/Icons')) {
-          //     return 'icons';
-          //   }
-
-          //   // Outras dependências de node_modules
-          //   if (id.includes('node_modules')) {
-          //     return 'vendor';
-          //   }
-
-          // }
         }
       }
     }

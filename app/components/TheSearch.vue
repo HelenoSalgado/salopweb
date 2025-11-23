@@ -9,6 +9,7 @@ const query = ref('');
 const results = ref<SearchResult[]>([]);
 const showResults = ref(false);
 const noResults = ref(false);
+const searchInput = ref<HTMLInputElement | null>(null);
 let searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
 const performSearch = async () => {
@@ -66,8 +67,7 @@ const onResultClick = () => {
 };
 
 const expandAndFocus = () => {
-  const inputEl = document.getElementById('search') as HTMLInputElement;
-  if (inputEl) inputEl.focus();
+  if (searchInput.value) searchInput.value.focus();
 };
 </script>
 
@@ -76,7 +76,7 @@ const expandAndFocus = () => {
     <div class="search-input-wrapper">
       <IconsSearch class="search-icon" @click="expandAndFocus" />
       <input
-id="search" v-model="query" type="search" placeholder="Pesquisar..." @input="handleInput"
+id="search-input" ref="searchInput" v-model="query" type="search" name="q" placeholder="Pesquisar..." autocomplete="off" @input="handleInput"
         @focus="handleFocus" @blur="hideResultsAndCollapse" >
     </div>
     <div v-if="showResults && results.length > 0" class="search-results">

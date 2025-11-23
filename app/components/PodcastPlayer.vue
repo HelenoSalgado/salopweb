@@ -332,6 +332,11 @@ onMounted(() => {
         audio.addEventListener('timeupdate', updatePositionState);
     }
 });
+
+onUnmounted(() => {
+    if (forwardResetTimer) clearTimeout(forwardResetTimer);
+    if (rewindResetTimer) clearTimeout(rewindResetTimer);
+});
 </script>
 <template>
     <div class="audio-player-wrapper">

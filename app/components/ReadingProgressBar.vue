@@ -6,15 +6,22 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const progress = ref(0);
+let ticking = false;
 
 const handleScroll = () => {
-  const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-  const currentScroll = window.scrollY;
-  progress.value = (currentScroll / totalScroll) * 100;
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const currentScroll = window.scrollY;
+      progress.value = (currentScroll / totalScroll) * 100;
+      ticking = false;
+    });
+    ticking = true;
+  }
 };
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
 });
 
 onUnmounted(() => {

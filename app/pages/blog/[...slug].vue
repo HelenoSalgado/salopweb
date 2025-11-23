@@ -31,67 +31,62 @@ const { data: postsRelated } = await useFetch<CardPost[]>('/api/posts', {
 })
 
 // Configuração de SEO
-watch(post, (newData) => {
-  if (newData) {
-    useSeoMeta({
-      articleAuthor: [newData.author || "Heleno Salgado"],
-      title: newData?.title,
-      description: newData?.description,
-      ogTitle: newData?.title,
-      ogDescription: newData?.description,
-      ogImage: newData?.image || `${siteUrl}/images/default-post.webp`,
-      ogType: 'article',
-      twitterCard: 'summary_large_image',
-      articlePublishedTime: newData?.date,
-      ogUrl: siteUrl + newData.path
-    });
+if (post.value) {
+  useSeoMeta({
+    articleAuthor: [post.value.author || "Heleno Salgado"],
+    title: post.value.title,
+    description: post.value.description,
+    ogTitle: post.value.title,
+    ogDescription: post.value.description,
+    ogImage: post.value.image || `${siteUrl}/images/default-post.webp`,
+    ogType: 'article',
+    twitterCard: 'summary_large_image',
+    articlePublishedTime: post.value.date,
+    ogUrl: siteUrl + post.value.path
+  });
 
-    const links: any[] = [];
-    if (newData.mathfont) {
-      links.push(
-        {
-          rel: 'preload',
-          href: '/fonts/KaTeX_Main-Regular.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous'
-        },
-        {
-          rel: 'preload',
-          href: '/fonts/KaTeX_Math-Italic.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous'
-        }
-      );
-    }
-
-    useHead({
-      link: links,
-      script: [
-        {
-          type: 'application/ld+json',
-          textContent: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": newData?.title || 'Post do blog',
-            "description": newData?.description || 'Tecnologia, Literatura e Teologia',
-            "image": newData?.image || `${siteUrl}/images/default-post.webp`,
-            "datePublished": newData?.date || '',
-            "author": {
-              "@type": "Person",
-              "name": newData.author
-            }
-          })
-        }
-      ]
-    });
+  const links: any[] = [];
+  if (post.value.mathfont) {
+    links.push(
+      {
+        rel: 'preload',
+        href: '/fonts/KaTeX_Main-Regular.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous'
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/KaTeX_Math-Italic.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous'
+      }
+    );
   }
-}, { immediate: true });
 
-useHead({
-  style: post.value?.mathfont? [katexCSS] : [],
-})
+  useHead({
+    link: links,
+    style: post.value.mathfont ? [katexCSS] : [],
+    script: [
+      {
+        type: 'application/ld+json',
+        textContent: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": post.value.title || 'Post do blog',
+          "description": post.value.description || 'Tecnologia, Literatura e Teologia',
+          "image": post.value.image || `${siteUrl}/images/default-post.webp`,
+          "datePublished": post.value.date || '',
+          "author": {
+            "@type": "Person",
+            "name": post.value.author
+          }
+        })
+      }
+    ]
+  });
+}
 </script>
 
 <template>

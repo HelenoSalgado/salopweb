@@ -2,7 +2,7 @@
 
 const email = ref('')
 
-const { data, error, pending, execute } = await useFetch('/api/newsletter/subscribe', {
+const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', {
   method: 'POST',
   body: { email },
   lazy: true,
@@ -16,7 +16,7 @@ const { data, error, pending, execute } = await useFetch('/api/newsletter/subscr
   <div class="newsletter-form-container">
     <p>Receba as últimas postagens e atualizações diretamente no seu e-mail.</p>
     <form @submit.prevent="execute()">
-      <input v-model="email" type="email" placeholder="email@exemplo.com" :disabled="pending">
+      <input id="newsletter-email" v-model="email" type="email" name="email" placeholder="email@exemplo.com" :disabled="pending" autocomplete="email">
       <button type="submit" :disabled="pending">
         <span v-if="!pending">Inscrever</span>
         <span v-else class="loader" />
