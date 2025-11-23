@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
         // Posts relacionados por categoria
         if (categories.length > 0 && excludePath) {
             const relatedPosts = await baseQuery()
-                .select('id', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
+                .select('id', 'author', 'title', 'description', 'path', 'date', 'dateFormatted', 'image')
                 .where('path', '<>', excludePath)
                 .orWhere(q => {
                     for (const category of categories) {

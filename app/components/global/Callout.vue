@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import IconAttention from '~/components/Icons/Attention.vue'
 import IconIdea from '~/components/Icons/Idea.vue'
 import IconInfo from '~/components/Icons/Info.vue'
@@ -7,7 +7,7 @@ import IconStar from '~/components/Icons/Star.vue'
 const props = defineProps({
   type: {
     type: String,
-    default: 'info', // Default to a simple info box
+    default: 'info',
   },
 })
 
@@ -19,7 +19,7 @@ const calloutConfig = computed(() => {
       return { icon: IconAttention, class: 'callout-attention' };
     case 'star':
       return { icon: IconStar, class: 'callout-star' };
-    default: // 'info' or any other value
+    default:
       return { icon: IconInfo, class: 'callout-info' };
   }
 })
@@ -31,7 +31,7 @@ const calloutConfig = computed(() => {
       <component :is="calloutConfig.icon" />
     </div>
     <div class="callout-content">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>

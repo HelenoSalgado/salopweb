@@ -66,8 +66,6 @@ watch(post, (newData) => {
     });
   }
 }, { immediate: true });
-
-console.log(post.value?.meta)
 </script>
 
 <template>

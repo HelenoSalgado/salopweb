@@ -21,7 +21,7 @@ $ makepkg
 $ makepkg --install
 ```
 
-::LazyCallout{type="star"}
+::Callout{type="star"}
 O nome do pacote final a ser instalado, depois do build, poderia também ser instalado com: `pacman -U nome-do-pacote.tar.zst`.
 ::
 

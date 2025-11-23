@@ -12,7 +12,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@nuxt/content": "^3.8.0",
+    "@nuxt/content": "^3.7.1",
     "@nuxt/image": "^1.11.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "better-sqlite3": "^12.4.1",
@@ -21,6 +21,8 @@
     "gray-matter": "^4.0.3",
     "ipx": "^3.1.1",
     "nuxt": "^4.2.1",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "sitemap": "^9.0.0",
     "TagCloud": "^2.5.0",
     "vue": "^3.5.23",
@@ -38,8 +40,6 @@
     "happy-dom": "^20.0.10",
     "katex": "^0.16.25",
     "nuxt-vitalizer": "^2.0.0",
-    "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }

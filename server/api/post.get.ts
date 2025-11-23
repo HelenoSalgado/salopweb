@@ -13,9 +13,6 @@ export default defineEventHandler(async (event) => {
         });
     }
 
-    // Adiciona um atraso de 3 segundos para testar o Suspense
-    // await new Promise(resolve => setTimeout(resolve, 3000));
-
     try {
         const post = await queryCollection(event, 'blog')
             .where('path', '=', slug)

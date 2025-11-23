@@ -15,7 +15,7 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   src: { type: String, required: true },
   alt: String,

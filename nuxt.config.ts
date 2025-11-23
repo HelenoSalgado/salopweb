@@ -67,7 +67,10 @@ export default defineNuxtConfig({
 
     build: {
       // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
-      cssCodeSplit: true,
+      cssCodeSplit: false,
+
+      // Gera um manifesto para análise de bundle
+      manifest: false,
 
       // Reduz tamanho do bundle
       minify: 'esbuild',
@@ -82,20 +85,10 @@ export default defineNuxtConfig({
       chunkSizeWarningLimit: 1000,
 
       rollupOptions: {
+        cache: true,
         output: {
+          compact: true,
           manualChunks(id) {
-
-            // if (id.includes('PodcastPlayer')) {
-            //   return 'chunk-podcast';
-            // }
-
-            // if (id.includes('CategoriesList') || id.includes('RelatedPosts') || id.includes('BlogPostCard') || id.includes('Pagination')) {
-            //   return 'chunk-content-helpers';
-            // }
-
-            // if (id.includes('@nuxt/content')) {
-            //   return 'vendor-nuxt-content';
-            // }
 
             if (
               (id.includes('vue') || id.includes('@vue')) ||
@@ -103,41 +96,15 @@ export default defineNuxtConfig({
               id.includes('TheSearch') ||
               id.includes('ReadingProgressBar') ||
               id.includes('TheFooter') ||
+              id.includes('@nuxtjs/mdc') ||
               id.includes('@nuxt/image')) {
 
-              return 'chunk-layout-shell';
+              return 'core';
 
             }
 
-            // Separação granular de node_modules
-            if (id.includes('node_modules')) {
-
-              // Isola a biblioteca TagCloud em seu próprio chunk
-              if (id.includes('TagCloud')) {
-                return 'tagcloud-lib';
-              }
-
-              /*
-                @nuxt/content será excluído do cliente via optimizeDeps.exclude
-                mas se algum código cliente ainda o referenciar, isola aqui.
-              */
-              if (id.includes('@nuxt/content')) {
-                return 'nuxt-content-fallback';
-              }
-
-              // UI libraries
-              if (id.includes('@headlessui') || id.includes('@heroicons')) {
-                return 'ui-libs';
-              }
-
-              // Utilities
-              if (id.includes('lodash') || id.includes('date-fns')) {
-                return 'utils';
-              }
-
-              return 'vendor';
-            }
-          }
+            return 'vendor';
+          } 
         }
       }
     }
