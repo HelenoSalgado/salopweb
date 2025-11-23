@@ -67,7 +67,7 @@ export default defineNuxtConfig({
 
     build: {
       // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
-      cssCodeSplit: true,
+      cssCodeSplit: false,
 
       // Gera um manifesto para análise de bundle
       manifest: false,
