@@ -90,28 +90,51 @@ export default defineNuxtConfig({
           compact: true,
           manualChunks(id) {
 
-            if (
-              (id.includes('vue') || id.includes('@vue')) ||
-              id.includes('TheHeader') ||
-              id.includes('TheSearch') ||
-              id.includes('ReadingProgressBar') ||
-              id.includes('TheFooter') ||
-              id.includes('@nuxt/image')) {
-
-              return 'core';
-
+            // Isola a página index
+            if (id.includes('pages/index.vue')) {
+              return 'page-index';
             }
 
+            // Isola outras páginas específicas
+            if (id.includes('pages/sobre.vue')) {
+              return 'page-sobre';
+            }
+
+            if (id.includes('pages/newsletter.vue')) {
+              return 'page-newsletter';
+            }
+
+            if (id.includes('pages/blog')) {
+              return 'page-blog';
+            }
+
+            if (id.includes('pages/podcast')) {
+              return 'page-podcast';
+            }
+
+            // Componentes compartilhados apenas quando necessário
+            if (id.includes('TheHeader') || id.includes('TheFooter')) {
+              return 'layout-components';
+            }
+
+            // Vue core separado
+            if (id.includes('vue') || id.includes('@vue')) {
+              return 'vue-core';
+            }
+
+            // Dependências específicas
             if (id.includes('node_modules')) {
-
               if (id.includes('TagCloud')) {
-
-                return 'tagcloud';
-                
+                return 'vendor-tagcloud';
               }
-
+              if (id.includes('@nuxt/image')) {
+                return 'vendor-image';
+              }
+              if (id.includes('@nuxt/content')) {
+                return 'vendor-content';
+              }
+              // Outras dependências
               return 'vendor';
-
             }
           }
         }
