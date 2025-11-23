@@ -6,14 +6,13 @@
   src: url('/fonts/Baskervville-Regular.ttf') format('truetype');
 }
 
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
+/* Fontes Matemáticas */
+@font-face {
+  font-family: 'MathFont';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/KaTeX_Main-Regular.woff2') format('woff2');
 }
 
 :root {
@@ -189,7 +188,7 @@ main {
   }
 
   & article {
-    
+
     & .author,
     & .date-published,
     & .categories {
@@ -216,10 +215,10 @@ main {
       & img {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         transition: 200ms ease-in;
-        
-        &:hover{
+
+        &:hover {
           filter: brightness(110%);
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.342); 
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.342);
         }
       }
     }
@@ -286,4 +285,35 @@ main {
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
+}
+
+mathlm {
+  font-size: 1.3rem;
+  overflow-y: hidden;
+  height: 1px;
+
+  & math {
+    font-family: 'MathFont', serif;
+    font-size: 1.2em;
+    color: var(--color-text-primary);
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  & mrow {
+    height: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: .5rem 0;
+  }
+
+  & mo {
+    white-space: normal;
+  }
+
+  & mn {
+    font-size: 1rem;
+  }
 }

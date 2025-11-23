@@ -123,14 +123,6 @@ export default defineNuxtConfig({
         '~~/transformers/convert-time-podcast.ts',
         '~~/transformers/defaults-global.ts'
       ],
-      markdown: {
-        remarkPlugins: {
-          'remark-math': {}
-        },
-        rehypePlugins: {
-          'rehype-katex': {}
-        }
-      },
     }
   },
 

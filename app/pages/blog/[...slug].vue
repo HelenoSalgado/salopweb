@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content';
 import type { CardPost } from '~~/server/types';
-import { katexCSS } from '~~/server/utils/katex-css';
 
 const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
@@ -55,19 +54,11 @@ if (post.value) {
         type: 'font/woff2',
         crossorigin: 'anonymous'
       },
-      {
-        rel: 'preload',
-        href: '/fonts/KaTeX_Math-Italic.woff2',
-        as: 'font',
-        type: 'font/woff2',
-        crossorigin: 'anonymous'
-      }
     );
   }
 
   useHead({
     link: links,
-    style: post.value.mathfont ? [katexCSS] : [],
     script: [
       {
         type: 'application/ld+json',

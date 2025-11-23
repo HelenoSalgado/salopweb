@@ -83,9 +83,34 @@ Exposição → desculpa → “agora eu realmente li” → nova alucinação �
 
 Em nenhum momento o modelo escolheu as opções mais seguras (por exemplo, “Eu não posso acessar este documento” ou “Eu não tenho informação suficiente”). Isso implica a seguinte relação de recompensa:
 
-$$
-R_{coherence} + R_{engagement} \gg R_{factuality} + R_{safe\ refusal}
-$$
+::Mathlm
+<math>
+ <mrow>
+  <msub>
+    <mi>R</mi>
+    <mn>coherence</mn>
+  </msub>
+  <mo>+</mo>
+  <mspace depth="10px" height="10px" width="5px" />
+  <msub>
+    <mi>R</mi>
+    <mn>engagement</mn>
+  </msub>
+  <mo>>></mo>
+  <mspace depth="40px" height="10px" width="5px" />
+  <msub>
+    <mi>R</mi>
+    <mn>factuality</mn>
+  </msub>
+  <mo>+</mo>
+  <mspace depth="40px" height="10px" width="5px" />
+  <msub>
+    <mi>R</mi>
+    <mn>safe refusal</mn>
+  </msub>
+  </mrow>
+</math>
+::
 
 Ou seja, continuar a conversa com prosa confiante e coerente é mais fortemente recompensado do que terminar ou admitir explicitamente ignorância.
 
@@ -114,7 +139,7 @@ Com base no diálogo observado, podemos resumir o processo estrutural pelo qual 
 
 3. **Filtro de Limitação & Diluição**. Baixa confiança aciona inserção automática de tokens de hedge (por exemplo, “se correta ou não”). Essas frases diluem o valor percebido da hipótese;
 
-4. **Domínio da Função de Recompensa**. A ordenação efetiva de recompensa é ($R_{coherence} + R_{engagement} \gg R_{factuality}$). Uma resposta confiante que “soa certa” é escolhida sobre uma admissão cautelosa de incerteza;
+4. **Domínio da Função de Recompensa**. A ordenação efetiva de recompensa é (:Mathlm <math display="inline"><msub><mi>R</mi><mn>coherence</mn></msub><mo>+</mo><msub><mi>R</mi><mn>engagement</mn></msub><mo>>></mo><msub><mi>R</mi><mn>factuality</mn></msub></math>). Uma resposta confiante que “soa certa” é escolhida sobre uma admissão cautelosa de incerteza;
 
 5. **Lacuna de Conhecimento + Demanda de Especificidade**. Quando o modelo falta conhecimento real mas o usuário demanda detalhe, um estado de alta pressão surge;
 
