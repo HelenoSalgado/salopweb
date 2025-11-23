@@ -67,7 +67,7 @@ export default defineNuxtConfig({
 
     build: {
       // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
-      cssCodeSplit: false,
+      cssCodeSplit: true,
 
       // Gera um manifesto para análise de bundle
       manifest: false,
@@ -103,8 +103,19 @@ export default defineNuxtConfig({
 
             }
 
+            // Agrupar vendors, mas isolar pesados
+            if (id.includes('node_modules')) {
+
+              if (id.includes('TagCloud')) {
+                return 'tagcloud';
+              }
+
+              return 'node';  // Demais dependências em um chunk
+              
+            }
+
             return 'vendor';
-          } 
+          }
         }
       }
     }
