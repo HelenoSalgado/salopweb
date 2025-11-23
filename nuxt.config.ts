@@ -88,6 +88,7 @@ export default defineNuxtConfig({
         cache: true,
         output: {
           compact: true,
+          inlineDynamicImports: true,
           // manualChunks(id) {
 
           //   if (
