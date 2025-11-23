@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content';
 import type { CardPost } from '~~/server/types';
+import { katexCSS } from '~~/server/utils/katex-css';
 
 const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
@@ -46,12 +47,12 @@ watch(post, (newData) => {
     });
 
     const links: any[] = [];
+    const styles: any[] = [];
     if (newData.mathfont) {
+      styles.push({
+        textContent: katexCSS,
+      })
       links.push(
-        {
-          rel: 'stylesheet',
-          href: '/css/katex.min.css',
-        },
         {
           rel: 'preload',
           href: '/fonts/KaTeX_Main-Regular.woff2',
@@ -71,6 +72,7 @@ watch(post, (newData) => {
 
     useHead({
       link: links,
+      style: styles,
       script: [
         {
           type: 'application/ld+json',
