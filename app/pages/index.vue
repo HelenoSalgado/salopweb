@@ -47,7 +47,7 @@
         Não foi possível carregar os projetos do GitHub no momento.
       </div>
       <div v-else class="projects-grid">
-        <ProjectCard v-for="project in projects" :key="project.name" :project="project" />
+        <LazyProjectCard v-for="project in projects" :key="project.name" :project="project" />
       </div>
     </section>
 
@@ -65,7 +65,6 @@
 </template>
 
 <script setup lang="ts">
-import TagCloud from 'TagCloud';
 
 const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
@@ -114,7 +113,7 @@ useHead({
 
 let tagCloudInstance: any = null;
 
-onMounted(() => {
+onMounted(async () => {
   const container = '.skills-cloud';
   const texts = [
     'TypeScript', 'Vue.js', 'Nuxt.js',
@@ -125,16 +124,16 @@ onMounted(() => {
   ];
 
   const options = {
-    radius: 250, // O raio da esfera
-    maxSpeed: 'normal' as const, // Velocidade da animação
+    radius: 250,
+    maxSpeed: 'normal' as const,
     initSpeed: 'normal' as const,
     direction: 135,
-    keep: true, // Manter a animação mesmo quando o mouse está fora
-    // Personalização de cores será feita via CSS
+    keep: true,
   };
 
-  // Apenas executa no lado do cliente
+  // Lazy load TagCloud apenas quando necessário
   if (typeof window !== 'undefined') {
+    const TagCloud = (await import('TagCloud')).default;
     tagCloudInstance = TagCloud(container, texts, options);
   }
 });

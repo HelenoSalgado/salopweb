@@ -67,7 +67,7 @@ export default defineNuxtConfig({
 
     build: {
       // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
-      cssCodeSplit: false,
+      cssCodeSplit: true,
 
       // Gera um manifesto para análise de bundle
       manifest: false,
@@ -88,55 +88,61 @@ export default defineNuxtConfig({
         cache: true,
         output: {
           compact: true,
-          manualChunks(id) {
+          // manualChunks(id) {
 
-            // Isola a página index
-            if (id.includes('pages/index.vue')) {
-              return 'page-index';
-            }
+          //   if (
+          //     (id.includes('vue') || id.includes('@vue')) ||
+          //     id.includes('TheHeader') ||
+          //     id.includes('TheSearch') ||
+          //     id.includes('ReadingProgressBar') ||
+          //     id.includes('TheFooter') ||
+          //     id.includes('@nuxt/image')) {
 
-            // Isola outras páginas específicas
-            if (id.includes('pages/sobre.vue')) {
-              return 'page-sobre';
-            }
+          //     return 'core';
 
-            if (id.includes('pages/newsletter.vue')) {
-              return 'page-newsletter';
-            }
+          //   }
 
-            if (id.includes('pages/blog')) {
-              return 'page-blog';
-            }
+          //   if (id.includes('TagCloud')) {
+          //     return 'lazy-tagcloud';
+          //   }
 
-            if (id.includes('pages/podcast')) {
-              return 'page-podcast';
-            }
+          //   // Cada página tem seu próprio chunk
+          //   if (id.includes('pages/index.vue')) {
+          //     return 'page-index';
+          //   }
 
-            // Componentes compartilhados apenas quando necessário
-            if (id.includes('TheHeader') || id.includes('TheFooter')) {
-              return 'layout-components';
-            }
+          //   if (id.includes('pages/sobre.vue')) {
+          //     return 'page-sobre';
+          //   }
 
-            // Vue core separado
-            if (id.includes('vue') || id.includes('@vue')) {
-              return 'vue-core';
-            }
+          //   if (id.includes('pages/newsletter.vue')) {
+          //     return 'page-newsletter';
+          //   }
 
-            // Dependências específicas
-            if (id.includes('node_modules')) {
-              if (id.includes('TagCloud')) {
-                return 'vendor-tagcloud';
-              }
-              if (id.includes('@nuxt/image')) {
-                return 'vendor-image';
-              }
-              if (id.includes('@nuxt/content')) {
-                return 'vendor-content';
-              }
-              // Outras dependências
-              return 'vendor';
-            }
-          }
+          //   if (id.includes('pages/blog')) {
+          //     return 'page-blog';
+          //   }
+
+          //   if (id.includes('pages/podcast')) {
+          //     return 'page-podcast';
+          //   }
+
+          //   // Componentes específicos isolados
+          //   if (id.includes('ProjectCard')) {
+          //     return 'component-project-card';
+          //   }
+
+          //   // Ícones em chunk separado
+          //   if (id.includes('components/Icons')) {
+          //     return 'icons';
+          //   }
+
+          //   // Outras dependências de node_modules
+          //   if (id.includes('node_modules')) {
+          //     return 'vendor';
+          //   }
+
+          // }
         }
       }
     }
