@@ -22,6 +22,14 @@ export const katexCSS = `@font-face {
   color: var(--color-text-primary);
 }
 
+.boldsymbol {
+   font-family:KaTeX_Math;
+   font-style:italic;
+   font-weight:70;
+} 
+
+
+
 .katex-mathml {
   clip: rect(1px, 1px, 1px, 1px);
   border: 0;
