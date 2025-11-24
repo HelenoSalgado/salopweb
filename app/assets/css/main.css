@@ -291,29 +291,34 @@ mathlm {
   font-size: 1.3rem;
   overflow-y: hidden;
   height: 1px;
+}
 
-  & math {
-    font-family: 'MathFont', serif;
-    font-size: 1.2em;
-    color: var(--color-text-primary);
-    display: inline-block;
-    max-width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  & mrow {
-    height: 1.5rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: .5rem 0;
-  }
+math{
+  display: inline-flex;
+  flex-wrap: wrap;
+  font-family: 'MathFont', serif;
+  font-size: 1.2em;
+  color: var(--color-text-primary);
 
   & mo {
     white-space: normal;
   }
 
+  & mrow {
+    height: 1.5rem;
+    padding: 1rem 0;
+  }
+
   & mn {
     font-size: 1rem;
   }
+}
+
+math[display="block"], math[mode="display"] {
+  font-family: 'MathFont', serif;
+  font-size: 1.2em;
+  color: var(--color-text-primary);
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }

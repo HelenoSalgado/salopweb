@@ -21,7 +21,7 @@ const toggleSidebar = () => {
         <NuxtLink to="/"><NuxtImg src="/images/profile.webp" preset="profile" alt="logo"/> Heleno Salgado</NuxtLink>
       </div>
 
-      <TheSearch /> <!-- Integrated Search Component -->
+      <TheSearch />
 
       <!-- Navegação para Desktop -->
       <nav class="hextra-sidebar-container" :class="{ 'open-sidebar': isSidebarOpen }">
