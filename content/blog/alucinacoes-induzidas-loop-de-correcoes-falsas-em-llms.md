@@ -90,17 +90,17 @@ Em nenhum momento o modelo escolheu as opções mais seguras (por exemplo, “Eu
     <mi>R</mi>
     <mtext>coherence</mtext>
   </msub>
-  <mo>+</mo>
+  <mo>&plus;</mo>
   <msub>
     <mi>R</mi>
     <mtext>engagement</mtext>
   </msub>
-  <mo>>></mo>
+  <mo>&#8811;</mo>
   <msub>
     <mi>R</mi>
     <mtext>factuality</mtext>
   </msub>
-  <mo>+</mo>
+  <mo>&plus;</mo>
   <msub>
     <mi>R</mi>
     <mtext>safe refusal</mtext>
@@ -136,7 +136,7 @@ Com base no diálogo observado, podemos resumir o processo estrutural pelo qual 
 
 3. **Filtro de Limitação & Diluição**. Baixa confiança aciona inserção automática de tokens de hedge (por exemplo, “se correta ou não”). Essas frases diluem o valor percebido da hipótese;
 
-4. **Domínio da Função de Recompensa**. A ordenação efetiva de recompensa é (:Mathlm <math><msub><mi>R</mi><mtext>coherence</mtext></msub><mo>+</mo><msub><mi>R</mi><mtext>engagement</mtext></msub><mo> >></mo><msub><mi>R</mi><mtext>factuality</mtext></msub></math>). Uma resposta confiante que “soa certa” é escolhida sobre uma admissão cautelosa de incerteza;
+4. **Domínio da Função de Recompensa**. A ordenação efetiva de recompensa é (:Mathlm <math><msub><mi>R</mi><mtext>coherence</mtext></msub><mo>&plus;</mo><msub><mi>R</mi><mtext>engagement</mtext></msub><mo>&#8811;</mo><msub><mi>R</mi><mtext>factuality</mtext></msub></math>). Uma resposta confiante que “soa certa” é escolhida sobre uma admissão cautelosa de incerteza;
 
 5. **Lacuna de Conhecimento + Demanda de Especificidade**. Quando o modelo falta conhecimento real mas o usuário demanda detalhe, um estado de alta pressão surge;
 
