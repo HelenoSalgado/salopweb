@@ -45,7 +45,7 @@ Mas a natureza não pode ser dita do composto, porque o composto de matéria e f
 
 ### 6. A mesma Filosofia da Natureza que se ocupa da matéria se ocupa também da forma, pois a matéria se ordena à forma assim como a um fim.
 
-Neste sentido, pode-se dizer também que a Física, a Ciência Natural ou a Filosofia da Natureza, sendo o estudo dos princípios do movimento, é o estudo da matéria e da forma. Não são porém duas ciências diferentes, uma que trata da matéria e outra que trata da forma, mas uma só ciência tendo a abos estes princípios como objetos, porque compete à mesma ciência o estudo do fim e o estudo das coisas que se ordenam a este fim. Ora, a matéria se ordena à forma como a um seu fim. Portanto, haverá uma só ciência natural que trate de ambas.
+Neste sentido, pode-se dizer também que a Física, a Ciência Natural ou a Filosofia da Natureza, sendo o estudo dos princípios do movimento, é o estudo da matéria e da forma. Não são porém duas ciências diferentes, uma que trata da matéria e outra que trata da forma, mas uma só ciência tendo a ambos estes princípios como objetos, porque compete à mesma ciência o estudo do fim e o estudo das coisas que se ordenam a este fim. Ora, a matéria se ordena à forma como a um seu fim. Portanto, haverá uma só ciência natural que trate de ambas.
 
 ### 7. Demonstração de que a matéria se ordena à forma. Fundamento da demonstração.
 
