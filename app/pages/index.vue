@@ -172,8 +172,8 @@ onUnmounted(() => {
   /* Bio e skills-cloud herdam flexibilidade */
   & .bio,
   & .skills-cloud {
-    flex: 1 1 350px;
-    min-width: 280px;
+    flex: 1 1 300px;
+    min-width: 0;
     max-width: 100%;
   }
 
@@ -439,11 +439,13 @@ onUnmounted(() => {
   .cta-section {
     & .cta-links {
       flex-direction: column;
-      align-items: stretch;
+      align-items: center;
     }
 
     & .cta-button {
       text-align: center;
+      width: 100%;
+      max-width: 280px;
     }
   }
 }
