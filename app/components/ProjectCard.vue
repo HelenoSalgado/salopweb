@@ -98,6 +98,7 @@ const getLanguageColor = (lang: string) => {
 .language {
   display: flex;
   align-items: center;
+  font-size: 1.1rem;
 }
 
 .language-color-dot {
@@ -110,6 +111,6 @@ const getLanguageColor = (lang: string) => {
 
 .stars {
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 </style>

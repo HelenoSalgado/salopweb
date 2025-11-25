@@ -39,8 +39,8 @@
       <h2>Gostou do que viu?</h2>
       <p>Explore meus artigos ou entre em contato.</p>
       <div class="cta-links">
-        <NuxtLink to="/blog">Ler meus escritos</NuxtLink>
-        <NuxtLink to="/sobre">Sobre mim</NuxtLink>
+        <NuxtLink to="/blog">Blog</NuxtLink>
+        <NuxtLink to="/sobre">Sobre</NuxtLink>
       </div>
     </section>
 
@@ -227,7 +227,7 @@ section {
     & a {
       font-family: 'Baskervville', sans-serif;
       color: #fff;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 1rem;
       border-radius: 8px;
       transition: background-color 0.2s ease;
     }
@@ -264,10 +264,6 @@ section {
 }
 
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 2rem;
-  }
-
   .projects-grid {
     grid-template-columns: 1fr;
   }
