@@ -150,13 +150,14 @@ onUnmounted(() => {
 <style scoped>
 /* Container principal com espaçamento responsivo */
 .portfolio-home {
-  padding: clamp(1rem, 3vw, 2rem);
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  overflow-x: hidden;
 
   /* Estilos herdados para sections */
   & section {
-    margin: clamp(3rem, 8vw, 6rem) 0;
+    margin: 4rem 0;
   }
 }
 
@@ -164,7 +165,7 @@ onUnmounted(() => {
 .presentation-section {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: 2rem;
   align-items: center;
   justify-content: center;
 
@@ -172,25 +173,26 @@ onUnmounted(() => {
   & .bio,
   & .skills-cloud {
     flex: 1 1 350px;
-    min-width: min(100%, 280px);
+    min-width: 280px;
+    max-width: 100%;
   }
 
   & .bio {
     max-width: 550px;
 
     & .subtitle {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      line-height: 1.3;
+      font-size: 1.8rem;
+      line-height: 1.4;
       color: var(--color-text-heading);
       margin-bottom: 1rem;
     }
   }
 
   & .subtitle-continuation {
-    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-size: 1.25rem;
     color: var(--color-text-secondary);
     margin-top: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
 
     & :deep(a) {
       color: var(--color-primary);
@@ -225,8 +227,8 @@ onUnmounted(() => {
       }
 
       & > :deep(svg) {
-        width: clamp(24px, 5vw, 32px);
-        height: clamp(24px, 5vw, 32px);
+        width: 28px;
+        height: 28px;
       }
     }
   }
@@ -236,8 +238,10 @@ onUnmounted(() => {
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
-    max-width: min(500px, 90vw);
+    max-width: 500px;
     margin: 0 auto;
+    overflow: hidden;
+    position: relative;
 
     & :deep(.tagcloud) {
       font-weight: 600;
@@ -272,67 +276,68 @@ onUnmounted(() => {
 /* Seção 2: Projetos */
 .projects-section {
   & .section-title {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-size: 2rem;
     font-weight: 700;
     text-align: center;
-    margin-bottom: clamp(2rem, 6vw, 5rem);
+    margin-bottom: 3rem;
     color: var(--color-text-heading);
   }
 
   & .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-    gap: clamp(1rem, 3vw, 2rem);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
   }
 
   & .loading-state,
   & .error-state {
     text-align: center;
     color: var(--color-text-secondary);
-    padding: clamp(2rem, 5vw, 4rem) 0;
-    font-size: 1.1rem;
+    padding: 3rem 0;
+    font-size: 1.2rem;
   }
 }
 
 /* Seção 3: CTA */
 .cta-section {
   text-align: center;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+  padding: 3rem 1.5rem;
+  margin-top: 5rem;
   background: linear-gradient(
     135deg,
-    rgba(var(--color-primary-rgb), 0.03) 0%,
+    rgba(var(--color-primary-rgb), 0.05) 0%,
     transparent 100%
   );
   border-radius: 16px;
 
   & h2 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: 1.8rem;
     color: var(--color-text-heading);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   & p {
-    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-size: 1.2rem;
     color: var(--color-text-secondary);
     margin-top: 0.5rem;
-    margin-bottom: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 2rem;
   }
 
   & .cta-links {
     display: flex;
     justify-content: center;
-    gap: clamp(0.75rem, 2vw, 1rem);
+    gap: 1rem;
     flex-wrap: wrap;
   }
 
   & .cta-button {
     background-color: var(--color-primary);
     color: var(--color-primary-button-text);
-    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+    padding: 0.875rem 1.75rem;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: 1rem;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     border: 2px solid transparent;
 
@@ -355,27 +360,77 @@ onUnmounted(() => {
   }
 }
 
-/* Responsividade adicional */
+/* Responsividade */
 @media (max-width: 768px) {
+  .portfolio-home {
+    padding: 0.75rem;
+  }
+
   .presentation-section {
+    gap: 1.5rem;
+
     & .bio {
       text-align: center;
       order: 1;
+
+      & .subtitle {
+        font-size: 1.5rem;
+      }
+    }
+
+    & .subtitle-continuation {
+      font-size: 1.15rem;
     }
 
     & .skills-cloud {
       order: 2;
-      max-width: 350px;
+      max-width: 320px;
+      width: 100%;
     }
 
     & .social-links {
       justify-content: center;
     }
   }
+
+  .projects-section {
+    & .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    & .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  .cta-section {
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+
+    & h2 {
+      font-size: 1.5rem;
+    }
+
+    & p {
+      font-size: 1.1rem;
+    }
+  }
 }
 
 @media (max-width: 480px) {
   .presentation-section {
+    & .bio {
+      & .subtitle {
+        font-size: 1.35rem;
+      }
+    }
+
+    & .subtitle-continuation {
+      font-size: 1.1rem;
+    }
+
     & .skills-cloud {
       max-width: 280px;
     }
@@ -384,12 +439,10 @@ onUnmounted(() => {
   .cta-section {
     & .cta-links {
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
     }
 
     & .cta-button {
-      width: 100%;
-      max-width: 280px;
       text-align: center;
     }
   }
