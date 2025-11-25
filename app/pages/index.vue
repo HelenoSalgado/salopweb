@@ -111,7 +111,7 @@ onMounted(async () => {
   ];
 
   const options = {
-    radius: Math.min(250, window.innerWidth / 2 - 30),
+    radius: Math.min(280, window.innerWidth / 2 - 30),
     maxSpeed: 'normal' as const,
     initSpeed: 'normal' as const,
     direction: 135,
@@ -141,7 +141,7 @@ onUnmounted(() => {
 
 <style scoped>
 section {
-  margin: 6rem 0;
+  margin: 4rem 0;
 }
 
 .portfolio-home {
