@@ -2,7 +2,6 @@
 title: "Filosofia da Natureza em Aristóteles: Livro I da Física"
 date: "2025-11-07"
 categories:
-  - Filosofia
   - Física
   - Aristóteles
 description: "Notas sobre a filosofia da natureza em Aristóteles - baseadas no Comentário de S. Tomás de Aquino à Física de Aristóteles."
