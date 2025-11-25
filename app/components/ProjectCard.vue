@@ -32,7 +32,6 @@ defineProps({
   }
 });
 
-// Mapeamento de cores para linguagens populares para consistência visual
 const languageColors: { [key: string]: string } = {
   TypeScript: '#3178c6',
   JavaScript: '#f1e05a',
@@ -42,7 +41,6 @@ const languageColors: { [key: string]: string } = {
   CSS: '#563d7c',
   Shell: '#89e051',
   Python: '#3572A5',
-  // Adicione outras linguagens e cores conforme necessário
 };
 
 const getLanguageColor = (lang: string) => {
@@ -82,7 +80,7 @@ const getLanguageColor = (lang: string) => {
 }
 
 .project-description {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--color-text-secondary);
   flex-grow: 1;
   margin-bottom: 1rem;
