@@ -3,8 +3,9 @@
     <!-- Seção 1: Apresentação -->
     <section class="presentation-section">
       <div class="bio">
-        <h2 class="subtitle">Desenvolvo Software com foco em performance, código limpo e SEO.</h2>
-        <p class="subtitle-continuation">Neste espaço, compartilho o que aprendo, não só sobre código, mas os <NuxtLink to="/sobre">meus interesses mais pertinentes</NuxtLink>. Obrigado pela visita.</p>
+        <h2>Desenvolvo Software com foco em performance, código limpo e SEO.</h2>
+        <p>Neste espaço, compartilho o que aprendo, não só sobre código, mas os meus interesses mais pertinentes.
+          Obrigado pela visita.</p>
         <div class="social-links">
           <a href="https://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <IconsGithub />
@@ -12,31 +13,13 @@
           <a href="https://twitter.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <IconsTwitter />
           </a>
-          <a href="https://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <a href="https://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram">
             <IconsInstagram />
           </a>
         </div>
       </div>
-      <div class="skills-cloud">
-        <ul class="skills-list-for-seo">
-          <li>TypeScript</li>
-          <li>Vue.js</li>
-          <li>Nuxt.js</li>
-          <li>Node.js</li>
-          <li>Nest.js</li>
-          <li>PHP</li>
-          <li>Laravel</li>
-          <li>SQL</li>
-          <li>Docker</li>
-          <li>Git</li>
-          <li>HTML5</li>
-          <li>CSS3</li>
-          <li>Perl</li>
-          <li>Linux</li>
-          <li>Kotlin</li>
-          <li>JavaScript</li>
-        </ul>
-      </div>
+      <div class="skills-cloud"></div>
     </section>
 
     <!-- Seção 2: Projetos em Destaque -->
@@ -56,8 +39,8 @@
       <h2>Gostou do que viu?</h2>
       <p>Explore meus artigos ou entre em contato.</p>
       <div class="cta-links">
-        <NuxtLink to="/blog" class="cta-button">Ler meus escritos</NuxtLink>
-        <NuxtLink to="/sobre" class="cta-button secondary">Sobre mim</NuxtLink>
+        <NuxtLink to="/blog">Ler meus escritos</NuxtLink>
+        <NuxtLink to="/sobre">Sobre mim</NuxtLink>
       </div>
     </section>
 
@@ -83,6 +66,10 @@ useHead({
       name: 'description',
       content: 'Portfólio de Heleno Salgado, desenvolvedor de software especialista em Nuxt.js, Vue.js, e PHP. Explore meus projetos, artigos sobre tecnologia e código limpo.'
     }
+  ],
+  link: [
+    { rel: 'preconnect', href: 'https://cdn.jsdelivr.net' },
+    { rel: 'dns-prefetch', href: 'https://cdn.jsdelivr.net' }
   ],
   script: [
     {
@@ -130,12 +117,17 @@ onMounted(async () => {
     direction: 135,
     keep: true,
   };
-
-  // Lazy load TagCloud apenas quando necessário
-  if (typeof window !== 'undefined') {
-    const TagCloud = (await import('TagCloud')).default;
-    tagCloudInstance = TagCloud(container, texts, options);
-  }
+  
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js';
+  script.onload = () => {
+    // @ts-ignore
+    const TagCloud = window.TagCloud;
+    if (TagCloud) {
+      tagCloudInstance = TagCloud(container, texts, options);
+    }
+  };
+  document.head.appendChild(script);
 });
 
 onUnmounted(() => {
@@ -148,181 +140,134 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.portfolio-home {
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 section {
   margin: 6rem 0;
 }
 
-/* Seção 1: Apresentação */
+.portfolio-home {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Baskervville', serif;
+}
+
 .presentation-section {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   align-items: center;
+
+  & p {
+    font-size: 1.2rem;
+  }
+
+  & .bio,
+  & .skills-cloud {
+    flex: 1 1 400px;
+    min-width: 300px;
+  }
+
+  & .social-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+
+    & a> :deep(svg) {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  & .skills-cloud {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
 
-.bio, .skills-cloud {
-  flex: 1 1 400px;
-  min-width: 300px;
+.projects-section {
+
+  & h2 {
+    text-align: center;
+  }
+
+  & .projects-grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
 }
 
-.subtitle-continuation {
-  font-family: 'Lora', serif;
-  font-size: 1.35rem;
-  color: var(--color-text-secondary);
-  margin-top: 1rem;
-  line-height: 1.4;
-}
-
-.subtitle-continuation :deep(a) {
-  text-decoration: underline;
-  color: var(--color-primary);
-  transition: color 0.2s ease;
-  text-decoration: none;
-}
-
-.subtitle-continuation :deep(a:hover) {
-  color: var(--color-primary-hover);
-}
-
-.social-links {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.social-links a {
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.social-links a:hover {
-  color: var(--color-primary);
-}
-
-.social-links a > :deep(svg) {
-  width: 28px;
-  height: 28px;
-}
-
-.skills-cloud {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.skills-list-for-seo {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Estilização para a nova biblioteca TagCloud.js */
-.skills-cloud :deep(.tagcloud) {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    color: var(--color-primary);
-}
-
-.skills-cloud :deep(.tagcloud--item) {
-    padding: 2px 4px;
-    transition: color 0.3s ease;
-}
-
-.skills-cloud :deep(.tagcloud--item:hover) {
-    color: var(--color-primary-hover);
-}
-
-
-/* Seção 2: Projetos */
-.section-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-.loading-state, .error-state {
-  font-family: 'Lora', serif;
+.loading-state,
+.error-state {
+  font-family: 'Baskervville', serif;
   text-align: center;
   color: var(--color-text-secondary);
   padding: 4rem 0;
 }
 
-/* Seção 3: CTA */
 .cta-section {
-  text-align: center;
-}
-
-.cta-section p {
-  font-family: 'Lora', serif;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--color-text-secondary);
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  text-align: center;
+
+  & p {
+    margin-bottom: 2rem;
+  }
+
+  & .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    & a {
+      font-family: 'Baskervville', sans-serif;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    & a:first-child {
+      background: linear-gradient(to left, var(--color-primary), blueviolet);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.34);
+
+      &:hover {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.34);
+      }
+    }
+
+    & a:last-child {
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+
+      &:hover{
+        border-color: var(--color-primary);
+      }
+    }
+  }
 }
 
-.cta-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.cta-button {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--color-primary);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-}
-
-.cta-button:hover {
-  background-color: #7a15a1; /* Um tom mais escuro de roxo */
-}
-
-.cta-button.secondary {
-  background-color: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-}
-
-/* Responsividade */
 @media (max-width: 900px) {
   .bio {
     text-align: center;
   }
+
   .social-links {
     justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .section-title { font-size: 2rem; }
+  .section-title {
+    font-size: 2rem;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }

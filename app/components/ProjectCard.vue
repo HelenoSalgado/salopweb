@@ -56,7 +56,6 @@ const getLanguageColor = (lang: string) => {
   border-radius: 8px;
   padding: 1.5rem;
   transition: border-color 0.2s ease, transform 0.2s ease;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -82,7 +81,7 @@ const getLanguageColor = (lang: string) => {
 }
 
 .project-description {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--color-text-secondary);
   flex-grow: 1;
   margin-bottom: 1rem;
@@ -111,5 +110,6 @@ const getLanguageColor = (lang: string) => {
 
 .stars {
   font-weight: 500;
+  font-size: 1.2rem;
 }
 </style>
