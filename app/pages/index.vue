@@ -111,7 +111,7 @@ onMounted(async () => {
   ];
 
   const options = {
-    radius: 250,
+    radius: Math.min(250, window.innerWidth / 2 - 30),
     maxSpeed: 'normal' as const,
     initSpeed: 'normal' as const,
     direction: 135,
