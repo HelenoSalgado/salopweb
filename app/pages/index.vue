@@ -110,8 +110,11 @@ onMounted(async () => {
     'Perl', 'Linux', 'JavaScript',
   ];
 
+  const containerEl = document.querySelector(container);
+  const width = containerEl ? (containerEl as HTMLElement).offsetWidth : window.innerWidth;
+
   const options = {
-    radius: Math.min(280, window.innerWidth / 2 - 30),
+    radius: Math.min(250, width / 2 - 10),
     maxSpeed: 'normal' as const,
     initSpeed: 'normal' as const,
     direction: 135,
