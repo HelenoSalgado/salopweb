@@ -232,7 +232,6 @@ section {
   border-width: 0;
 }
 
-/* Estilização para a nova biblioteca TagCloud.js */
 .skills-cloud :deep(.tagcloud) {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
@@ -249,9 +248,8 @@ section {
 }
 
 
-/* Seção 2: Projetos */
 .section-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Baskervville', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
@@ -265,7 +263,7 @@ section {
 }
 
 .loading-state, .error-state {
-  font-family: 'Lora', serif;
+  font-family: 'Baskervville', serif;
   text-align: center;
   color: var(--color-text-secondary);
   padding: 4rem 0;
@@ -325,6 +323,7 @@ section {
   .section-title { font-size: 2rem; }
   .projects-grid {
     grid-template-columns: 1fr;
+    gap-row: 1.5rem
   }
 }
 </style>
