@@ -111,10 +111,10 @@ onMounted(async () => {
   ];
 
   const containerEl = document.querySelector(container);
-  const width = containerEl ? (containerEl as HTMLElement).offsetWidth : window.innerWidth;
+  const width = window.innerWidth;
 
   const options = {
-    radius: Math.min(250, width / 2 - 10),
+    radius: Math.min(250, width / 2),
     maxSpeed: 'normal' as const,
     initSpeed: 'normal' as const,
     direction: 135,
@@ -269,6 +269,11 @@ section {
 @media (max-width: 480px) {
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .skills-cloud {
+    max-width: 100% !important;
+    width: 100%;
   }
 }
 </style>
