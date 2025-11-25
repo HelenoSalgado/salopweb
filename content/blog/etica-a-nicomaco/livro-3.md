@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Virtude
 description: "Tradução do terceiro livro, que analisa as ações voluntárias e involuntárias, a natureza da escolha e da deliberação, e inicia o exame detalhado das virtudes morais, começando pela Coragem e a Temperança."
-published: true
+published: false
 ---
 
 ## Capítulo I

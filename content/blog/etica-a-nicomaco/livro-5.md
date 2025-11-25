@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Justiça
 description: "Tradução do quinto livro, uma investigação aprofundada sobre a natureza da Justiça. Aristóteles distingue entre justiça universal e particular, e analisa suas formas distributiva e corretiva."
-published: true
+published: false
 ---
 
 ## Capítulo I

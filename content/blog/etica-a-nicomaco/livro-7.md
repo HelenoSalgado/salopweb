@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Virtude
 description: "Tradução do sétimo livro, que oferece uma análise da Acrasia (a fraqueza da vontade ou incontinência) e do Prazer. Aristóteles explora por que os homens agem contra o seu melhor juízo."
-published: true
+published: false
 ---
 
 ## Capítulo I

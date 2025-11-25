@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Resumo
 description: "Um resumo detalhado, livro por livro, da obra monumental de Aristóteles, explorando os conceitos de felicidade (Eudaimonia), virtude, amizade e a vida contemplativa."
-published: true
+published: false
 ---
 
 Para muitos, a "Ética a Nicômaco" de Aristóteles é o ponto de partida de toda a filosofia moral do Ocidente. É uma obra que não busca apenas definir o bem, mas oferecer um guia prático para alcançá-lo. Mas o que exatamente o grande filósofo argumenta ao longo de seus dez livros?

@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Felicidade
 description: "Tradução do décimo e último livro, obra concluída com uma análise final sobre o Prazer e a Felicidade. Aristóteles argumenta que a vida contemplativa é a forma mais elevada de felicidade."
-published: true
+published: false
 ---
 
 ## Capítulo I

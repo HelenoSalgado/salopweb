@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Amizade
 description: "Tradução do nono livro, que aprofunda o tema da Amizade. Aristóteles discute as obrigações mútuas, o amor-próprio como base para a amizade virtuosa e a importância dos amigos para a felicidade."
-published: true
+published: false
 ---
 
 ## Capítulo I

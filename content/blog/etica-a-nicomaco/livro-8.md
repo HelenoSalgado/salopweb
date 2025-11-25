@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Amizade
 description: "Tradução do oitavo livro, o primeiro de dois dedicados à Amizade. Aristóteles analisa a importância da amizade para a felicidade e distingue entre as amizades de utilidade, de prazer e de virtude."
-published: true
+published: false
 ---
 
 ## Capítulo I

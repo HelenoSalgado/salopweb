@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Virtude
 description: "Tradução do quarto livro, que oferece um exame detalhado de virtudes específicas relacionadas à riqueza e à vida social, como a Liberalidade, Magnificência, Magnanimidade, veracidade e o bom humor."
-published: true
+published: false
 ---
 
 ## Capítulo I

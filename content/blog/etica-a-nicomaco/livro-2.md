@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Virtude
 description: "Tradução do segundo livro, no qual Aristóteles explora a virtude moral como um produto do hábito, introduzindo a célebre doutrina do meio-termo (a mediania)."
-published: true
+published: false
 ---
 
 ## Capítulo I

@@ -7,7 +7,7 @@ categories:
   - Aristóteles
   - Virtude
 description: "Tradução do sexto livro, dedicado ao exame das virtudes intelectuais. Aristóteles distingue e analisa a Sabedoria Prática (Phronesis), a Sabedoria Filosófica (Sophia), a arte, a ciência e a intuição."
-published: true
+published: false
 ---
 
 ## Capítulo I
