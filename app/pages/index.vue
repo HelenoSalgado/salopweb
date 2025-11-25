@@ -164,7 +164,7 @@ section {
   & .bio,
   & .skills-cloud {
     flex: 1 1 400px;
-    min-width: 300px;
+    min-width: 280px;
   }
 
   & .social-links {
@@ -227,7 +227,7 @@ section {
     & a {
       font-family: 'Baskervville', sans-serif;
       color: #fff;
-      padding: 0.75rem 1rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 8px;
       transition: background-color 0.2s ease;
     }

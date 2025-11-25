@@ -91,6 +91,10 @@ a {
 }
 
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -99,7 +103,6 @@ body {
   width: 100%;
   overflow-x: hidden;
   position: relative;
-  box-sizing: border-box;
   font-family: 'Baskervville', sans-serif;
 }
 
