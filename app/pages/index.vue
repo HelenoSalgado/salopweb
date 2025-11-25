@@ -47,7 +47,7 @@
         Não foi possível carregar os projetos do GitHub no momento.
       </div>
       <div v-else class="projects-grid">
-        <LazyProjectCard v-for="project in projects" :key="project.name" :project="project" />
+        <ProjectCard v-for="project in projects" :key="project.name" :project="project" />
       </div>
     </section>
 
