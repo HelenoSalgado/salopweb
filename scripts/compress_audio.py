@@ -16,7 +16,7 @@ def compress_audio_files():
 
     print(f"Analisando diretório: {os.path.abspath(podcast_dir)}")
 
-    supported_extensions = ['.mp3', '.wav', '.m4a', '.flac', '.ogg', '.aiff']
+    supported_extensions = ['.wav', '.m4a', '.flac', '.ogg', '.aiff']
     files_to_process = []
 
     for filename in os.listdir(podcast_dir):

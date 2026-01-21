@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   //ssr: true,
 
   experimental: {
+    extractAsyncDataHandlers: true, // Extrai funçoes de busca do bundle, já que os dados são prerenderizados.
     sharedPrerenderData: true,
     renderJsonPayloads: true,
     entryImportMap: false,
