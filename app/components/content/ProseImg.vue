@@ -4,10 +4,9 @@
     :alt="alt || 'Image'"
     :title="title"
     :width="width || 900"
-    :height="height || 400"
+    :height="height || 'auto'"
     :modifiers="{
       width: 900,
-      height: 400,
       format: 'webp'
     }"
     loading="lazy"
