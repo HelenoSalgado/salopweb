@@ -60,11 +60,11 @@ definePageMeta({
 const { data: projects, pending, error } = await useAsyncData('github-projects', () => $fetch('/api/github'));
 
 useHead({
-  title: 'Heleno Salgado | Desenvolvedor de Software e Portfólio',
+  title: 'Portfólio',
   meta: [
     {
       name: 'description',
-      content: 'Portfólio de Heleno Salgado, desenvolvedor de software especialista em Nuxt.js, Vue.js, e PHP. Explore meus projetos, artigos sobre tecnologia e código limpo.'
+      content: 'Portfólio de Heleno Salgado, desenvolvedor de software especialista em Nuxt.js, Vue.js. Explore meus projetos, artigos sobre tecnologia e código limpo.'
     }
   ],
   link: [
