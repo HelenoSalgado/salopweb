@@ -3,7 +3,7 @@ title: "Bereia Versículos: Um popup Bíblico Inteligente"
 description: "Um popup que exibe instantaneamente o texto Bíblico quando uma referência é copiada para a área de transferência do computador."
 date: '2026-02-21'
 categories:
-   - Tecnologia
+   - Produtividade
    - Linux
    - Windows
 image: /images/2026-02-20-055833_hyprshot.png
