@@ -1,6 +1,6 @@
 ---
 title: "IA supervisionada e a visão do programador"
-date: "2025-11-20"
+date: "2026-03-02"
 categories:
   - IA
   - Programação

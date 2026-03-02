@@ -14,7 +14,7 @@ const { data: allCategories } = await useFetch<Categories>('/api/categories', {
 });
 
 // --- Busca de Dados ---
-const { data, error } = useFetch<PostsPagination<CardPost[]>>('/api/posts', {
+const { data, error } = await useFetch<PostsPagination<CardPost[]>>('/api/posts', {
   query: {
     limit: POSTS_PER_PAGE,
     page: currentPage
@@ -46,7 +46,9 @@ if (error.value) {
       slugifiedCategories: allCategories.slugified_categories
     }" />
 
-    <BlogPostCard v-if="data?.posts.length" v-for="post in data.posts" :key="post.path" v-bind="post" />
+    <template v-if="data?.posts?.length">
+      <BlogPostCard v-for="post in data.posts" :key="post.path" v-bind="post" />
+    </template>
 
     <Pagination v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
       :total-pages="data?.totalPages" :base-url="`/blog`" />
