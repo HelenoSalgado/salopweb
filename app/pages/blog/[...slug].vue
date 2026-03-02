@@ -41,7 +41,6 @@ if (post.value) {
     ogType: 'article',
     twitterCard: 'summary_large_image',
     articlePublishedTime: post.value.date,
-    ogUrl: siteUrl + post.value.path
   });
 
   const links: any[] = [];

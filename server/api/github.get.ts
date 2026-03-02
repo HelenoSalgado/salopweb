@@ -5,14 +5,16 @@ export default defineEventHandler(async () => {
   try {
     const repos = await $fetch(API_URL);
 
-    // Filtra e mapeia apenas os dados que precisamos
-    const projects = repos.map((repo: any) => ({
-      name: repo.name,
-      description: repo.description,
-      url: repo.html_url,
-      language: repo.language,
-      stars: repo.stargazers_count,
-    }));
+    // Filtra repositórios de sistema e mapeia os dados necessários
+    const projects = repos
+      .filter((repo: any) => repo.name !== '.github' && !repo.fork)
+      .map((repo: any) => ({
+        name: repo.name,
+        description: repo.description,
+        url: repo.html_url,
+        language: repo.language,
+        stars: repo.stargazers_count,
+      }));
 
     return projects;
   } catch (error) {

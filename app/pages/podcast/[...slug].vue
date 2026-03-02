@@ -37,9 +37,6 @@ watch(episode, (newData) => {
             ogAudio: fullAudioUrl,
             ogAudioSecureUrl: fullAudioUrl,
             ogAudioType: 'audio/mpeg',
-            ogUrl: fullPageUrl,
-            ogLocale: 'pt_BR',
-            ogSiteName: 'Heleno Salgado',
             twitterCard: 'player',
             twitterPlayer: fullAudioUrl,
             twitterPlayerWidth: '480',
@@ -53,12 +50,6 @@ watch(episode, (newData) => {
         });
 
         useHead({
-            link: [
-                {
-                    rel: 'canonical',
-                    href: fullPageUrl
-                }
-            ],
             script: [
                 {
                     type: 'application/ld+json',
@@ -117,10 +108,7 @@ watch(episode, (newData) => {
                         ]
                     })
                 }
-            ],
-            htmlAttrs: {
-                lang: 'pt-BR'
-            }
+            ]
         });
     }
 }, { immediate: true });

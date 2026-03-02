@@ -9,21 +9,21 @@ const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
 
 
-// --- Possível causa de renderização dupla ---
-watchEffect(() => {
-  useHead({
-    titleTemplate: (titleChunk) => {
-      return titleChunk ? `Heleno Salgado | ${titleChunk}` : 'Heleno Salgado - Tecnologia, Teologia e Literatura';
-    },
-    htmlAttrs: {
-      lang: 'pt-BR'
-    },
-    link: [
-      { rel: "icon", href: "/hsl-logo.ico", type: "image/x-icon" },
-      { rel: "alternate", type: "application/rss+xml", title: "RSS Feed", href: "/rss.xml" }
-    ]
-  });
-})
+const route = useRoute();
+
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `Heleno Salgado | ${titleChunk}` : 'Heleno Salgado - Tecnologia, Teologia e Literatura';
+  },
+  htmlAttrs: {
+    lang: 'pt-BR'
+  },
+  link: [
+    { rel: "icon", href: "/hsl-logo.ico", type: "image/x-icon" },
+    { rel: "alternate", type: "application/rss+xml", title: "RSS Feed", href: "/rss.xml" },
+    { rel: 'canonical', href: () => `${siteUrl}${route.path.replace(/\/$/, '') || '/'}` }
+  ]
+});
 
 // Define meta tags globais/padrão para todo o site.
 // Páginas específicas podem (e devem) sobrescrever estas tags.
