@@ -9,7 +9,7 @@ published: true
 ---
 
 
-Depois de alguns meses trabalhando com IA na geração de código, notei vários padrões de comportamento e, para quem se interessa, resolvi compartilhar. A IA está aí definitivamente, e, salvo por limitações financeiras, não faz sentido rejeitá-la. Tenho feito muitos trabalhos interessantes com essa ferramenta e, em contrapartida, tenho tido muita dor de cabeça — nada grave, mas experiências estressantes que me fizeram aprender bastante. Irei organizar esta confissão em tópicos; em cada tópico, uma descrição. Começo pelo que considero mais importante.
+Depois de alguns meses trabalhando com IA na geração de código, notei alguns padrões de comportamento e, para quem se interessa, resolvi compartilhar. A IA está aí definitivamente, e, salvo por limitações financeiras, não faz sentido rejeitá-la. Tenho feito muitos trabalhos interessantes com essa ferramenta e, em contrapartida, tenho tido muita dor de cabeça — nada grave, mas experiências estressantes que me fizeram aprender. Irei organizar esta confissão em tópicos; em cada tópico, uma descrição. Começo pelo que considero mais importante.
 
 ## Padrão de Projeto
 
@@ -41,7 +41,7 @@ Acrescentei a instrução “teste para validar” apenas por segurança. Se voc
 
 ## Verificar a sintaxe e formatar o código
 
-No fluxo de compilação, inicialização do servidor ou interpretação do código, é essencial verificar a sintaxe e manter a formatação. Muitas vezes, a IA bagunça visualmente o código, e um erro simples de sintaxe só será percebido mais tarde. São duas práticas simples que tornam o desenvolvimento muito mais agradável.
+No fluxo de compilação, inicialização do servidor ou interpretação do código, é essencial verificar a sintaxe e manter a formatação. Muitas vezes, a IA bagunça visualmente o código, e um erro simples de sintaxe só será percebido mais tarde. São duas práticas simples que tornam o desenvolvimento mais agradável.
 
 ## Limpar comentários frequentemente
 
