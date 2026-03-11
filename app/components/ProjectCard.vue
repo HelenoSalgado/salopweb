@@ -81,7 +81,7 @@ const getLanguageColor = (lang: string) => {
 }
 
 .project-description {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
   flex-grow: 1;
   margin-bottom: 1rem;

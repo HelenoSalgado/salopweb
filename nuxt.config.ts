@@ -38,7 +38,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'preload',
-          href: '/fonts/Baskervville-Regular.ttf',
+          href: '/fonts/Inter-VariableFont_opsz,wght.ttf',
           as: 'font',
           type: 'font/ttf',
           crossorigin: 'anonymous'

@@ -151,7 +151,7 @@ section {
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Baskervville', serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .presentation-section {
@@ -207,7 +207,7 @@ section {
 
 .loading-state,
 .error-state {
-  font-family: 'Baskervville', serif;
+  font-family: 'Inter', sans-serif;
   text-align: center;
   color: var(--color-text-secondary);
   padding: 4rem 0;
@@ -228,7 +228,7 @@ section {
     gap: 1rem;
 
     & a {
-      font-family: 'Baskervville', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: #fff;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;

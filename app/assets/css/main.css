@@ -1,9 +1,17 @@
 @font-face {
-  font-family: 'Baskervville';
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/Baskervville-Regular.ttf') format('truetype');
+  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
 }
 
 /* Fontes Matemáticas */
@@ -87,7 +95,7 @@
 a {
   text-decoration: none;
   color: inherit;
-  font-family: 'Baskervville', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 
@@ -103,7 +111,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   position: relative;
-  font-family: 'Baskervville', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Área de Conteúdo Principal */
@@ -143,7 +151,7 @@ main {
   }
 
   & p {
-    line-height: 1.8rem;
+    line-height: 2rem;
   }
 
   /* Links */
