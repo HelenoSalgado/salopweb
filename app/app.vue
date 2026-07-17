@@ -13,7 +13,7 @@ const route = useRoute();
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `Heleno Salgado | ${titleChunk}` : 'Heleno Salgado - Tecnologia, Teologia e Literatura';
+    return titleChunk ? `${titleChunk} | Heleno Salgado` : 'Tecnologia, Teologia e Literatura | Heleno Salgado';
   },
   htmlAttrs: {
     lang: 'pt-BR'
