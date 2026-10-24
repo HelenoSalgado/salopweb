@@ -57,8 +57,8 @@ definePageMeta({
   layout: 'portfolio'
 });
 
-// Busca os projetos da API interna
-const { data: projects, pending, error } = await useAsyncData('github-projects', () => $fetch('/api/github'));
+// Busca os projetos da API interna sem bloquear a navegação inicial
+const { data: projects, pending, error } = useAsyncData('github-projects', () => $fetch('/api/github'), { lazy: true });
 
 useHead({
   title: 'Portfólio',
@@ -150,9 +150,11 @@ section {
 
 .portfolio-home {
   padding: 1rem;
+  padding-top: calc(var(--hextra-header-height) + 1.5rem);
+  min-height: 75vh;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
 }
 
 .presentation-section {
@@ -208,7 +210,7 @@ section {
 
 .loading-state,
 .error-state {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   text-align: center;
   color: var(--color-text-secondary);
   padding: 4rem 0;
@@ -229,7 +231,7 @@ section {
     gap: 1rem;
 
     & a {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-sans);
       color: #fff;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;

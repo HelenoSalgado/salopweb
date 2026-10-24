@@ -21,15 +21,23 @@ defineProps<{
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  column-gap: 0.75rem;
+  row-gap: 0.50rem;
 
   & li {
     list-style: none;
-    border-bottom: 1px solid var(--color-background-hover);
+    border-bottom: 1px solid var(--color-border);
 
     & a {
-      font-size: 1.3rem;
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
       text-decoration: none;
+      color: var(--color-primary);
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary-hover);
+      }
     }
   }
 }

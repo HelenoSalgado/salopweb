@@ -38,6 +38,13 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'preload',
+          href: '/fonts/EBGaramond-VariableFont_wght.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
           href: '/fonts/Inter-VariableFont_opsz,wght.ttf',
           as: 'font',
           type: 'font/ttf',
@@ -154,10 +161,14 @@ export default defineNuxtConfig({
     public: 'public'
   },
 
+  devtools: {
+    enabled: false
+  },
+
   $development: {
     debug: false,
     devtools: {
-      vueDevTools: false
+      enabled: false
     }
   }
 });

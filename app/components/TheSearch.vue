@@ -138,19 +138,16 @@ v-for="post in results" :key="post.path" :to="post.path" class="search-result-it
 .search-results,
 .search-no-results {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 6px);
   right: 0;
-  /* Alinha o box de resultados à direita do campo de pesquisa */
   left: auto;
-  /* Permite que a largura seja controlada por max-width e right */
   max-width: 500px;
-  /* Largura máxima para comportar os posts */
-  background-color: var(--color-background);
-  border-bottom-left-radius: 6px;
-  box-shadow: 0 4px 12px var(--color-shadow-light);
+  background-color: var(--color-background-elevated);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px var(--color-shadow);
   z-index: 100;
-  /* Ensure it's above other content */
   border: 1px solid var(--color-border);
+  overflow: hidden;
 }
 
 .search-result-item {

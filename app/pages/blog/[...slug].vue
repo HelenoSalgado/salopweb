@@ -128,7 +128,14 @@ v-bind="{
       <p>Escrevendo...</p>
     </div>
 
-    <h3 style="margin-top: 5rem;">Newsletter</h3>
-    <NewsletterForm/>
+    <div class="newsletter-wrapper">
+      <NewsletterForm/>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.newsletter-wrapper {
+  margin-top: 4rem;
+}
+</style>

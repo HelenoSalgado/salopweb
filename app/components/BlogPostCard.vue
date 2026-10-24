@@ -16,26 +16,45 @@ const { title, description, path } = defineProps<CardPost>();
 <style scoped>
 div{
   display: block;
-  border-bottom: 1px solid var(--color-background-hover);
+  border-bottom: 1px solid var(--color-border);
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   position: relative;
-  background-color: var(--color-background); /* Default background */
-  margin-bottom: 1.5rem; /* Spacing between cards */
+  background-color: transparent;
+  margin-bottom: 1rem;
 
   & h3{
-    margin: .5rem 0 1rem 0;
+    margin: .5rem 0 0.8rem 0;
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    letter-spacing: -0.015em;
   }
 
   & p{
-    line-height: 1.7rem;
+    line-height: 2rem;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-optical-sizing: auto;
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
   }
 
   & a{
-    font-size: clamp(.9rem, 5vw, 1.3rem );
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 500;
     text-decoration: none;
+    color: var(--color-primary);
+    display: inline-block;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: var(--color-primary-hover);
+      transform: translateX(4px);
+    }
   }
 }
 </style>
