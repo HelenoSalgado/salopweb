@@ -10,15 +10,18 @@ const currentPage = computed(() => {
 
 // Fetch all categories for the list component
 const { data: allCategories } = await useFetch<Categories>('/api/categories', {
+  key: 'blog-categories-list',
   pick: ['categories', 'slugified_categories'],
 });
 
 // --- Busca de Dados ---
 const { data, error } = await useFetch<PostsPagination<CardPost[]>>('/api/posts', {
+  key: computed(() => `blog-posts-page-${currentPage.value}`),
   query: {
     limit: POSTS_PER_PAGE,
     page: currentPage
   },
+  watch: [currentPage],
   pick: ['posts', 'totalPages']
 })
 
@@ -47,9 +50,11 @@ v-if="allCategories?.categories?.length" v-bind="{
       slugifiedCategories: allCategories.slugified_categories
     }" />
 
-    <template v-if="data?.posts?.length">
-      <BlogPostCard v-for="post in data.posts" :key="post.path" v-bind="post" />
-    </template>
+    <BlogPostCard
+      v-for="post in data?.posts"
+      :key="post.path"
+      v-bind="post"
+    />
 
     <Pagination
 v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"

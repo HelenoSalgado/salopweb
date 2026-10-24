@@ -8,12 +8,12 @@ export default defineNuxtConfig({
   //ssr: true,
 
   experimental: {
-    extractAsyncDataHandlers: true, // Extrai funçoes de busca do bundle, já que os dados são prerenderizados.
-    sharedPrerenderData: true,
+    extractAsyncDataHandlers: false,
+    sharedPrerenderData: false,
     renderJsonPayloads: true,
     entryImportMap: false,
     asyncContext: true,
-    lazyHydration: true,
+    lazyHydration: false,
     defaults: {
       nuxtLink: {
         prefetchOn: {
