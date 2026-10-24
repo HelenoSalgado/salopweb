@@ -44,7 +44,7 @@ export default defineEventHandler(async (event: H3Event) => {
         if (firstPost?.slugified_categories && firstPost?.categories) {
             const categoryIndex = firstPost.slugified_categories.indexOf(category);
             if (categoryIndex !== -1) {
-                categoryName = firstPost.categories[categoryIndex];
+                categoryName = firstPost.categories[categoryIndex] ?? '';
             }
         }
 

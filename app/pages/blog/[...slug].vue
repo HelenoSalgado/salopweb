@@ -43,18 +43,17 @@ if (post.value) {
     articlePublishedTime: post.value.date,
   });
 
-  const links: Array<{ rel: string; href: string; as: string; type: string; crossorigin: string }> = [];
-  if (post.value.mathfont) {
-    links.push(
-      {
-        rel: 'preload',
-        href: '/fonts/KaTeX_Main-Regular.woff2',
-        as: 'font',
-        type: 'font/woff2',
-        crossorigin: 'anonymous'
-      },
-    );
-  }
+  const links = post.value.mathfont
+    ? [
+        {
+          rel: 'preload',
+          href: '/fonts/KaTeX_Main-Regular.woff2',
+          as: 'font' as const,
+          type: 'font/woff2',
+          crossorigin: 'anonymous' as const
+        }
+      ]
+    : [];
 
   useHead({
     link: links,

@@ -86,7 +86,7 @@ describe('GET /api/categories/:slug', async () => {
     expect(mockQueryBuilder.where).toHaveBeenCalledWith('slugified_categories', 'LIKE', `%"${category}"%`);
     expect(response.posts).toBeDefined();
     expect(response.posts.length).toBe(2);
-    expect(response.posts[0].title).toBe('Post 1');
+    expect(response.posts[0]?.title).toBe('Post 1');
     expect(response.totalPages).toBe(Math.ceil(techPosts.length / 2));
   });
 
@@ -98,7 +98,7 @@ describe('GET /api/categories/:slug', async () => {
 
     expect(mockQueryBuilder.where).toHaveBeenCalledWith('slugified_categories', 'LIKE', `%"${category}"%`);
     expect(response.posts.length).toBe(1);
-    expect(response.posts[0].title).toBe('Post 5');
+    expect(response.posts[0]?.title).toBe('Post 5');
     expect(mockQueryBuilder.skip).toHaveBeenCalledWith(2);
   });
 

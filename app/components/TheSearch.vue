@@ -1,44 +1,71 @@
 <script setup lang="ts">
-interface SearchResult {
-  path: string;
-  title: string;
-  description: string;
-}
+import { SEARCH_MIN_LENGTH, normalizeSearchText, searchEntries, type SearchIndexEntry } from '~~/utils/search';
+
+/*
+ * O site é estático: não há endpoint dinâmico de busca em produção.
+ * O índice (/api/search-index.json) é pré-renderizado no build, baixado uma única
+ * vez sob demanda (no primeiro foco/digitação) e filtrado localmente.
+ */
+const SEARCH_INDEX_URL = '/api/search-index.json';
+let searchIndexPromise: Promise<SearchIndexEntry[]> | null = null;
+
+const loadSearchIndex = (): Promise<SearchIndexEntry[]> => {
+  searchIndexPromise ??= $fetch<SearchIndexEntry[]>(SEARCH_INDEX_URL, { responseType: 'json' })
+    .then((data) => {
+      if (!Array.isArray(data)) {
+        throw new TypeError('Índice de busca inválido');
+      }
+      return data;
+    })
+    .catch((error: unknown) => {
+      // Permite nova tentativa na próxima busca em caso de falha de rede.
+      searchIndexPromise = null;
+      throw error;
+    });
+  return searchIndexPromise;
+};
 
 const query = ref('');
-const results = ref<SearchResult[]>([]);
+const results = ref<SearchIndexEntry[]>([]);
 const showResults = ref(false);
 const noResults = ref(false);
 const searchInput = ref<HTMLInputElement | null>(null);
 let searchTimeout: ReturnType<typeof setTimeout> | null = null;
+
+const resetResults = () => {
+  results.value = [];
+  showResults.value = false;
+  noResults.value = false;
+};
 
 const performSearch = async () => {
   if (import.meta.server) {
     return;
   }
 
-  if (!query.value.trim()) {
-    results.value = [];
-    showResults.value = false;
-    noResults.value = false;
+  const term = query.value;
+  if (normalizeSearchText(term).length < SEARCH_MIN_LENGTH) {
+    resetResults();
     return;
   }
 
   try {
-    const response = await fetch(`/api/search?q=${encodeURIComponent(query.value.trim())}`);
-    if (!response.ok) {
-      throw new Error('Search request failed');
-    }
-    const data = await response.json();
-    results.value = data.slice(0, 10);
-    noResults.value = data.length === 0;
+    const index = await loadSearchIndex();
+    // Ignora respostas obsoletas caso o usuário tenha continuado digitando.
+    if (term !== query.value) return;
+
+    results.value = searchEntries(index, term);
+    noResults.value = results.value.length === 0;
     showResults.value = true;
   } catch (error) {
-    console.error('Error during search fetch:', error);
-    results.value = [];
-    showResults.value = false;
-    noResults.value = true;
+    console.error('Error loading search index:', error);
+    resetResults();
   }
+};
+
+// Pré-carrega o índice ao focar, para que a primeira busca seja instantânea.
+const prefetchIndex = () => {
+  loadSearchIndex().catch(() => { /* erro tratado em performSearch */ });
 };
 
 const handleInput = () => {
@@ -47,6 +74,7 @@ const handleInput = () => {
 };
 
 const handleFocus = () => {
+  prefetchIndex();
   if (query.value.trim()) {
     performSearch();
   }

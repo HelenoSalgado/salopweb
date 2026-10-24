@@ -11,7 +11,9 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "cleanup:html": "node scripts/cleanup-html.mjs",
-    "test": "vitest"
+    "test": "vitest run",
+    "typecheck": "nuxt typecheck",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "@nuxt/content": "^3.11.2",
@@ -38,8 +40,10 @@
     "eslint-plugin-vue": "^10.8.0",
     "happy-dom": "^20.7.0",
     "nuxt-vitalizer": "^2.0.0",
+    "typescript": "^5.9.3",
     "vite": "^8.3.5",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.0.5"
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13"
   }
 }

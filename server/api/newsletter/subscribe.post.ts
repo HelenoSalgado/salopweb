@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
   } catch (error: unknown) {
     if (error instanceof z.ZodError) {
       setResponseStatus(event, 400); // Bad Request
-      return { success: false, message: error.errors[0]?.message || 'E-mail inválido.' };
+      return { success: false, message: error.issues[0]?.message || 'E-mail inválido.' };
     }
 
     console.error('Erro na inscrição da newsletter:', error);

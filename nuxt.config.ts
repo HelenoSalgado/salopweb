@@ -140,9 +140,11 @@ export default defineNuxtConfig({
     format: ['webp'],
     presets: {
       profile: {
-        width: 60,
-        height: 60,
-        quality: 100
+        modifiers: {
+          width: 60,
+          height: 60,
+          quality: 100
+        }
       }
     },
     screens: {

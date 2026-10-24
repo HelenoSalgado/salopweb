@@ -205,14 +205,19 @@ const onProgressMouseDown = (event: MouseEvent) => {
 const handleTouchStart = (event: TouchEvent) => {
     if (!isReadyToSeek()) return;
 
+    const touch = event.touches[0];
+    if (!touch) return;
+
     // Removido event.preventDefault() - o CSS 'touch-action: none' cuida disso.
     isDragging.value = true;
-    updateSeekPosition(event.touches[0].clientX);
+    updateSeekPosition(touch.clientX);
 };
 
 const handleTouchMove = (event: TouchEvent) => {
     if (!isDragging.value) return;
-    updateSeekPosition(event.touches[0].clientX);
+    const touch = event.touches[0];
+    if (!touch) return;
+    updateSeekPosition(touch.clientX);
 };
 
 const handleTouchEnd = () => {

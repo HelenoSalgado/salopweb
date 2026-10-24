@@ -1,11 +1,11 @@
 <template>
-<ul v-if="categories?.length" class="categories-list">
-       <li v-for="(category, index) in categories" :key="category">
-      <NuxtLink :to="`/blog/categorias/${slugifiedCategories[index]}`">
+  <ul v-if="categories?.length && slugifiedCategories?.length" class="categories-list">
+    <li v-for="(category, index) in categories" :key="category">
+      <NuxtLink :to="`/blog/categorias/${slugifiedCategories[index] ?? ''}`">
         {{ category }}
       </NuxtLink>
     </li>
-    </ul>
+  </ul>
 </template>
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content';

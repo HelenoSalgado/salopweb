@@ -2,13 +2,18 @@ import type { NitroConfig } from 'nitropack'
 
 export default {
   preset: 'cloudflare-module',
+  cloudflare: {
+    nodeCompat: true
+  },
   output: {
     publicDir: 'dist',
   },
   minify: true,
   prerender: {
     crawlLinks: true,
-    routes: ['/'],
+    // '/api/search-index.json' não é descoberto pelo crawler (só é buscado
+    // via JS no cliente), por isso precisa ser listado explicitamente.
+    routes: ['/', '/api/search-index.json'],
     ignore: [
       '__nuxt_content/home/sql_dump.txt',
       '__nuxt_content/blog/sql_dump.txt',

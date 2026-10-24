@@ -4,8 +4,8 @@
       <h2 style="display: inline-flex; align-items: center; column-gap: 1rem;">
         <LazyIconsFrown /> <span>Erro {{ error?.statusCode }}</span>
       </h2>
-      <p>{{ error?.data?.message || error?.message || 'Ocorreu um erro inesperado.' }}</p>
-      <NuxtLink to="/blog" @click="clearError">Ver Posts</NuxtLink>
+      <p>{{ errorMessage }}</p>
+      <NuxtLink to="/blog" @click="handleClearError">Ver Posts</NuxtLink>
     </div>
   </NuxtLayout>
 </template>
@@ -13,12 +13,18 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app';
 
-const { error } = defineProps({
-  error: {
-    type: Object as () => NuxtError,
-    default: () => ({ statusCode: 404, message: 'Página não encontrada' })
-  },
+const { error = undefined } = defineProps<{
+  error?: NuxtError;
+}>();
+
+const errorMessage = computed(() => {
+  const data = error?.data as { message?: string } | undefined;
+  return data?.message || error?.message || 'Ocorreu um erro inesperado.';
 });
+
+const handleClearError = () => {
+  clearError({ redirect: '/blog' });
+};
 
 // Define o template do título e outros atributos globais do <head>
 useHead({
