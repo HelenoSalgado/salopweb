@@ -1,7 +1,7 @@
 import type { NitroConfig } from 'nitropack'
 
 export default {
-  preset: 'cloudflare-pages',
+  preset: 'cloudflare-module',
   output: {
     publicDir: 'dist',
   },
