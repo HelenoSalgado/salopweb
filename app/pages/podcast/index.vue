@@ -7,7 +7,7 @@
             <h2>{{ episode.title }}</h2>
             <p style="margin-bottom: 2.5rem;">{{ episode.description }}</p>
 
-            <PodcastPlayer :src="siteUrl + episode.audioSrc" />
+            <PodcastPlayer :src="episode.audioSrc" />
 
             <div class="episode-footer">
                 <p class="source">

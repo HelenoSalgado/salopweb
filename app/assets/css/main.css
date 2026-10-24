@@ -230,7 +230,7 @@ main {
     margin: 1.75em 0;
     color: var(--color-text-secondary);
     font-family: var(--font-serif);
-    font-style: italic;
+    font-style: oblique;
     font-size: clamp(1.35rem, 2.5vw, 1.45rem);
     line-height: 2.3rem;
     transition: border-color 0.3s ease, color 0.3s ease;
@@ -304,12 +304,13 @@ main {
       font-family: var(--font-serif);
 
       & p {
-        font-size: clamp(1.35rem, 2.5vw, 1.48rem);
-        line-height: 2.35rem;
+        font-size: clamp(1.5rem, 2.6vw, 1.5rem);
+        line-height: 2.4rem;
         font-family: var(--font-serif);
-        font-weight: 450;
+        font-weight: 400;
         font-optical-sizing: auto;
         font-feature-settings: "kern" 1, "liga" 1;
+        text-align: justify;
       }
 
       & img {

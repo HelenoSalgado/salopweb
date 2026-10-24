@@ -1,6 +1,6 @@
 ---
 title: "Gemini e seu esquecimento sistemático"
-description: "A Gemini, naturalmente, está se tornando cada dia melhor, mais perspicaz, mais organizada, mais metódica em programação, mas ainda esquece muito."
+description: "O Gemini, naturalmente, está se tornando cada dia melhor, mais perspicaz, mais organizado, mais metódico em programação, mas ainda esquece muito."
 date: '2026-04-26'
 categories:
    - IA

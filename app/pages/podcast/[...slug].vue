@@ -17,7 +17,7 @@ if (error.value) {
 }
 
 // Caminho relativo para componentes locais como NuxtImg
-const relativeArtworkPath = computed(() => episode?.value?.image ? siteUrl + episode?.value?.image : siteUrl + '/images/default-podcast.webp');
+const relativeArtworkPath = computed(() => episode?.value?.image || '/images/default-podcast.webp');
 
 // Configuração de SEO
 watch(episode, (newData) => {
@@ -137,7 +137,7 @@ v-if="episode.categories?.length" v-bind="{
         <p v-if="episode?.description" style="margin: 2rem 0 2.5rem 0"><em>{{ episode.description }}</em></p>
 
         <PodcastPlayer 
-            :src="siteUrl+episode.audioSrc"
+            :src="episode.audioSrc"
             :title="episode.title"
             :artist="'Heleno Salgado'"
             :album="'Podcast do Blog - NotebookLM'"

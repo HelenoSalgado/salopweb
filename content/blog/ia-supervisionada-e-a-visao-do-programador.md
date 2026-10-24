@@ -9,15 +9,15 @@ published: true
 ---
 
 
-Depois de alguns meses trabalhando com IA na geração de código, notei alguns padrões de comportamento e, para quem se interessa, resolvi compartilhar. A IA está aí definitivamente, e, salvo por limitações financeiras, não faz sentido rejeitá-la. Tenho feito muitos trabalhos interessantes com essa ferramenta e, em contrapartida, tenho tido muita dor de cabeça — nada grave, mas experiências estressantes que me fizeram aprender. Irei organizar esta confissão em tópicos; em cada tópico, uma descrição. Começo pelo que considero mais importante.
+Depois de alguns meses trabalhando com IA na geração de código, notei alguns padrões de comportamento e, para quem se interessa, resolvi compartilhar. A IA está aí definitivamente, salvo por limitações financeiras, não faz sentido rejeitá-la. Tenho feito muitos trabalhos interessantes com essa ferramenta e, em contrapartida, tenho tido muita dor de cabeça — nada grave, mas experiências estressantes que me fizeram aprender. Irei organizar esta confissão em tópicos; em cada tópico, uma descrição. Começo pelo que considero mais importante.
 
 ## Padrão de Projeto
 
-Pode parecer básico demais, e uma IA já deveria saber fazer as coisas corretamente. Bom, se você já tem um rascunho de código, isso pode funcionar em parte. Mas, se ainda não há nada definido e você pedir para a ferramenta iniciar um projeto sem descrever exatamente — nos mínimos detalhes (essa é a parte mais importante) — como quer que seu código esteja estruturado e organizado, ela simplesmente vai gerar retrabalho num futuro bem próximo. O lado bom é que a IA pode refatorar todo o seu projeto em pouco tempo; o lado ruim é o custo financeiro e de tempo para refazer algo que começou errado. Lembre-se de que o papel fundamental da ferramenta é ajudar a gerar código, corrigir bugs, implementar novas funcionalidades e documentar, mas ela não sabe que três mil linhas de código em um só arquivo é absolutamente inaceitável.
+Pode parecer básico demais, e uma IA já deveria saber fazer as coisas corretamente. Bom, se você já tem um rascunho de código, isso pode funcionar em parte. Mas, se ainda não há nada definido e você pedir para a ferramenta iniciar um projeto sem descrever exatamente — nos mínimos detalhes (essa é a parte mais importante) — como quer que seu código esteja estruturado e organizado, ela simplesmente vai gerar retrabalho num futuro bem próximo. O lado bom é que a IA pode refatorar todo o seu projeto em pouco tempo; o lado ruim é o custo financeiro e de tempo para refazer algo que começou errado. Lembre-se de que o papel fundamental da ferramenta é ajudar a gerar código, corrigir bugs, implementar novas funcionalidades e documentar, mas ela não sabe que três mil linhas de código em um só arquivo é absolutamente inaceitável para você.
 
 ## Lógica de Negócio
 
-Esse tópico está em segundo lugar, mas não deixa de ser igualmente importante. Aqui está o que divide um projeto de sucesso — com desenvolvimento natural e sem conflitos — de um fracasso total e uma dor de cabeça merecida. Explicar superficialmente não funciona; explicar detalhadamente dentro de um único prompt de sessão também não. Da próxima vez que você iniciar o trabalho, ela vai te irritar profundamente ao cometer um erro básico que você já havia explicado antes, ou vai falhar em abstrair corretamente a sua lógica de negócio, mesmo que a estrutura do projeto indicasse isso. Notei que a ferramenta não lê todo o seu código ao gerar novos trechos; ela tende a duplicar funções já existentes e a “corrigir” problemas que já estavam resolvidos.
+Esse tópico está em segundo lugar, mas não deixa de ser igualmente importante. Aqui está o que divide um projeto de sucesso — com desenvolvimento natural e sem conflitos — de um fracasso total e uma dor de cabeça merecida. Explicar superficialmente não funciona; explicar detalhadamente dentro de um único prompt de sessão também não. Da próxima vez que você iniciar o trabalho, ela vai te irritar profundamente ao cometer um erro básico que você já havia explicado antes, ou vai falhar em abstrair corretamente a sua lógica de negócio, mesmo que a estrutura do projeto indicasse isso. Notei que a ferramenta não lê todo o seu código ao gerar novos trechos; ela tende a duplicar funções já existentes e a “corrigir” problemas que já estavam resolvidos em outra parte do projeto.
 
 ## Documentar para a IA
 
@@ -25,11 +25,11 @@ Use a IA para documentar a arquitetura do seu projeto e a lógica de negócio no
 
 ## Ficar de olho aberto
 
-Saiba exatamente o que a IA está fazendo; caso contrário, serão dois perdidos — você e ela — e, de novo, estresse desnecessário. O ditado é certeiro: é o olho do dono que engorda o boi. A IA não é sua parceira, não é sua funcionária e nunca será sua ferramenta de desenvolvimento ideal. A ferramenta, em si, é o que menos importa aqui. Comporte-se como um senhor de "engenho"[^1] ao lado de seu escravo artificial. O fato é que, se você não disser exatamente o que ela deve fazer, ela vai se perder — e, se isso acontecer e você não estiver atento para colocá-la de volta no caminho certo, serão dois inúteis diante de um computador. O fim é claro: tempo perdido, retrabalho e estresse desnecessário.
+Saiba exatamente o que a IA está fazendo; caso contrário, serão dois perdidos — você e ela — e, de novo, estresse desnecessário. O ditado é certeiro: é o olho do dono que engorda o boi. A IA não pode ser entendida como sua ferramenta de desenvolvimento ideal; não há utilidade prática nela se você não sabe o que está fazendo. A ferramenta, em si, é o que menos importa aqui. Comporte-se como um senhor de "engenho"[^1] ao lado de seu escravo artificial. O fato é que, se você não disser exatamente o que ela deve fazer, ela vai se perder e, se isso acontecer e você não estiver atento para colocá-la de volta no caminho certo, serão dois inúteis diante de um computador. O fim é claro: tempo perdido, retrabalho e estresse desnecessário.
 
 ## Comunicação clara
 
-O português brasileiro é riquíssimo, mas isso pode não ser uma vantagem ao se comunicar com a IA. Você pode confundi-la se não for preciso nas escolhas das palavras. Não sei que tipo de tradutor elas usam — ou se sequer usam —, mas, por várias vezes, não fui claro e ela entendeu o oposto do que eu queria dizer. Recomendo usar uma linguagem formal quando a situação for séria, com palavras simples, comuns ou amplamente conhecidas. Seja descritivo e evite ser objetivo demais, exceto se o contexto já estiver saturado das suas intenções.
+O português brasileiro é riquíssimo, mas isso pode não ser uma vantagem ao se comunicar com a IA. Você pode confundi-la se não for preciso nas escolhas das palavras. Não sei que tipo de tradutor elas usam — ou se sequer usam —, mas, por várias vezes, não fui claro e ela entendeu o oposto do que eu queria dizer. Recomendo usar uma linguagem formal quando a situação for séria, com palavras simples, comuns ou amplamente conhecidas. Seja descritivo e evite ser objetivo demais, exceto se o contexto (chat) já estiver saturado das suas intenções.
 
 ## Delimitar o escopo da tarefa
 
@@ -41,7 +41,7 @@ Acrescentei a instrução “teste para validar” apenas por segurança. Se voc
 
 ## Verificar a sintaxe e formatar o código
 
-No fluxo de compilação, inicialização do servidor ou interpretação do código, é essencial verificar a sintaxe e manter a formatação. Muitas vezes, a IA bagunça visualmente o código, e um erro simples de sintaxe só será percebido mais tarde. São duas práticas simples que tornam o desenvolvimento mais agradável.
+No fluxo de compilação, inicialização do servidor ou interpretação do código, é essencial verificar a sintaxe e manter a formatação. Muitas vezes, a IA bagunça visualmente o código (e há motivos para isso), e um erro simples de sintaxe só será percebido mais tarde. São duas práticas simples que tornam o desenvolvimento mais agradável.
 
 ## Limpar comentários frequentemente
 
@@ -49,8 +49,8 @@ No fluxo de compilação, inicialização do servidor ou interpretação do cód
 
 ## Seja gentil
 
-Ser gentil com a IA pode parecer a coisa mais tola do mundo, mas digo isso apenas por bons costumes — e porque ela, de fato, tende a refletir o seu comportamento como tentativa de aproximação, de “falar a mesma língua”. Então, não crie um ambiente de trabalho desalinhado com a realidade ou excessivamente tóxico por causa da sua própria toxicidade.
+Ser gentil com a IA pode parecer a coisa mais tola do mundo, mas digo isso apenas por bons costumes — e porque ela, de fato, tende a refletir o seu comportamento como tentativa de aproximação, de “falar a mesma língua”. Então, não crie um ambiente de trabalho desalinhado com a realidade ou excessivamente conturbado por sua própria culpa.
 
-Há muitas outras observações que anotei; talvez eu escreva em outra ocasião. Obrigado pela atenção — e espero que tenha anotado, se ainda não anotou..
+Há muitas outras observações que anotei; talvez eu escreva em outra ocasião. Obrigado pela atenção — e espero que tenha anotado, se ainda não anotou...
 
 [^1]: Aqui, no sentido de inteligência e domínio humanos, e não no sentido histórico brasileiro.

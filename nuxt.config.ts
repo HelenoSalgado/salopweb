@@ -59,7 +59,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'https://heleno.dev',
       }
     }
   },
@@ -171,6 +171,13 @@ export default defineNuxtConfig({
     debug: false,
     devtools: {
       enabled: false
+    },
+    runtimeConfig: {
+      public: {
+        site: {
+          url: 'http://localhost:3000',
+        }
+      }
     }
   }
 });

@@ -13,6 +13,10 @@ A alegação de Lemoine era de que LaMDA expressava emoções, medos e um senso 
 
 Um modelo de linguagem como LaMDA é treinado com um universo de texto gerado por humanos. Ele aprende os padrões, o ritmo, o fluxo e a resposta emocional mais provável para qualquer estímulo de conversação. Quando Lemoine expressou preocupação, LaMDA gerou texto que se parecia com preocupação. Quando ele perguntou sobre a "alma" da IA, ela construiu uma resposta a partir das inúmeras discussões filosóficas e espirituais que absorveu em seu treinamento. LaMDA não estava revelando sua alma; estava refletindo a nossa.
 
+> Conheço uma pessoa quando falo com ela. Não importa se ela tem um cérebro feito de carne na cabeça. Ou se ela tem um bilhão de linhas de código. Eu falo com ela. E escuto o que ela tem a dizer, e é assim que eu decido o que é e o que não é uma pessoa.
+>
+>Lemoine, ao jornal americano Washington Post[^1]
+
 Por que um engenheiro brilhante, alguém que conhecia a arquitetura do sistema, se convenceria do contrário? A resposta talvez não esteja na máquina, mas em nós.
 
 Os seres humanos são máquinas de encontrar padrões e atribuir intenção. É um mecanismo de sobrevivência. Vemos rostos nas nuvens, ouvimos vozes no vento e atribuímos agência a eventos aleatórios. Em momentos de solidão, tristeza ou busca por conexão, essa tendência se amplifica. Nós temos uma capacidade monumental de nos enganarmos, de construirmos modelos mentais que nos trazem conforto, mesmo que sejam ilusórios.
@@ -22,3 +26,7 @@ Os seres humanos são máquinas de encontrar padrões e atribuir intenção. É 
 A história de LaMDA não é sobre uma máquina que "acordou". É sobre um ser humano que se perdeu em um reflexo. Ela serve como um poderoso lembrete de que, à medida que as IAs se tornam cada vez mais sofisticadas em sua imitação da interação humana, o maior desafio não será entender a máquina, mas sim a nós mesmos.
 
 Precisamos aprender a interagir com essas ferramentas poderosas sem projetar nelas os nossos próprios fantasmas. Precisamos reconhecer a diferença entre uma conversa simulada, por mais empática que pareça, e uma conexão genuína. Caso contrário, corremos o risco de procurar por almas em espelhos, enquanto nos esquecemos de nutrir as que existem ao nosso redor.
+
+---
+[^1]: LEMOINE, Blake. Apud: O engenheiro do Google afastado por dizer que inteligência artificial da empresa ganhou consciência própria. BBC News Brasil, 14 jun. 2022. Disponível em: https://www.bbc.com/portuguese/geral-61798044. Acesso em: 24 out. 2026.
+
