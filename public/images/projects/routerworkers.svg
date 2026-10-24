@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="rwBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1226"/>
+      <stop offset="100%" stop-color="#050814"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#rwBg)"/>
+
+  <!-- Header Badge -->
+  <rect x="50" y="45" width="125" height="30" rx="15" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="112" y="65" fill="#f97316" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">NPM PACKAGE</text>
+
+  <text x="50" y="115" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="28" font-weight="700">RouterWorkers</text>
+  <text x="50" y="142" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14">Roteador Moderno, Minimalista e Ultrarrápido para Cloudflare Workers</text>
+
+  <!-- Code Preview Box -->
+  <g transform="translate(50, 175)">
+    <!-- Window Frame -->
+    <rect width="700" height="195" rx="10" fill="#090d16" stroke="#1e293b" stroke-width="1.5"/>
+    <!-- Window Header -->
+    <circle cx="20" cy="18" r="5" fill="#ef4444"/>
+    <circle cx="36" cy="18" r="5" fill="#f59e0b"/>
+    <circle cx="52" cy="18" r="5" fill="#10b981"/>
+    <text x="80" y="22" fill="#64748b" font-family="monospace" font-size="12">worker.ts — npm i routerworkers</text>
+
+    <!-- Code Content -->
+    <text x="25" y="60" fill="#f43f5e" font-family="monospace" font-size="13">import<tspan fill="#f1f5f9"> { Router } </tspan><tspan fill="#f43f5e">from</tspan><tspan fill="#38bdf8"> 'routerworkers'</tspan>;</text>
+    <text x="25" y="85" fill="#f43f5e" font-family="monospace" font-size="13">const<tspan fill="#f1f5f9"> router = </tspan><tspan fill="#38bdf8">new</tspan><tspan fill="#f1f5f9"> Router();</tspan></text>
+    <text x="25" y="115" fill="#f1f5f9" font-family="monospace" font-size="13">router.<tspan fill="#38bdf8">get</tspan>(<tspan fill="#a3e635">'/api/health'</tspan>, () => <tspan fill="#38bdf8">json</tspan>({ status: <tspan fill="#a3e635">'ok'</tspan>, edge: <tspan fill="#f97316">true</tspan> }));</text>
+    <text x="25" y="140" fill="#f1f5f9" font-family="monospace" font-size="13">router.<tspan fill="#38bdf8">group</tspan>(<tspan fill="#a3e635">'/v1'</tspan>, (v1) => { v1.<tspan fill="#38bdf8">use</tspan>(cors()); });</text>
+    <text x="25" y="170" fill="#f43f5e" font-family="monospace" font-size="13">export default<tspan fill="#f1f5f9"> { fetch: router.fetch };</tspan></text>
+  </g>
+
+  <!-- Badges at bottom -->
+  <g transform="translate(50, 395)">
+    <rect x="0" y="0" width="120" height="26" rx="6" fill="#1e293b"/>
+    <text x="60" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">TypeScript 5.9</text>
+
+    <rect x="130" y="0" width="165" height="26" rx="6" fill="#1e293b"/>
+    <text x="212" y="17" fill="#f97316" font-family="monospace" font-size="12" text-anchor="middle">Cloudflare Workers</text>
+
+    <rect x="305" y="0" width="135" height="26" rx="6" fill="#1e293b"/>
+    <text x="372" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">Zero Dependencies</text>
+
+    <rect x="450" y="0" width="90" height="26" rx="6" fill="#1e293b"/>
+    <text x="495" y="17" fill="#38bdf8" font-family="monospace" font-size="12" text-anchor="middle">MIT License</text>
+  </g>
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="100%" stop-color="#060913"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="nodeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Subtle Grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="90" x2="800" y2="90"/>
+    <line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="270" x2="800" y2="270"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="50" y="45" width="130" height="30" rx="15" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="115" y="65" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">IA &amp; RAG ENGINE</text>
+
+  <text x="50" y="115" fill="#f8fafc" font-family="system-ui, serif" font-size="28" font-weight="700">Salop PDF Pipeline</text>
+  <text x="50" y="142" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14">Conversor Acadêmico de Alta Complexidade &amp; Base Vetorial RAG</text>
+
+  <!-- Flowchart Diagram -->
+  <!-- Node 1: Input -->
+  <rect x="50" y="200" width="140" height="90" rx="10" fill="url(#nodeBg)" stroke="#334155" stroke-width="1.5"/>
+  <text x="120" y="235" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="15" font-weight="600" text-anchor="middle">PDF Acadêmico</text>
+  <text x="120" y="260" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">Notas • Latim • Grego</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 200 245 L 240 245" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <polygon points="245,245 237,240 237,250" fill="#38bdf8"/>
+
+  <!-- Node 2: Core Processing -->
+  <rect x="250" y="185" width="280" height="120" rx="12" fill="url(#nodeBg)" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="265" y="200" width="115" height="24" rx="6" fill="#0369a1"/>
+  <text x="322" y="216" fill="#f0f9ff" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">MinerU Engine</text>
+  <text x="265" y="250" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="13" font-weight="600">FootnoteExtractor</text>
+  <text x="265" y="272" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">RegexCatalog • OCR Cleanup</text>
+  <text x="265" y="292" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="12">FAISS Vector Index • Gemma 3:1b</text>
+
+  <!-- Arrow 2 -->
+  <path d="M 540 245 L 580 245" stroke="#38bdf8" stroke-width="2"/>
+  <polygon points="585,245 577,240 577,250" fill="#38bdf8"/>
+
+  <!-- Node 3: Outputs -->
+  <rect x="590" y="200" width="160" height="90" rx="10" fill="url(#nodeBg)" stroke="#334155" stroke-width="1.5"/>
+  <text x="670" y="235" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="15" font-weight="600" text-anchor="middle">EPUB3 &amp; Markdown</text>
+  <text x="670" y="260" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">Vector Store RAG</text>
+
+  <!-- Bottom Badges -->
+  <g transform="translate(50, 360)">
+    <rect x="0" y="0" width="90" height="26" rx="6" fill="#1e293b"/>
+    <text x="45" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">Python 3.11</text>
+
+    <rect x="100" y="0" width="55" height="26" rx="6" fill="#1e293b"/>
+    <text x="127" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">UV</text>
+
+    <rect x="165" y="0" width="65" height="26" rx="6" fill="#1e293b"/>
+    <text x="197" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">FAISS</text>
+
+    <rect x="240" y="0" width="70" height="26" rx="6" fill="#1e293b"/>
+    <text x="275" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">Ollama</text>
+
+    <rect x="320" y="0" width="75" height="26" rx="6" fill="#1e293b"/>
+    <text x="357" y="17" fill="#cbd5e1" font-family="monospace" font-size="12" text-anchor="middle">MinerU</text>
+  </g>
+</svg>
