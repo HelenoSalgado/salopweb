@@ -2,6 +2,7 @@
   "name": "heleno",
   "type": "module",
   "private": true,
+  "packageManager": "bun@1.4.3",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -22,7 +23,6 @@
     "ipx": "^3.1.1",
     "nuxt": "^4.3.1",
     "sitemap": "^9.0.0",
-    "TagCloud": "^2.5.0",
     "vue": "^3.5.28",
     "zod": "^4.3.6"
   },

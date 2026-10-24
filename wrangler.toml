@@ -2,6 +2,7 @@
 
 name = "blog"
 compatibility_date = "2025-09-19"
+pages_build_output_dir = "dist"
 
 # --- LOCAL DEVELOPMENT ---
 # This configuration is for LOCAL DEVELOPMENT.
