@@ -13,13 +13,14 @@
           <a href="https://twitter.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <IconsTwitter />
           </a>
-          <a href="https://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer"
+          <a
+href="https://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer"
             aria-label="Instagram">
             <IconsInstagram />
           </a>
         </div>
       </div>
-      <div class="skills-cloud"></div>
+      <div class="skills-cloud"/>
     </section>
 
     <!-- Seção 2: Projetos em Destaque -->
@@ -98,7 +99,11 @@ useHead({
   ]
 })
 
-let tagCloudInstance: any = null;
+interface TagCloudInstance {
+  destroy: () => void;
+}
+
+let tagCloudInstance: TagCloudInstance | null = null;
 
 onMounted(async () => {
   const container = '.skills-cloud';
@@ -110,7 +115,6 @@ onMounted(async () => {
     'Perl', 'Linux', 'JavaScript',
   ];
 
-  const containerEl = document.querySelector(container);
   const width = window.innerWidth;
 
   const options = {
@@ -120,17 +124,14 @@ onMounted(async () => {
     direction: 135,
     keep: true,
   };
-  
-  const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js';
-  script.onload = () => {
-    // @ts-ignore
-    const TagCloud = window.TagCloud;
-    if (TagCloud) {
-      tagCloudInstance = TagCloud(container, texts, options);
-    }
-  };
-  document.head.appendChild(script);
+
+  try {
+    const TagCloudModule = await import('TagCloud');
+    const TagCloud = TagCloudModule.default || TagCloudModule;
+    tagCloudInstance = TagCloud(container, texts, options);
+  } catch (err) {
+    console.error('Erro ao carregar TagCloud:', err);
+  }
 });
 
 onUnmounted(() => {

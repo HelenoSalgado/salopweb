@@ -15,14 +15,12 @@ definePageMeta({
   title: 'Sobre'
 });
 
-watchEffect(() => {
-  useSeoMeta({
-  title: page.value?.title || 'Sobre Mim',
-  description: page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
-  ogTitle: page.value?.title || 'Sobre',
-  ogDescription: page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
-  ogImage: page.value?.image || `${siteUrl}/images/default-post.webp`,
+useSeoMeta({
+  title: () => page.value?.title || 'Sobre Mim',
+  description: () => page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
+  ogTitle: () => page.value?.title || 'Sobre',
+  ogDescription: () => page.value?.description || 'Conheça mais sobre Heleno Salgado, sua jornada e seus projetos.',
+  ogImage: () => page.value?.image || `${siteUrl}/images/default-post.webp`,
   ogType: 'profile',
 });
-})
 </script>

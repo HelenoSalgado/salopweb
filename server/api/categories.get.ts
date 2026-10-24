@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
             categories,
             slugified_categories
         };
-    } catch (error) {
+    } catch {
         throw createError({
             statusCode: 500,
             message: 'Erro ao buscar categorias'

@@ -58,7 +58,8 @@ export default defineEventHandler(async (event) => {
             totalPages
         } as PostsPagination<CardPost[]>;
 
-    } catch (error) {
+    } catch (err) {
+        console.error('Error in /api/posts:', err);
         throw createError({
             statusCode: 500,
             message: 'Erro ao buscar posts'

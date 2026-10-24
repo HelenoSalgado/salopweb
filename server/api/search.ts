@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
 
         return results;
 
-    } catch (error) {
+    } catch {
         throw createError({
             statusCode: 500,
             message: 'Erro ao realizar busca'

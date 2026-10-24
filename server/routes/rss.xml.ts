@@ -1,4 +1,4 @@
-import { BlogCollectionItem } from '@nuxt/content'
+import type { BlogCollectionItem } from '@nuxt/content'
 import type { H3Event } from 'h3'
 
 export default defineEventHandler(async (event: H3Event) => {

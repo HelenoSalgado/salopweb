@@ -32,13 +32,13 @@ const toggleSidebar = () => {
           <li><NuxtLink to="/newsletter">Newsletter</NuxtLink></li>
         </ul>
         <div class="social-media">
-          <a href="http://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer" title="Instagram" arial-label="Meu Perfil no Instagram">
+          <a href="https://instagram.com/heleno_salgado" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Meu Perfil no Instagram">
             <IconsInstagram />
           </a>
-          <a href="http://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="X" arial-label="Meu Perfil no X">
+          <a href="https://x.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="X" aria-label="Meu Perfil no X">
             <IconsTwitter />
           </a>
-          <a href="http://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">
+          <a href="https://github.com/HelenoSalgado" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">
             <IconsGithub />
           </a>
         </div>

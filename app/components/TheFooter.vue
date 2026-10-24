@@ -2,9 +2,10 @@
   <footer class="hextra-footer">
     <div class="hextra-footer-container">
       <div class="theme-switcher-container">
-        <div class="hextra-theme-toggle" :class="{ 'active': isOptionsOpen }" @click="isOptionsOpen = !isOptionsOpen" title="Tema">
+        <div class="hextra-theme-toggle" :class="{ 'active': isOptionsOpen }" title="Tema" @click="isOptionsOpen = !isOptionsOpen">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <path
+stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </div>
@@ -15,7 +16,7 @@
         </div>
       </div>
       <div class="credentials">
-        <a href="https://orcid.org/0009-0003-3945-2493" rel="me noopener noreferrer" title="ORCID" arial-label="Meu Perfil no ORCID">
+        <a href="https://orcid.org/0009-0003-3945-2493" rel="me noopener noreferrer" title="ORCID" aria-label="Meu Perfil no ORCID">
           <IconsOrcid />
         </a>
         <a href="https://github.com/HelenoSalgado" rel="me noopener noreferrer" title="GitHub" aria-label="Meu Perfil no GitHub">

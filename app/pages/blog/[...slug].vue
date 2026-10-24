@@ -43,7 +43,7 @@ if (post.value) {
     articlePublishedTime: post.value.date,
   });
 
-  const links: any[] = [];
+  const links: Array<{ rel: string; href: string; as: string; type: string; crossorigin: string }> = [];
   if (post.value.mathfont) {
     links.push(
       {
@@ -91,7 +91,8 @@ if (post.value) {
 
       <div v-if="post.categories?.length" class="categories">
         <IconsTag />
-        <CategoriesList v-bind="{
+        <CategoriesList
+v-bind="{
           categories: post.categories,
           slugifiedCategories: post.slugified_categories
         }" />
@@ -119,7 +120,9 @@ if (post.value) {
 
     <h3 class="title-posts-related">Posts Relacionados</h3>
 
-    <BlogPostCard v-if="postsRelated?.length" v-for="post in postsRelated" :key="post?.path" v-bind="post" />
+    <template v-if="postsRelated?.length">
+      <BlogPostCard v-for="relatedPost in postsRelated" :key="relatedPost?.path" v-bind="relatedPost" />
+    </template>
     <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
       <LazyIconsFeather />
       <p>Escrevendo...</p>

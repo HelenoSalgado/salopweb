@@ -50,7 +50,7 @@ onMounted(() => {
       <a :href="whatsappShareUrl" target="_blank" rel="noopener noreferrer" class="button" title="Whatsapp">
         <IconsWhatsapp/>
       </a>
-      <button class="button" @click="copyLink" title="Link">
+      <button class="button" title="Link" @click="copyLink">
         <IconsLink/>
       </button>
     </div>

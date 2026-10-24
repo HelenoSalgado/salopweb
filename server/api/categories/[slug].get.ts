@@ -65,8 +65,8 @@ export default defineEventHandler(async (event: H3Event) => {
             categoryName,
         } as PostsPagination<CardPost[]>;
 
-    } catch (error: any) {
-        if (error.statusCode) {
+    } catch (error: unknown) {
+        if (typeof error === 'object' && error !== null && 'statusCode' in error) {
             throw error;
         }
         throw createError({

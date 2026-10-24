@@ -22,7 +22,7 @@ async function createEquationImage() {
     const imageName = `eq-${hash}.svg`;
     const imagePath = path.join(outputDir, imageName);
 
-    const finalEquation = `\huge ${equation}`;
+    const finalEquation = `\\huge ${equation}`;
 
     // Codifica a equação para uso na URL
     const encodedEquation = encodeURIComponent(finalEquation);

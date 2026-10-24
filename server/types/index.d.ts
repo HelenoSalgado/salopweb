@@ -1,3 +1,5 @@
+import type { BlogCollectionItem } from '@nuxt/content';
+
 export interface PostsPagination <T>{
     posts: T,
     totalPages: number,

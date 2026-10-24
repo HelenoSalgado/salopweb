@@ -1,5 +1,5 @@
 import { queryCollection } from "@nuxt/content/server";
-import { PodcastEpisode } from "../../types";
+import type { PodcastEpisode } from "../../types";
 import type { H3Event } from 'h3';
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -28,8 +28,8 @@ export default defineEventHandler(async (event: H3Event) => {
 
         return podcast as PodcastEpisode;
 
-    } catch (error: any) {
-        if (error.statusCode) {
+    } catch (error: unknown) {
+        if (typeof error === 'object' && error !== null && 'statusCode' in error) {
             throw error;
         }
         throw createError({

@@ -1,24 +1,26 @@
 import { defineTransformer } from '@nuxt/content'
 
 export default defineTransformer({
-  name: 'date-published',
+  name: 'convert-time-podcast',
   extensions: ['.md'],
   transform(file) {
     if (file.duration) {
       // Sobescreve o campo duração do podcast para o formato adequado
-      file.duration = convertToISO8601(file.duration)
+      const converted = convertToISO8601(file.duration as string);
+      if (converted) {
+        file.duration = converted;
+      }
     }
-    return file
+    return file;
   },
 })
 
 /**
  * Converte uma string de tempo (mm:ss ou HH:mm:ss) para o formato de duração ISO 8601 (PT#M#S).
- * @param {string} timeString A string de tempo, por exemplo "23:22" ou "1:05:30".
+ * @param {string | null | undefined} timeString A string de tempo, por exemplo "23:22" ou "1:05:30".
  * @returns {string | null} A string de duração ISO 8601, ou null se o formato for inválido.
  */
-
-function convertToISO8601(timeString) {
+export function convertToISO8601(timeString: string | null | undefined): string | null {
   if (!timeString || typeof timeString !== 'string') {
     return null;
   }
@@ -40,8 +42,6 @@ function convertToISO8601(timeString) {
     minutes = parts[0] || 0;
     seconds = parts[1] || 0;
   } else {
-    // Formato inválido
-    console.warn(`Formato de tempo inválido: "${timeString}". Esperado 'mm:ss' ou 'HH:mm:ss'.`);
     return null;
   }
 

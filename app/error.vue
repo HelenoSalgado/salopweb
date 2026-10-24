@@ -4,8 +4,8 @@
       <h2 style="display: inline-flex; align-items: center; column-gap: 1rem;">
         <LazyIconsFrown /> <span>Erro {{ error?.statusCode }}</span>
       </h2>
-      <p>{{ error?.data?.message }}</p>
-      <NuxtLink @click="clearError" to="/blog">Ver Posts</NuxtLink>
+      <p>{{ error?.data?.message || error?.message || 'Ocorreu um erro inesperado.' }}</p>
+      <NuxtLink to="/blog" @click="clearError">Ver Posts</NuxtLink>
     </div>
   </NuxtLayout>
 </template>
@@ -14,7 +14,10 @@
 import type { NuxtError } from '#app';
 
 const { error } = defineProps({
-  error: Object as () => NuxtError,
+  error: {
+    type: Object as () => NuxtError,
+    default: () => ({ statusCode: 404, message: 'Página não encontrada' })
+  },
 });
 
 // Define o template do título e outros atributos globais do <head>

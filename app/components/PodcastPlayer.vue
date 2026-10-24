@@ -341,19 +341,22 @@ onUnmounted(() => {
 <template>
     <div class="audio-player-wrapper">
         <NuxtImg :src="artwork" class="background-artwork" :alt="title" loading="lazy" />
-        <div class="background-overlay"></div>
+        <div class="background-overlay"/>
 
         <div class="player-content">
-            <audio ref="audioElement" :src="src" preload="metadata" @timeupdate="onTimeUpdate"
+            <audio
+ref="audioElement" :src="src" preload="metadata" @timeupdate="onTimeUpdate"
                 @loadedmetadata="onLoadedMetadata" @play="onPlay" @pause="onPause" @ended="onEnded" @seeking="onSeeking"
                 @seeked="onSeeked">
                 Seu navegador não suporta o elemento de áudio.
             </audio>
 
             <div class="custom-controls">
-                <button title="Retroceder 10 segundos" aria-label="Retroceder 10 segundos"
+                <button
+title="Retroceder 10 segundos" aria-label="Retroceder 10 segundos"
                     class="control-button rewind-button" @click="rewind">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <svg
+xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                         <path d="M3 3v5h5" />
@@ -361,22 +364,27 @@ onUnmounted(() => {
                     <span class="skip-label">{{ formatSkipTime(rewindAccumulator) }}</span>
                 </button>
 
-                <button :title="isPlaying ? 'Pausar' : 'Reproduzir'" :aria-label="isPlaying ? 'Pausar' : 'Reproduzir'"
+                <button
+:title="isPlaying ? 'Pausar' : 'Reproduzir'" :aria-label="isPlaying ? 'Pausar' : 'Reproduzir'"
                     class="control-button play-pause-button" @click="togglePlayPause">
-                    <svg v-if="!isPlaying" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    <svg
+v-if="!isPlaying" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                         fill="currentColor">
                         <polygon points="5 3 19 12 5 21 5 3" />
                     </svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    <svg
+v-else xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                         fill="currentColor">
                         <rect x="6" y="4" width="4" height="16" />
                         <rect x="14" y="4" width="4" height="16" />
                     </svg>
                 </button>
 
-                <button title="Avançar 10 segundos" aria-label="Avançar 10 segundos"
+                <button
+title="Avançar 10 segundos" aria-label="Avançar 10 segundos"
                     class="control-button forward-button" @click="forward">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <svg
+xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
                         <path d="M21 3v5h-5" />
@@ -391,10 +399,11 @@ onUnmounted(() => {
                     {{ formatTime(hoverTime) }}
                 </div>
 
-                <div class="progress-bar" ref="progressBar" @mousedown="onProgressMouseDown"
+                <div
+ref="progressBar" class="progress-bar" @mousedown="onProgressMouseDown"
                     @touchstart.passive="handleTouchStart" @touchmove.passive="handleTouchMove"
                     @touchend="handleTouchEnd">
-                    <div class="progress-filled" :style="{ width: progressPercent + '%' }"></div>
+                    <div class="progress-filled" :style="{ width: progressPercent + '%' }"/>
                     <div class="time-display">
                         <span class="current-time">{{ formatTime(currentTime) }}</span>
                         <span class="duration">{{ formatTime(duration) }}</span>

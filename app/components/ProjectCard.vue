@@ -5,7 +5,7 @@
       <p class="project-description">{{ project.description }}</p>
       <div class="project-meta">
         <span v-if="project.language" class="language">
-          <span class="language-color-dot" :style="{ backgroundColor: getLanguageColor(project.language) }"></span>
+          <span class="language-color-dot" :style="{ backgroundColor: getLanguageColor(project.language) }"/>
           {{ project.language }}
         </span>
         <span class="stars">
@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 defineProps({
   project: {
     type: Object as () => {

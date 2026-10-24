@@ -122,7 +122,8 @@ watch(episode, (newData) => {
 
         <div class="categories">
             <IconsTag />
-            <CategoriesList v-if="episode.categories?.length" v-bind="{
+            <CategoriesList
+v-if="episode.categories?.length" v-bind="{
                 categories: episode.categories,
                 slugifiedCategories: episode.slugified_categories
             }" />
@@ -150,7 +151,7 @@ watch(episode, (newData) => {
             </a>
         </p>
 
-        <SharePost :post-title="''" :post-url="`${siteUrl}${episode.path}`" />
+        <SharePost :post-title="episode?.title || ''" :post-url="`${siteUrl}${episode.path}`" />
 
         <ContentRenderer v-if="episode?.body" class="markdown-content" :value="episode.body" />
 

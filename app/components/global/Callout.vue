@@ -31,7 +31,7 @@ const calloutConfig = computed(() => {
       <component :is="calloutConfig.icon" />
     </div>
     <div class="callout-content">
-      <slot></slot>
+      <slot/>
     </div>
   </div>
 </template>

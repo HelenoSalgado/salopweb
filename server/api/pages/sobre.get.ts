@@ -14,8 +14,8 @@ export default defineEventHandler(async (event) => {
         }
 
         return page;
-    } catch (error: any) {
-        if (error.statusCode) {
+    } catch (error: unknown) {
+        if (typeof error === 'object' && error !== null && 'statusCode' in error) {
             throw error;
         }
         throw createError({

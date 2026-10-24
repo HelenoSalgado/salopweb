@@ -26,7 +26,7 @@ const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', 
       {{ data.message }}
     </div>
     <div v-if="error?.message" class="message error">
-      {{ error.data.message }}
+      {{ error.data?.message || error.message }}
     </div>
   </div>
 </template>

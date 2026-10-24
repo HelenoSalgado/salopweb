@@ -2,17 +2,21 @@
   <div class="reading-progress-bar" :style="{ width: progress + '%' }" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const progress = ref(0);
 
 const handleScroll = () => {
   const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+  if (totalScroll <= 0) {
+    progress.value = 0;
+    return;
+  }
   const currentScroll = window.scrollY;
-  progress.value = (currentScroll / totalScroll) * 100;
+  progress.value = Math.min(100, Math.max(0, (currentScroll / totalScroll) * 100));
 };
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
 });
 
 onUnmounted(() => {

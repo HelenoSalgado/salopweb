@@ -10,7 +10,7 @@ const currentPage = computed(() => {
   return isNaN(page) || page < 1 ? 1 : page;
 });
 
-const { data, error } = useFetch<PostsPagination<CardPost[]>>(`/api/categories/${category}`, {
+const { data, error } = await useFetch<PostsPagination<CardPost[]>>(`/api/categories/${category}`, {
   query: {
     page: currentPage,
     limit: POSTS_PER_PAGE
@@ -37,9 +37,12 @@ useSeoMeta({
   <div>
     <h1>Sobre {{ data?.categoryName }}</h1>
 
-    <BlogPostCard v-if="data?.posts.length" v-for="post in data.posts" :key="post.path" v-bind="post" />
+    <template v-if="data?.posts?.length">
+      <BlogPostCard v-for="post in data.posts" :key="post.path" v-bind="post" />
+    </template>
 
-    <Pagination v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
+    <Pagination
+v-if="data?.totalPages && data?.totalPages > 1" :current-page="currentPage"
       :total-pages="data.totalPages" :base-url="`/blog/categorias/${category}`" />
   </div>
 </template>

@@ -25,6 +25,8 @@ logs
 stats.html
 
 .wrangler/
+.nuxtrc
+bun.lock
 # Curiosidades e desobertas
 
 db/md.sqlite
