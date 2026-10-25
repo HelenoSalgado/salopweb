@@ -13,7 +13,7 @@
     "cleanup:html": "node scripts/cleanup-html.mjs",
     "test": "vitest run",
     "typecheck": "nuxt typecheck",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler pages deploy dist"
   },
   "dependencies": {
     "@nuxt/content": "^3.11.2",

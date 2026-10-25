@@ -1,7 +1,7 @@
 import type { NitroConfig } from 'nitropack'
 
 export default {
-  preset: 'cloudflare-module',
+  preset: 'cloudflare-pages',
   cloudflare: {
     nodeCompat: true
   },
