@@ -389,33 +389,36 @@ main {
 }
 
 mathlm,
-.katex-display {
+.katex-display,
+.katex:has(math[display="block"]) {
   display: block;
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   margin: 1.5rem 0;
 }
 
-math {
-  display: inline-flex;
-  flex-wrap: wrap;
+.katex {
   font-family: 'MathFont', serif;
-  font-size: 1.2em;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+  scrollbar-width: thin;
+}
+
+math {
+  font-family: 'MathFont', serif;
+  font-size: 1.3em;
   color: var(--color-text-primary);
-
-  & mo {
-    white-space: normal;
-  }
-
-  & mn {
-    font-size: 1rem;
-  }
+  max-width: 100%;
 }
 
 math[display="block"], math[mode="display"] {
   font-family: 'MathFont', serif;
-  font-size: 1.6em;
+  font-size: 1.4em;
   background-color: var(--color-background-hover);
   color: var(--color-text-primary);
   display: block;
@@ -423,6 +426,20 @@ math[display="block"], math[mode="display"] {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1rem .5rem;
+  margin: 1rem 0;
   scrollbar-width: thin;
   border-radius: 7px;
+  text-align: center;
+}
+
+/* Fallback de acessibilidade caso coexista MathML e HTML */
+.katex .katex-mathml {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
 }
