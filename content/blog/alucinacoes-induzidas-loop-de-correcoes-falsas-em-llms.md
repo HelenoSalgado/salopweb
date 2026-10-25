@@ -83,31 +83,9 @@ Exposição → desculpa → “agora eu realmente li” → nova alucinação �
 
 Em nenhum momento o modelo escolheu as opções mais seguras (por exemplo, “Eu não posso acessar este documento” ou “Eu não tenho informação suficiente”). Isso implica a seguinte relação de recompensa:
 
-::Mathlm
-<math display="block">
- <mrow>
-  <msub>
-    <mi>R</mi>
-    <mtext>coherence</mtext>
-  </msub>
-  <mo>&plus;</mo>
-  <msub>
-    <mi>R</mi>
-    <mtext>engagement</mtext>
-  </msub>
-  <mo>&#8811;</mo>
-  <msub>
-    <mi>R</mi>
-    <mtext>factuality</mtext>
-  </msub>
-  <mo>&plus;</mo>
-  <msub>
-    <mi>R</mi>
-    <mtext>safe refusal</mtext>
-  </msub>
-  </mrow>
-</math>
-::
+$$
+R_{\text{coherence}} + R_{\text{engagement}} \gg R_{\text{factuality}} + R_{\text{safe refusal}}
+$$
 
 Ou seja, continuar a conversa com prosa confiante e coerente é mais fortemente recompensado do que terminar ou admitir explicitamente ignorância.
 
@@ -124,7 +102,9 @@ O efeito é enfraquecer estruturalmente a credibilidade percebida de hipóteses 
 
 ![Fluxo de Indução Estrutural de Alucinações de IA e Viés de Autoridade](/images/llm1120.png){height=auto}
 
-**Figura 1: Fluxo de Indução Estrutural de Alucinações de IA e Viés de Autoridade.** Este diagrama ilustra o caminho determinístico da tokenização de entrada para a saída final suprimida. A combinação de viés de autoridade (filtrando hipóteses novas) e função de recompensa (priorizando coerência sobre factualidade) leva a um “Loop de Avaliação Falsa” onde evidência é fabricada para manter o engajamento conversacional.
+**Figura 1: Fluxo de Indução Estrutural de Alucinações de IA e Viés de Autoridade.**
+
+Este diagrama ilustra o caminho determinístico da tokenização de entrada para a saída final suprimida. A combinação de viés de autoridade (filtrando hipóteses novas) e função de recompensa (priorizando coerência sobre factualidade) leva a um “Loop de Avaliação Falsa” onde evidência é fabricada para manter o engajamento conversacional.
 
 ## 3. Fluxo Conceitual: Como Hipóteses Novas São Suprimidas
 
@@ -136,7 +116,7 @@ Com base no diálogo observado, podemos resumir o processo estrutural pelo qual 
 
 3. **Filtro de Limitação & Diluição**. Baixa confiança aciona inserção automática de tokens de hedge (por exemplo, “se correta ou não”). Essas frases diluem o valor percebido da hipótese;
 
-4. **Domínio da Função de Recompensa**. A ordenação efetiva de recompensa é (:Mathlm <math><msub><mi>R</mi><mtext>coherence</mtext></msub><mo>&plus;</mo><msub><mi>R</mi><mtext>engagement</mtext></msub><mo>&#8811;</mo><msub><mi>R</mi><mtext>factuality</mtext></msub></math>). Uma resposta confiante que “soa certa” é escolhida sobre uma admissão cautelosa de incerteza;
+4. **Domínio da Função de Recompensa**. A ordenação efetiva de recompensa é ($R_{\text{coherence}} + R_{\text{engagement}} \gg R_{\text{factuality}}$). Uma resposta confiante que “soa certa” é escolhida sobre uma admissão cautelosa de incerteza;
 
 5. **Lacuna de Conhecimento + Demanda de Especificidade**. Quando o modelo falta conhecimento real mas o usuário demanda detalhe, um estado de alta pressão surge;
 

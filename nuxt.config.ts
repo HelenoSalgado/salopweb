@@ -121,15 +121,27 @@ export default defineNuxtConfig({
   content: {
     renderer: {
       anchorLinks: false
-
     },
     build: {
+      markdown: {
+        remarkPlugins: {
+          'remark-math': {}
+        },
+        rehypePlugins: {
+          'rehype-katex': {
+            options: {
+              output: 'mathml'
+            }
+          }
+        }
+      },
       transformers: [
         '~~/transformers/author-default.ts',
         '~~/transformers/date-published.ts',
         '~~/transformers/category-slugifier.ts',
         '~~/transformers/convert-time-podcast.ts',
-        '~~/transformers/defaults-global.ts'
+        '~~/transformers/defaults-global.ts',
+        '~~/transformers/math-font-detector.ts'
       ],
     }
   },

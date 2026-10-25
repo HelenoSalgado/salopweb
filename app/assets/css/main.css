@@ -388,13 +388,16 @@ main {
   opacity: 0;
 }
 
-mathlm {
-  font-size: 1.3rem;
+mathlm,
+.katex-display {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
   overflow-y: hidden;
-  height: 1px;
+  margin: 1.5rem 0;
 }
 
-math{
+math {
   display: inline-flex;
   flex-wrap: wrap;
   font-family: 'MathFont', serif;
@@ -405,11 +408,6 @@ math{
     white-space: normal;
   }
 
-  & mrow {
-    height: 1.5rem;
-    padding: 1rem 0;
-  }
-
   & mn {
     font-size: 1rem;
   }
@@ -417,9 +415,14 @@ math{
 
 math[display="block"], math[mode="display"] {
   font-family: 'MathFont', serif;
-  font-size: 1.2em;
+  font-size: 1.6em;
+  background-color: var(--color-background-hover);
   color: var(--color-text-primary);
-  width: 100%;
-  overflow-y: auto;
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem .5rem;
   scrollbar-width: thin;
+  border-radius: 7px;
 }
