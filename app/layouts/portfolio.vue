@@ -1,7 +1,9 @@
 <template>
   <div class="layout-portfolio">
     <TheHeader />
-    <slot />
+    <main class="main-portfolio">
+      <slot />
+    </main>
     <TheFooter />
   </div>
 </template>

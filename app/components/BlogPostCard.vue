@@ -4,7 +4,7 @@ import type { CardPost } from '~~/server/types';
 const { title, description, path } = defineProps<CardPost>();
 </script>
 <template>
-  <div>
+  <div class="blog-post-card">
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
     <NuxtLink :to="path" class="button">
@@ -14,7 +14,7 @@ const { title, description, path } = defineProps<CardPost>();
 </template>
 
 <style scoped>
-div{
+.blog-post-card {
   display: block;
   border-bottom: 1px solid var(--color-border);
   overflow: hidden;
@@ -25,14 +25,14 @@ div{
   background-color: transparent;
   margin-bottom: 1rem;
 
-  & h3{
+  & h3 {
     margin: .5rem 0 0.8rem 0;
     font-family: var(--font-serif);
     font-size: 1.85rem;
     letter-spacing: -0.015em;
   }
 
-  & p{
+  & p {
     line-height: 2rem;
     font-family: var(--font-serif);
     font-weight: 400;
@@ -41,7 +41,7 @@ div{
     color: var(--color-text-secondary);
   }
 
-  & a{
+  & a {
     font-family: var(--font-sans);
     font-size: 1.15rem;
     font-weight: 500;

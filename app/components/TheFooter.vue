@@ -2,7 +2,7 @@
   <footer class="hextra-footer">
     <div class="hextra-footer-container">
       <div class="theme-switcher-container">
-        <button type="button" id="theme-toggle-btn" class="hextra-theme-toggle" title="Tema" aria-label="Alterar tema visual">
+        <button id="theme-toggle-btn" type="button" class="hextra-theme-toggle" title="Tema" aria-label="Alterar tema visual">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
             <path
               stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

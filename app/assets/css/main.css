@@ -163,8 +163,8 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Área de Conteúdo Principal */
-main {
+/* Área de Conteúdo Principal (Layout Default) */
+.main-default {
   margin: calc(var(--hextra-header-height)) auto .5rem auto;
   min-height: 70vh;
   max-width: 900px;
@@ -330,6 +330,12 @@ main {
     margin-top: 5rem;
   }
 
+}
+
+/* Área de Conteúdo Principal (Layout Portfólio) */
+.main-portfolio {
+  width: 100%;
+  position: relative;
 }
 
 .content-placeholder {
