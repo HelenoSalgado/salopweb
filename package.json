@@ -16,6 +16,7 @@
     "deploy": "wrangler pages deploy dist"
   },
   "dependencies": {
+    "nuxt-lite": "^0.0.10",
     "@nuxt/content": "^3.11.2",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/color-mode": "^4.0.0",
@@ -36,7 +37,6 @@
     "@typescript-eslint/eslint-plugin": "^8.56.0",
     "@typescript-eslint/parser": "^8.56.0",
     "@vue/test-utils": "^2.5.1",
-    "eslint": "^10.0.1",
     "eslint-plugin-vue": "^10.8.0",
     "happy-dom": "^20.7.0",
     "katex": "^0.16.21",

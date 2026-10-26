@@ -116,7 +116,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '../nuxt-modules/nuxt-lite/dist/module.mjs',
+    'nuxt-lite',
     "@nuxt/content",
     "@nuxt/image",
     "@nuxt/eslint",
