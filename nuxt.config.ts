@@ -39,22 +39,6 @@ export default defineNuxtConfig({
           src: '/js/site.js',
           defer: true
         }
-      ],
-      link: [
-        {
-          rel: 'preload',
-          href: '/fonts/EBGaramond-VariableFont_wght.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous'
-        },
-        {
-          rel: 'preload',
-          href: '/fonts/Inter-VariableFont_opsz,wght.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous'
-        },
       ]
     }
   },
