@@ -120,7 +120,7 @@ v-bind="{
     <h3 class="title-posts-related">Posts Relacionados</h3>
 
     <template v-if="postsRelated?.length">
-      <BlogPostCard v-for="relatedPost in postsRelated" :key="relatedPost?.path" v-bind="relatedPost" />
+      <LazyBlogPostCard v-for="relatedPost in postsRelated" :key="relatedPost?.path" v-bind="relatedPost" />
     </template>
     <div v-else style="display: inline-flex; column-gap: 1rem; align-items: center;">
       <LazyIconsFeather />
@@ -128,7 +128,7 @@ v-bind="{
     </div>
 
     <div class="newsletter-wrapper">
-      <NewsletterForm/>
+      <LazyNewsletterForm/>
     </div>
   </div>
 </template>

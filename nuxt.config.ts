@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 
   experimental: {
     extractAsyncDataHandlers: false,
-    sharedPrerenderData: false,
+    sharedPrerenderData: true,
     renderJsonPayloads: true,
     entryImportMap: false,
     asyncContext: true,
@@ -26,8 +26,6 @@ export default defineNuxtConfig({
   },
 
   features: {
-    // Inline apenas CSS de componentes Vue, não CSS global
-    // Reduz duplicação mantendo CSS global em arquivo separado cacheável
     inlineStyles: false
   },
 
@@ -35,6 +33,12 @@ export default defineNuxtConfig({
     buildAssetsDir: "nuxt",
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
+      script: [
+        {
+          src: '/js/site.js',
+          defer: true
+        }
+      ],
       link: [
         {
           rel: 'preload',
@@ -45,9 +49,9 @@ export default defineNuxtConfig({
         },
         {
           rel: 'preload',
-          href: '/fonts/Inter-VariableFont_opsz,wght.ttf',
+          href: '/fonts/Inter-VariableFont_opsz,wght.woff2',
           as: 'font',
-          type: 'font/ttf',
+          type: 'font/woff2',
           crossorigin: 'anonymous'
         },
       ]
@@ -74,7 +78,6 @@ export default defineNuxtConfig({
     },
 
     build: {
-      // Mantém true para code splitting de CSS por rota (reaproveitamento de estilos já baixados)
       cssCodeSplit: false,
 
       // Gera um manifesto para análise de bundle
@@ -96,19 +99,62 @@ export default defineNuxtConfig({
         cache: true,
         output: {
           compact: true,
-          inlineDynamicImports: true,
+          manualChunks(id: string) {
+            // Isola Podcast Player e dependências de áudio (não carrega no blog)
+            if (id.includes('PodcastPlayer') || id.includes('/podcast/')) {
+              return 'chunk-podcast';
+            }
+
+            // Isola componentes de projetos e portfólio (não carrega no blog)
+            if (id.includes('ProjectCard') || id.includes('featured-projects')) {
+              return 'chunk-portfolio';
+            }
+          }
         }
       }
     }
   },
 
   modules: [
+    '../nuxt-modules/nuxt-lite/dist/module.mjs',
     "@nuxt/content",
     "@nuxt/image",
     "@nuxt/eslint",
     "@nuxtjs/color-mode",
     "@nuxtjs/sitemap",
   ],
+
+  nuxtLite: {
+    optimizeCss: true,
+    cleanHtml: true,
+    pruneOutput: true,
+    safelist: [
+      'dark',
+      'light',
+      'open-sidebar',
+      'open',
+      'active',
+      'search-container',
+      'search-results',
+      'search-result-item',
+      'search-result-title',
+      'search-result-description',
+      'search-no-results',
+      'hextra-sidebar-backdrop',
+      'hextra-theme-toggle-options',
+      'reading-progress-bar',
+      'message',
+      'success',
+      'error',
+      'loader',
+      'page-enter-active',
+      'page-enter-from',
+      'page-enter-to',
+      'page-leave-active',
+      'page-leave-from',
+      'page-leave-to',
+    ],
+  },
 
   colorMode: {
     classSuffix: '',

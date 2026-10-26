@@ -1,14 +1,3 @@
-<script setup lang="ts">
-const email = ref('')
-
-const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', {
-  method: 'POST',
-  body: { email },
-  lazy: true,
-  immediate: false
-})
-</script>
-
 <template>
   <div class="newsletter-card">
     <div class="newsletter-header">
@@ -26,48 +15,27 @@ const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', 
       </div>
     </div>
 
-    <form class="newsletter-form" @submit.prevent="execute()">
+    <form class="newsletter-form">
       <div class="input-wrapper">
         <input
           id="newsletter-email"
-          v-model="email"
           type="email"
           name="email"
           placeholder="seu.email@exemplo.com"
-          :disabled="pending"
           autocomplete="email"
           required
         >
       </div>
-      <button type="submit" :disabled="pending" class="newsletter-submit">
-        <span v-if="!pending">Inscrever-se</span>
-        <span v-else class="loader" />
+      <button type="submit" class="newsletter-submit">
+        <span>Inscrever-se</span>
       </button>
     </form>
 
-    <Transition name="fade">
-      <div v-if="data" class="message success">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        <span>{{ data.message }}</span>
-      </div>
-    </Transition>
-
-    <Transition name="fade">
-      <div v-if="error?.message" class="message error">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-        <span>{{ error.data?.message || error.message }}</span>
-      </div>
-    </Transition>
+    <div id="newsletter-message" class="message" style="display: none;" />
   </div>
 </template>
 
-<style scoped>
+<style>
 .newsletter-card {
   max-width: 560px;
   background-color: var(--color-background-elevated);
@@ -140,17 +108,17 @@ const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', 
   font-size: 0.95rem;
   outline: none;
   transition: all 0.2s ease;
+}
 
-  &::placeholder {
-    color: var(--color-text-secondary);
-    opacity: 0.7;
-  }
+.newsletter-form input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
 
-  &:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
-    background-color: var(--color-background-elevated);
-  }
+.newsletter-form input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+  background-color: var(--color-background-elevated);
 }
 
 .newsletter-submit {
@@ -169,20 +137,20 @@ const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', 
   align-items: center;
   justify-content: center;
   min-width: 110px;
+}
 
-  &:hover:not(:disabled) {
-    background-color: var(--color-primary-hover);
-    transform: translateY(-1px);
-  }
+.newsletter-submit:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
 
-  &:active:not(:disabled) {
-    transform: translateY(0);
-  }
+.newsletter-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
 
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+.newsletter-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .message {
@@ -222,17 +190,6 @@ const { data, error, pending, execute } = useFetch('/api/newsletter/subscribe', 
 @keyframes rotation {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-4px);
 }
 
 @media (max-width: 480px) {

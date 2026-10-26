@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-const copyLink = ref(() => {});
+import { computed } from 'vue';
 
 const { postTitle, postUrl } = defineProps<{
   postTitle: string,
   postUrl: string
 }>();
-
-const copied = ref(false);
 
 const encodedPostTitle = computed(() => encodeURIComponent(postTitle));
 const encodedPostUrl = computed(() => encodeURIComponent(postUrl));
@@ -16,22 +13,6 @@ const twitterShareUrl = computed(() => `https://twitter.com/intent/tweet?text=${
 const facebookShareUrl = computed(() => `https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl.value}`);
 const linkedinShareUrl = computed(() => `https://www.linkedin.com/shareArticle?mini=true&url=${encodedPostUrl.value}&title=${encodedPostTitle.value}`);
 const whatsappShareUrl = computed(() => `https://api.whatsapp.com/send?text=${encodedPostTitle.value}%20${encodedPostUrl.value}`);
-
-onMounted(() => {
-  copyLink.value = async () => {
-  try {
-    await navigator.clipboard.writeText(postUrl);
-    copied.value = true;
-    setTimeout(() => {
-      copied.value = false;
-    }, 2000);
-  } catch (err) {
-    console.error('Falha ao copiar o link: ', err);
-    alert('Não foi possível copiar o link. Por favor, copie manualmente: ' + postUrl);
-  }
-};
-});
-
 </script>
 
 <template>
@@ -50,11 +31,10 @@ onMounted(() => {
       <a :href="whatsappShareUrl" target="_blank" rel="noopener noreferrer" class="button" title="Whatsapp">
         <IconsWhatsapp/>
       </a>
-      <button class="button" title="Link" @click="copyLink">
+      <button class="button" title="Copiar Link" data-action="copy-link" :data-url="postUrl" aria-label="Copiar link do post">
         <IconsLink/>
       </button>
     </div>
-    <p v-if="copied" class="copied-message">Link copiado!</p>
   </div>
 </template>
 
@@ -93,7 +73,6 @@ onMounted(() => {
       &:hover {
         background-color: var(--color-background-hover);
         border-color: var(--color-primary);
-        /* Destacar a borda no hover */
         color: var(--color-primary);
       }
     }
@@ -106,4 +85,3 @@ onMounted(() => {
   }
 }
 </style>
-

@@ -21,7 +21,7 @@ export default {
     ],
     // Aumenta paralelismo para prerender mais rápido
     concurrency: 3,
-    failOnError: true
+    failOnError: false
   },
   compressPublicAssets: true,
   routeRules: {

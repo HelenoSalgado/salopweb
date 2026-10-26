@@ -158,8 +158,6 @@ Esses comportamentos são melhor explicados não como bugs aleatórios, mas como
 
 [1] Konishi, H. (2025). *Log de Diálogo Estendido Humano-IA: Evidência Empírica de Induções Estruturais para Alucinação*. Dados gerados em 20 de novembro de 2025.
 
-[2] Konishi, H. (2025). *Alucinações Autoritativas de IA e Dano Reputacional: Um Relatório Breve sobre DOIs Fabricados em Diálogo de Ciência Aberta*. Registro Zenodo 17638217.  
+[2] Konishi, H. (2025). *Alucinações Autoritativas de IA e Dano Reputacional: Um Relatório Breve sobre DOIs Fabricados em Diálogo de Ciência Aberta*. Registro Zenodo 17638217.
 
-[3] Konishi, H. (2025). *Rumo a um Paradigma Quântico-Bio-Híbrido para Inteligência Artificial Geral: Insights de Diálogos Humano-IA (V2.1)*. Registro Zenodo 17567943.  
-
-[4] Konishi, H. (2025). *Comunicação Científica na Era da IA: Defeitos Estruturais e a Supressão de Novidade*. Registro Zenodo 17585486.
+[3] Konishi, H. (2025). *Rumo a um Paradigma Quântico-Bio-Híbrido para Inteligência Artificial Geral: Insights de Diálogos Humano-IA (V2.1)*. Registro Zenodo 17567943.
