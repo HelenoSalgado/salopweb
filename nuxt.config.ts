@@ -18,7 +18,8 @@ export default defineNuxtConfig({
       nuxtLink: {
         prefetchOn: {
           interaction: true
-        }
+        },
+        trailingSlash: "append"
       }
     },
     buildCache: true,

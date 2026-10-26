@@ -25,10 +25,23 @@ export default {
   },
   compressPublicAssets: true,
   routeRules: {
-    '/': { static: true },
     '/**': {
-      trailingSlash: false
-    }
+      trailingSlash: true
+    },
+    '/css/**': { trailingSlash: false },
+    '/js/**': { trailingSlash: false },
+    '/fonts/**': { trailingSlash: false, headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+    '/docs/**': { trailingSlash: false, headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+    '/images/**': { trailingSlash: false, headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+    '/podcast/**': { 
+      trailingSlash: false, 
+      headers: { 
+        'Content-Type': 'audio/mpeg',
+        'Accept-Ranges': 'bytes',
+        'Cache-Control': 'public, max-age=31536000, immutable'
+      },
+      compress: false
+    },
   },
   publicAssets: [
     {

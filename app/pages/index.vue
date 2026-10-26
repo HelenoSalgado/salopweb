@@ -63,7 +63,7 @@ useHead({
     <section class="hero-section">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        <span>Arquiteto de Sistemas • Engenharia de Software • Linux &amp; IA</span>
+        <span>Arquiteto de Sistemas • Engenharia de Software • Linux & IA</span>
       </div>
 
       <h1 class="hero-title">
@@ -79,7 +79,7 @@ useHead({
 
       <div class="hero-actions">
         <a href="#projetos" class="cta-primary">Explorar Projetos Selecionados ↓</a>
-        <NuxtLink to="/blog" class="cta-secondary">Ler Escritos &amp; Ensaios →</NuxtLink>
+        <NuxtLink to="/blog" class="cta-secondary">Ler Escritos & Ensaios →</NuxtLink>
       </div>
 
       <!-- Grid de Especialidades -->
@@ -92,7 +92,7 @@ useHead({
               <line x1="12" x2="12" y1="17" y2="21" />
             </svg>
           </div>
-          <h4>Desktop &amp; Multiplataforma</h4>
+          <h4>Desktop & Multiplataforma</h4>
           <p>Compose Desktop, Kotlin Multiplatform, SQLite local e integrações com Hyprland e Wayland.</p>
         </div>
 
@@ -107,7 +107,7 @@ useHead({
               <path d="M2 9h1" /><path d="M21 9h1" />
             </svg>
           </div>
-          <h4>IA Local &amp; Pipelines RAG</h4>
+          <h4>IA Local & Pipelines RAG</h4>
           <p>Indexação vetorial com FAISS, conversão acadêmica de PDFs via MinerU e modelos locais (Ollama).</p>
         </div>
 
@@ -117,7 +117,7 @@ useHead({
               <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
             </svg>
           </div>
-          <h4>Edge Computing &amp; Nuxt</h4>
+          <h4>Edge Computing & Nuxt</h4>
           <p>Cloudflare Workers, roteadores sob medida (RouterWorkers no npm) e SSR veloz com Nuxt 4.</p>
         </div>
 
@@ -128,7 +128,7 @@ useHead({
               <line x1="12" x2="20" y1="19" y2="19" />
             </svg>
           </div>
-          <h4>Linux &amp; Desktop Shell</h4>
+          <h4>Linux & Desktop Shell</h4>
           <p>Arch Linux como ecossistema nativo, widgets em AGS/GTK e automação profunda de fluxo de trabalho.</p>
         </div>
       </div>
@@ -182,7 +182,7 @@ useHead({
     <!-- Seção 3: Filosofia de Engenharia -->
     <section class="philosophy-section">
       <div class="philosophy-container">
-        <span class="sub-badge">Princípios &amp; Rigor</span>
+        <span class="sub-badge">Princípios & Rigor</span>
         <h2 class="section-title">Filosofia de Engenharia</h2>
         <p class="philosophy-intro">
           Não sigo práticas de mercado cegamente. Cada projeto é projetado para o mundo real com princípios perenes:
@@ -191,7 +191,7 @@ useHead({
         <div class="pillars-grid">
           <div class="pillar-card">
             <span class="pillar-number">01</span>
-            <h3>Clean Architecture &amp; SOLID</h3>
+            <h3>Clean Architecture & SOLID</h3>
             <p>
               Desacoplamento estrito entre regras de negócio, dados e interfaces. O código nasce testável, legível e preparado para evolução contínua.
             </p>
