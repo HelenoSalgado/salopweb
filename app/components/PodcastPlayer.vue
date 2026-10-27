@@ -398,11 +398,9 @@ xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fi
                 </button>
             </div>
 
-            <div class="progress-container" @mousemove="onProgressHover" @mouseleave="hideTimeTooltip">
+            <div class="progress-container">
                 <!-- Tooltip de tempo no hover -->
-                <div v-if="showTimeTooltip" class="time-tooltip" :style="{ left: tooltipPosition + '%' }">
-                    {{ formatTime(hoverTime) }}
-                </div>
+                <div class="time-tooltip" style="display: none;">0:00</div>
 
                 <div
 ref="progressBar" class="progress-bar" @mousedown="onProgressMouseDown"

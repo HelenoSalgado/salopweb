@@ -5,8 +5,12 @@ import { z } from 'zod'
 const emailSchema = z.string().email({ message: 'Por favor, insira um e-mail válido.' })
 
 export default defineEventHandler(async (event) => {
-  // Acessa o binding do D1 a partir do contexto do Cloudflare com fallback seguro
-  const DB = event.context.cloudflare?.env?.DB;
+  // Acessa o binding do D1 a partir do contexto do Cloudflare com fallbacks seguros de runtime
+  const cloudflareContext = (event.context as Record<string, any>)?.cloudflare 
+    || (event.context as Record<string, any>)?._platform?.cloudflare;
+
+  const DB = cloudflareContext?.env?.DB 
+    || (globalThis as Record<string, any>)?.__env__?.DB;
 
   if (!DB) {
     setResponseStatus(event, 503);

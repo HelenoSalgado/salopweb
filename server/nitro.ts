@@ -25,6 +25,7 @@ export default {
   },
   compressPublicAssets: true,
   routeRules: {
+    '/api/**': { trailingSlash: false },
     '/**': {
       trailingSlash: true
     },
@@ -33,7 +34,7 @@ export default {
     '/fonts/**': { trailingSlash: false, headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
     '/docs/**': { trailingSlash: false, headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
     '/images/**': { trailingSlash: false, headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-    '/podcast/**': { 
+    '/podcast/*.mp3': { 
       trailingSlash: false, 
       headers: { 
         'Content-Type': 'audio/mpeg',

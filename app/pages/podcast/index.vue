@@ -51,6 +51,10 @@ useSeoMeta({
 useHead({
     script: [
         {
+            src: '/js/podcast-player.js',
+            defer: true
+        },
+        {
             type: 'application/ld+json',
             textContent: computed(() => JSON.stringify({
                 "@context": "https://schema.org",

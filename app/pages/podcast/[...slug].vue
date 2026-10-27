@@ -52,6 +52,10 @@ watch(episode, (newData) => {
         useHead({
             script: [
                 {
+                    src: '/js/podcast-player.js',
+                    defer: true
+                },
+                {
                     type: 'application/ld+json',
                     textContent: JSON.stringify({
                         "@context": "https://schema.org",
