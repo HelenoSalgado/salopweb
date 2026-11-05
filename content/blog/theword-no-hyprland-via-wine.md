@@ -10,7 +10,7 @@ published: true
 O **theWord** é um dos softwares de estudo bíblico mais completos do ecossistema Windows. Ao executá-lo no Arch Linux com Hyprland via Wine, a aplicação não entra no fluxo nativo de composição (*tiling*) e apresenta três comportamentos indesejados:
 
 1. **Janela-mãe ao fundo:** Uma janela secundária com o título `theWord` é renderizada ao fundo, ocupando a metade lateral da tela.
-2. **Sobreposição por foco em vez de composição:** A janela principal de leitura (cujo título varia conforme o texto, ex.: `2Jo 1:1 - theWord`) sobrepõe a janela-mãe em modo flutuante clássico (*floating z-order*), competindo por foco visual em vez de ser gerenciada pelo Hyprland.
+2. **Sobreposição por foco em vez de composição:** A janela principal de leitura (cujo título varia conforme o texto, ex.: `2Jo 1:3 - theWord`) sobrepõe a janela-mãe em modo flutuante clássico (*floating z-order*), competindo por foco visual em vez de ser gerenciada pelo Hyprland.
 3. **Área vertical incompleta:** A janela de leitura não preenche todo o espaço vertical da tela, iniciando com um deslocamento de 18 pixels no topo e deixando uma faixa visível do papel de parede.
 
 ## A Causa do Problema
