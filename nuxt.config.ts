@@ -132,6 +132,7 @@ export default defineNuxtConfig({
       'success',
       'error',
       'loader',
+      'is-copied',
       'page-enter-active',
       'page-enter-from',
       'page-enter-to',

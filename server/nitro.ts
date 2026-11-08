@@ -11,9 +11,9 @@ export default {
   minify: true,
   prerender: {
     crawlLinks: true,
-    // '/api/search-index.json' não é descoberto pelo crawler (só é buscado
-    // via JS no cliente), por isso precisa ser listado explicitamente.
-    routes: ['/', '/api/search-index.json'],
+    // '/api/search-index.json' e '/apoiar' (página isolada) não são descobertos
+    // apenas pelo crawler, por isso precisam ser listados explicitamente.
+    routes: ['/', '/apoiar', '/api/search-index.json'],
     ignore: [
       '__nuxt_content/home/sql_dump.txt',
       '__nuxt_content/blog/sql_dump.txt',
