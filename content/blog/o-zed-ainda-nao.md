@@ -7,7 +7,7 @@ categories:
 published: true
 ---
 
-Recentemente, comecei a usar o editor Zed, que é minimalista por natureza e, além disso, bonito e eficiente. Porém, ao abrir um projeto Vue nesse editor, ele começou a apresentar problemas: me sugeriu uma extensão para Vue que não era capaz de suportar. Naturalmente, esperava-se que as extensões recomendadas fossem mais otimizadas e eficientes, mas, nesse caso, não foi assim.
+Recentemente comecei a usar o editor Zed, que é minimalista por natureza e, além disso, bonito e eficiente. Porém, ao abrir um projeto Vue nesse editor, ele começou a apresentar problemas: me sugeriu uma extensão para Vue que não era capaz de suportar. Naturalmente, esperava-se que as extensões recomendadas fossem mais otimizadas e eficientes, mas, nesse caso, não foi assim.
 
 É uma pena, porque o problema surgiu justamente com o framework com o qual mais trabalho. Talvez seja pela limitação do meu hardware antigo, com poucos recursos, ou, como acredito, por uma má otimização do próprio editor no gerenciamento de extensões. O fato é que, hoje, é praticamente impossível abrir um projeto sem que o consumo de CPU dispare para mais de 200%.
 

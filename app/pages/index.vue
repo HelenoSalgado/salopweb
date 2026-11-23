@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { FEATURED_PROJECTS, CATEGORIES, type ProjectCategory } from '~~/app/data/featured-projects';
+import {
+  DEFAULT_OG_IMAGE_PATH,
+  buildCanonicalUrl,
+  buildOgImageMeta,
+} from '~~/utils/seo';
 
 const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
@@ -19,14 +24,30 @@ const filteredProjects = computed(() => {
   return FEATURED_PROJECTS.filter(project => project.category === activeCategory.value);
 });
 
+const homeTitle = 'Heleno Salgado — Arquiteto de Sistemas & Engenheiro de Software';
+const homeDescription = 'Portfólio de Heleno Salgado. Projetos em Kotlin Multiplatform, Inteligência Artificial local (RAG), Cloudflare Workers, Linux (Hyprland) e Nuxt.';
+const homeUrl = buildCanonicalUrl(siteUrl, '/');
+const ogImage = buildOgImageMeta(siteUrl, DEFAULT_OG_IMAGE_PATH, { alt: homeTitle });
+
+useSeoMeta({
+  title: homeTitle,
+  description: homeDescription,
+  ogTitle: homeTitle,
+  ogDescription: homeDescription,
+  ogType: 'website',
+  ogImage: ogImage.url,
+  ogImageSecureUrl: ogImage.secureUrl,
+  ogImageType: ogImage.type,
+  ogImageWidth: ogImage.width,
+  ogImageHeight: ogImage.height,
+  ogImageAlt: ogImage.alt,
+  twitterTitle: homeTitle,
+  twitterDescription: homeDescription,
+  twitterImage: ogImage.url,
+  twitterImageAlt: ogImage.alt,
+});
+
 useHead({
-  title: 'Heleno Salgado — Arquiteto de Sistemas & Engenheiro de Software',
-  meta: [
-    {
-      name: 'description',
-      content: 'Portfólio de Heleno Salgado. Projetos em Kotlin Multiplatform, Inteligência Artificial local (RAG), Cloudflare Workers, Linux (Hyprland) e Nuxt.'
-    }
-  ],
   script: [
     {
       type: 'application/ld+json',
@@ -37,7 +58,7 @@ useHead({
           '@type': 'Person',
           'name': 'Heleno Salgado',
           'alternateName': 'Leno',
-          'url': siteUrl,
+          'url': homeUrl,
           'jobTitle': 'Engenheiro de Software & Arquiteto de Sistemas',
           'knowsAbout': [
             'Kotlin Multiplatform', 'Compose Desktop', 'Python', 'RAG / FAISS',

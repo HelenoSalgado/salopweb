@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content';
 import type { CardPost } from '~~/server/types';
+import {
+  DEFAULT_OG_IMAGE_ALT,
+  buildCanonicalUrl,
+  buildOgImageMeta,
+} from '~~/utils/seo';
 
 const config = useRuntimeConfig();
 const siteUrl = config.public.site.url;
@@ -20,6 +25,10 @@ if (error.value) {
   });
 }
 
+const canonicalPostUrl = computed(() =>
+  buildCanonicalUrl(siteUrl, post.value?.path || route.path),
+);
+
 const { data: postsRelated } = await useFetch<CardPost[]>('/api/posts', {
   query: {
     categories: post.value?.categories || [],
@@ -31,15 +40,29 @@ const { data: postsRelated } = await useFetch<CardPost[]>('/api/posts', {
 
 // Configuração de SEO
 if (post.value) {
+  const ogImage = buildOgImageMeta(siteUrl, post.value.image, {
+    alt: post.value.title || DEFAULT_OG_IMAGE_ALT,
+  });
+
   useSeoMeta({
     articleAuthor: [post.value.author || "Heleno Salgado"],
     title: post.value.title,
     description: post.value.description,
     ogTitle: post.value.title,
     ogDescription: post.value.description,
-    ogImage: post.value.image || `${siteUrl}/images/default-post.webp`,
+    ogUrl: canonicalPostUrl.value,
+    ogImage: ogImage.url,
+    ogImageSecureUrl: ogImage.secureUrl,
+    ogImageType: ogImage.type,
+    ...(ogImage.width ? { ogImageWidth: ogImage.width } : {}),
+    ...(ogImage.height ? { ogImageHeight: ogImage.height } : {}),
+    ogImageAlt: ogImage.alt,
     ogType: 'article',
     twitterCard: 'summary_large_image',
+    twitterTitle: post.value.title,
+    twitterDescription: post.value.description,
+    twitterImage: ogImage.url,
+    twitterImageAlt: ogImage.alt,
     articlePublishedTime: post.value.date,
   });
 
@@ -65,7 +88,12 @@ if (post.value) {
           "@type": "Article",
           "headline": post.value.title || 'Post do blog',
           "description": post.value.description || 'Tecnologia, Literatura e Teologia',
-          "image": post.value.image || `${siteUrl}/images/default-post.webp`,
+          "image": ogImage.url,
+          "url": canonicalPostUrl.value,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": canonicalPostUrl.value
+          },
           "datePublished": post.value.date || '',
           "author": {
             "@type": "Person",
@@ -109,7 +137,7 @@ v-bind="{
 
       <ContentRenderer :value="post.body" class="markdown-content"/>
 
-      <SharePost :post-title="''" :post-url="`${siteUrl}${post.path}`" />
+      <SharePost :post-title="''" :post-url="canonicalPostUrl" />
 
     </article>
 

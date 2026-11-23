@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import type { PodcastsCollectionItem } from '@nuxt/content';
+import {
+  DEFAULT_PODCAST_OG_IMAGE_PATH,
+  buildCanonicalUrl,
+  buildOgImageMeta,
+  resolveAbsoluteAssetUrl,
+} from '~~/utils/seo';
 
 const siteUrl = useRuntimeConfig().public.site.url;
 
@@ -16,23 +22,33 @@ if (error.value) {
     });
 }
 
-// Caminho relativo para componentes locais como NuxtImg
+// Caminho relativo para componentes locais como NuxtImg / PodcastPlayer
 const relativeArtworkPath = computed(() => episode?.value?.image || '/images/default-podcast.webp');
 
 // Configuração de SEO
 watch(episode, (newData) => {
     if (newData) {
-        const fullAudioUrl = siteUrl + newData?.audioSrc
-        const fullPageUrl = siteUrl + newData.path
-        const fullImageUrl = newData?.image ? siteUrl + newData.image : siteUrl + '/images/default-podcast.webp'
+        const fullAudioUrl = newData.audioSrc ? resolveAbsoluteAssetUrl(siteUrl, newData.audioSrc, '') : '';
+        const homeUrl = buildCanonicalUrl(siteUrl, '/');
+        const podcastIndexUrl = buildCanonicalUrl(siteUrl, '/podcast/');
+        const fullPageUrl = buildCanonicalUrl(siteUrl, newData.path || route.path);
+        const ogImage = buildOgImageMeta(siteUrl, newData.image, {
+            fallbackPath: DEFAULT_PODCAST_OG_IMAGE_PATH,
+            alt: newData.title || 'Podcast - NotebookLM',
+        });
 
         useSeoMeta({
             title: newData?.title,
             description: newData?.description,
             ogTitle: newData?.title,
             ogDescription: newData?.description,
-            ogImage: fullImageUrl,
-            ogImageAlt: newData?.title,
+            ogUrl: fullPageUrl,
+            ogImage: ogImage.url,
+            ogImageSecureUrl: ogImage.secureUrl,
+            ogImageType: ogImage.type,
+            ...(ogImage.width ? { ogImageWidth: ogImage.width } : {}),
+            ...(ogImage.height ? { ogImageHeight: ogImage.height } : {}),
+            ogImageAlt: ogImage.alt,
             ogType: 'music.song',
             ogAudio: fullAudioUrl,
             ogAudioSecureUrl: fullAudioUrl,
@@ -43,7 +59,8 @@ watch(episode, (newData) => {
             twitterPlayerHeight: '80',
             twitterTitle: newData?.title,
             twitterDescription: newData?.description,
-            twitterImage: fullImageUrl,
+            twitterImage: ogImage.url,
+            twitterImageAlt: ogImage.alt,
             articlePublishedTime: newData?.date,
             articleAuthor: ['Heleno Salgado'],
             articleTag: newData?.categories
@@ -63,7 +80,7 @@ watch(episode, (newData) => {
                         "url": fullPageUrl,
                         "name": newData?.title || 'Podcast do blog - NotebookLM',
                         "description": newData?.description || 'Tecnologia, Literatura e Teologia',
-                        "image": fullImageUrl,
+                        "image": ogImage.url,
                         "datePublished": newData?.date || '',
                         "timeRequired": newData.duration,
                         "associatedMedia": {
@@ -75,12 +92,12 @@ watch(episode, (newData) => {
                         "author": {
                             "@type": "Person",
                             "name": "Heleno Salgado",
-                            "url": siteUrl
+                            "url": homeUrl
                         },
                         "partOfSeries": {
                             "@type": "PodcastSeries",
                             "name": "Podcast do Blog - NotebookLM",
-                            "url": siteUrl + '/podcast'
+                            "url": podcastIndexUrl
                         },
                         "inLanguage": "pt-BR"
                     })
@@ -95,13 +112,13 @@ watch(episode, (newData) => {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "Home",
-                                "item": siteUrl
+                                "item": homeUrl
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "Podcast",
-                                "item": siteUrl + '/podcast'
+                                "item": podcastIndexUrl
                             },
                             {
                                 "@type": "ListItem",
@@ -155,7 +172,7 @@ v-if="episode.categories?.length" v-bind="{
             </a>
         </p>
 
-        <SharePost :post-title="episode?.title || ''" :post-url="`${siteUrl}${episode.path}`" />
+        <SharePost :post-title="episode?.title || ''" :post-url="buildCanonicalUrl(siteUrl, episode.path || route.path)" />
 
         <ContentRenderer v-if="episode?.body" class="markdown-content" :value="episode.body" />
 

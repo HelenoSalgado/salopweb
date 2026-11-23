@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CardPost, Categories, PostsPagination } from '~~/server/types';
+import { DEFAULT_OG_IMAGE_PATH, buildOgImageMeta } from '~~/utils/seo';
 
 /**
  * Listagem paginada do blog. A página vem da rota (/blog ou /blog/pagina/N),
@@ -34,9 +35,26 @@ if (page > 1 && page > (data.value?.totalPages ?? 0)) {
   throw createError({ statusCode: 404, message: 'Página não encontrada.' });
 }
 
+const siteUrl = useRuntimeConfig().public.site.url;
+const title = page > 1 ? `Escritos Recentes — Página ${page}` : 'Escritos Recentes';
+const description = 'Explore todos os posts do blog.';
+const ogImage = buildOgImageMeta(siteUrl, DEFAULT_OG_IMAGE_PATH, { alt: title });
+
 useSeoMeta({
-  title: page > 1 ? `Escritos Recentes — Página ${page}` : 'Escritos Recentes',
-  description: 'Explore todos os posts do blog.',
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  ogImage: ogImage.url,
+  ogImageSecureUrl: ogImage.secureUrl,
+  ogImageType: ogImage.type,
+  ogImageWidth: ogImage.width,
+  ogImageHeight: ogImage.height,
+  ogImageAlt: ogImage.alt,
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: ogImage.url,
+  twitterImageAlt: ogImage.alt,
 });
 </script>
 

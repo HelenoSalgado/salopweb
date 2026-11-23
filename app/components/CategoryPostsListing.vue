@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CardPost, PostsPagination } from '~~/server/types';
+import { DEFAULT_OG_IMAGE_PATH, buildOgImageMeta } from '~~/utils/seo';
 
 /**
  * Listagem paginada de uma categoria. A página vem da rota
@@ -31,10 +32,26 @@ if (page > 1 && page > (data.value?.totalPages ?? 0)) {
 }
 
 const categoryName = data.value?.categoryName || category;
+const siteUrl = useRuntimeConfig().public.site.url;
+const title = page > 1 ? `Posts sobre ${categoryName} — Página ${page}` : `Posts sobre ${categoryName}`;
+const description = `Explore todos os posts na categoria ${categoryName}.`;
+const ogImage = buildOgImageMeta(siteUrl, DEFAULT_OG_IMAGE_PATH, { alt: title });
 
 useSeoMeta({
-  title: page > 1 ? `Posts sobre ${categoryName} — Página ${page}` : `Posts sobre ${categoryName}`,
-  description: `Explore todos os posts na categoria ${categoryName}.`
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  ogImage: ogImage.url,
+  ogImageSecureUrl: ogImage.secureUrl,
+  ogImageType: ogImage.type,
+  ogImageWidth: ogImage.width,
+  ogImageHeight: ogImage.height,
+  ogImageAlt: ogImage.alt,
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: ogImage.url,
+  twitterImageAlt: ogImage.alt,
 });
 </script>
 

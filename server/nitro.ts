@@ -11,9 +11,9 @@ export default {
   minify: true,
   prerender: {
     crawlLinks: true,
-    // '/api/search-index.json' e '/apoiar' (página isolada) não são descobertos
+    // '/api/search-index.json', '/rss.xml' e '/apoiar/' não são descobertos
     // apenas pelo crawler, por isso precisam ser listados explicitamente.
-    routes: ['/', '/apoiar', '/api/search-index.json'],
+    routes: ['/', '/apoiar/', '/rss.xml', '/api/search-index.json'],
     ignore: [
       '__nuxt_content/home/sql_dump.txt',
       '__nuxt_content/blog/sql_dump.txt',
@@ -26,6 +26,8 @@ export default {
   compressPublicAssets: true,
   routeRules: {
     '/api/**': { trailingSlash: false },
+    '/rss.xml': { trailingSlash: false },
+    '/sitemap.xml': { trailingSlash: false },
     '/**': {
       trailingSlash: true
     },

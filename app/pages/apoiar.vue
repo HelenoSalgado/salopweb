@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { DONATION_CONFIG } from '~~/app/data/donation';
+import { DEFAULT_OG_IMAGE_PATH, buildOgImageMeta } from '~~/utils/seo';
 
 const runtimeConfig = useRuntimeConfig();
 const siteUrl = runtimeConfig.public.site.url;
+const pageTitle = `${DONATION_CONFIG.title} — Heleno Salgado`;
+const ogImage = buildOgImageMeta(siteUrl, DEFAULT_OG_IMAGE_PATH, { alt: pageTitle });
 
 definePageMeta({
   title: 'Apoiar o Trabalho'
@@ -18,12 +21,21 @@ useHead({
 });
 
 useSeoMeta({
-  title: `${DONATION_CONFIG.title} — Heleno Salgado`,
+  title: pageTitle,
   description: DONATION_CONFIG.description,
-  ogTitle: `${DONATION_CONFIG.title} — Heleno Salgado`,
+  ogTitle: pageTitle,
   ogDescription: DONATION_CONFIG.description,
-  ogImage: `${siteUrl}/images/profile.webp`,
-  ogType: 'website'
+  ogImage: ogImage.url,
+  ogImageSecureUrl: ogImage.secureUrl,
+  ogImageType: ogImage.type,
+  ogImageWidth: ogImage.width,
+  ogImageHeight: ogImage.height,
+  ogImageAlt: ogImage.alt,
+  ogType: 'website',
+  twitterTitle: pageTitle,
+  twitterDescription: DONATION_CONFIG.description,
+  twitterImage: ogImage.url,
+  twitterImageAlt: ogImage.alt,
 });
 </script>
 

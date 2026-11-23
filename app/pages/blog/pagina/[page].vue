@@ -9,9 +9,9 @@ definePageMeta({
 const route = useRoute();
 const page = computed(() => parsePageParam(route.params.page) ?? 1);
 
-// A página 1 tem como URL canônica /blog.
+// A página 1 tem como URL canônica /blog/.
 if (page.value === 1) {
-  await navigateTo('/blog', { redirectCode: 301 });
+  await navigateTo('/blog/', { redirectCode: 301 });
 }
 </script>
 

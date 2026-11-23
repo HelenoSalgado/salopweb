@@ -16,7 +16,7 @@
                         <em>{{ episode.sourceName }}</em>
                     </a>
                 </p>
-                <SharePost :post-title="episode.title" :post-url="`${siteUrl}${episode.path}`" />
+                <SharePost :post-title="episode.title" :post-url="buildCanonicalUrl(siteUrl, episode.path)" />
             </div>
         </section>
     </div>
@@ -24,6 +24,12 @@
 
 <script setup lang="ts">
 import type { PodcastEpisode } from '../../../server/types';
+import {
+  DEFAULT_PODCAST_OG_IMAGE_PATH,
+  buildCanonicalUrl,
+  buildOgImageMeta,
+  resolveAbsoluteAssetUrl,
+} from '~~/utils/seo';
 
 const siteUrl = useRuntimeConfig().public.site.url;
 
@@ -31,8 +37,12 @@ const { data: episodes } = await useFetch<PodcastEpisode[]>('/api/podcasts');
 
 const title = "Podcast - NotebookLM";
 const description = "Explore episódios de podcast sobre filosofia, teologia, tecnologia e mais. Conteúdo aprofundado gerado com o auxílio de IA.";
-const canonicalUrl = siteUrl + '/podcast';
-const image = siteUrl + '/images/default-podcast.webp';
+const canonicalUrl = buildCanonicalUrl(siteUrl, '/podcast/');
+const ogImage = buildOgImageMeta(siteUrl, DEFAULT_PODCAST_OG_IMAGE_PATH, {
+  fallbackPath: DEFAULT_PODCAST_OG_IMAGE_PATH,
+  alt: title,
+});
+const publisherLogoUrl = resolveAbsoluteAssetUrl(siteUrl, '/images/profile.webp');
 
 useSeoMeta({
     title: title,
@@ -40,11 +50,17 @@ useSeoMeta({
     ogTitle: title,
     ogDescription: description,
     ogUrl: canonicalUrl,
-    ogImage: image,
+    ogImage: ogImage.url,
+    ogImageSecureUrl: ogImage.secureUrl,
+    ogImageType: ogImage.type,
+    ogImageWidth: ogImage.width,
+    ogImageHeight: ogImage.height,
+    ogImageAlt: ogImage.alt,
     ogType: 'website',
     twitterTitle: title,
     twitterDescription: description,
-    twitterImage: image,
+    twitterImage: ogImage.url,
+    twitterImageAlt: ogImage.alt,
 });
 
 
@@ -62,7 +78,7 @@ useHead({
                 "name": title,
                 "description": description,
                 "url": canonicalUrl,
-                "image": image,
+                "image": ogImage.url,
                 "author": {
                     "@type": "Person",
                     "name": "Heleno Salgado"
@@ -72,7 +88,7 @@ useHead({
                     "name": "Heleno Salgado",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": siteUrl + '/images/profile.webp'
+                        "url": publisherLogoUrl
                     }
                 }
             }))

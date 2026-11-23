@@ -1,9 +1,16 @@
 import { defineNuxtConfig } from "nuxt/config";
 import nitro from "./server/nitro";
 
+const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://heleno.dev').replace(/\/+$/, '');
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+
+  site: {
+    url: siteUrl,
+    name: 'Heleno Salgado',
+    trailingSlash: true,
+  },
 
   //ssr: true,
 
@@ -48,7 +55,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || 'https://heleno.dev',
+        url: siteUrl,
       }
     }
   },
@@ -215,6 +222,11 @@ export default defineNuxtConfig({
     debug: false,
     devtools: {
       enabled: false
+    },
+    site: {
+      url: 'http://localhost:3000',
+      name: 'Heleno Salgado',
+      trailingSlash: true,
     },
     runtimeConfig: {
       public: {

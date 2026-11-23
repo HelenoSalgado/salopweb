@@ -1,5 +1,6 @@
 import { queryCollection } from '@nuxt/content/server';
 import type { SearchIndexEntry } from '~~/utils/search';
+import { normalizeCanonicalPath } from '~~/utils/seo';
 
 /**
  * Índice de busca estático, pré-renderizado no build (ver `prerender.routes`
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event): Promise<SearchIndexEntry[]> => 
             .all();
 
         return posts.flatMap(({ path, title, description }) =>
-            path ? [{ path, title: title ?? '', description: description ?? '' }] : []
+            path ? [{ path: normalizeCanonicalPath(path), title: title ?? '', description: description ?? '' }] : []
         );
     } catch (err) {
         console.error('Error in /api/search-index.json:', err);
