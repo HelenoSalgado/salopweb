@@ -103,22 +103,22 @@ describe('inferImageMimeType', () => {
 });
 
 describe('buildOgImageMeta', () => {
-  it('returns default JPEG 1200x630 metadata when no image is provided', () => {
+  it('returns default WebP 1200x630 metadata when no image is provided', () => {
     expect(buildOgImageMeta('https://heleno.dev', undefined)).toEqual({
-      url: 'https://heleno.dev/images/default-post.jpg',
-      secureUrl: 'https://heleno.dev/images/default-post.jpg',
-      type: 'image/jpeg',
+      url: 'https://heleno.dev/images/default-post.webp',
+      secureUrl: 'https://heleno.dev/images/default-post.webp',
+      type: undefined,
       width: DEFAULT_OG_IMAGE_WIDTH,
       height: DEFAULT_OG_IMAGE_HEIGHT,
       alt: DEFAULT_OG_IMAGE_ALT,
     });
   });
 
-  it('maps default WebP paths to JPEG equivalents with 1200x630 dimensions', () => {
+  it('preserves default WebP paths with 1200x630 dimensions and undefined og:image:type', () => {
     expect(buildOgImageMeta('https://heleno.dev/', '/images/default-post.webp', { alt: 'Post' })).toEqual({
-      url: 'https://heleno.dev/images/default-post.jpg',
-      secureUrl: 'https://heleno.dev/images/default-post.jpg',
-      type: 'image/jpeg',
+      url: 'https://heleno.dev/images/default-post.webp',
+      secureUrl: 'https://heleno.dev/images/default-post.webp',
+      type: undefined,
       width: 1200,
       height: 630,
       alt: 'Post',
@@ -130,9 +130,9 @@ describe('buildOgImageMeta', () => {
         alt: 'Podcast',
       }),
     ).toEqual({
-      url: 'https://heleno.dev/images/default-podcast.jpg',
-      secureUrl: 'https://heleno.dev/images/default-podcast.jpg',
-      type: 'image/jpeg',
+      url: 'https://heleno.dev/images/default-podcast.webp',
+      secureUrl: 'https://heleno.dev/images/default-podcast.webp',
+      type: undefined,
       width: 1200,
       height: 630,
       alt: 'Podcast',

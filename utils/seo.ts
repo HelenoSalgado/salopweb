@@ -1,6 +1,6 @@
 export const DEFAULT_SITE_URL = 'https://heleno.dev';
-export const DEFAULT_OG_IMAGE_PATH = '/images/default-post.jpg';
-export const DEFAULT_PODCAST_OG_IMAGE_PATH = '/images/default-podcast.jpg';
+export const DEFAULT_OG_IMAGE_PATH = '/images/default-post.webp';
+export const DEFAULT_PODCAST_OG_IMAGE_PATH = '/images/default-podcast.webp';
 export const DEFAULT_OG_IMAGE_WIDTH = 1200;
 export const DEFAULT_OG_IMAGE_HEIGHT = 630;
 export const DEFAULT_OG_IMAGE_ALT = 'Heleno Salgado — Tecnologia, Teologia e Literatura';
@@ -20,11 +20,6 @@ export interface BuildOgImageOptions {
   fallbackPath?: string;
   alt?: string;
 }
-
-const DEFAULT_WEBP_TO_JPG_MAP: Record<string, string> = {
-  '/images/default-post.webp': DEFAULT_OG_IMAGE_PATH,
-  '/images/default-podcast.webp': DEFAULT_PODCAST_OG_IMAGE_PATH,
-};
 
 const FILE_EXTENSION_REGEX = /\.[a-z0-9]{1,8}$/i;
 
@@ -112,8 +107,9 @@ export function inferImageMimeType(url: string): OgImageMimeType | undefined {
 }
 
 /**
- * Constrói os metadados de `og:image` com URL absoluta e compatibilidade com crawlers (ex.: WhatsApp).
- * Mapeia os WebPs padrão para seus equivalentes JPEG 1200x630 e omite dimensões em imagens customizadas.
+ * Constrói os metadados de `og:image` com URL absoluta.
+ * Atribui dimensões 1200x630 apenas quando a imagem resolvida corresponde às
+ * imagens padrão conhecidas e omite `type` para WebP (compatível com Unhead/crawlers).
  */
 export function buildOgImageMeta(
   siteUrl: string,
@@ -121,15 +117,7 @@ export function buildOgImageMeta(
   options?: BuildOgImageOptions,
 ): OgImageMeta {
   const fallbackPath = options?.fallbackPath ?? DEFAULT_OG_IMAGE_PATH;
-  const trimmedInput = imagePath?.trim();
-
-  let normalizedInput: string | null | undefined = trimmedInput;
-  if (trimmedInput && !/^https?:\/\//i.test(trimmedInput)) {
-    const withLeadingSlash = `/${trimmedInput.replace(/^\/+/, '')}`;
-    normalizedInput = DEFAULT_WEBP_TO_JPG_MAP[withLeadingSlash] ?? withLeadingSlash;
-  }
-
-  const url = resolveAbsoluteAssetUrl(siteUrl, normalizedInput, fallbackPath);
+  const url = resolveAbsoluteAssetUrl(siteUrl, imagePath, fallbackPath);
   const defaultPostUrl = resolveAbsoluteAssetUrl(siteUrl, DEFAULT_OG_IMAGE_PATH);
   const defaultPodcastUrl = resolveAbsoluteAssetUrl(siteUrl, DEFAULT_PODCAST_OG_IMAGE_PATH);
   const isKnownDefaultSize = url === defaultPostUrl || url === defaultPodcastUrl;
